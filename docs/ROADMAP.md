@@ -4,7 +4,7 @@
 
 Architecture
 
-Status: In Progress
+Status: Complete
 
 ---
 

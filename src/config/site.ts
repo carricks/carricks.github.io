@@ -1,4 +1,6 @@
-export const portfolio = {
+import type { SiteProfile } from "../types/site";
+
+export const siteProfile = {
   name: "Diego Carrillo",
 
   role: "Multidisciplinary Systems Engineer",
@@ -14,4 +16,4 @@ export const portfolio = {
   company: "Capgemini Nederland",
 
   client: "TenneT",
-};
+} satisfies SiteProfile;
