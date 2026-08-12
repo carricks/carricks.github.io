@@ -1,0 +1,50 @@
+---
+import { Image, type ImageMetadata } from "astro:assets";
+import Container from "../common/Container.astro";
+import Section from "../common/Section.astro";
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  background: ImageMetadata;
+}
+
+const { id, eyebrow, title, description, background } = Astro.props;
+---
+
+<Section
+  id={id}
+  class="relative isolate min-h-[min(42rem,100svh)] scroll-mt-20 overflow-hidden bg-black py-32 lg:py-40"
+>
+  <Image
+    src={background}
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+  />
+
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.97)_0%,rgba(0,0,0,0.9)_49%,rgba(0,0,0,0.47)_100%)]"
+  />
+
+  <Container>
+    <div class="max-w-3xl">
+      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">
+        {eyebrow}
+      </p>
+
+      <h2 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        {title}
+      </h2>
+
+      <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+        {description}
+      </p>
+
+      <p class="mt-10 text-sm text-slate-500">Section in progress.</p>
+    </div>
+  </Container>
+</Section>

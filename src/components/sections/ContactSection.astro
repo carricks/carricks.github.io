@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import contactBackground from "../../assets/contact-topology-v1.png";
+import Container from "../common/Container.astro";
+import Section from "../common/Section.astro";
+---
+
+<Section id="contact" class="relative isolate min-h-[min(46rem,100svh)] scroll-mt-20 overflow-hidden bg-black py-32 lg:py-40">
+  <Image src={contactBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.97)_0%,rgba(0,0,0,0.91)_52%,rgba(0,0,0,0.48)_100%)]" />
+
+  <Container>
+    <div class="max-w-2xl">
+      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">CONTACT</p>
+      <h2 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">Let’s build resilient systems.</h2>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">For technical conversations, collaborations and engineering opportunities.</p>
+
+      <form data-contact-form novalidate class="mt-12 grid gap-6" aria-describedby="contact-form-status">
+        <div class="contact-field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="contact-field">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="contact-field">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <p id="contact-form-status" data-contact-status class="min-h-6 text-sm" aria-live="polite"></p>
+        <button type="submit" class="contact-submit">Submit</button>
+      </form>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .contact-field { display: grid; gap: 0.65rem; }
+  .contact-field label { color: rgb(221 214 254); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; }
+  .contact-field input, .contact-field textarea {
+    width: 100%; border: 1px solid rgba(196, 181, 253, 0.24); border-radius: 0.75rem;
+    background: rgba(3, 3, 5, 0.68); color: white; font: inherit; outline: none; padding: 0.9rem 1rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  }
+  .contact-field textarea { min-height: 8rem; resize: vertical; }
+  .contact-field input:focus, .contact-field textarea:focus { border-color: rgba(196, 181, 253, 0.8); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.14); }
+  .contact-field.is-invalid input, .contact-field.is-invalid textarea { border-color: rgb(248 113 113); background: rgba(69, 10, 10, 0.34); animation: invalid-field 850ms ease-in-out 2; }
+  .contact-submit {
+    width: fit-content; border: 1px solid rgba(221, 214, 254, 0.3); border-radius: 0.75rem;
+    background: rgb(196 181 253); color: rgb(24 24 27); cursor: pointer; font: inherit; font-weight: 600;
+    padding: 0.8rem 1.5rem; transition: background-color 160ms ease, transform 160ms ease;
+  }
+  .contact-submit:hover { background: rgb(221 214 254); transform: translateY(-1px); }
+  @keyframes invalid-field {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    25% { border-color: rgb(254 202 202); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.34); }
+    50% { border-color: rgb(220 38 38); box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.12); }
+    75% { border-color: rgb(254 202 202); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.34); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-field.is-invalid input, .contact-field.is-invalid textarea, .contact-submit { animation: none; transition: none; }
+  }
+</style>
+
+<script>
+  const contactForms = document.querySelectorAll<HTMLFormElement>("[data-contact-form]");
+
+  contactForms.forEach((form) => {
+    const status = form.querySelector<HTMLElement>("[data-contact-status]");
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea"));
+
+    const clearInvalidState = (field: HTMLInputElement | HTMLTextAreaElement) => {
+      if (field.validity.valid && field.value.trim()) field.closest(".contact-field")?.classList.remove("is-invalid");
+    };
+
+    fields.forEach((field) => {
+      field.addEventListener("input", () => clearInvalidState(field));
+      field.addEventListener("blur", () => clearInvalidState(field));
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const invalidFields = fields.filter((field) => !field.value.trim() || !field.validity.valid);
+      invalidFields.forEach((field) => field.closest(".contact-field")?.classList.add("is-invalid"));
+
+      if (invalidFields.length > 0) {
+        if (status) {
+          status.textContent = "Please complete the highlighted fields before submitting.";
+          status.className = "min-h-6 text-sm text-red-300";
+        }
+        invalidFields[0].focus();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const name = String(formData.get("name") ?? "").trim();
+      const email = String(formData.get("email") ?? "").trim();
+      const message = String(formData.get("message") ?? "").trim();
+      const subject = `Portfolio enquiry from ${name}`;
+      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      window.location.href = `mailto:diegocarrillo.sa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      if (status) {
+        status.textContent = "Your email client is opening with your message prepared.";
+        status.className = "min-h-6 text-sm text-violet-200";
+      }
+    });
+  });
+</script>

@@ -58,7 +58,7 @@ Pending
 
 ## Phase 8
 
-Engineering Lab
+International Perspective & Research
 
 Pending
 

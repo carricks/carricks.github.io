@@ -4,8 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/common/Container.astro";
 import Section from "../components/common/Section.astro";
 import Button from "../components/ui/Button.astro";
-import heroBackground from "../assets/hero-north-sea-map-v6.png";
+import heroBackground from "../assets/hero-systems-geometry-v1.png";
 import AboutSection from "../components/sections/AboutSection.astro";
+import PortfolioSection from "../components/sections/PortfolioSection.astro";
+import experienceBackground from "../assets/experience-system-architecture-v1.png";
+import projectsBackground from "../assets/projects-integration-v1.png";
+import internationalBackground from "../assets/international-perspective-v1.png";
+import researchBackground from "../assets/research-neural-architecture-v1.png";
+import ContactSection from "../components/sections/ContactSection.astro";
 ---
 
 <BaseLayout
@@ -53,15 +59,9 @@ SCADA platforms, renewable energy integration and resilient power systems.
 
 <div class="mt-10 flex gap-4">
 
-<Button>
+<Button href="#projects">
 
 View Engineering Work
-
-</Button>
-
-<Button variant="secondary">
-
-Contact
 
 </Button>
 
@@ -72,5 +72,39 @@ Contact
 </Section>
 
 <AboutSection />
+
+<PortfolioSection
+  id="experience"
+  eyebrow="EXPERIENCE"
+  title="Engineering across critical energy systems."
+  description="A foundation in automation, control and infrastructure for complex industrial environments."
+  background={experienceBackground}
+/>
+
+<PortfolioSection
+  id="projects"
+  eyebrow="PROJECTS"
+  title="Systems designed for operational confidence."
+  description="Selected work across power systems, industrial integration and resilient control environments."
+  background={projectsBackground}
+/>
+
+<PortfolioSection
+  id="perspective"
+  eyebrow="INTERNATIONAL PERSPECTIVE"
+  title="Engineering shaped across borders."
+  description="Academic and professional experience across countries, cultures and multidisciplinary technical environments — complemented by international technology competitions."
+  background={internationalBackground}
+/>
+
+<PortfolioSection
+  id="research"
+  eyebrow="RESEARCH & RECOGNITION"
+  title="Deep learning applied to medical image classification."
+  description="My postgraduate thesis investigated convolutional neural networks for classifying brain tumours from magnetic resonance images. The research earned a final grade of 10/10 and reflects a continuing interest in rigorous, applied machine learning."
+  background={researchBackground}
+/>
+
+<ContactSection />
 
 </BaseLayout>

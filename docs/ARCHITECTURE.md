@@ -22,17 +22,16 @@ src/
     sections/                   Page-section compositions, never route files
     ui/                         Reusable controls with a small API: Button, Card
   config/                       Typed site-wide configuration, not page content
-  content/                      Validated collections: projects, lab, writing
-  data/                         Structured data used by one or more features
+  content/                      Validated collections: projects, research, writing
   layouts/                      Document shells and page-level metadata defaults
-  lib/                          Framework-independent helpers and transformations
   pages/                        Astro routes only; file location defines the URL
   styles/                       Global layers, tokens and Tailwind entry point
   types/                        Shared TypeScript contracts
 ```
 
-Empty `assets/` and `content/` directories are intentionally versioned. They
-are reserved for their stated responsibilities, not placeholders for content.
+The `content/` directory is intentionally versioned for future validated
+content collections. New directories are introduced only when their ownership
+is needed by approved functionality.
 
 ## Ownership and dependency rules
 
@@ -49,13 +48,15 @@ sections -> ui / common / types
   chrome placement.
 - `components/sections/` composes a page area. It may receive data through
   props, but it never reads route parameters directly.
-- `components/ui/` is generic and must not know project, lab, or home-page
+- `components/ui/` is generic and must not know project, research, or home-page
   terminology.
 - `config/` contains stable site configuration. `site.ts` owns the typed
   identity/profile record currently used by the site.
-- `data/` is for small, typed, structured data that is not an authored content
-  entry. Authored material belongs in `content/` once introduced.
-- `lib/` and `types/` may not import Astro components, layouts or pages.
+- A future `data/` directory is for small, typed, structured data that is not
+  an authored content entry. Authored material belongs in `content/` once
+  introduced.
+- A future `lib/` directory and `types/` may not import Astro components,
+  layouts or pages.
 
 Imports must flow down this diagram. In particular, shared components never
 import sections or pages, and content never imports UI.
@@ -71,7 +72,7 @@ will be created before their content and user journey are approved:
 ```text
 /                         Portfolio overview
 /projects/[slug]/          Project case study
-/lab/[slug]/               Engineering Lab entry
+/research/[slug]/          Research or independent academic work
 /writing/[slug]/           Article or publication
 ```
 
@@ -83,12 +84,12 @@ backend from becoming an accidental dependency.
 
 When the first repeatable content type is approved, define its schema in
 `src/content.config.ts` before adding any entries. Collections will start with
-`projects`, `lab`, and `writing` only when each is needed. Do not create a
+`projects`, `research`, and `writing` only when each is needed. Do not create a
 collection, page, or taxonomy speculatively.
 
-Small cross-site records that behave as configuration live in `config/`; lists
-that feed a UI but are not authored documents live in `data/`. This keeps
-portfolio content separate from product configuration.
+Small cross-site records that behave as configuration live in `config/`. When
+needed, lists that feed a UI but are not authored documents belong in `data/`.
+This keeps portfolio content separate from product configuration.
 
 ## Assets
 

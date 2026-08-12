@@ -286,13 +286,56 @@ a project to read.
 
 ```text
 Hero
-  -> Engineering philosophy
-  -> Engineering domains
-  -> Selected case studies
-  -> Professional foundation
+  -> About
+  -> Experience
+  -> Selected projects
+  -> International perspective
+  -> Research & recognition
   -> Contact
 ```
 
-The navigation can remain concise by linking only to `Philosophy`, `Domains`,
-`Work` and `Contact`. The foundation is supporting evidence within the page,
-not a separate destination.
+`Experience` covers professional roles and operational contexts. `Projects`
+covers work delivered for organisations. `Research & recognition` remains
+separate for independent, academic and competition-based work.
+
+## Research & recognition
+
+### Postgraduate thesis
+
+**Section label**
+
+`RESEARCH & RECOGNITION`
+
+**Headline**
+
+`Deep learning applied to medical image classification.`
+
+**Supporting statement**
+
+`My postgraduate thesis investigated convolutional neural networks for
+classifying brain tumours from magnetic resonance images. The research earned
+a final grade of 10/10 and reflects a continuing interest in rigorous, applied
+machine learning.`
+
+### Future supporting items
+
+- International technology competitions, including hardware challenges and
+  hackathons.
+- Academic work, prototypes and independent technical investigations.
+- Awards only where their name, date and context can be stated accurately.
+
+## International perspective
+
+**Section label**
+
+`INTERNATIONAL PERSPECTIVE`
+
+**Headline**
+
+`Engineering shaped across borders.`
+
+**Supporting statement**
+
+`Academic and professional experience across countries, cultures and
+multidisciplinary technical environments — complemented by international
+technology competitions.`
