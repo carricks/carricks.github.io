@@ -1,15 +1,36 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/common/Container.astro";
 import Section from "../components/common/Section.astro";
 import Button from "../components/ui/Button.astro";
+import heroBackground from "../assets/hero-north-sea-map-v6.png";
+import AboutSection from "../components/sections/AboutSection.astro";
 ---
 
 <BaseLayout
   title="Diego Carrillo | Systems Engineer"
 >
 
-<Section>
+<Section class="relative isolate flex min-h-[calc(100svh-5rem)] items-center overflow-hidden py-20">
+
+<Image
+  src={heroBackground}
+  alt=""
+  aria-hidden="true"
+  loading="eager"
+  class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+/>
+
+<div
+  aria-hidden="true"
+  class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,7,12,0.94)_0%,rgba(3,7,12,0.82)_40%,rgba(3,7,12,0.44)_72%,rgba(3,7,12,0.2)_100%)]"
+/>
+
+<div
+  aria-hidden="true"
+  class="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgba(3,7,12,0.82)_0%,transparent_48%)]"
+/>
 
 <Container>
 
@@ -49,5 +70,7 @@ Contact
 </Container>
 
 </Section>
+
+<AboutSection />
 
 </BaseLayout>
