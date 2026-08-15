@@ -62,3 +62,106 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+
+section[data-section-transition] {
+  transition: opacity 260ms ease-out;
+}
+
+section[data-section-transition].is-section-idle {
+  opacity: 0.42;
+}
+
+.interactive-control {
+  transition: transform 160ms ease, box-shadow 220ms ease, color 160ms ease,
+    border-color 160ms ease, background-color 160ms ease;
+}
+
+.interactive-control:focus-visible {
+  outline: 2px solid rgb(196 181 253);
+  outline-offset: 3px;
+}
+
+.interactive-control:not(.project-link):hover {
+  border-color: rgb(196 181 253);
+  background: rgba(3, 3, 5, 0.82);
+  box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.12);
+  color: rgb(196 181 253);
+  transform: translateY(-2px);
+}
+
+.interactive-control:active {
+  animation: control-press 460ms ease-out;
+  box-shadow: 0 0 0 4px rgba(196, 181, 253, 0.18);
+  transform: translateY(1px) scale(0.98);
+}
+
+.nav-control {
+  isolation: isolate;
+  position: relative;
+  display: inline-flex;
+  padding: 0.4rem 0.15rem;
+}
+
+.nav-control::before {
+  border: 1px solid rgba(196, 181, 253, 0.42);
+  border-radius: 999px;
+  content: "";
+  inset: -0.38rem -0.58rem;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: scale(0.92);
+  transition: opacity 180ms ease, transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.nav-control::after {
+  background: rgb(196 181 253);
+  bottom: -0.12rem;
+  content: "";
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: calc(100% + 0.55rem);
+}
+
+.nav-control:hover {
+  color: rgb(237 233 254);
+  transform: translateY(-1px);
+}
+
+.nav-control:hover::before {
+  animation: nav-focus 420ms ease-out;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-control:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+@keyframes nav-focus {
+  0% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0); }
+  55% { box-shadow: 0 0 0 4px rgba(196, 181, 253, 0.14); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0); }
+}
+
+@keyframes control-press {
+  0% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0); }
+  45% { box-shadow: 0 0 0 6px rgba(196, 181, 253, 0.28); }
+  100% { box-shadow: 0 0 0 0 rgba(196, 181, 253, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section[data-section-transition] {
+    transition: none;
+  }
+
+  .interactive-control {
+    animation: none;
+    transition: none;
+  }
+}

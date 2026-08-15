@@ -36,7 +36,7 @@ const { id, eyebrow, title, description, background } = Astro.props;
         {eyebrow}
       </p>
 
-      <h2 class="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+      <h2 class="mt-6 text-4xl font-semibold tracking-tight text-slate-400 sm:text-5xl">
         {title}
       </h2>
 
@@ -44,7 +44,7 @@ const { id, eyebrow, title, description, background } = Astro.props;
         {description}
       </p>
 
-      <p class="mt-10 text-sm text-slate-500">Section in progress.</p>
+      <slot />
     </div>
   </Container>
 </Section>

@@ -45,7 +45,13 @@ not required in the hero, where it would make the message too dense.
 
 Use this only where an "About" section needs a compact profile.
 
-`My work sits at the intersection of automation, energy systems, robotics and applied machine learning. I turn complex technical signals into systems that can inform decisions under pressure.`
+**Headline**
+
+`Engineering systems that perform when complexity matters.`
+
+**Supporting statements**
+
+`I am a multidisciplinary systems engineer with a background in Electronic Engineering and an MSc in Robotics and Automation, working across industrial control, renewable power and applied software, combining automation, data and systems integration to make complex infrastructure more reliable, with experience in Spain, the Netherlands, Portugal and Latin America, including power generation plants, multinational engineering environments and telecommunications.`
 
 ## Information deliberately excluded
 

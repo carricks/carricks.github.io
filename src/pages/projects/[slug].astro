@@ -1,0 +1,118 @@
+---
+import "../../styles/global.css";
+import { projects } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={project.summary} />
+    <title>{project.title} | Diego Carrillo</title>
+  </head>
+  <body class="bg-black">
+    <main class="relative isolate min-h-screen overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
+      <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#050505_0%,#0d0914_48%,#050505_100%)]"></div>
+      <div aria-hidden="true" class="absolute -right-24 top-0 -z-10 h-[40rem] w-[40rem] border border-violet-300/15 [transform:rotate(45deg)]"></div>
+
+      <nav aria-label="Project navigation" class="project-navigation sticky top-4 z-10 flex flex-wrap gap-2">
+        <a href="/#projects" class="interactive-control project-nav-control project-back">Back to projects</a>
+        <a href="/" class="interactive-control project-nav-control project-home">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" />
+          </svg>
+          Home
+        </a>
+      </nav>
+
+      <article class="mx-auto mt-24 max-w-4xl">
+        <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT {project.number}</p>
+        <p class="mt-5 text-sm text-slate-400">{project.location}</p>
+        <h1 class="mt-4 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{project.title}</h1>
+        <p class="mt-8 max-w-3xl text-xl leading-9 text-slate-300">{project.summary}</p>
+
+        <div class="mt-16 grid gap-12 border-t border-violet-300/15 pt-10 sm:grid-cols-2">
+          <section>
+            <p class="text-sm font-medium tracking-[0.18em] text-violet-300">CONTRIBUTION</p>
+            <p class="mt-4 leading-8 text-slate-400">{project.contribution}</p>
+          </section>
+          <section>
+            <p class="text-sm font-medium tracking-[0.18em] text-violet-300">OUTCOME</p>
+            <p class="mt-4 leading-8 text-slate-400">{project.outcome}</p>
+          </section>
+        </div>
+
+        <section class="mt-14 border-t border-violet-300/15 pt-10">
+          <p class="text-sm font-medium tracking-[0.18em] text-violet-300">TECHNICAL SCOPE</p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            {project.technicalScope.map((item) => <span class="tech-scope-item">{item}</span>)}
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  .project-navigation {
+    width: fit-content;
+  }
+
+  .project-nav-control {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(221, 214, 254, 0.3);
+    border-radius: 0.7rem;
+    background: rgb(196 181 253);
+    color: rgb(24 24 27);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.52rem 0.75rem;
+    text-decoration: none;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .project-nav-control:hover {
+    border-color: rgb(196 181 253);
+    background: rgba(3, 3, 5, 0.82);
+    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.12);
+    color: rgb(196 181 253);
+    transform: translateY(-2px);
+  }
+
+  .project-back::before {
+    content: "←";
+    color: currentColor;
+    font-size: 0.95rem;
+    margin-right: 0.4rem;
+    content: "\2190";
+  }
+
+  .project-home svg {
+    height: 0.9rem;
+    margin-right: 0.4rem;
+    width: 0.9rem;
+  }
+
+  .tech-scope-item {
+    border: 1px solid rgba(221, 214, 254, 0.3);
+    border-radius: 0.7rem;
+    background: rgba(167, 139, 250, 0.1);
+    color: rgb(221 214 254);
+    cursor: default;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.55rem 0.8rem;
+  }
+</style>

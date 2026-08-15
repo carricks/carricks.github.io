@@ -16,4 +16,8 @@ export const siteProfile = {
   company: "Capgemini Nederland",
 
   client: "TenneT",
+
+  githubUrl: "https://github.com/carricks",
+
+  linkedinUrl: "https://www.linkedin.com/in/carrillodiegoeng/",
 } satisfies SiteProfile;

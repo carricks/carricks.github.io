@@ -6,4 +6,6 @@ export interface SiteProfile {
   location: string;
   company: string;
   client: string;
+  githubUrl: string;
+  linkedinUrl: string;
 }

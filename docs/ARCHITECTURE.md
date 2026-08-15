@@ -23,6 +23,7 @@ src/
     ui/                         Reusable controls with a small API: Button, Card
   config/                       Typed site-wide configuration, not page content
   content/                      Validated collections: projects, research, writing
+  data/                         Typed structured records used by active features
   layouts/                      Document shells and page-level metadata defaults
   pages/                        Astro routes only; file location defines the URL
   styles/                       Global layers, tokens and Tailwind entry point
@@ -52,9 +53,10 @@ sections -> ui / common / types
   terminology.
 - `config/` contains stable site configuration. `site.ts` owns the typed
   identity/profile record currently used by the site.
-- A future `data/` directory is for small, typed, structured data that is not
-  an authored content entry. Authored material belongs in `content/` once
-  introduced.
+- `data/` contains small, typed, structured data that is not an authored
+  content entry. `projects.ts` is the current source of truth for the project
+  index and its static case-study routes. Authored material belongs in
+  `content/` once introduced.
 - A future `lib/` directory and `types/` may not import Astro components,
   layouts or pages.
 
@@ -66,19 +68,21 @@ import sections or pages, and content never imports UI.
 `src/pages/` is the only routing boundary because Astro derives routes from the
 file system. The initial public route remains `/` in `pages/index.astro`.
 
-Future public route families are reserved conceptually, but no empty page files
-will be created before their content and user journey are approved:
+The project case-study route is active. Future route families remain reserved
+conceptually, and no empty page files will be created before their content and
+user journey are approved:
 
 ```text
 /                         Portfolio overview
-/projects/[slug]/          Project case study
+/projects/[slug]/          Published static project case study
 /research/[slug]/          Research or independent academic work
 /writing/[slug]/           Article or publication
 ```
 
-Dynamic routes will be generated statically from their corresponding content
-collection. This preserves GitHub Pages compatibility and prevents a runtime
-backend from becoming an accidental dependency.
+Dynamic routes are generated statically from approved structured project data,
+and later from their corresponding content collection when one is introduced.
+This preserves GitHub Pages compatibility and prevents a runtime backend from
+becoming an accidental dependency.
 
 ## Content and data contract
 

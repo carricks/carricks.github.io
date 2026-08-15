@@ -41,6 +41,23 @@ const {
     <slot />
   </main>
 
+  <script>
+    const sections = document.querySelectorAll<HTMLElement>("[data-section-transition]");
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle("is-section-idle", !entry.isIntersecting);
+          });
+        },
+        { threshold: 0.18 },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    }
+  </script>
+
 </body>
 
 </html>
