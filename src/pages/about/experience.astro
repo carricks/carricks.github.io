@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import projectBackground from "../../assets/project-plc-schematic-v1.png";
+
+const experiences = [
+  {
+    number: "01",
+    title: "Grid Resilience",
+    location: "The Netherlands",
+    statement: "Anticipating instability before it becomes a grid event.",
+    description: "Working within a leading European engineering consultancy on Dynamic Security Assessment solutions for the Dutch energy sector, designing and validating applications that help forecast, assess and respond to destabilising grid scenarios.",
+    tags: ["Dynamic Security Assessment", "Python Applications", "System Integration"],
+    outcome: "Building interoperable solutions for resilient power-system decision making.",
+  },
+  {
+    number: "02",
+    title: "Secure Data Integration",
+    location: "Spain, Dutch North Sea",
+    statement: "Connecting critical operational data without compromising control-system security.",
+    description: "Delivered data-acquisition integration across segregated offshore operational environments, coordinating Linux and Windows infrastructure, industrial protocols and cybersecurity practices within a sensitive control-network architecture.",
+    tags: ["SCADA Integration", "Industrial Protocols", "Cybersecurity"],
+    outcome: "Established a secure bridge between distinct operational domains.",
+  },
+  {
+    number: "03",
+    title: "Renewable Plant Control",
+    location: "Spain",
+    statement: "Turning renewable generation into grid-ready, controllable power.",
+    description: "Contributed to Power Plant Controller deployments for large-scale photovoltaic generation, integrating PLC, HMI and SCADA layers and validating grid-code behaviour during full plant-control testing.",
+    tags: ["PLC and SCADA", "IEC 61850", "Grid-Code Compliance"],
+    outcome: "Validated utility-scale control integration for plants up to 380 MW.",
+  },
+] as const;
+---
+
+<BaseLayout title="Experience | Diego Carrillo" description="Selected engineering experience across resilient power systems, secure industrial integration and renewable plant control.">
+  <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
+    <Image src={projectBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+    <div aria-hidden="true" class="experience-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,3,5,0.98)_0%,rgba(3,3,5,0.93)_52%,rgba(3,3,5,0.68)_100%)]"></div>
+
+    <nav aria-label="Experience navigation" class="experience-navigation flex">
+      <a href="/#about" class="interactive-control experience-back-control" aria-label="Back to about" title="Back to about">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12H4" /><path d="m10 6-6 6 6 6" />
+        </svg>
+      </a>
+    </nav>
+
+    <article class="mx-auto mt-20 max-w-5xl pb-20">
+      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">EXPERIENCE</p>
+      <h1 class="interactive-heading mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">Engineering in critical systems.</h1>
+      <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">Selected work across resilient power systems, secure industrial data integration and renewable plant control, where technical decisions directly shape operational confidence.</p>
+
+      <div class="experience-modules mt-16 grid gap-5 lg:grid-cols-3">
+        {experiences.map((experience) => (
+          <section class="experience-module">
+            <div class="flex items-start justify-between gap-4">
+              <p class="text-xs font-medium tracking-[0.2em] text-violet-300">{experience.number}</p>
+              <p class="text-right text-xs text-slate-500">{experience.location}</p>
+            </div>
+            <h2 class="interactive-heading mt-8 text-2xl font-semibold tracking-tight text-slate-300">{experience.title}</h2>
+            <p class="mt-4 text-base leading-7 text-violet-100">{experience.statement}</p>
+            <p class="mt-5 text-sm leading-7 text-slate-400">{experience.description}</p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              {experience.tags.map((tag) => <span class="experience-tag">{tag}</span>)}
+            </div>
+            <p class="mt-7 border-t border-violet-300/15 pt-5 text-sm leading-6 text-slate-300">{experience.outcome}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .experience-navigation { width: fit-content; }
+  .experience-back-control { align-items: center; border: 1px solid rgba(196,181,253,.42); border-radius: 999px; color: rgb(203 213 225); display: inline-flex; height: 2.65rem; justify-content: center; width: 2.65rem; }
+  .experience-back-control svg { height: 1.7rem; width: 1.7rem; }
+  .interactive-control.experience-back-control:hover { animation: nav-link-presence 520ms cubic-bezier(.22,1,.36,1); background: transparent; border-color: rgb(196 181 253); box-shadow: none; color: rgb(196 181 253); transform: none; }
+  .experience-module { border: 1px solid rgba(196,181,253,.16); border-radius: 1rem; background: rgba(3,3,5,.57); min-height: 100%; padding: 1.5rem; }
+  .experience-tag { border: 1px solid rgba(221,214,254,.22); border-radius: 999px; color: rgb(221 214 254); font-size: .7rem; padding: .32rem .55rem; }
+  @media (max-width: 48rem) { .experience-background-overlay { background: rgba(3,3,5,.95); } .experience-module { padding: 1.35rem; } }
+</style>

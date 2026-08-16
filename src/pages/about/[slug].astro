@@ -5,7 +5,7 @@ import { aboutDestinations } from "../../data/about-destinations.ts";
 import projectBackground from "../../assets/project-plc-schematic-v1.png";
 
 export function getStaticPaths() {
-  return aboutDestinations.map((destination) => ({
+  return aboutDestinations.filter((destination) => destination.slug !== "experience").map((destination) => ({
     params: { slug: destination.slug },
     props: { destination },
   }));

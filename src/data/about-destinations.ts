@@ -26,15 +26,6 @@ export const aboutDestinations = [
     summary:
       "Academic projects and research that connect robotics, machine learning and engineering practice.",
   },
-  {
-    slug: "accomplishment",
-    number: "04",
-    label: "Accomplishment",
-    icon: "trophy",
-    title: "Technical Milestones and Recognition",
-    summary:
-      "Selected academic work, technical competitions and personal milestones that sit alongside my professional engineering practice.",
-  },
 ] as const;
 
 export type AboutDestination = (typeof aboutDestinations)[number];

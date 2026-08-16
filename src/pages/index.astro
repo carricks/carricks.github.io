@@ -3,56 +3,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/sections/AboutSection.astro";
 import PortfolioSection from "../components/sections/PortfolioSection.astro";
 import projectsBackground from "../assets/projects-integration-v1.png";
-import internationalBackground from "../assets/international-perspective-v1.png";
-import researchBackground from "../assets/research-neural-architecture-v1.png";
+import milestonesBackground from "../assets/research-neural-architecture-v1.png";
 import ContactSection from "../components/sections/ContactSection.astro";
 import { projects } from "../data/projects";
 ---
 
-<BaseLayout
-  title="Diego Carrillo | Systems Engineer"
->
+<BaseLayout title="Diego Carrillo | Systems Engineer">
+  <AboutSection />
 
-<AboutSection />
-
-<PortfolioSection
-  id="projects"
-  eyebrow="PROJECTS"
-  title="Systems designed for operational confidence."
-  description="Selected work across power systems, industrial integration and resilient control environments."
-  background={projectsBackground}
->
-  <div class="mt-12 flex max-w-2xl flex-wrap gap-3 text-sm text-violet-100">
-    {projects.map((project) => (
-      <a
-        href={`/projects/${project.slug}`}
-        aria-label={`Open project, ${project.title}`}
-        class="interactive-control project-link rounded-full border border-violet-300/25 bg-violet-300/10 px-4 py-2 hover:border-violet-200/60 hover:bg-violet-300/18"
-      >
-        <span>
+  <PortfolioSection
+    id="projects"
+    eyebrow="PROJECTS"
+    title="Systems designed for operational confidence."
+    description="Selected work across power systems, industrial integration and resilient control environments."
+    background={projectsBackground}
+  >
+    <div class="mt-12 flex max-w-2xl flex-wrap gap-3 text-sm text-violet-100">
+      {projects.map((project) => (
+        <a
+          href={`/projects/${project.slug}`}
+          aria-label={`Open project, ${project.title}`}
+          class="interactive-control project-link rounded-full border border-violet-300/25 bg-violet-300/10 px-4 py-2 hover:border-violet-200/60 hover:bg-violet-300/18"
+        >
           <span class="font-medium">{project.shortLabel}</span>
-        </span>
-      </a>
-    ))}
-  </div>
-</PortfolioSection>
+        </a>
+      ))}
+    </div>
+  </PortfolioSection>
 
-<PortfolioSection
-  id="perspective"
-  eyebrow="INTERNATIONAL PERSPECTIVE"
-  title="Engineering shaped across borders."
-  description="Academic and professional experience across countries, cultures and multidisciplinary technical environments — complemented by international technology competitions."
-  background={internationalBackground}
-/>
+  <PortfolioSection
+    id="milestones"
+    eyebrow="MILESTONES"
+    title="Technical milestones and recognition."
+    description="Selected academic work, international technology competitions and personal milestones that complement my professional engineering practice."
+    background={milestonesBackground}
+  />
 
-<PortfolioSection
-  id="research"
-  eyebrow="RESEARCH & RECOGNITION"
-  title="Deep learning applied to medical image classification."
-  description="My postgraduate thesis investigated convolutional neural networks for classifying brain tumours from magnetic resonance images. The research earned a final grade of 10/10 and reflects a continuing interest in rigorous, applied machine learning."
-  background={researchBackground}
-/>
-
-<ContactSection />
-
+  <ContactSection />
 </BaseLayout>
