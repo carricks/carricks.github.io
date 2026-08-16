@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { aboutDestinations } from "../../data/about-destinations.ts";
+import projectBackground from "../../assets/project-plc-schematic-v1.png";
+
+export function getStaticPaths() {
+  return aboutDestinations.map((destination) => ({
+    params: { slug: destination.slug },
+    props: { destination },
+  }));
+}
+
+const { destination } = Astro.props;
+---
+
+<BaseLayout title={`${destination.label} | Diego Carrillo`} description={destination.summary}>
+    <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
+      <Image src={projectBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+      <div aria-hidden="true" class="detail-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,3,5,0.97)_0%,rgba(3,3,5,0.93)_48%,rgba(3,3,5,0.67)_100%)]"></div>
+
+      <nav aria-label="About navigation" class="detail-navigation flex flex-wrap gap-3">
+        <a href="/#about" class="interactive-control detail-icon-control" aria-label="Back to about" title="Back to about">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12H4" />
+            <path d="m10 6-6 6 6 6" />
+          </svg>
+        </a>
+      </nav>
+
+      <article class="mx-auto mt-24 max-w-4xl">
+        <p class="text-sm font-medium tracking-[0.22em] text-violet-300">{destination.label.toUpperCase()}</p>
+        <h1 class="interactive-heading mt-5 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{destination.title}</h1>
+        <p class="mt-8 max-w-3xl text-xl leading-9 text-slate-300">{destination.summary}</p>
+
+        <section class="mt-16 max-w-3xl border-t border-violet-300/15 pt-10">
+          <p class="text-sm font-medium tracking-[0.18em] text-violet-300">PROFILE OVERVIEW</p>
+          <p class="mt-4 leading-8 text-slate-400">This page is ready for a focused narrative, selected evidence and visual material. Its content will be developed in the next project-content sprint.</p>
+        </section>
+      </article>
+    </section>
+</BaseLayout>
+
+<style>
+  .detail-navigation { width: fit-content; }
+
+  .detail-icon-control {
+    align-items: center;
+    border: 1px solid rgba(196, 181, 253, 0.38);
+    border-radius: 999px;
+    color: rgb(203 213 225);
+    display: inline-flex;
+    height: 2.65rem;
+    justify-content: center;
+    padding: 0.35rem;
+    width: 2.65rem;
+  }
+
+  .detail-icon-control :global(svg) {
+    height: 1.7rem;
+    min-height: 1.7rem;
+    min-width: 1.7rem;
+    transition: filter 180ms ease, transform 180ms ease;
+    width: 1.7rem;
+  }
+
+  .interactive-control.detail-icon-control:hover {
+    animation: nav-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    background: transparent;
+    border-color: rgb(196 181 253);
+    box-shadow: none;
+    color: rgb(196 181 253);
+    transform: none;
+  }
+
+  .interactive-control.detail-icon-control:hover :global(svg) {
+    filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.5)) drop-shadow(0 0 10px rgba(103, 232, 249, 0.12));
+    transform: translateY(-1px);
+  }
+
+  .interactive-control.detail-icon-control:active { border-color: rgb(196 181 253); box-shadow: none; color: rgb(196 181 253); }
+
+  @media (max-width: 48rem) {
+    .detail-background-overlay { background: rgba(3, 3, 5, 0.94); }
+    .detail-icon-control { border-color: rgba(196, 181, 253, 0.56); color: rgb(237 233 254); }
+  }
+</style>

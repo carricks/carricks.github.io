@@ -56,6 +56,61 @@ const {
 
       sections.forEach((section) => observer.observe(section));
     }
+
+    const touchExperience = window.matchMedia("(hover: none), (pointer: coarse)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (touchExperience.matches && !reducedMotion.matches) {
+      const headings = document.querySelectorAll<HTMLElement>(".interactive-heading");
+      const header = document.querySelector<HTMLElement>(".site-header");
+      const navigationLinks = document.querySelectorAll<HTMLElement>("[data-nav-link]");
+      let headerPulseTimer: number | undefined;
+
+      const headingObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const heading = entry.target as HTMLElement;
+
+            if (!entry.isIntersecting) {
+              heading.classList.remove("is-scroll-active");
+              return;
+            }
+
+            heading.classList.remove("is-scroll-active");
+            window.requestAnimationFrame(() => heading.classList.add("is-scroll-active"));
+          });
+        },
+        { threshold: 0.6 },
+      );
+
+      headings.forEach((heading) => headingObserver.observe(heading));
+
+      const activateNavigation = (sectionId: string) => {
+        navigationLinks.forEach((link) => {
+          link.classList.toggle("is-scroll-active", link.dataset.navLink === sectionId);
+        });
+
+        if (!header) return;
+        header.classList.remove("is-scroll-pulsing");
+        window.requestAnimationFrame(() => header.classList.add("is-scroll-pulsing"));
+        if (headerPulseTimer) window.clearTimeout(headerPulseTimer);
+        headerPulseTimer = window.setTimeout(() => header.classList.remove("is-scroll-pulsing"), 720);
+      };
+
+      const navigationSections = Array.from(document.querySelectorAll<HTMLElement>("[data-section-transition][id]"))
+        .filter((section) => navigationLinks.item(0) && Array.from(navigationLinks).some((link) => link.dataset.navLink === section.id));
+
+      const navigationObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) activateNavigation((entry.target as HTMLElement).id);
+          });
+        },
+        { rootMargin: "-32% 0px -56% 0px", threshold: 0 },
+      );
+
+      navigationSections.forEach((section) => navigationObserver.observe(section));
+    }
   </script>
 
 </body>

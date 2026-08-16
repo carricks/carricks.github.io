@@ -13,7 +13,7 @@ import Section from "../common/Section.astro";
   <Container>
     <div class="max-w-2xl">
       <p class="text-sm font-medium tracking-[0.22em] text-violet-300">CONTACT</p>
-      <h2 class="mt-6 text-4xl font-semibold tracking-tight text-slate-400 sm:text-5xl">Let’s build resilient systems.</h2>
+      <h2 class="interactive-heading mt-6 text-4xl font-semibold tracking-tight text-slate-400 sm:text-5xl">Let’s build resilient systems.</h2>
       <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">For technical conversations, collaborations and engineering opportunities.</p>
 
       <form data-contact-form novalidate class="mt-8 grid gap-4" aria-describedby="contact-form-status">
@@ -70,11 +70,11 @@ import Section from "../common/Section.astro";
           </a>
         </div>
         <div class="footer-credits">
-          <a class="footer-copyright" href="https://www.government.nl/themes/economy/intellectual-property/protection-of-intellectual-property" aria-label="Read official Dutch government information about copyright">
+          <a class="footer-copyright" href="https://www.government.nl/themes/economy/intellectual-property/protection-of-intellectual-property" target="_blank" rel="noreferrer" aria-label="Open official Dutch government information about copyright in a new tab">
             <span aria-hidden="true">&copy;</span>
-            <span>2026 Diego Carrillo, all rights reserved</span>
+            <span>2026 DCS, all rights reserved</span>
           </a>
-          <a class="interactive-control codex-link" href="https://developers.openai.com/" aria-label="Learn more about Codex">
+          <a class="interactive-control codex-link" href="https://developers.openai.com/" target="_blank" rel="noreferrer" aria-label="Open Codex information in a new tab">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <path d="m9 6-6 6 6 6M15 6l6 6-6 6M14 4l-4 16" />
             </svg>
@@ -121,6 +121,7 @@ import Section from "../common/Section.astro";
   .contact-footer {
     align-items: center;
     border-top: 1px solid rgba(196, 181, 253, 0.2);
+    border-bottom: 1px solid rgba(196, 181, 253, 0.12);
     background: rgba(3, 3, 5, 0.8);
     backdrop-filter: blur(12px);
     bottom: 0;
@@ -129,16 +130,36 @@ import Section from "../common/Section.astro";
     padding: 0.9rem 0;
     position: absolute;
     right: 0;
-    transition: background-color 220ms ease, opacity 220ms ease;
+    transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease;
     animation: footer-arrival 620ms 180ms both cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .contact-footer:hover, .contact-footer:focus-within { background: rgba(3, 3, 5, 0.97); opacity: 1; }
+  .contact-footer::before, .contact-footer::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(196, 181, 253, 0.72) 24%, rgba(221, 214, 254, 0.95) 50%, rgba(196, 181, 253, 0.72) 76%, transparent 100%);
+    content: "";
+    height: 1px;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    transition: opacity 220ms ease;
+  }
+  .contact-footer::before { top: -1px; }
+  .contact-footer::after { bottom: -1px; }
+  .contact-footer:hover, .contact-footer:focus-within {
+    background: rgba(3, 3, 5, 0.97);
+    border-color: rgba(196, 181, 253, 0.58);
+    box-shadow: 0 -1px 16px rgba(167, 139, 250, 0.2), 0 1px 16px rgba(167, 139, 250, 0.16);
+    opacity: 1;
+  }
+  .contact-footer:hover::before, .contact-footer:hover::after, .contact-footer:focus-within::before, .contact-footer:focus-within::after { opacity: 1; }
   .contact-footer-content {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     gap: 0.9rem 1.5rem;
     justify-content: center;
+    position: relative;
   }
   .footer-profiles { display: flex; gap: 0.75rem; }
   .social-link {
@@ -170,15 +191,33 @@ import Section from "../common/Section.astro";
     gap: 0.35rem;
     transition: color 160ms ease;
   }
-  .footer-copyright:hover { color: rgb(221 214 254); }
+  .footer-copyright:hover {
+    animation: footer-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    color: rgb(221 214 254);
+  }
   .codex-link {
     align-items: center;
-    color: rgb(196 181 253);
+    color: rgb(148 163 184);
     display: inline-flex;
     gap: 0.35rem;
     padding: 0.2rem;
+    transition: color 160ms ease;
+  }
+  .interactive-control.codex-link:hover {
+    animation: footer-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: rgb(196 181 253);
+    transform: none;
   }
   .codex-link svg { height: 1rem; width: 1rem; }
+  @keyframes footer-link-presence {
+    0% { opacity: 0.7; transform: translateY(1px); }
+    42% { opacity: 1; transform: translateY(-1px); }
+    68% { opacity: 0.84; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
   @keyframes footer-arrival {
     from { opacity: 0; transform: translateY(0.75rem); }
     to { opacity: 0.8; transform: translateY(0); }
@@ -195,7 +234,7 @@ import Section from "../common/Section.astro";
     75% { border-color: rgb(254 202 202); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.34); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .contact-field.is-invalid input, .contact-field.is-invalid textarea, .contact-submit, .contact-footer { animation: none; transition: none; }
+    .contact-field.is-invalid input, .contact-field.is-invalid textarea, .contact-submit, .contact-footer, .footer-copyright:hover, .interactive-control.codex-link:hover { animation: none; transition: none; }
   }
 </style>
 
@@ -218,7 +257,12 @@ import Section from "../common/Section.astro";
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const invalidFields = fields.filter((field) => !field.value.trim() || !field.validity.valid);
-      invalidFields.forEach((field) => field.closest(".contact-field")?.classList.add("is-invalid"));
+      invalidFields.forEach((field) => {
+        const fieldContainer = field.closest(".contact-field");
+        fieldContainer?.classList.remove("is-invalid");
+        window.requestAnimationFrame(() => fieldContainer?.classList.add("is-invalid"));
+        window.setTimeout(() => fieldContainer?.classList.remove("is-invalid"), 1000);
+      });
 
       if (invalidFields.length > 0) {
         if (status) {

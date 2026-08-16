@@ -1,6 +1,8 @@
 ---
-import "../../styles/global.css";
+import { Image } from "astro:assets";
 import { projects } from "../../data/projects";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import projectBackground from "../../assets/project-plc-schematic-v1.png";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -12,33 +14,24 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={project.summary} />
-    <title>{project.title} | Diego Carrillo</title>
-  </head>
-  <body class="bg-black">
-    <main class="relative isolate min-h-screen overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
-      <div aria-hidden="true" class="absolute inset-0 -z-10 bg-[linear-gradient(135deg,#050505_0%,#0d0914_48%,#050505_100%)]"></div>
-      <div aria-hidden="true" class="absolute -right-24 top-0 -z-10 h-[40rem] w-[40rem] border border-violet-300/15 [transform:rotate(45deg)]"></div>
+<BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
+    <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
+      <Image src={projectBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
+      <div aria-hidden="true" class="project-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,3,5,0.97)_0%,rgba(3,3,5,0.93)_48%,rgba(3,3,5,0.67)_100%)]"></div>
 
-      <nav aria-label="Project navigation" class="project-navigation sticky top-4 z-10 flex flex-wrap gap-2">
-        <a href="/#projects" class="interactive-control project-nav-control project-back">Back to projects</a>
-        <a href="/" class="interactive-control project-nav-control project-home">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" />
+      <nav aria-label="Project navigation" class="project-navigation flex flex-wrap gap-3">
+        <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12H4" />
+            <path d="m10 6-6 6 6 6" />
           </svg>
-          Home
         </a>
       </nav>
 
       <article class="mx-auto mt-24 max-w-4xl">
         <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT {project.number}</p>
         <p class="mt-5 text-sm text-slate-400">{project.location}</p>
-        <h1 class="mt-4 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{project.title}</h1>
+        <h1 class="interactive-heading mt-4 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{project.title}</h1>
         <p class="mt-8 max-w-3xl text-xl leading-9 text-slate-300">{project.summary}</p>
 
         <div class="mt-16 grid gap-12 border-t border-violet-300/15 pt-10 sm:grid-cols-2">
@@ -59,50 +52,56 @@ const { project } = Astro.props;
           </div>
         </section>
       </article>
-    </main>
-  </body>
-</html>
+    </section>
+</BaseLayout>
 
 <style>
   .project-navigation {
     width: fit-content;
   }
 
-  .project-nav-control {
-    display: inline-flex;
+  @media (max-width: 48rem) {
+    .project-background-overlay { background: rgba(3, 3, 5, 0.94); }
+  }
+
+  .project-icon-control {
     align-items: center;
-    border: 1px solid rgba(221, 214, 254, 0.3);
-    border-radius: 0.7rem;
-    background: rgb(196 181 253);
-    color: rgb(24 24 27);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.52rem 0.75rem;
-    text-decoration: none;
-    transition: background-color 180ms ease, transform 180ms ease;
+    border: 1px solid rgba(196, 181, 253, 0.3);
+    border-radius: 999px;
+    color: rgb(148 163 184);
+    display: inline-flex;
+    height: 2.65rem;
+    justify-content: center;
+    padding: 0.35rem;
+    width: 2.65rem;
   }
 
-  .project-nav-control:hover {
+  .project-icon-control :global(svg) {
+    height: 1.7rem;
+    min-height: 1.7rem;
+    min-width: 1.7rem;
+    transition: filter 180ms ease, transform 180ms ease;
+    width: 1.7rem;
+  }
+
+  .interactive-control.project-icon-control:hover {
+    animation: nav-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    background: transparent;
     border-color: rgb(196 181 253);
-    background: rgba(3, 3, 5, 0.82);
-    box-shadow: 0 0 0 3px rgba(196, 181, 253, 0.12);
+    box-shadow: none;
     color: rgb(196 181 253);
-    transform: translateY(-2px);
+    transform: none;
   }
 
-  .project-back::before {
-    content: "←";
-    color: currentColor;
-    font-size: 0.95rem;
-    margin-right: 0.4rem;
-    content: "\2190";
+  .interactive-control.project-icon-control:hover :global(svg) {
+    filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.5)) drop-shadow(0 0 10px rgba(103, 232, 249, 0.12));
+    transform: translateY(-1px);
   }
 
-  .project-home svg {
-    height: 0.9rem;
-    margin-right: 0.4rem;
-    width: 0.9rem;
+  .interactive-control.project-icon-control:active {
+    border-color: rgb(196 181 253);
+    box-shadow: none;
+    color: rgb(196 181 253);
   }
 
   .tech-scope-item {

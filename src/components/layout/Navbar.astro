@@ -1,33 +1,35 @@
 ---
 import Container from "../common/Container.astro";
+import HomeIcon from "../common/HomeIcon.astro";
+
+const isHome = Astro.url.pathname === "/";
+const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}`);
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/5 bg-black/20 backdrop-blur-xl">
+<header class="site-header sticky top-0 z-50 backdrop-blur-xl">
 
   <Container>
 
-    <nav class="flex h-20 items-center gap-4">
+    <nav class="flex h-20 items-center gap-3 sm:gap-5">
 
       <a
-        href="/"
-        class="shrink-0 text-lg font-semibold tracking-wide text-white"
+        href={sectionHref("about")}
+        class="interactive-control home-control shrink-0"
+        aria-label="Go to the main introduction"
+        title="About"
       >
-        DC
+        <HomeIcon />
       </a>
 
-      <ul class="flex min-w-0 flex-1 justify-end gap-4 overflow-x-auto whitespace-nowrap px-1 text-xs text-slate-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-6 sm:text-sm">
+      <ul class="flex min-w-0 flex-1 justify-end gap-2 overflow-x-auto whitespace-nowrap px-3 py-3 text-xs [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-3 sm:text-sm">
 
-        <li><a class="interactive-control nav-control" href="#about">About</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("about")} data-nav-link="about">About</a></li>
 
-        <li><a class="interactive-control nav-control" href="#experience">Experience</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("projects")} data-nav-link="projects">Projects</a></li>
 
-        <li><a class="interactive-control nav-control" href="#projects">Projects</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("research")} data-nav-link="research">Research</a></li>
 
-        <li><a class="interactive-control nav-control" href="#perspective">International</a></li>
-
-        <li><a class="interactive-control nav-control" href="#research">Research</a></li>
-
-        <li><a class="interactive-control nav-control" href="#contact">Contact</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("contact")} data-nav-link="contact">Contact</a></li>
 
       </ul>
 
