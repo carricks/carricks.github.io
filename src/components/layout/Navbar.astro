@@ -6,7 +6,7 @@ const isHome = Astro.url.pathname === "/";
 const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}`);
 ---
 
-<header class="site-header sticky top-0 z-50 backdrop-blur-xl">
+<header class="site-header sticky top-0 z-50">
 
   <Container>
 

@@ -59,6 +59,41 @@ const {
 
     const touchExperience = window.matchMedia("(hover: none), (pointer: coarse)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const siteHeader = document.querySelector<HTMLElement>(".site-header");
+
+    if (siteHeader) {
+      let previousScrollY = window.scrollY;
+      let scrollFrame: number | undefined;
+      let scrollIdleTimer: number | undefined;
+
+      const updateHeaderMotion = () => {
+        const currentScrollY = Math.max(window.scrollY, 0);
+        const isAtTop = currentScrollY <= 2;
+
+        siteHeader.classList.toggle("is-scrolled", !isAtTop);
+        siteHeader.classList.remove("is-scrolling-up", "is-scrolling-down");
+
+        if (!isAtTop && !reducedMotion.matches) {
+          siteHeader.classList.add(currentScrollY > previousScrollY ? "is-scrolling-down" : "is-scrolling-up");
+        }
+
+        previousScrollY = currentScrollY;
+        scrollFrame = undefined;
+
+        if (scrollIdleTimer) window.clearTimeout(scrollIdleTimer);
+        scrollIdleTimer = window.setTimeout(() => {
+          siteHeader.classList.remove("is-scrolling-up", "is-scrolling-down");
+        }, 180);
+      };
+
+      const queueHeaderMotion = () => {
+        if (scrollFrame) return;
+        scrollFrame = window.requestAnimationFrame(updateHeaderMotion);
+      };
+
+      updateHeaderMotion();
+      window.addEventListener("scroll", queueHeaderMotion, { passive: true });
+    }
 
     if (touchExperience.matches && !reducedMotion.matches) {
       const headings = document.querySelectorAll<HTMLElement>(".interactive-heading");

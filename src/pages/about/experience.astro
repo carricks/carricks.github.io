@@ -52,9 +52,9 @@ const experiences = [
       <h1 class="interactive-heading mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">Engineering in critical systems.</h1>
       <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">Selected work across resilient power systems, secure industrial data integration and renewable plant control, where technical decisions directly shape operational confidence.</p>
 
-      <div class="experience-modules mt-16 grid gap-5 lg:grid-cols-3">
+      <div class="experience-modules mt-16 grid gap-5">
         {experiences.map((experience) => (
-          <section class="experience-module">
+          <section class="experience-module neon-box-panel">
             <div class="flex items-start justify-between gap-4">
               <p class="text-xs font-medium tracking-[0.2em] text-violet-300">{experience.number}</p>
               <p class="text-right text-xs text-slate-500">{experience.location}</p>
@@ -78,7 +78,7 @@ const experiences = [
   .experience-back-control { align-items: center; border: 1px solid rgba(196,181,253,.42); border-radius: 999px; color: rgb(203 213 225); display: inline-flex; height: 2.65rem; justify-content: center; width: 2.65rem; }
   .experience-back-control svg { height: 1.7rem; width: 1.7rem; }
   .interactive-control.experience-back-control:hover { animation: nav-link-presence 520ms cubic-bezier(.22,1,.36,1); background: transparent; border-color: rgb(196 181 253); box-shadow: none; color: rgb(196 181 253); transform: none; }
-  .experience-module { border: 1px solid rgba(196,181,253,.16); border-radius: 1rem; background: rgba(3,3,5,.57); min-height: 100%; padding: 1.5rem; }
+  .experience-module { background: rgba(3,3,5,.57); min-height: 100%; padding: clamp(1.35rem, 3vw, 2rem); }
   .experience-tag { border: 1px solid rgba(221,214,254,.22); border-radius: 999px; color: rgb(221 214 254); font-size: .7rem; padding: .32rem .55rem; }
   @media (max-width: 48rem) { .experience-background-overlay { background: rgba(3,3,5,.95); } .experience-module { padding: 1.35rem; } }
 </style>

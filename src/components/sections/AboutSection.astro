@@ -44,15 +44,16 @@ import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
         I am a multidisciplinary systems engineer with a background in Electronic Engineering and an MSc in Robotics and Automation, working across industrial control, renewable power and applied software, combining automation, data and systems integration to make complex infrastructure more reliable, with experience in Spain, the Netherlands, Portugal and Latin America, including power generation plants, multinational engineering environments and telecommunications.
       </p>
 
-      <div class="mt-10 grid w-full max-w-[18rem] grid-cols-3 justify-items-start gap-3 sm:flex sm:max-w-none sm:flex-nowrap sm:justify-start sm:gap-8" aria-label="About sections">
+      <div class="mt-10 flex w-full max-w-xl flex-col gap-3" aria-label="About sections">
         {aboutDestinations.map((destination) => (
           <a
             href={`/about/${destination.slug}/`}
-            class="interactive-control about-destination-control shrink-0"
+            class="interactive-control neon-box-control about-destination-control"
             aria-label={destination.label}
-            data-tooltip={destination.label}
           >
-            <AboutDestinationIcon icon={destination.icon} />
+            <span class="neon-box-symbol"><AboutDestinationIcon icon={destination.icon} /></span>
+            <span class="neon-box-label">{destination.label}</span>
+            <span class="neon-box-arrow" aria-hidden="true">↗</span>
           </a>
         ))}
       </div>

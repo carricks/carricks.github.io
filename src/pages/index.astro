@@ -18,14 +18,16 @@ import { projects } from "../data/projects";
     description="Selected work across power systems, industrial integration and resilient control environments."
     background={projectsBackground}
   >
-    <div class="mt-12 flex max-w-2xl flex-wrap gap-3 text-sm text-violet-100">
+    <div class="mt-12 flex max-w-xl flex-col gap-3 text-sm text-violet-100">
       {projects.map((project) => (
         <a
           href={`/projects/${project.slug}`}
           aria-label={`Open project, ${project.title}`}
-          class="interactive-control project-link rounded-full border border-violet-300/25 bg-violet-300/10 px-4 py-2 hover:border-violet-200/60 hover:bg-violet-300/18"
+          class="interactive-control neon-box-control project-link"
         >
-          <span class="font-medium">{project.shortLabel}</span>
+          <span class="neon-box-symbol neon-box-number" aria-hidden="true">{project.number}</span>
+          <span class="neon-box-label">{project.shortLabel}</span>
+          <span class="neon-box-arrow" aria-hidden="true">↗</span>
         </a>
       ))}
     </div>

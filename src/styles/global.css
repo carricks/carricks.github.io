@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@property --neon-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 /* ===========================================
    Design Tokens
 =========================================== */
@@ -153,7 +159,7 @@ section[data-section-transition].is-section-idle {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .about-destination-control::after {
+  .about-destination-control[data-tooltip]::after {
     background: rgba(3, 3, 5, 0.9);
     border: 1px solid rgba(196, 181, 253, 0.38);
     border-radius: 0.35rem;
@@ -175,11 +181,133 @@ section[data-section-transition].is-section-idle {
     z-index: 10;
   }
 
-  .about-destination-control:hover::after,
-  .about-destination-control:focus-visible::after {
+  .about-destination-control[data-tooltip]:hover::after,
+  .about-destination-control[data-tooltip]:focus-visible::after {
     opacity: 1;
     transform: translate(-50%, 0);
   }
+}
+
+.neon-box-control,
+.neon-box-panel {
+  background: rgba(3, 3, 5, 0.62);
+  border: 1px solid rgba(196, 181, 253, 0.26);
+  border-radius: 0.8rem;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.neon-box-control {
+  align-items: center;
+  color: rgb(203 213 225);
+  display: flex;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 0.85rem 1rem;
+  text-decoration: none;
+  width: 100%;
+}
+
+.neon-box-control::before,
+.neon-box-panel::before {
+  background: conic-gradient(from var(--neon-angle), transparent 0deg 32deg, rgb(139 92 246 / 0.95) 68deg, rgb(217 70 239 / 0.98) 108deg, rgb(196 181 253) 148deg, rgb(34 211 238 / 0.95) 188deg, rgb(99 102 241 / 0.96) 228deg, rgb(167 139 250) 272deg, transparent 326deg 360deg);
+  border-radius: inherit;
+  content: "";
+  inset: -1px;
+  opacity: 0;
+  padding: 1px;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 180ms ease;
+  z-index: 2;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.neon-box-symbol {
+  align-items: center;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(196, 181, 253, 0.22);
+  border-radius: 0.55rem;
+  color: rgb(196 181 253);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 2.6rem;
+  justify-content: center;
+  width: 2.6rem;
+}
+
+.neon-box-symbol svg {
+  height: 1.45rem;
+  width: 1.45rem;
+}
+
+.neon-box-number {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.neon-box-label {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.neon-box-arrow {
+  color: rgb(148 163 184);
+  flex: 0 0 auto;
+  font-size: 1rem;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.interactive-control.neon-box-control:hover {
+  background: rgba(3, 3, 5, 0.78);
+  border-color: transparent;
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.16), inset 0 0 20px rgba(103, 232, 249, 0.025);
+  color: rgb(237 233 254);
+  transform: translateY(-1px);
+}
+
+.interactive-control.neon-box-control:hover::before,
+.interactive-control.neon-box-control:focus-visible::before,
+.neon-box-panel:hover::before {
+  animation: neon-box-trace 1.15s linear infinite;
+  opacity: 1;
+}
+
+.interactive-control.neon-box-control:active {
+  animation: neon-box-press 340ms cubic-bezier(0.22, 1, 0.36, 1);
+  background: rgba(10, 6, 18, 0.92);
+  border-color: transparent;
+  box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.72), inset 0 0 18px rgba(167, 139, 250, 0.12), 0 0 20px rgba(103, 232, 249, 0.12);
+  transform: translateY(2px) scale(0.975);
+}
+
+.interactive-control.neon-box-control:active::before {
+  animation: neon-box-trace 360ms linear infinite;
+  opacity: 1;
+}
+
+.interactive-control.neon-box-control:hover .neon-box-arrow {
+  color: rgb(196 181 253);
+  transform: translate(0.12rem, -0.12rem);
+}
+
+@keyframes neon-box-trace {
+  from { --neon-angle: 0deg; }
+  to { --neon-angle: 360deg; }
+}
+
+@keyframes neon-box-press {
+  0% { transform: translateY(-1px) scale(1); }
+  48% { transform: translateY(3px) scale(0.968); }
+  100% { transform: translateY(2px) scale(0.975); }
 }
 
 .interactive-control.home-control:hover {
@@ -201,19 +329,26 @@ section[data-section-transition].is-section-idle {
 }
 
 .site-header {
-  background: rgba(3, 3, 5, 0.56);
-  border-bottom: 1px solid rgba(196, 181, 253, 0.16);
+  background: rgba(3, 3, 5, 0.34);
+  border: 0;
+  backdrop-filter: blur(0) saturate(100%);
+  -webkit-backdrop-filter: blur(0) saturate(100%);
   isolation: isolate;
-  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  transform: perspective(72rem) rotateX(0deg);
+  transform-origin: center top;
+  transition: background-color 240ms ease, backdrop-filter 240ms ease,
+    box-shadow 240ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .site-header::after {
-  background: linear-gradient(90deg, transparent 0%, rgba(196, 181, 253, 0.56) 25%, rgba(221, 214, 254, 0.9) 50%, rgba(196, 181, 253, 0.56) 75%, transparent 100%);
-  bottom: -1px;
+  background: linear-gradient(90deg, transparent 0%, rgb(139 92 246 / 0.32) 18%, rgb(196 181 253 / 0.94) 42%, rgb(103 232 249 / 0.66) 54%, rgb(167 139 250 / 0.8) 72%, transparent 100%);
+  background-size: 240% 100%;
+  bottom: 0;
   content: "";
   height: 1px;
   left: 0;
-  opacity: 0.18;
+  opacity: 0.9;
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -223,13 +358,56 @@ section[data-section-transition].is-section-idle {
 
 .site-header > * { position: relative; z-index: 1; }
 
+.site-header:not(.is-scrolled)::after {
+  animation: header-neon-drift 5.5s linear infinite;
+}
+
+.site-header.is-scrolled {
+  background: rgba(3, 3, 5, 0.25);
+  backdrop-filter: blur(20px) saturate(122%);
+  -webkit-backdrop-filter: blur(20px) saturate(122%);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.site-header.is-scrolled::after {
+  opacity: 0;
+}
+
+.site-header.is-scrolled.is-scrolling-down {
+  transform: perspective(72rem) rotateX(-0.75deg);
+}
+
+.site-header.is-scrolled.is-scrolling-up {
+  transform: perspective(72rem) rotateX(0.75deg);
+}
+
+.site-header.is-scrolled.is-scrolling-down,
+.site-header.is-scrolled.is-scrolling-up {
+  background: rgba(3, 3, 5, 0.18);
+  backdrop-filter: blur(28px) saturate(128%);
+  -webkit-backdrop-filter: blur(28px) saturate(128%);
+  box-shadow:
+    0 10px 34px rgba(0, 0, 0, 0.24),
+    0 0 26px rgba(139, 92, 246, 0.1),
+    inset 0 0 28px rgba(167, 139, 250, 0.055);
+}
+
+.site-header.is-scrolled.is-scrolling-down::after,
+.site-header.is-scrolled.is-scrolling-up::after {
+  animation: none;
+  filter: blur(8px);
+  height: 10px;
+  opacity: 0.2;
+  transform: translateY(45%);
+}
+
 .site-header:hover, .site-header:focus-within {
-  background: rgba(3, 3, 5, 0.9);
-  border-color: rgba(196, 181, 253, 0.56);
+  background: rgba(3, 3, 5, 0.38);
   box-shadow: 0 1px 18px rgba(167, 139, 250, 0.16);
 }
 
-.site-header:hover::after, .site-header:focus-within::after { opacity: 1; }
+.site-header:not(.is-scrolled):hover::after,
+.site-header:not(.is-scrolled):focus-within::after { opacity: 1; }
 
 .nav-control {
   display: inline-flex;
@@ -307,7 +485,7 @@ section[data-section-transition].is-section-idle {
     color: rgb(237 233 254);
   }
 
-  .about-destination-control::after {
+  .about-destination-control[data-tooltip]::after {
     background: rgba(3, 3, 5, 0.9);
     border: 1px solid rgba(196, 181, 253, 0.38);
     border-radius: 0.35rem;
@@ -366,10 +544,56 @@ section[data-section-transition].is-section-idle {
   }
 }
 
+@media (hover: none), (pointer: coarse) {
+  .neon-box-control {
+    min-height: 4.25rem;
+  }
+
+  .interactive-control.neon-box-control:active {
+    animation: neon-box-mobile-press 430ms cubic-bezier(0.22, 1, 0.36, 1);
+    background: rgba(3, 3, 5, 0.84);
+    border-color: transparent;
+    box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.76), inset 0 0 18px rgba(167, 139, 250, 0.14), 0 0 22px rgba(103, 232, 249, 0.16);
+  }
+
+  .interactive-control.neon-box-control:active::before {
+    animation: neon-box-trace 520ms linear;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 48rem) {
+  .neon-box-arrow {
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0.28), rgba(196, 181, 253, 0.92));
+    font-size: 0;
+    height: 1px;
+    width: 1.75rem;
+  }
+
+  .interactive-control.neon-box-control:hover .neon-box-arrow,
+  .interactive-control.neon-box-control:active .neon-box-arrow {
+    background: linear-gradient(90deg, rgba(103, 232, 249, 0.34), rgb(196 181 253));
+    transform: scaleX(1.08);
+    transform-origin: right center;
+  }
+}
+
+@keyframes neon-box-mobile-press {
+  0% { transform: perspective(40rem) rotateX(0) rotateY(0) scale(1); }
+  38% { transform: perspective(40rem) translateY(3px) rotateX(1.35deg) rotateY(-0.9deg) scale(0.965); }
+  72% { transform: perspective(40rem) translateY(1px) rotateX(-0.55deg) rotateY(0.4deg) scale(0.985); }
+  100% { transform: perspective(40rem) rotateX(0) rotateY(0) scale(1); }
+}
+
 @keyframes header-scroll-trace {
   from { opacity: 0.2; transform: scaleX(0.55); }
   55% { opacity: 1; transform: scaleX(1); }
   to { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes header-neon-drift {
+  from { background-position: 110% 0; }
+  to { background-position: -110% 0; }
 }
 
 
@@ -384,5 +608,20 @@ section[data-section-transition].is-section-idle {
   }
 
   .interactive-control.nav-control:hover, .nav-control:hover::after { animation: none; }
-  .interactive-heading:hover, .interactive-heading.is-scroll-active, .nav-control.is-scroll-active::after, .site-header.is-scroll-pulsing::after { animation: none; }
+  .interactive-heading:hover, .interactive-heading.is-scroll-active, .nav-control.is-scroll-active::after, .site-header.is-scroll-pulsing::after, .site-header:not(.is-scrolled)::after { animation: none; }
+
+  .site-header,
+  .site-header.is-scrolled.is-scrolling-down,
+  .site-header.is-scrolled.is-scrolling-up {
+    transform: none;
+    transition: none;
+  }
+
+  .interactive-control.neon-box-control:hover::before,
+  .interactive-control.neon-box-control:focus-visible::before,
+  .interactive-control.neon-box-control:active::before,
+  .neon-box-panel:hover::before,
+  .interactive-control.neon-box-control:active {
+    animation: none;
+  }
 }
