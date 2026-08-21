@@ -62,12 +62,13 @@ Status: content foundation complete; final editorial review pending.
 
 The page contains:
 
-- Two concise paragraphs covering the University Master's Degree in Robotics and Automation and the Electronic Engineering foundation.
+- One introductory paragraph connecting the multidisciplinary and international academic background.
+- Three concise academic cards covering the University Master's Degree in Robotics and Automation, Electronic Engineering and Cisco Systems CCNA.
 - Universidad Carlos III de Madrid identified as a Spanish public university.
 - Reference to the official European Diploma Supplement (SET).
-- Additional studies in AI and deep learning, Cisco networking, network security, and software/agile practices.
+- Additional studies in AI and deep learning, network security, and software/agile practices.
 
-The page deliberately avoids dates, numbered cards and institution-by-institution CV formatting.
+Academic Background and Additional Studies use the same title-and-description card language. Academic programme descriptions remain fully visible, while the concise Additional Studies descriptions stay compact on desktop. The page deliberately avoids dates, numbered cards and institution-by-institution CV formatting.
 
 ## Experience page
 

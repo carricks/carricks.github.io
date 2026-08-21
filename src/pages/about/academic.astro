@@ -24,22 +24,38 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
       <section class="academic-section mt-16" aria-labelledby="university-education">
         <p class="section-label" id="university-education">ACADEMIC BACKGROUND</p>
+        <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+          My academic background combines Electronic Engineering, postgraduate specialisation in Robotics and Automation, and networking studies, building a multidisciplinary foundation across intelligent systems, control and connected infrastructure. Completing studies in international environments allowed me to apply these concepts across different academic, technical and practical contexts.
+        </p>
 
-        <div class="academic-copy mt-8">
-          <p>
-            I completed the University Master's Degree in Robotics and Automation at Universidad Carlos III de Madrid, a Spanish public university, specialising in robotics, automation and intelligent systems. The qualification includes the official European Diploma Supplement (SET), providing a standardised record of its academic scope, competencies and level within the European education framework.
-          </p>
+        <div class="learning-list academic-program-list mt-10">
+          <article class="learning-item neon-box-panel">
+            <h2>University Master's Degree in Robotics and Automation</h2>
+            <p>
+              Postgraduate programme at Universidad Carlos III de Madrid focused on the design and development of robotic and automated systems, combining control, intelligent systems, software integration and experimental validation. The qualification includes the official European Diploma Supplement (SET).
+            </p>
+          </article>
 
-          <p>
-            I previously completed my Electronic Engineering degree in 2018, establishing a broad foundation in electronics, control, automation and communications. Together, both programmes combined theory with extensive practical work and shaped my systems-oriented approach to engineering.
-          </p>
+          <article class="learning-item neon-box-panel">
+            <h2>Electronic Engineering</h2>
+            <p>
+              Engineering programme covering analogue and digital electronics, control, industrial automation, electrical machines, communications and data networks. Its practical component developed skills in analysing technical variables, designing solutions and integrating hardware with software.
+            </p>
+          </article>
+
+          <article class="learning-item neon-box-panel">
+            <h2>Cisco Systems CCNA</h2>
+            <p>
+              Networking programme focused on network fundamentals, switching, routing, IP connectivity and services, access control, security, automation and programmability. Its practical scope established a foundation for configuring, troubleshooting and protecting modern networked infrastructure.
+            </p>
+          </article>
         </div>
       </section>
 
       <section class="academic-section mt-20" aria-labelledby="professional-studies">
         <p class="section-label" id="professional-studies">ADDITIONAL STUDIES</p>
         <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400">
-          These studies complement my background in AI, networking, cybersecurity and software delivery.
+          These studies complement my background in AI, cybersecurity and software delivery.
         </p>
 
         <div class="learning-list mt-10">
@@ -47,13 +63,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             <h2>AI Neural Networks and Deep Learning</h2>
             <p>
               Foundational study of neural networks, deep-learning architectures and their application to data-driven engineering and intelligent systems.
-            </p>
-          </article>
-
-          <article class="learning-item neon-box-panel">
-            <h2>Cisco CCNA / IT Networking</h2>
-            <p>
-              Practical networking studies covering switching, routing, IP services, access control, security fundamentals and network automation.
             </p>
           </article>
 
@@ -113,13 +122,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     letter-spacing: 0.18em;
   }
 
-  .academic-copy {
-    display: grid;
-    gap: 1.5rem;
-    max-width: 52rem;
-  }
-
-  .academic-copy p,
   .learning-item p:last-child {
     color: rgb(148 163 184);
     line-height: 1.9;
@@ -153,6 +155,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       overflow: hidden;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+    }
+
+    .academic-program-list .learning-item p:last-child {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+    }
+
+    .academic-program-list .learning-item {
+      min-height: 11.5rem;
     }
   }
 
