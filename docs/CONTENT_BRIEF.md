@@ -32,8 +32,8 @@ The supporting statement positions Diego as a multidisciplinary systems engineer
 
 The About actions are ordered:
 
-1. Academic
-2. Experience
+1. Experience
+2. Academic
 3. International
 
 ### Projects

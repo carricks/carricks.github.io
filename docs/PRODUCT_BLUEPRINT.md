@@ -28,8 +28,8 @@ The website is functional and navigable. The design and interaction foundation i
 ```text
 Homepage
   About
-    Academic
     Experience
+    Academic
     International
   Projects
     Grid Resilience

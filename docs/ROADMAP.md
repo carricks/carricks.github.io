@@ -13,7 +13,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Sticky translucent navigation with scroll blur and restrained motion.
 - Reusable neon controls with hover, press and touch feedback.
 - Homepage sections for About, Projects, Milestones and Contact.
-- About navigation ordered as Academic, Experience and International.
+- About navigation ordered as Experience, Academic and International.
 - Dedicated Academic page with formal and additional studies.
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Three routed project case-study pages.
