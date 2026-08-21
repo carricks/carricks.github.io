@@ -1,8 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import { projects } from "../../data/projects";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import projectBackground from "../../assets/project-plc-schematic-v1.png";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -16,9 +14,6 @@ const { project } = Astro.props;
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
     <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
-      <Image src={projectBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
-      <div aria-hidden="true" class="project-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,3,5,0.97)_0%,rgba(3,3,5,0.93)_48%,rgba(3,3,5,0.67)_100%)]"></div>
-
       <nav aria-label="Project navigation" class="project-navigation flex flex-wrap gap-3">
         <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -58,10 +53,6 @@ const { project } = Astro.props;
 <style>
   .project-navigation {
     width: fit-content;
-  }
-
-  @media (max-width: 48rem) {
-    .project-background-overlay { background: rgba(3, 3, 5, 0.94); }
   }
 
   .project-icon-control {

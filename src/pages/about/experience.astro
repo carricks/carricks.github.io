@@ -1,44 +1,53 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import projectBackground from "../../assets/project-plc-schematic-v1.png";
 
 const experiences = [
   {
-    number: "01",
-    title: "Grid Resilience",
-    location: "The Netherlands",
-    statement: "Anticipating instability before it becomes a grid event.",
-    description: "Working within a leading European engineering consultancy on Dynamic Security Assessment solutions for the Dutch energy sector, designing and validating applications that help forecast, assess and respond to destabilising grid scenarios.",
-    tags: ["Dynamic Security Assessment", "Python Applications", "System Integration"],
-    outcome: "Building interoperable solutions for resilient power-system decision making.",
+    company: "Capgemini",
+    country: "The Netherlands",
+    logo: "/images/capgemini-logo-lilac.png",
+    logoClass: "experience-company-logo--capgemini",
+    description: "I contribute to mission-critical software for the Dutch transmission grid, developing and validating applications that transform operational data into large-scale simulations and decision support for power-system stability. The work combines software engineering, complex data flows and power-system analysis in an environment where reliability, traceability and close technical collaboration are essential.",
   },
   {
-    number: "02",
-    title: "Secure Data Integration",
-    location: "Spain, Dutch North Sea",
-    statement: "Connecting critical operational data without compromising control-system security.",
-    description: "Delivered data-acquisition integration across segregated offshore operational environments, coordinating Linux and Windows infrastructure, industrial protocols and cybersecurity practices within a sensitive control-network architecture.",
-    tags: ["SCADA Integration", "Industrial Protocols", "Cybersecurity"],
-    outcome: "Established a secure bridge between distinct operational domains.",
+    company: "AspenTech",
+    country: "Spain",
+    logo: "/images/aspentech-logo-lilac.png",
+    logoClass: "experience-company-logo--aspentech",
+    description: "I worked across SCADA solution design, Linux and Windows deployment, and secure industrial integration for offshore energy operations, connecting segregated environments while protecting critical control-network boundaries. This experience strengthened my ability to translate operational requirements into robust architectures and support their configuration, testing and delivery across multidisciplinary teams.",
   },
   {
-    number: "03",
-    title: "Renewable Plant Control",
-    location: "Spain",
-    statement: "Turning renewable generation into grid-ready, controllable power.",
-    description: "Contributed to Power Plant Controller deployments for large-scale photovoltaic generation, integrating PLC, HMI and SCADA layers and validating grid-code behaviour during full plant-control testing.",
-    tags: ["PLC and SCADA", "IEC 61850", "Grid-Code Compliance"],
-    outcome: "Validated utility-scale control integration for plants up to 380 MW.",
+    company: "Isemaren",
+    country: "Spain",
+    logo: "/images/isemaren-logo-lilac.png",
+    logoClass: "experience-company-logo--isemaren",
+    description: "I supported the deployment and commissioning of PLC-based Power Plant Controllers for utility-scale solar plants, integrating HMI, SCADA and communications while validating grid-code behaviour across installations of up to 380 MW. My work connected control logic with real plant conditions, requiring structured testing, technical troubleshooting and coordination throughout the commissioning process.",
+  },
+  {
+    company: "Universidad Carlos III de Madrid",
+    country: "Spain",
+    logo: "/images/uc3m-logo-lilac.png",
+    description: "Within the Social Robotics Group, I helped evolve an assistive-robotics research platform through web services, user and licensing systems, databases, and the Linux server infrastructure supporting connected human-robot interaction. The role brought together research and practical software development, turning experimental requirements into maintainable services for a growing robotics ecosystem.",
+  },
+  {
+    company: "Boston Scientific",
+    country: "International",
+    logo: "/images/boston-scientific-logo-lilac.svg",
+    logoClass: "experience-company-logo--boston",
+    description: "I supported regulated medical-device manufacturing by maintaining the accuracy and compliance of measurement equipment while contributing to PLC-based automated testing and calibration solutions. This work developed my understanding of quality-driven engineering, where technical documentation, measurement reliability and controlled processes are fundamental to production continuity.",
+  },
+  {
+    company: "Xacom Communications",
+    country: "Spain",
+    logo: "/images/xacom-logo-lilac.svg",
+    logoClass: "experience-company-logo--xacom",
+    description: "I designed and delivered mobile-coverage solutions for technically demanding industrial, underground and remote environments, combining radio-frequency systems, network infrastructure and field validation across multiple generations of mobile technology. Each project required adapting the design to demanding physical conditions and verifying performance through measurements, commissioning and on-site problem solving.",
   },
 ] as const;
 ---
 
 <BaseLayout title="Experience | Diego Carrillo" description="Selected engineering experience across resilient power systems, secure industrial integration and renewable plant control.">
   <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
-    <Image src={projectBackground} alt="" aria-hidden="true" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" />
-    <div aria-hidden="true" class="experience-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(3,3,5,0.98)_0%,rgba(3,3,5,0.93)_52%,rgba(3,3,5,0.68)_100%)]"></div>
-
     <nav aria-label="Experience navigation" class="experience-navigation flex">
       <a href="/#about" class="interactive-control experience-back-control" aria-label="Back to about" title="Back to about">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -50,22 +59,22 @@ const experiences = [
     <article class="mx-auto mt-20 max-w-5xl pb-20">
       <p class="text-sm font-medium tracking-[0.22em] text-violet-300">EXPERIENCE</p>
       <h1 class="interactive-heading mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">Engineering in critical systems.</h1>
-      <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">Selected work across resilient power systems, secure industrial data integration and renewable plant control, where technical decisions directly shape operational confidence.</p>
+      <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">My work has been shaped by diverse experiences across multidisciplinary engineering. Now working in Northeastern Europe, I continue broadening my professional perspective, building on the experience gained across Mediterranean Europe.</p>
 
       <div class="experience-modules mt-16 grid gap-5">
         {experiences.map((experience) => (
           <section class="experience-module neon-box-panel">
-            <div class="flex items-start justify-between gap-4">
-              <p class="text-xs font-medium tracking-[0.2em] text-violet-300">{experience.number}</p>
-              <p class="text-right text-xs text-slate-500">{experience.location}</p>
+            <div class="experience-heading">
+              <div class="experience-company">
+                {"logo" in experience ? (
+                  <img class:list={["experience-company-logo", "logoClass" in experience && experience.logoClass]} src={experience.logo} alt={experience.company} loading="lazy" decoding="async" />
+                ) : (
+                  <h2>{experience.company}</h2>
+                )}
+              </div>
+              {"country" in experience && <p>{experience.country}</p>}
             </div>
-            <h2 class="interactive-heading mt-8 text-2xl font-semibold tracking-tight text-slate-300">{experience.title}</h2>
-            <p class="mt-4 text-base leading-7 text-violet-100">{experience.statement}</p>
-            <p class="mt-5 text-sm leading-7 text-slate-400">{experience.description}</p>
-            <div class="mt-7 flex flex-wrap gap-2">
-              {experience.tags.map((tag) => <span class="experience-tag">{tag}</span>)}
-            </div>
-            <p class="mt-7 border-t border-violet-300/15 pt-5 text-sm leading-6 text-slate-300">{experience.outcome}</p>
+            <p class="experience-description">{experience.description}</p>
           </section>
         ))}
       </div>
@@ -78,7 +87,29 @@ const experiences = [
   .experience-back-control { align-items: center; border: 1px solid rgba(196,181,253,.42); border-radius: 999px; color: rgb(203 213 225); display: inline-flex; height: 2.65rem; justify-content: center; width: 2.65rem; }
   .experience-back-control svg { height: 1.7rem; width: 1.7rem; }
   .interactive-control.experience-back-control:hover { animation: nav-link-presence 520ms cubic-bezier(.22,1,.36,1); background: transparent; border-color: rgb(196 181 253); box-shadow: none; color: rgb(196 181 253); transform: none; }
-  .experience-module { background: rgba(3,3,5,.57); min-height: 100%; padding: clamp(1.35rem, 3vw, 2rem); }
-  .experience-tag { border: 1px solid rgba(221,214,254,.22); border-radius: 999px; color: rgb(221 214 254); font-size: .7rem; padding: .32rem .55rem; }
-  @media (max-width: 48rem) { .experience-background-overlay { background: rgba(3,3,5,.95); } .experience-module { padding: 1.35rem; } }
+  .experience-modules { max-width: 52rem; }
+  .experience-module { background: rgba(3,3,5,.57); padding: clamp(1.35rem, 3vw, 2rem); }
+  .experience-heading { align-items: center; display: flex; gap: 1rem; justify-content: space-between; }
+  .experience-company { align-items: center; display: flex; gap: .8rem; min-height: 2.25rem; min-width: 0; }
+  .experience-heading h2 { color: rgb(196 181 253); font-size: 1.15rem; font-weight: 600; letter-spacing: -.01em; }
+  .experience-company-logo { display: block; height: 1.15rem; object-fit: contain; object-position: left center; width: auto; }
+  .experience-company-logo--capgemini { height: 1.5rem; }
+  .experience-company-logo--aspentech { height: 1.5rem; }
+  .experience-company-logo--isemaren { height: auto; width: 7rem; }
+  .experience-company-logo--boston { height: auto; width: 4rem; }
+  .experience-company-logo--xacom { height: auto; width: 1.75rem; }
+  .experience-heading p { color: rgb(196 181 253); flex: 0 0 auto; font-size: .72rem; font-weight: 600; letter-spacing: .12em; line-height: 1; text-transform: uppercase; }
+  .experience-description { color: rgb(148 163 184); font-size: .95rem; line-height: 1.9; margin-top: .85rem; }
+
+  @media (max-width: 48rem) {
+    .experience-module { padding: 1.35rem; }
+    .experience-heading { align-items: center; flex-direction: row; gap: 1rem; }
+    .experience-company { gap: .65rem; min-height: 2rem; }
+    .experience-company-logo { height: 1.05rem; }
+    .experience-company-logo--capgemini { height: 1.35rem; }
+    .experience-company-logo--aspentech { height: 1.35rem; }
+    .experience-company-logo--isemaren { height: auto; width: 6.25rem; }
+    .experience-company-logo--boston { height: auto; width: 3.75rem; }
+    .experience-company-logo--xacom { height: auto; width: 1.6rem; }
+  }
 </style>

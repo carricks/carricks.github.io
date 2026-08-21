@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import aboutWallpaper from "../../assets/about-systems-geometry-v1.png";
 import Container from "../common/Container.astro";
 import Section from "../common/Section.astro";
 import { aboutDestinations } from "../../data/about-destinations.ts";
@@ -9,27 +7,8 @@ import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
 
 <Section
   id="about"
-  data-about-section
   class="relative isolate overflow-hidden bg-black py-32 lg:py-40"
 >
-  <Image
-    src={aboutWallpaper}
-    alt=""
-    aria-hidden="true"
-    data-about-wallpaper
-    class="about-wallpaper absolute inset-0 -z-20 h-full w-full object-cover object-center"
-  />
-
-  <div
-    aria-hidden="true"
-    class="about-background-overlay absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.96)_0%,rgba(0,0,0,0.88)_48%,rgba(0,0,0,0.46)_100%)]"
-  />
-
-  <div
-    aria-hidden="true"
-    class="about-signal-sweep absolute inset-y-0 left-0 -z-10 w-[44%]"
-  />
-
   <Container>
     <div class="max-w-3xl">
       <p class="text-sm font-medium tracking-[0.22em] text-violet-300">
@@ -61,111 +40,3 @@ import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
     </div>
   </Container>
 </Section>
-
-<style>
-  .about-wallpaper {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 48rem) {
-    .about-background-overlay {
-      background: rgba(3, 3, 5, 0.94);
-    }
-
-    .about-signal-sweep {
-      width: 75%;
-    }
-  }
-
-  [data-about-section].is-playing .about-wallpaper {
-    animation: signal-intro 2.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .about-signal-sweep {
-    background: linear-gradient(
-      105deg,
-      transparent 0%,
-      rgba(167, 139, 250, 0.06) 42%,
-      rgba(196, 181, 253, 0.13) 50%,
-      rgba(167, 139, 250, 0.06) 58%,
-      transparent 100%
-    );
-    opacity: 0;
-    transform: translate3d(-130%, 0, 0) skewX(-12deg);
-  }
-
-  [data-about-section].is-playing .about-signal-sweep {
-    animation: signal-sweep 2.35s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  @keyframes signal-intro {
-    from {
-      filter: brightness(0.78);
-      transform: scale(1.11) translate3d(1.6%, -0.8%, 0);
-    }
-
-    64% {
-      filter: brightness(1.03);
-      transform: scale(1.06) translate3d(0.25%, 0, 0);
-    }
-
-    100% {
-      filter: brightness(1);
-      transform: scale(1.05) translate3d(0, 0, 0);
-    }
-  }
-
-  @keyframes signal-sweep {
-    0% {
-      opacity: 0;
-      transform: translate3d(-130%, 0, 0) skewX(-12deg);
-    }
-
-    18% {
-      opacity: 1;
-    }
-
-    82% {
-      opacity: 0.45;
-    }
-
-    100% {
-      opacity: 0;
-      transform: translate3d(300%, 0, 0) skewX(-12deg);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .about-wallpaper,
-    [data-about-section].is-playing .about-wallpaper,
-    [data-about-section].is-playing .about-signal-sweep {
-      animation: none;
-    }
-  }
-</style>
-
-<script>
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const aboutSections = document.querySelectorAll<HTMLElement>("[data-about-section]");
-
-  aboutSections.forEach((section) => {
-    const replayIntro = () => {
-      if (reducedMotion.matches) return;
-
-      section.classList.remove("is-playing");
-      void section.offsetWidth;
-      section.classList.add("is-playing");
-    };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          replayIntro();
-        }
-      },
-      { threshold: 0.4 },
-    );
-
-    observer.observe(section);
-  });
-</script>

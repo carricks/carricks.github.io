@@ -1,7 +1,14 @@
 export const aboutDestinations = [
   {
+    slug: "academic",
+    label: "Academic",
+    icon: "academic",
+    title: "An International Learning Journey",
+    summary:
+      "Academic projects and research that connect robotics, machine learning and engineering practice.",
+  },
+  {
     slug: "experience",
-    number: "01",
     label: "Experience",
     icon: "code",
     title: "Engineering in Critical Systems",
@@ -10,21 +17,11 @@ export const aboutDestinations = [
   },
   {
     slug: "international",
-    number: "02",
     label: "International",
     icon: "globe",
     title: "Global Engineering Perspective",
     summary:
       "A growing record of technical collaboration across Europe and Latin America, shaped by different industries, teams and operating contexts.",
-  },
-  {
-    slug: "academic",
-    number: "03",
-    label: "Academic",
-    icon: "academic",
-    title: "An International Learning Journey",
-    summary:
-      "Academic projects and research that connect robotics, machine learning and engineering practice.",
   },
 ] as const;
 

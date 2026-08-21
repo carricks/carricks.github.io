@@ -42,9 +42,11 @@ const {
   </main>
 
   <script>
-    const sections = document.querySelectorAll<HTMLElement>("[data-section-transition]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const touchExperience = window.matchMedia("(hover: none), (pointer: coarse)");
 
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!reducedMotion.matches) {
+      const sections = document.querySelectorAll<HTMLElement>("[data-section-transition]");
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -57,8 +59,6 @@ const {
       sections.forEach((section) => observer.observe(section));
     }
 
-    const touchExperience = window.matchMedia("(hover: none), (pointer: coarse)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const siteHeader = document.querySelector<HTMLElement>(".site-header");
 
     if (siteHeader) {
@@ -97,8 +97,8 @@ const {
 
     if (touchExperience.matches && !reducedMotion.matches) {
       const headings = document.querySelectorAll<HTMLElement>(".interactive-heading");
-      const header = document.querySelector<HTMLElement>(".site-header");
       const navigationLinks = document.querySelectorAll<HTMLElement>("[data-nav-link]");
+      const navigationIds = new Set(Array.from(navigationLinks, (link) => link.dataset.navLink));
       let headerPulseTimer: number | undefined;
 
       const headingObserver = new IntersectionObserver(
@@ -125,15 +125,15 @@ const {
           link.classList.toggle("is-scroll-active", link.dataset.navLink === sectionId);
         });
 
-        if (!header) return;
-        header.classList.remove("is-scroll-pulsing");
-        window.requestAnimationFrame(() => header.classList.add("is-scroll-pulsing"));
+        if (!siteHeader) return;
+        siteHeader.classList.remove("is-scroll-pulsing");
+        window.requestAnimationFrame(() => siteHeader.classList.add("is-scroll-pulsing"));
         if (headerPulseTimer) window.clearTimeout(headerPulseTimer);
-        headerPulseTimer = window.setTimeout(() => header.classList.remove("is-scroll-pulsing"), 720);
+        headerPulseTimer = window.setTimeout(() => siteHeader.classList.remove("is-scroll-pulsing"), 720);
       };
 
       const navigationSections = Array.from(document.querySelectorAll<HTMLElement>("[data-section-transition][id]"))
-        .filter((section) => navigationLinks.item(0) && Array.from(navigationLinks).some((link) => link.dataset.navLink === section.id));
+        .filter((section) => navigationIds.has(section.id));
 
       const navigationObserver = new IntersectionObserver(
         (entries) => {

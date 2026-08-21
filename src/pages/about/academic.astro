@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Academic | Diego Carrillo"
+  description="University education in robotics, automation and electronic engineering, complemented by professional studies in networking, cybersecurity, software practices and artificial intelligence."
+>
+  <section class="min-h-[calc(100svh-5rem)] bg-black px-6 py-10 sm:px-10 lg:px-16">
+    <nav aria-label="Academic navigation" class="academic-navigation">
+      <a href="/#about" class="interactive-control academic-back-control" aria-label="Back to about" title="Back to about">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12H4" />
+          <path d="m10 6-6 6 6 6" />
+        </svg>
+      </a>
+    </nav>
+
+    <article class="mx-auto mt-20 max-w-5xl pb-20">
+      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">ACADEMIC</p>
+      <h1 class="interactive-heading mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-300 sm:text-6xl">
+        Built on electronics, robotics and control.
+      </h1>
+
+      <section class="academic-section mt-16" aria-labelledby="university-education">
+        <p class="section-label" id="university-education">ACADEMIC BACKGROUND</p>
+
+        <div class="academic-copy mt-8">
+          <p>
+            I completed the University Master's Degree in Robotics and Automation at Universidad Carlos III de Madrid, a Spanish public university, specialising in robotics, automation and intelligent systems. The qualification includes the official European Diploma Supplement (SET), providing a standardised record of its academic scope, competencies and level within the European education framework.
+          </p>
+
+          <p>
+            I previously completed my Electronic Engineering degree in 2018, establishing a broad foundation in electronics, control, automation and communications. Together, both programmes combined theory with extensive practical work and shaped my systems-oriented approach to engineering.
+          </p>
+        </div>
+      </section>
+
+      <section class="academic-section mt-20" aria-labelledby="professional-studies">
+        <p class="section-label" id="professional-studies">ADDITIONAL STUDIES</p>
+        <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+          These studies complement my background in AI, networking, cybersecurity and software delivery.
+        </p>
+
+        <div class="learning-list mt-10">
+          <article class="learning-item neon-box-panel">
+            <h2>AI Neural Networks and Deep Learning</h2>
+            <p>
+              Foundational study of neural networks, deep-learning architectures and their application to data-driven engineering and intelligent systems.
+            </p>
+          </article>
+
+          <article class="learning-item neon-box-panel">
+            <h2>Cisco CCNA / IT Networking</h2>
+            <p>
+              Practical networking studies covering switching, routing, IP services, access control, security fundamentals and network automation.
+            </p>
+          </article>
+
+          <article class="learning-item neon-box-panel">
+            <h2>Managing Network Security</h2>
+            <p>
+              Study of network threats, security controls and risk-aware practices for protecting connected systems and information flows.
+            </p>
+          </article>
+
+          <article class="learning-item neon-box-panel">
+            <h2>Software Processes and Agile Practices</h2>
+            <p>
+              Study of iterative delivery, collaborative development, planning and continuous improvement for reliable software products.
+            </p>
+          </article>
+        </div>
+      </section>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .academic-navigation { width: fit-content; }
+
+  .academic-back-control {
+    align-items: center;
+    border: 1px solid rgba(196, 181, 253, 0.42);
+    border-radius: 999px;
+    color: rgb(203 213 225);
+    display: inline-flex;
+    height: 2.65rem;
+    justify-content: center;
+    width: 2.65rem;
+  }
+
+  .academic-back-control svg { height: 1.7rem; width: 1.7rem; }
+
+  .interactive-control.academic-back-control:hover {
+    animation: nav-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    background: transparent;
+    border-color: rgb(196 181 253);
+    box-shadow: none;
+    color: rgb(196 181 253);
+    transform: none;
+  }
+
+  .academic-section {
+    border-top: 1px solid rgba(196, 181, 253, 0.16);
+    padding-top: 2.5rem;
+  }
+
+  .section-label {
+    color: rgb(196 181 253);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  .academic-copy {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 52rem;
+  }
+
+  .academic-copy p,
+  .learning-item p:last-child {
+    color: rgb(148 163 184);
+    line-height: 1.9;
+  }
+
+  .learning-list {
+    display: grid;
+    gap: 1rem;
+    max-width: 52rem;
+  }
+
+  .learning-item {
+    padding: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  .learning-item h2 {
+    color: rgb(203 213 225);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .learning-item p:last-child {
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+  }
+
+  @media (min-width: 48.001rem) {
+    .learning-item p:last-child {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+</style>

@@ -2,8 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/sections/AboutSection.astro";
 import PortfolioSection from "../components/sections/PortfolioSection.astro";
-import projectsBackground from "../assets/projects-integration-v1.png";
-import milestonesBackground from "../assets/research-neural-architecture-v1.png";
 import ContactSection from "../components/sections/ContactSection.astro";
 import { projects } from "../data/projects";
 ---
@@ -16,7 +14,6 @@ import { projects } from "../data/projects";
     eyebrow="PROJECTS"
     title="Systems designed for operational confidence."
     description="Selected work across power systems, industrial integration and resilient control environments."
-    background={projectsBackground}
   >
     <div class="mt-12 flex max-w-xl flex-col gap-3 text-sm text-violet-100">
       {projects.map((project) => (
@@ -25,7 +22,6 @@ import { projects } from "../data/projects";
           aria-label={`Open project, ${project.title}`}
           class="interactive-control neon-box-control project-link"
         >
-          <span class="neon-box-symbol neon-box-number" aria-hidden="true">{project.number}</span>
           <span class="neon-box-label">{project.shortLabel}</span>
           <span class="neon-box-arrow" aria-hidden="true">↗</span>
         </a>
@@ -38,7 +34,6 @@ import { projects } from "../data/projects";
     eyebrow="MILESTONES"
     title="Technical milestones and recognition."
     description="Selected academic work, international technology competitions and personal milestones that complement my professional engineering practice."
-    background={milestonesBackground}
   />
 
   <ContactSection />
