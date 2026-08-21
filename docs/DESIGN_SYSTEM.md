@@ -1,83 +1,88 @@
-# DESIGN SYSTEM
+# Design system
 
-## Design Principles
+## Direction
 
-Minimalism
+The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Black, slate and lilac are the core language; additional colors are reserved for validation or accessibility states.
 
-Engineering
+## Color roles
 
-Precision
+| Role | Current use |
+| --- | --- |
+| Canvas | Black `#000` |
+| Elevated surface | Near-black translucent panels |
+| Primary text | Slate 200-300 |
+| Secondary text | Slate 400 |
+| Accent | Lilac `rgb(196 181 253)` |
+| Accent support | Violet and restrained cyan inside animated traces |
+| Error | Red, only for invalid form fields |
 
-Elegance
-
----
-
-## Color Palette
-
-Background
-
-Surface
-
-Primary
-
-Accent
-
-Muted
-
----
+Company marks in Experience are normalized to the same lilac to protect visual consistency.
 
 ## Typography
 
-Headings
+- Primary interface family: Inter with system sans-serif fallback.
+- Credits use Georgia as a restrained editorial accent.
+- Section labels are uppercase with wide tracking.
+- Headings use compact tracking and strong scale contrast.
+- Body text favors readable line height and moderate line length.
 
-Body
+## Layout and spacing
 
-Captions
+- Shared `Container` controls horizontal alignment.
+- Sections use generous vertical spacing and black backgrounds.
+- Detail pages use a readable maximum width rather than full-screen text lines.
+- Experience and study records appear one per row, never in two-column CV grids.
+- Spacing follows a practical rhythm based primarily on 4, 8, 16, 24, 32, 48 and 64 pixels.
 
----
+## Components
 
-## Spacing Scale
+### Navigation
 
-4
+- Sticky translucent header.
+- Thin animated neon line only at the top resting position.
+- Stronger blur while scrolling; subtle directional tilt.
+- Horizontal navigation remains available on small screens.
 
-8
+### Neon controls and panels
 
-16
+- Near-black surface, one-pixel lilac border and rounded corners.
+- Animated multicolor trace on hover or focus.
+- Press feedback uses translation, scale and inset shadow.
+- Mobile replaces the heavy arrow with a one-pixel line.
+- Numbered controls are not used.
 
-24
+### Experience logos
 
-32
+- Monochrome lilac with transparent backgrounds.
+- Original proportions are preserved.
+- Per-brand dimensions compensate for different source aspect ratios.
+- Logo and country share a vertically centered heading row.
 
-48
+### Forms
 
-64
-
----
-
-## Radius
-
-Small
-
-Medium
-
-Large
-
----
-
-## Shadows
-
-Card
-
-Overlay
-
----
+- Visible focus state and semantic labels.
+- Invalid fields use red border and short feedback animation.
+- Status updates use an `aria-live` region.
 
 ## Motion
 
-Duration
+- Quick interaction feedback: approximately 160-520 ms.
+- Continuous neon movement is limited to active or resting accent states.
+- Section opacity and mobile scroll feedback are progressive enhancement.
+- All nonessential animation is disabled or reduced under `prefers-reduced-motion`.
 
-Ease
+## Accessibility baseline
 
-Hover
+- Semantic links and buttons.
+- Visible keyboard focus.
+- Descriptive alternative text for company logos.
+- Touch targets sized for comfortable interaction.
+- Color is not the only form-validation signal.
 
-Scroll
+## Design QA still required
+
+- Formal contrast audit.
+- Screen-reader journey.
+- Keyboard-only route review.
+- Browser zoom and 320 px viewport checks.
+- Final logo permission and rendering review.
