@@ -42,7 +42,7 @@ The About actions are ordered:
 
 `Systems designed for operational confidence.`
 
-Three active project routes cover grid resilience, offshore integration and renewable control. Their public copy avoids employer and client names.
+Four active project routes cover MRI tumour classification, grid resilience, offshore integration and renewable control. The academic research project appears first; professional project copy avoids employer and client names.
 
 ### Milestones
 
@@ -63,7 +63,7 @@ Status: content foundation complete; final editorial review pending.
 The page contains:
 
 - One introductory paragraph connecting the multidisciplinary and international academic background.
-- Three concise academic cards covering the University Master's Degree in Robotics and Automation, Electronic Engineering and Cisco Systems CCNA.
+- Three concise academic cards covering the Master's Degree in Robotics and Automation, Electronic Engineering and Cisco Systems CCNA.
 - Universidad Carlos III de Madrid identified as a Spanish public university.
 - Reference to the official European Diploma Supplement (SET).
 - Additional studies in AI and deep learning, network security, and software/agile practices.
@@ -102,6 +102,14 @@ Suggested structure:
 
 ## Project case studies
 
+### MRI tumour classification
+
+The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
+
+Published evidence includes thesis-authored figures, four representative MRI classes, the 5,320-image experimental distribution, class-level results and the original browser interface. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision-support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+
+The data-provenance section links to the public Figshare, Kaggle and GitHub collections used during academic experimentation. Source links must remain clearly identified as external resources.
+
 ### Grid resilience
 
 Focus: software and simulation capabilities supporting dynamic security assessment for power networks.
@@ -130,7 +138,7 @@ Confirm whether published capacity figures are permitted before final release.
 
 1. Final International narrative.
 2. Milestones and research content with dates and verifiable context.
-3. Stronger project evidence and approved visuals.
+3. Stronger evidence and approved visuals for the remaining professional projects.
 4. Final review of all technical claims against the CV and LinkedIn.
 5. Improved LinkedIn copy consistent with the portfolio narrative.
 6. Desired roles, collaborations and calls to action.

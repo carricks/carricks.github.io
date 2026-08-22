@@ -10,9 +10,250 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
+const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
+  {isResearchCaseStudy ? (
+    <main class="case-study">
+      <section class="case-hero">
+        <nav aria-label="Project navigation" class="project-navigation">
+          <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 12H4" /><path d="m10 6-6 6 6 6" />
+            </svg>
+          </a>
+        </nav>
+
+        <div class="case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="case-eyebrow">MASTER'S RESEARCH · COMPUTER VISION</p>
+            <h1>Classifying brain tumours from MRI.</h1>
+            <p class="case-lead">An end-to-end research prototype that moved from heterogeneous medical images to a four-class convolutional model and a usable web interface.</p>
+          </div>
+
+          <figure class="hero-visual">
+            <div class="scan-frame">
+              <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge preprocessed MRI samples">
+                <img src="/images/projects/brain-tumour-mri/mri-preprocessing.png" alt="Preprocessed MRI samples showing tumour and non-tumour brain images" />
+                <span aria-hidden="true">Expand</span>
+              </button>
+              <div class="scan-line" aria-hidden="true"></div>
+            </div>
+            <figcaption>Preprocessed MRI samples from the experimental workflow.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section impact-section" aria-labelledby="impact-title">
+        <div class="section-heading">
+          <p class="case-eyebrow">WHY IT MATTERS</p>
+          <h2 id="impact-title">A difficult visual problem with real clinical consequences.</h2>
+          <p>Brain and central nervous system tumours are uncommon compared with many cancers, yet their location and heterogeneity make assessment especially demanding. The project explored how computer vision could support image review without replacing specialist judgement.</p>
+        </div>
+        <div class="metric-grid">
+          <article><strong>321,731</strong><span>new brain and CNS cancer cases worldwide in 2022</span></article>
+          <article><strong>248,500</strong><span>estimated deaths worldwide in 2022</span></article>
+          <article><strong>4 classes</strong><span>meningioma, glioma, pituitary and no tumour</span></article>
+        </div>
+        <p class="source-note">Global context: <a href="https://gco.iarc.who.int/media/globocan/factsheets/cancers/31-brain-central-nervous-system-fact-sheet.pdf" target="_blank" rel="noreferrer">IARC Global Cancer Observatory, GLOBOCAN 2022</a>. The prototype is research work and is not a validated medical diagnostic device.</p>
+      </section>
+
+      <section class="case-section" aria-labelledby="challenge-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">THE CHALLENGE</p>
+            <h2 id="challenge-title">Teaching a model to distinguish visually similar patterns.</h2>
+          </div>
+          <div>
+            <p>MRI datasets combine different resolutions, anatomical views and acquisition conditions. Tumours may also share location, shape and texture, making the boundary between classes difficult to learn.</p>
+            <p>The work therefore focused as much on data quality and experimental discipline as on model architecture: combining public datasets, removing poor-quality samples, balancing classes and keeping test images outside augmentation.</p>
+          </div>
+        </div>
+        <div class="class-grid" aria-label="Classification targets">
+          {[
+            { title: "MENINGIOMA", copy: "Tumour arising from the meninges surrounding the brain.", image: "class-meningioma.png" },
+            { title: "GLIOMA", copy: "Tumour originating in glial cells, with highly variable appearance.", image: "class-glioma.png" },
+            { title: "PITUITARY", copy: "Tumour located around the pituitary gland at the base of the brain.", image: "class-pituitary.png" },
+            { title: "NO TUMOUR", copy: "MRI samples without evidence of the three target tumour classes.", image: "class-no-tumour.png" },
+          ].map(({ title, copy, image }) => (
+            <article>
+              <button type="button" class="figure-zoom-trigger class-image-trigger" data-lightbox-trigger aria-label={`Enlarge MRI example classified as ${title.toLowerCase()}`}>
+                <img src={`/images/projects/brain-tumour-mri/${image}`} alt={`MRI example classified as ${title.toLowerCase()}`} />
+                <span aria-hidden="true">Expand</span>
+              </button>
+              <div><h3>{title}</h3><p>{copy}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="pipeline-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">RESEARCH PIPELINE</p>
+          <h2 id="pipeline-title">From raw images to an interpretable prediction.</h2>
+        </div>
+        <ol class="pipeline">
+          <li><span>DATA</span><div><strong>Combine & curate</strong><p>Merge public MRI datasets and remove low-resolution samples.</p></div></li>
+          <li><span>INPUT</span><div><strong>Standardise</strong><p>Resize images to 224 × 224 pixels and organise train, validation and test sets.</p></div></li>
+          <li><span>LEARN</span><div><strong>Train & augment</strong><p>Apply controlled transformations only to training data to improve generalisation.</p></div></li>
+          <li><span>MODEL</span><div><strong>Transfer knowledge</strong><p>Adapt VGG16 to the four target classes and fine-tune the final layers.</p></div></li>
+          <li><span>OUTPUT</span><div><strong>Evaluate & serve</strong><p>Analyse confusion matrices, then expose probabilities through a Flask application.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="case-section visual-story" aria-labelledby="model-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">MODEL EVOLUTION</p>
+            <h2 id="model-title">The first model revealed the problem. VGG16 made it scalable.</h2>
+          </div>
+          <div>
+            <p>An initial two-class CNN established the preprocessing and evaluation workflow, but its small dataset produced unstable validation behaviour. Increasing and cleaning the data improved the experiment before expanding it to four classes.</p>
+            <p>Transfer learning reused VGG16's pretrained visual features. Freezing most of the network and adapting the output reduced the trainable portion to roughly 16,000 parameters for the target classification task.</p>
+          </div>
+        </div>
+        <figure class="research-figure wide-figure">
+          <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge VGG16 architecture diagram">
+            <img src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="VGG16 transfer-learning architecture used for four-class MRI classification" />
+            <span aria-hidden="true">Expand</span>
+          </button>
+          <figcaption>VGG16 transfer-learning architecture adapted during the research.</figcaption>
+        </figure>
+        <div class="experiment-grid">
+          <article><span>INITIAL EXPERIMENT</span><strong>2 classes</strong><p>Meningioma and no tumour used to validate the first CNN workflow.</p></article>
+          <article><span>FINAL EXPERIMENT</span><strong>4 classes</strong><p>The scope expanded to glioma and pituitary tumour using transfer learning.</p></article>
+          <article><span>INPUT SHAPE</span><strong>224 × 224</strong><p>Every image was standardised to a consistent three-channel input.</p></article>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="data-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">DATA STRATEGY</p>
+            <h2 id="data-title">More data helped. Better-controlled data mattered more.</h2>
+          </div>
+          <div><p>The final experiment used 5,320 MRI images with balanced class counts. A 70/20/10 strategy separated learning, model selection and final evaluation, while augmentation introduced controlled rotations, shifts, zoom and flips exclusively during training.</p></div>
+        </div>
+        <div class="dataset-bar" aria-label="Dataset distribution">
+          <div class="train"><strong>3,720</strong><span>Training · 70%</span></div>
+          <div class="validation"><strong>1,080</strong><span>Validation · 20%</span></div>
+          <div class="test"><strong>520</strong><span>Test · 10%</span></div>
+        </div>
+        <figure class="research-figure">
+          <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge MRI data augmentation examples">
+            <img src="/images/projects/brain-tumour-mri/data-augmentation.png" alt="MRI image and augmented variants used during model training" />
+            <span aria-hidden="true">Expand</span>
+          </button>
+          <figcaption>Controlled augmentation generated new training variants while preserving the original anatomy.</figcaption>
+        </figure>
+        <section class="dataset-sources" aria-labelledby="sources-title">
+          <div>
+            <p class="case-eyebrow">OPEN ACADEMIC DATA</p>
+            <h3 id="sources-title">Where the MRI images came from.</h3>
+            <p>The research combined publicly accessible MRI collections used for academic experimentation. Images from the different sources were reviewed, reorganised and filtered before entering the common training workflow.</p>
+          </div>
+          <div class="source-links">
+            <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://figshare.com/articles/dataset/brain_tumor_dataset/1512427" target="_blank" rel="noreferrer">
+              <span>FIGSHARE</span><strong>Brain Tumor Dataset</strong><small>3,064 contrast-enhanced T1-weighted MRI images across three tumour classes. CC BY 4.0.</small>
+              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri" target="_blank" rel="noreferrer">
+              <span>KAGGLE</span><strong>Brain Tumor Classification (MRI)</strong><small>Public academic collection organised around glioma, meningioma, pituitary and no-tumour images.</small>
+              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://github.com/MohamedAliHabib/Brain-Tumor-Detection" target="_blank" rel="noreferrer">
+              <span>GITHUB</span><strong>Brain Tumor Detection Dataset</strong><small>Open reference repository containing MRI samples and CNN experimentation material.</small>
+              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <section class="case-section" aria-labelledby="results-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">EXPERIMENTAL RESULTS</p>
+          <h2 id="results-title">Strong class-level results, with visible room for improvement.</h2>
+          <p>The four-class model reached 88.17% training accuracy. Class-level evaluation showed that glioma remained the most difficult category, reinforcing the effect of visual similarity and dataset quality.</p>
+        </div>
+        <div class="results-layout">
+          <div class="accuracy-list">
+            {[["Meningioma", "96.9"], ["No tumour", "93.8"], ["Pituitary", "90.0"], ["Glioma", "83.8"]].map(([label, value]) => (
+              <div class="accuracy-row"><div><span>{label}</span><strong>{value}%</strong></div><div class="accuracy-track"><span style={`--score:${value}%`}></span></div></div>
+            ))}
+          </div>
+          <figure class="research-figure matrix-figure">
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge four-class confusion matrix">
+              <img src="/images/projects/brain-tumour-mri/confusion-matrix.png" alt="Confusion matrix for the four MRI classification classes" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Test-set confusion matrix from the four-class experiment.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section application-section" aria-labelledby="application-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">FROM MODEL TO PRODUCT</p>
+            <h2 id="application-title">A web interface made the model accessible beyond the notebook.</h2>
+          </div>
+          <div>
+            <p>The trained Keras model was served through a Python and Flask backend. A browser client submitted an MRI image, received class probabilities and represented them numerically and through D3.js charts.</p>
+            <p>This separated model inference from presentation and demonstrated how an experimental neural network could be integrated into a user-facing workflow.</p>
+          </div>
+        </div>
+        <div class="app-flow" aria-label="Application architecture">
+          <article><span aria-hidden="true"></span><strong>MRI upload</strong><small>Browser client</small></article>
+          <article><span aria-hidden="true"></span><strong>Preprocess</strong><small>Python · Flask</small></article>
+          <article><span aria-hidden="true"></span><strong>Inference</strong><small>VGG16 · Keras</small></article>
+          <article><span aria-hidden="true"></span><strong>Probabilities</strong><small>JSON · D3.js</small></article>
+        </div>
+        <figure class="research-figure interface-figure">
+          <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge research prediction interface">
+            <img src="/images/projects/brain-tumour-mri/prediction-interface.png" alt="Research web interface showing prediction charts for a no-tumour MRI sample" />
+            <span aria-hidden="true">Expand</span>
+          </button>
+          <figcaption>Original research interface: image input and probability visualisation.</figcaption>
+        </figure>
+      </section>
+
+      <section class="case-section reflection-section" aria-labelledby="reflection-title">
+        <div>
+          <p class="case-eyebrow">ENGINEERING REFLECTION</p>
+          <h2 id="reflection-title">The result was not just a classifier. It was a complete experimental system.</h2>
+        </div>
+        <div class="reflection-grid">
+          <article class="neon-box-panel premium-neon-surface"><h3>What worked</h3><p>Dataset combination, augmentation and transfer learning produced reproducible multiclass predictions and enabled a functional application layer.</p></article>
+          <article class="neon-box-panel premium-neon-surface"><h3>What remained difficult</h3><p>Image resolution, heterogeneous acquisition views and physical similarity between tumour classes constrained validation performance.</p></article>
+          <article class="neon-box-panel premium-neon-surface"><h3>What comes next</h3><p>Higher-quality clinical datasets, specialist collaboration, stronger validation protocols and evaluation on additional medical image formats.</p></article>
+        </div>
+        <aside class="ethics-note"><strong>Responsible-use boundary</strong><p>This academic prototype was designed to explore decision support. Its predictions cannot replace multidisciplinary diagnosis by qualified radiology, oncology and neurology professionals.</p></aside>
+      </section>
+
+      <section class="case-section technology-section" aria-labelledby="technology-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
+          <h2 id="technology-title">Tools behind the research.</h2>
+          <p>The stack connected model development, accelerated experimentation, backend inference and browser-based visualisation in one end-to-end workflow.</p>
+        </div>
+        <div class="case-tags" aria-label="Core technologies">
+          {project.technicalScope.map((item) => <span>{item}</span>)}
+        </div>
+      </section>
+
+      <footer class="case-footer">
+        <a href="/#projects" class="interactive-control neon-box-control project-return"><span class="neon-box-label">Back to projects</span><span class="neon-box-arrow" aria-hidden="true">↗</span></a>
+      </footer>
+
+      <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
+        <div class="figure-lightbox-content">
+          <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
+          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="Expanded research figure" />
+        </div>
+      </dialog>
+    </main>
+  ) : (
     <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
       <nav aria-label="Project navigation" class="project-navigation flex flex-wrap gap-3">
         <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
@@ -24,7 +265,7 @@ const { project } = Astro.props;
       </nav>
 
       <article class="mx-auto mt-24 max-w-4xl">
-        <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT {project.number}</p>
+        <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT CASE STUDY</p>
         <p class="mt-5 text-sm text-slate-400">{project.location}</p>
         <h1 class="interactive-heading mt-4 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{project.title}</h1>
         <p class="mt-8 max-w-3xl text-xl leading-9 text-slate-300">{project.summary}</p>
@@ -48,9 +289,643 @@ const { project } = Astro.props;
         </section>
       </article>
     </section>
+  )}
 </BaseLayout>
 
+<script>
+  const zoomTriggers = document.querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]");
+  const lightbox = document.querySelector<HTMLDialogElement>("[data-figure-lightbox]");
+  const closeButton = document.querySelector<HTMLButtonElement>("[data-figure-close]");
+  const lightboxImage = document.querySelector<HTMLImageElement>("[data-lightbox-image]");
+  let activeTrigger: HTMLButtonElement | null = null;
+
+  const closeLightbox = () => {
+    if (!lightbox?.open) return;
+    lightbox.close();
+  };
+
+  zoomTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const sourceImage = trigger.querySelector<HTMLImageElement>("img");
+      if (!lightbox || !lightboxImage || !sourceImage) return;
+      activeTrigger = trigger;
+      lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
+      lightboxImage.alt = `Expanded ${sourceImage.alt}`;
+      lightbox.setAttribute("aria-label", lightboxImage.alt);
+      lightbox.showModal();
+    });
+  });
+  closeButton?.addEventListener("click", closeLightbox);
+  lightbox?.addEventListener("close", () => activeTrigger?.focus());
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+</script>
+
 <style>
+  .case-study {
+    --case-border: rgba(196, 181, 253, 0.22);
+    --case-panel: rgba(13, 9, 22, 0.72);
+    background:
+      radial-gradient(circle at 82% 7%, rgba(124, 58, 237, 0.14), transparent 24rem),
+      radial-gradient(circle at 12% 33%, rgba(34, 211, 238, 0.055), transparent 25rem),
+      #000;
+    color: rgb(203 213 225);
+    overflow: hidden;
+  }
+
+  .case-hero,
+  .case-section,
+  .case-footer {
+    margin-inline: auto;
+    max-width: 86rem;
+    padding-inline: clamp(1.35rem, 5vw, 5rem);
+  }
+
+  .case-hero {
+    min-height: calc(100svh - 5rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+    padding-top: 2.5rem;
+  }
+
+  .case-hero-grid {
+    align-items: center;
+    display: grid;
+    gap: clamp(3rem, 7vw, 8rem);
+    grid-template-columns: minmax(0, 1.03fr) minmax(22rem, 0.97fr);
+    min-height: calc(100svh - 12rem);
+    padding-top: 2rem;
+  }
+
+  .case-eyebrow {
+    color: rgb(196 181 253);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+
+  .case-hero h1 {
+    color: rgb(226 232 240);
+    font-size: clamp(2.1rem, 3.7vw, 3.6rem);
+    font-weight: 620;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+    margin-top: 1.4rem;
+    max-width: 12ch;
+    text-wrap: balance;
+  }
+
+  .case-lead {
+    color: rgb(148 163 184);
+    font-size: clamp(1.12rem, 1.65vw, 1.4rem);
+    line-height: 1.75;
+    margin-top: 2rem;
+    max-width: 40rem;
+  }
+
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 2rem;
+  }
+
+  .case-tags span {
+    border: 1px solid rgba(196, 181, 253, 0.23);
+    border-radius: 999px;
+    color: rgb(196 181 253);
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    padding: 0.52rem 0.72rem;
+    text-transform: uppercase;
+  }
+
+  .hero-visual {
+    margin: 0;
+    position: relative;
+  }
+
+  .scan-frame {
+    background: #030305;
+    border: 1px solid rgba(196, 181, 253, 0.32);
+    border-radius: 1.6rem;
+    box-shadow: 0 0 4rem rgba(124, 58, 237, 0.12);
+    overflow: hidden;
+    padding: clamp(0.8rem, 2vw, 1.5rem);
+    position: relative;
+  }
+
+  .scan-frame::after {
+    background: linear-gradient(135deg, transparent 42%, rgba(167, 139, 250, 0.11));
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .scan-frame img {
+    aspect-ratio: 1.12;
+    filter: grayscale(1) contrast(1.18) hue-rotate(225deg);
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .scan-line {
+    animation: scan 5s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.8), transparent);
+    box-shadow: 0 0 1rem rgba(167, 139, 250, 0.5);
+    height: 1px;
+    left: 1rem;
+    position: absolute;
+    pointer-events: none;
+    right: 1rem;
+    top: 18%;
+    z-index: 2;
+  }
+
+  @keyframes scan { 0%, 100% { transform: translateY(0); opacity: 0.35; } 50% { transform: translateY(20rem); opacity: 0.9; } }
+
+  .hero-visual figcaption,
+  .research-figure figcaption {
+    color: rgb(100 116 139);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    margin-top: 0.85rem;
+  }
+
+  .case-section {
+    border-top: 1px solid var(--case-border);
+    padding-bottom: clamp(5rem, 9vw, 9rem);
+    padding-top: clamp(5rem, 9vw, 9rem);
+  }
+
+  .section-heading {
+    max-width: 55rem;
+  }
+
+  .section-heading h2,
+  .split-copy h2,
+  .reflection-section h2 {
+    color: rgb(226 232 240);
+    font-size: clamp(2.1rem, 3.7vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    margin-top: 1.25rem;
+    text-wrap: balance;
+  }
+
+  .section-heading > p:last-child,
+  .split-copy > div:last-child p,
+  .reflection-grid p {
+    color: rgb(148 163 184);
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+
+  .section-heading > p:last-child { margin-top: 1.6rem; }
+  .compact-heading { max-width: 64rem; }
+
+  .metric-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 3.2rem;
+  }
+
+  .metric-grid article,
+  .class-grid article,
+  .experiment-grid article,
+  .reflection-grid article {
+    background: linear-gradient(145deg, rgba(17, 12, 28, 0.8), rgba(3, 3, 5, 0.65));
+    border: 1px solid var(--case-border);
+    border-radius: 1.1rem;
+    padding: clamp(1.35rem, 3vw, 2.1rem);
+  }
+
+  .metric-grid strong {
+    color: rgb(196 181 253);
+    display: block;
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    letter-spacing: -0.05em;
+  }
+
+  .metric-grid span {
+    color: rgb(148 163 184);
+    display: block;
+    line-height: 1.55;
+    margin-top: 0.65rem;
+  }
+
+  .source-note {
+    color: rgb(100 116 139);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-top: 1.25rem;
+  }
+
+  .source-note a {
+    color: rgb(196 181 253);
+    text-decoration: underline;
+    text-decoration-color: rgba(196, 181, 253, 0.38);
+    text-underline-offset: 0.22em;
+  }
+
+  .split-copy {
+    display: grid;
+    gap: clamp(2rem, 7vw, 8rem);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  .split-copy > div:last-child p + p { margin-top: 1.3rem; }
+
+  .class-grid,
+  .experiment-grid,
+  .reflection-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  .class-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .experiment-grid,
+  .reflection-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .class-grid article {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .class-grid .class-image-trigger > img {
+    aspect-ratio: 1;
+    display: block;
+    filter: grayscale(1) contrast(1.08);
+    object-fit: cover;
+    transition: filter 240ms ease, transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+    width: 100%;
+  }
+
+  .class-grid article:hover .class-image-trigger > img,
+  .class-grid .class-image-trigger:focus-visible > img {
+    filter: grayscale(0.78) contrast(1.12) sepia(0.08) hue-rotate(220deg);
+    transform: scale(1.025);
+  }
+
+  .class-grid article > div {
+    border-top: 1px solid var(--case-border);
+    min-height: 11rem;
+    padding: 1.4rem;
+    position: relative;
+  }
+
+  .class-grid h3,
+  .reflection-grid h3 {
+    color: rgb(196 181 253);
+    font-size: 0.8rem;
+    letter-spacing: 0.13em;
+  }
+
+  .reflection-grid h3 { margin-top: 1.5rem; }
+
+  .class-grid p,
+  .experiment-grid p {
+    color: rgb(148 163 184);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-top: 0.75rem;
+  }
+
+  .pipeline {
+    display: grid;
+    gap: clamp(1.4rem, 2.6vw, 2.5rem);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    list-style: none;
+    margin: 3.5rem 0 0;
+    padding: 0;
+  }
+
+  .pipeline li {
+    background: linear-gradient(145deg, rgba(16, 11, 27, 0.62), rgba(3, 3, 5, 0.8));
+    border: 1px solid rgba(196, 181, 253, 0.28);
+    border-radius: 0.9rem;
+    min-height: 13.5rem;
+    padding: clamp(1.15rem, 2vw, 1.5rem);
+    position: relative;
+  }
+
+  .pipeline li:not(:last-child)::after {
+    color: rgb(196 181 253);
+    content: "→";
+    font-size: 0.9rem;
+    position: absolute;
+    right: -1.3rem;
+    top: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .pipeline span,
+  .experiment-grid span {
+    color: rgb(139 92 246);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  .pipeline strong,
+  .experiment-grid strong {
+    color: rgb(226 232 240);
+    display: block;
+    font-size: 1.05rem;
+  }
+
+  .experiment-grid strong { margin-top: 1.2rem; }
+
+  .pipeline p {
+    color: rgb(100 116 139);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-top: 1rem;
+    max-width: 46rem;
+  }
+
+  .research-figure {
+    background: #050507;
+    border: 1px solid var(--case-border);
+    border-radius: 1.2rem;
+    margin: 3rem 0 0;
+    overflow: hidden;
+    padding: clamp(0.75rem, 2vw, 1.4rem);
+  }
+
+  .research-figure img {
+    background: #fff;
+    border-radius: 0.7rem;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+
+  .wide-figure img { filter: grayscale(0.25) saturate(0.75) hue-rotate(205deg); }
+
+  .figure-zoom-trigger {
+    background: transparent;
+    border: 0;
+    cursor: zoom-in;
+    display: block;
+    padding: 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .figure-zoom-trigger::after {
+    background: linear-gradient(135deg, transparent 45%, rgba(5, 5, 8, 0.86));
+    border-radius: 0.7rem;
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 180ms ease;
+  }
+
+  .figure-zoom-trigger > span {
+    bottom: 1rem;
+    color: rgb(221 214 254);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    opacity: 0;
+    position: absolute;
+    right: 1rem;
+    text-transform: uppercase;
+    transition: opacity 180ms ease;
+    z-index: 1;
+  }
+
+  .figure-zoom-trigger:hover::after,
+  .figure-zoom-trigger:focus-visible::after,
+  .figure-zoom-trigger:hover > span,
+  .figure-zoom-trigger:focus-visible > span { opacity: 1; }
+
+  .figure-zoom-trigger:focus-visible {
+    border-radius: 0.7rem;
+    outline: 2px solid rgb(196 181 253);
+    outline-offset: 0.25rem;
+  }
+
+  .figure-lightbox {
+    background: transparent;
+    border: 0;
+    height: 100dvh;
+    margin: 0;
+    max-height: none;
+    max-width: none;
+    padding: clamp(1rem, 4vw, 3rem);
+    width: 100vw;
+  }
+
+  .figure-lightbox::backdrop {
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.84);
+  }
+
+  .figure-lightbox-content {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin: auto;
+    max-width: 92rem;
+    position: relative;
+  }
+
+  .figure-lightbox-content > img {
+    background: #fff;
+    border: 1px solid rgba(196, 181, 253, 0.42);
+    border-radius: 0.9rem;
+    box-shadow: 0 0 4rem rgba(124, 58, 237, 0.18);
+    display: block;
+    max-height: calc(100dvh - 5rem);
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .figure-lightbox-close {
+    align-items: center;
+    background: rgba(8, 5, 14, 0.92);
+    border: 1px solid rgba(196, 181, 253, 0.48);
+    border-radius: 999px;
+    color: rgb(237 233 254);
+    cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    height: 2.6rem;
+    justify-content: center;
+    line-height: 1;
+    position: absolute;
+    right: -0.8rem;
+    top: 0;
+    width: 2.6rem;
+    z-index: 2;
+  }
+
+  .figure-lightbox-close:hover,
+  .figure-lightbox-close:focus-visible {
+    border-color: rgb(196 181 253);
+    box-shadow: 0 0 1.2rem rgba(167, 139, 250, 0.3);
+    outline: none;
+  }
+
+  .dataset-sources {
+    align-items: start;
+    display: grid;
+    gap: clamp(2rem, 7vw, 7rem);
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    margin-top: clamp(4rem, 8vw, 7rem);
+  }
+
+  .dataset-sources h3 {
+    color: rgb(226 232 240);
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    margin-top: 1rem;
+  }
+
+  .dataset-sources > div:first-child > p:last-child {
+    color: rgb(148 163 184);
+    line-height: 1.8;
+    margin-top: 1.2rem;
+  }
+
+  .source-links {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .source-links a.dataset-source-card {
+    align-content: center;
+    display: grid;
+    gap: 0.45rem;
+    min-height: 8.5rem;
+    padding: 1.35rem 3rem 1.35rem 1.4rem;
+    position: relative;
+  }
+
+  .source-links .dataset-source-arrow {
+    color: rgb(196 181 253);
+    letter-spacing: 0;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .source-links a.dataset-source-card:hover .dataset-source-arrow,
+  .source-links a.dataset-source-card:focus-visible .dataset-source-arrow {
+    transform: translate(0.12rem, calc(-50% - 0.12rem));
+  }
+
+  .source-links a > span:first-child { color: rgb(139 92 246); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; }
+  .source-links strong { color: rgb(226 232 240); font-size: 1rem; }
+  .source-links small { color: rgb(100 116 139); line-height: 1.6; max-width: 44rem; }
+
+  .dataset-bar {
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: 7fr 2fr 1fr;
+    margin-top: 3.5rem;
+  }
+
+  .dataset-bar > div {
+    background: rgba(124, 58, 237, 0.32);
+    border: 1px solid rgba(196, 181, 253, 0.28);
+    min-height: 8rem;
+    padding: 1.3rem;
+  }
+
+  .dataset-bar > div:first-child { border-radius: 1rem 0 0 1rem; }
+  .dataset-bar > div:last-child { border-radius: 0 1rem 1rem 0; }
+  .dataset-bar .validation { background: rgba(139, 92, 246, 0.21); }
+  .dataset-bar .test { background: rgba(34, 211, 238, 0.11); }
+  .dataset-bar strong { color: rgb(226 232 240); display: block; font-size: clamp(1.35rem, 2.8vw, 2.4rem); }
+  .dataset-bar span { color: rgb(196 181 253); display: block; font-size: 0.72rem; margin-top: 0.55rem; }
+
+  .results-layout {
+    align-items: center;
+    display: grid;
+    gap: clamp(2.5rem, 7vw, 7rem);
+    grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
+    margin-top: 4rem;
+  }
+
+  .accuracy-row + .accuracy-row { margin-top: 1.7rem; }
+  .accuracy-row > div:first-child { display: flex; justify-content: space-between; }
+  .accuracy-row span { color: rgb(203 213 225); }
+  .accuracy-row strong { color: rgb(196 181 253); }
+  .accuracy-track { background: rgba(196, 181, 253, 0.12); height: 2px; margin-top: 0.75rem; }
+  .accuracy-track span { background: linear-gradient(90deg, rgb(139 92 246), rgb(196 181 253), rgb(34 211 238)); box-shadow: 0 0 0.8rem rgba(167, 139, 250, 0.7); display: block; height: 100%; width: var(--score); }
+  .matrix-figure { margin-top: 0; }
+
+  .app-flow {
+    --flow-line: rgba(167, 139, 250, 0.38);
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 3.5rem;
+    position: relative;
+  }
+
+  .app-flow::before {
+    background: linear-gradient(90deg, transparent, var(--flow-line) 7%, var(--flow-line) 93%, transparent);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0.42rem;
+  }
+
+  .app-flow article {
+    min-height: 6.5rem;
+    padding-top: 1.9rem;
+    position: relative;
+  }
+
+  .app-flow span {
+    background: rgb(196 181 253);
+    border: 3px solid #000;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(196, 181, 253, 0.55), 0 0 1rem rgba(167, 139, 250, 0.75);
+    display: block;
+    height: 0.8rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0.8rem;
+  }
+
+  .app-flow strong { color: rgb(226 232 240); display: block; }
+  .app-flow small { color: rgb(100 116 139); display: block; margin-top: 0.35rem; }
+  .interface-figure { margin-inline: auto; max-width: 49rem; }
+
+  .ethics-note {
+    border-left: 1px solid rgb(196 181 253);
+    margin-top: 3rem;
+    max-width: 64rem;
+    padding: 0.2rem 0 0.2rem 1.5rem;
+  }
+
+  .ethics-note strong { color: rgb(196 181 253); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .ethics-note p { color: rgb(148 163 184); line-height: 1.75; margin-top: 0.65rem; }
+
+  .case-footer { border-top: 1px solid var(--case-border); padding-bottom: 6rem; padding-top: 4rem; }
+  .project-return { max-width: 24rem; }
+
   .project-navigation {
     width: fit-content;
   }
@@ -104,5 +979,59 @@ const { project } = Astro.props;
     font-size: 0.875rem;
     font-weight: 600;
     padding: 0.55rem 0.8rem;
+  }
+
+  @media (max-width: 900px) {
+    .case-hero-grid,
+    .split-copy,
+    .results-layout { grid-template-columns: 1fr; }
+    .case-hero-grid { min-height: auto; padding-top: 5rem; }
+    .hero-visual { max-width: 38rem; }
+    .dataset-sources { grid-template-columns: 1fr; }
+    .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pipeline { gap: 2.1rem; grid-template-columns: 1fr; max-width: 38rem; }
+    .pipeline li { min-height: auto; padding: 1.4rem; }
+    .pipeline li:not(:last-child)::after { bottom: -1.55rem; content: "↓"; left: 50%; right: auto; top: auto; transform: translateX(-50%); }
+    .app-flow { gap: 0; grid-template-columns: 1fr; padding-left: 1.6rem; }
+    .app-flow::before { background: linear-gradient(180deg, transparent, var(--flow-line) 7%, var(--flow-line) 93%, transparent); bottom: 0; height: auto; left: 0.38rem; right: auto; top: 0; width: 1px; }
+    .app-flow article { min-height: 5.6rem; padding-left: 0.9rem; padding-top: 0; }
+    .app-flow span { left: -1.6rem; top: 0.15rem; }
+  }
+
+  @media (max-width: 48rem) {
+    .source-links a.dataset-source-card:hover .dataset-source-arrow,
+    .source-links a.dataset-source-card:focus-visible .dataset-source-arrow,
+    .source-links a.dataset-source-card:active .dataset-source-arrow {
+      transform: translateY(-50%) scaleX(1.08);
+      transform-origin: right center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .case-hero { min-height: auto; padding-top: 1.5rem; }
+    .case-hero-grid { padding-top: 4rem; }
+    .case-hero h1,
+    .section-heading h2,
+    .split-copy h2,
+    .reflection-section h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
+    .metric-grid,
+    .class-grid,
+    .experiment-grid,
+    .reflection-grid { grid-template-columns: 1fr; }
+    .metric-grid article { min-height: 9rem; }
+    .dataset-bar { grid-template-columns: 1fr; }
+    .dataset-bar > div { min-height: auto; }
+    .dataset-bar > div:first-child { border-radius: 1rem 1rem 0 0; }
+    .dataset-bar > div:last-child { border-radius: 0 0 1rem 1rem; }
+    .research-figure { border-radius: 0.9rem; margin-top: 2rem; }
+    .figure-zoom-trigger > span { opacity: 1; }
+    .figure-lightbox { padding: 0.8rem; }
+    .figure-lightbox-content > img { max-height: calc(100dvh - 2rem); }
+    .figure-lightbox-close { right: 0.35rem; top: 0.35rem; }
+    .scan-line { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scan-line { animation: none; }
   }
 </style>

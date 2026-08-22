@@ -32,6 +32,7 @@ Homepage
     Academic
     International
   Projects
+    MRI Tumour Classification
     Grid Resilience
     Offshore Integration
     Renewable Control
@@ -66,6 +67,7 @@ Homepage introduction
 - Contact form validates locally and opens a prepared `mailto:` message.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
+- Research figures use a browser-native dialog lightbox and require no external runtime dependency.
 
 ## Success criteria
 

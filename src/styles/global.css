@@ -222,6 +222,42 @@ section[data-section-transition].is-section-idle {
   mask-composite: exclude;
 }
 
+/* Shared high-presence trace used by primary portfolio controls and panels. */
+.premium-neon-control::before,
+.premium-neon-surface::before {
+  background: conic-gradient(
+    from var(--neon-angle),
+    transparent 0deg 28deg,
+    rgb(34 211 238) 48deg,
+    rgb(99 102 241) 82deg,
+    rgb(139 92 246) 122deg,
+    rgb(217 70 239) 162deg,
+    rgb(196 181 253) 202deg,
+    rgb(59 130 246) 242deg,
+    rgb(34 211 238) 282deg,
+    transparent 324deg 360deg
+  );
+  padding: 1.5px;
+}
+
+.premium-neon-control:hover,
+.premium-neon-control:focus-visible,
+.premium-neon-surface:hover {
+  background: rgba(7, 4, 13, 0.92);
+  box-shadow:
+    0 0 1.5rem rgba(139, 92, 246, 0.2),
+    0 0 2.6rem rgba(34, 211, 238, 0.07),
+    inset 0 0 1.8rem rgba(167, 139, 250, 0.045);
+}
+
+.premium-neon-control:hover::before,
+.premium-neon-control:focus-visible::before,
+.premium-neon-surface:hover::before {
+  animation: neon-box-trace 900ms linear infinite;
+  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.85)) drop-shadow(0 0 8px rgba(34, 211, 238, 0.35));
+  opacity: 1;
+}
+
 .neon-box-symbol {
   align-items: center;
   background: rgba(167, 139, 250, 0.08);

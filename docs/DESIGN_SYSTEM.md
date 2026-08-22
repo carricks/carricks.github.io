@@ -50,6 +50,16 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Press feedback uses translation, scale and inset shadow.
 - Mobile replaces the heavy arrow with a one-pixel line.
 - Numbered controls are not used.
+- Primary controls use the shared `premium-neon-control` variant: a 1.5-pixel cyan-blue-violet-magenta trace completing its circuit in 900 ms.
+- Informational panels that need the same hover presence use `premium-neon-surface`; they must not imply clickability.
+- The premium trace is shared by About, Projects, MRI source links, engineering-reflection panels and Submit.
+
+### Research figures and lightbox
+
+- Research images sit inside near-black, one-pixel lilac frames.
+- Expandable figures use a visible zoom affordance and one reusable modal surface.
+- The modal closes through its close control, Escape or a click outside the image, then restores focus to the trigger.
+- MRI class cards preserve a monochrome scientific treatment and equal visual dimensions.
 
 ### Experience logos
 
@@ -76,6 +86,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Semantic links and buttons.
 - Visible keyboard focus.
 - Descriptive alternative text for company logos.
+- Descriptive alternative text and keyboard-operable enlargement for research figures.
 - Touch targets sized for comfortable interaction.
 - Color is not the only form-validation signal.
 

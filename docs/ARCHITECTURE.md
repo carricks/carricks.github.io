@@ -9,7 +9,8 @@ This is a static Astro portfolio deployed through GitHub Pages. Astro renders th
 ```text
 public/
   favicon.*
-  images/                       Fixed-URL company logos
+  images/                       Fixed-URL company and project assets
+    projects/brain-tumour-mri/  Thesis-authored MRI and model figures
 src/
   components/
     common/                     Container, Section and shared icons
@@ -36,6 +37,7 @@ docs/                           Product, content, design and delivery guidance
 /about/academic/
 /about/experience/
 /about/international/
+/projects/brain-tumour-mri-classification/
 /projects/dynamic-security-assessment/
 /projects/secure-offshore-data-integration/
 /projects/renewable-plant-control/
@@ -67,8 +69,10 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - Tailwind utilities handle most layout and typography.
 - Local `<style>` blocks own route-specific presentation.
 - `src/styles/global.css` owns shared controls, neon traces, navigation states and motion preferences.
+- The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`.
 - Intersection observers provide progressive section and touch feedback.
+- The MRI case study uses one reusable native `dialog` lightbox for all expandable figures. It restores focus to the originating image control when closed.
 - `prefers-reduced-motion` disables nonessential animation.
 
 ## Contact behavior
