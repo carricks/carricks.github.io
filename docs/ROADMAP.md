@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 22 August 2026
+Last updated: 23 August 2026
 
 ## Current product status
 
@@ -11,14 +11,16 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Static Astro architecture and GitHub Pages configuration.
 - Responsive black-and-lilac visual foundation.
 - Sticky translucent navigation with scroll blur and restrained motion.
-- Reusable premium neon controls and informational panels with unified hover, focus, press and touch feedback.
+- Reusable premium neon controls and informational surfaces with unified hover, focus, press and touch feedback.
 - Homepage sections for About, Projects, Milestones and Contact.
 - About navigation ordered as Experience, Academic and International.
 - Dedicated Academic page with formal and additional studies.
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
-- Complete MRI tumour-classification case study with thesis-authored visuals, open-data provenance, model pipeline, experimental results and responsible-use framing.
-- Reusable accessible image lightbox across all principal MRI research figures.
+- Complete MRI tumour-classification case study with research context, open-data provenance, class examples, model evolution, experimental comparison and responsible-use framing.
+- Responsive vertical research timelines with restrained scroll-driven neon feedback.
+- Accessible image lightbox across the principal MRI research figures.
+- Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
 - Responsive contact form that prepares an email in the visitor's email client.
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
@@ -28,7 +30,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 - Editorial refinement of Academic and Experience copy.
 - Perceptual normalization and final QA of company logos.
-- Expansion of the remaining professional project case studies with stronger evidence and approved visuals.
+- Expansion of the remaining three professional project case studies with stronger evidence and approved visuals.
 - International page content and narrative.
 - Milestones, research and recognition content.
 - Mobile and desktop visual QA across common viewport sizes.
