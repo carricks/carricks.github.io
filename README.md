@@ -45,7 +45,7 @@ git diff --check
 - `/about/academic/`
 - `/about/international/`
 - `/projects/brain-tumour-mri-classification/`
-- `/projects/dynamic-security-assessment/`
+- `/projects/grid-contingency-analysis/`
 - `/projects/secure-offshore-data-integration/`
 - `/projects/renewable-plant-control/`
 

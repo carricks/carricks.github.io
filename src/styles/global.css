@@ -207,7 +207,7 @@ section[data-section-transition].is-section-idle {
 
 .neon-box-control::before,
 .neon-box-panel::before {
-  background: conic-gradient(from var(--neon-angle), transparent 0deg 32deg, rgb(139 92 246 / 0.95) 68deg, rgb(217 70 239 / 0.98) 108deg, rgb(196 181 253) 148deg, rgb(34 211 238 / 0.95) 188deg, rgb(99 102 241 / 0.96) 228deg, rgb(167 139 250) 272deg, transparent 326deg 360deg);
+  background: conic-gradient(from var(--neon-angle), transparent 0deg 38deg, rgb(76 29 149 / 0.82) 76deg, rgb(139 92 246 / 0.96) 122deg, rgb(196 181 253) 168deg, rgb(245 243 255 / 0.96) 210deg, rgb(196 181 253) 252deg, rgb(139 92 246 / 0.9) 296deg, transparent 326deg 360deg);
   border-radius: inherit;
   content: "";
   inset: -1px;
@@ -227,14 +227,13 @@ section[data-section-transition].is-section-idle {
 .premium-neon-surface::before {
   background: conic-gradient(
     from var(--neon-angle),
-    transparent 0deg 28deg,
-    rgb(34 211 238) 48deg,
-    rgb(99 102 241) 82deg,
-    rgb(139 92 246) 122deg,
-    rgb(217 70 239) 162deg,
-    rgb(196 181 253) 202deg,
-    rgb(59 130 246) 242deg,
-    rgb(34 211 238) 282deg,
+    transparent 0deg 34deg,
+    rgb(76 29 149 / 0.88) 70deg,
+    rgb(139 92 246) 112deg,
+    rgb(196 181 253) 158deg,
+    rgb(245 243 255) 202deg,
+    rgb(221 214 254) 244deg,
+    rgb(139 92 246) 286deg,
     transparent 324deg 360deg
   );
   padding: 1.5px;
@@ -246,15 +245,15 @@ section[data-section-transition].is-section-idle {
   background: rgba(7, 4, 13, 0.92);
   box-shadow:
     0 0 1.5rem rgba(139, 92, 246, 0.2),
-    0 0 2.6rem rgba(34, 211, 238, 0.07),
+    0 0 2.6rem rgba(221, 214, 254, 0.06),
     inset 0 0 1.8rem rgba(167, 139, 250, 0.045);
 }
 
 .premium-neon-control:hover::before,
 .premium-neon-control:focus-visible::before,
 .premium-neon-surface:hover::before {
-  animation: neon-box-trace 900ms linear infinite;
-  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.85)) drop-shadow(0 0 8px rgba(34, 211, 238, 0.35));
+  animation: neon-box-trace 2.5s linear infinite;
+  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.72)) drop-shadow(0 0 8px rgba(245, 243, 255, 0.18));
   opacity: 1;
 }
 
@@ -295,7 +294,7 @@ section[data-section-transition].is-section-idle {
 .interactive-control.neon-box-control:hover {
   background: rgba(3, 3, 5, 0.78);
   border-color: transparent;
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.16), inset 0 0 20px rgba(103, 232, 249, 0.025);
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.16), inset 0 0 20px rgba(245, 243, 255, 0.025);
   color: rgb(237 233 254);
   transform: translateY(-1px);
 }
@@ -303,7 +302,7 @@ section[data-section-transition].is-section-idle {
 .interactive-control.neon-box-control:hover::before,
 .interactive-control.neon-box-control:focus-visible::before,
 .neon-box-panel:hover::before {
-  animation: neon-box-trace 1.15s linear infinite;
+  animation: neon-box-trace 2.5s linear infinite;
   opacity: 1;
 }
 
@@ -311,12 +310,12 @@ section[data-section-transition].is-section-idle {
   animation: neon-box-press 340ms cubic-bezier(0.22, 1, 0.36, 1);
   background: rgba(10, 6, 18, 0.92);
   border-color: transparent;
-  box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.72), inset 0 0 18px rgba(167, 139, 250, 0.12), 0 0 20px rgba(103, 232, 249, 0.12);
+  box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.72), inset 0 0 18px rgba(167, 139, 250, 0.12), 0 0 20px rgba(245, 243, 255, 0.08);
   transform: translateY(2px) scale(0.975);
 }
 
 .interactive-control.neon-box-control:active::before {
-  animation: neon-box-trace 360ms linear infinite;
+  animation: neon-box-trace 2.5s linear infinite;
   opacity: 1;
 }
 
@@ -346,7 +345,7 @@ section[data-section-transition].is-section-idle {
 }
 
 .interactive-control.home-control:hover svg {
-  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.5)) drop-shadow(0 0 10px rgba(103, 232, 249, 0.12));
+  filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.5)) drop-shadow(0 0 10px rgba(245, 243, 255, 0.1));
   transform: translateY(-1px);
 }
 
@@ -443,7 +442,7 @@ section[data-section-transition].is-section-idle {
 }
 
 .nav-control::after {
-  background: linear-gradient(90deg, rgb(167 139 250), rgb(103 232 249), rgb(221 214 254), rgb(167 139 250));
+  background: linear-gradient(90deg, rgb(139 92 246), rgb(196 181 253), rgb(245 243 255), rgb(167 139 250));
   background-size: 220% 100%;
   bottom: 0.08rem;
   content: "";
@@ -462,12 +461,12 @@ section[data-section-transition].is-section-idle {
   border-color: transparent;
   box-shadow: none;
   color: rgb(196 181 253);
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.42), 0 0 18px rgba(103, 232, 249, 0.16);
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.42), 0 0 18px rgba(245, 243, 255, 0.1);
   transform: none;
 }
 
 .nav-control:hover::after {
-  animation: nav-neon-trace 720ms ease-out;
+  animation: nav-neon-trace 1.8s ease-out;
   opacity: 1;
 }
 
@@ -554,7 +553,7 @@ section[data-section-transition].is-section-idle {
   }
 
   .nav-control.is-scroll-active::after {
-    animation: nav-neon-trace 720ms ease-out;
+    animation: nav-neon-trace 1.8s ease-out;
     opacity: 1;
   }
 
@@ -583,7 +582,7 @@ section[data-section-transition].is-section-idle {
   }
 
   .interactive-control.neon-box-control:active::before {
-    animation: neon-box-trace 520ms linear;
+    animation: neon-box-trace 2.5s linear;
     opacity: 1;
   }
 }
@@ -598,7 +597,7 @@ section[data-section-transition].is-section-idle {
 
   .interactive-control.neon-box-control:hover .neon-box-arrow,
   .interactive-control.neon-box-control:active .neon-box-arrow {
-    background: linear-gradient(90deg, rgba(103, 232, 249, 0.34), rgb(196 181 253));
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.4), rgb(245 243 255), rgb(196 181 253));
     transform: scaleX(1.08);
     transform-origin: right center;
   }

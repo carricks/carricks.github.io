@@ -1,6 +1,7 @@
 ---
 import { projects } from "../../data/projects";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import FloatingBackControl from "../../components/common/FloatingBackControl.astro";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -11,19 +12,14 @@ export function getStaticPaths() {
 
 const { project } = Astro.props;
 const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
+const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
   {isResearchCaseStudy ? (
     <main class="case-study">
       <section class="case-hero">
-        <nav aria-label="Project navigation" class="project-navigation floating-project-navigation">
-          <a href="/#projects" class="interactive-control project-icon-control floating-back-control" aria-label="Back to projects" title="Back to projects">
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 12H4" /><path d="m10 6-6 6 6 6" />
-            </svg>
-          </a>
-        </nav>
+        <FloatingBackControl href="/#projects" label="Back to projects" />
 
         <div class="case-hero-grid">
           <div class="case-hero-copy">
@@ -222,15 +218,9 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           </div>
           <div>
             <p>As part of the study, I developed a web application that connected the trained Keras model to a Python and Flask backend. Users could submit an MRI image and receive probabilities across four classes, presented numerically and through D3.js visualisations, demonstrating how the research model could operate within a practical workflow for users.</p>
+            <p class="prediction-study-copy">To demonstrate the complete inference workflow, a pituitary MRI sample was submitted to the application. The report records the selected image, the probability assigned to each class and the final classification returned by the model.</p>
           </div>
         </div>
-        <div class="app-flow" aria-label="Application architecture">
-          <article><span aria-hidden="true"></span><strong>MRI upload</strong><small>Browser client</small></article>
-          <article><span aria-hidden="true"></span><strong>Preprocess</strong><small>Python · Flask</small></article>
-          <article><span aria-hidden="true"></span><strong>Inference</strong><small>VGG16 · Keras</small></article>
-          <article><span aria-hidden="true"></span><strong>Probabilities</strong><small>JSON · D3.js</small></article>
-        </div>
-        <p class="prediction-study-copy">To demonstrate the complete inference workflow, a pituitary MRI sample was submitted to the application. The report records the selected image, the probability assigned to each class and the final classification returned by the model.</p>
         <figure class="prediction-report">
           <button type="button" class="figure-zoom-trigger prediction-report-image" data-lightbox-trigger aria-label="Enlarge pituitary tumour MRI input">
             <img src="/images/projects/brain-tumour-mri/class-pituitary.png" alt="Pituitary tumour MRI selected as input for prediction across four classes" />
@@ -268,12 +258,9 @@ END OF REPORT
           <h2 id="responsible-use-title">Responsible use boundary.</h2>
           <p>This research prototype supports experimentation and cannot replace diagnosis by qualified medical professionals.</p>
         </div>
-        <div class="section-heading compact-heading academic-report-reference">
-          <p class="case-eyebrow">ACADEMIC REPORT</p>
-          <h2>Master's research report</h2>
-          <p>Explore the methodology, development and results documented in the complete academic study.</p>
-          <a href="/documents/master-thesis-brain-tumour-mri.pdf" data-report-open>Explore report</a>
-        </div>
+        <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="interactive-control neon-box-control premium-neon-control report-access-control" data-report-open>
+          <span class="neon-box-label">Explore report</span>
+        </a>
       </section>
 
       <section class="case-section technology-section" aria-labelledby="technology-title">
@@ -315,16 +302,168 @@ END OF REPORT
         </div>
       </dialog>
     </main>
+  ) : isGridStabilityCaseStudy ? (
+    <main class="case-study grid-case-study">
+      <section class="case-hero">
+        <FloatingBackControl href="/#projects" label="Back to projects" />
+
+        <div class="case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="case-eyebrow">PROFESSIONAL CONTRIBUTION · POWER SYSTEMS</p>
+            <h1>Transmission grid stability decision support.</h1>
+            <p class="case-lead">Collaborative software engineering for applications that evaluate controlled network contingencies and help specialists understand transmission system behaviour.</p>
+          </div>
+
+          <figure class="grid-hero-visual">
+            <button type="button" class="figure-zoom-trigger grid-architecture-trigger" data-lightbox-trigger aria-label="Enlarge conceptual transmission stability system architecture">
+              <img src="/images/projects/grid-stability/system-architecture.png" alt="Conceptual architecture linking the power system, PMU devices, a VAMS server, database, stability assessment model, visualisation and operators" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Conceptual system architecture reconstructed for this portfolio from the public engineering workflow.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="grid-context-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">OPERATIONAL CONTEXT</p>
+            <h2 id="grid-context-title">Supporting stability across a complex transmission environment.</h2>
+          </div>
+          <div>
+            <p>The project supports one of Europe’s leading electricity transmission operators, responsible for the Dutch high voltage grid and a substantial part of the German network.</p>
+            <p>As renewable generation, interconnection and operational complexity increase, engineering teams need dependable applications that convert network conditions into structured simulations and reviewable technical results.</p>
+          </div>
+        </div>
+        <div class="network-context-layout">
+          <figure class="network-context-map">
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual map of the Dutch transmission grid and North Sea connections">
+              <img src="/images/projects/grid-stability/dutch-grid-context.png" alt="Conceptual map highlighting the Netherlands, its transmission network, North Sea wind areas, energy hubs and regional corridors" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Conceptual reconstruction of the regional grid vision, centred on the Netherlands.</figcaption>
+          </figure>
+          <div class="network-context-metrics" aria-label="Future electricity system planning context">
+            <article><span>PLANNING HORIZON</span><strong>2045</strong><p>A long term grid vision connecting offshore generation, energy hubs and reinforced continental infrastructure.</p></article>
+            <article><span>ELECTRICITY DEMAND</span><strong>More than 2x</strong><p>Projected consumption could more than double across the Dutch and German energy systems.</p></article>
+            <article><span>GENERATION CAPACITY</span><strong>5x to 10x</strong><p>Future scenarios anticipate a major expansion of generation capacity as electrification accelerates.</p></article>
+            <article><span>OFFSHORE WIND</span><strong>About 70 GW</strong><p>The planning context considers approximately 70 GW of offshore wind for each country.</p></article>
+            <p class="source-note">Future planning context: <a href="https://www.offshorewind.biz/2023/04/13/tennet-unveils-electricity-grid-plans-for-2045/" target="_blank" rel="noopener noreferrer">Electricity grid plans for 2045</a>. The map is a conceptual portfolio reconstruction, not an operational network diagram.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="contingency-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">CONTINGENCY DRIVEN ANALYSIS</p>
+          <h2 id="contingency-title">Controlled disturbances reveal how the system responds.</h2>
+          <p>A contingency represents a defined change introduced into a network simulation. Rather than predicting an incident in isolation, the application evaluates the resulting system response under selected operating conditions.</p>
+        </div>
+        <div class="contingency-grid">
+          <article><span>LINE EVENT</span><strong>Transmission path unavailable</strong><p>A conceptual line outage tests how power flows redistribute through the remaining network.</p></article>
+          <article><span>GENERATION EVENT</span><strong>Sudden production loss</strong><p>A controlled generation loss helps reveal frequency and stability behaviour after an imbalance.</p></article>
+          <article><span>NETWORK EVENT</span><strong>Temporary electrical fault</strong><p>A simulated disturbance allows specialists to examine whether the system returns to an acceptable state.</p></article>
+        </div>
+        <p class="concept-note">The examples are general engineering scenarios and do not reproduce operational configurations or internal assessment criteria.</p>
+      </section>
+
+      <section class="case-section" aria-labelledby="grid-flow-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">ANALYSIS WORKFLOW</p>
+          <h2 id="grid-flow-title">From operational context to reviewable evidence.</h2>
+        </div>
+        <ol class="pipeline grid-pipeline">
+          <li><span>INPUT</span><div><strong>Prepare the operating scenario</strong><p>Transform validated network information and a selected contingency into consistent inputs for the simulation environment.</p></div></li>
+          <li><span>SIMULATION</span><div><strong>Evaluate system response</strong><p>Coordinate specialist tools that calculate how the transmission system behaves during and after the controlled disturbance.</p></div></li>
+          <li><span>REVIEW</span><div><strong>Deliver traceable results</strong><p>Present structured outputs that engineering specialists can verify, compare and use within established decision processes.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="case-section" aria-labelledby="contribution-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">ENGINEERING CONTRIBUTION</p>
+            <h2 id="contribution-title">Software built within a multidisciplinary delivery environment.</h2>
+          </div>
+          <div>
+            <p>My contribution covers the design, development, testing and deployment of application components across offline and online environments. The work connects software engineering with power system analysis, data preparation and operational requirements.</p>
+            <p>I also support integration with existing infrastructure and specialist simulation tools, validating datasets, inputs and outputs so that results remain accurate, reproducible and suitable for technical review.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section crof-section" aria-labelledby="crof-title">
+        <div class="section-heading compact-heading crof-heading">
+          <p class="case-eyebrow">CONTROL ROOM OF THE FUTURE</p>
+          <h2 id="crof-title">A more integrated environment for operational decision support.</h2>
+          <p>CRoF brings grid data, network models, security assessment and decision support into a coordinated environment. Its purpose is to combine automation with human supervision as system complexity grows.</p>
+        </div>
+        <div class="crof-gallery">
+          <figure>
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge future electricity control room view">
+              <img src="/images/projects/grid-stability/control-room-future.png" alt="Three operators reviewing network diagrams and operational displays in an integrated electricity control room" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Integrated monitoring places network behaviour and operational evidence within one review environment.</figcaption>
+          </figure>
+          <figure>
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge grid management facility view">
+              <img src="/images/projects/grid-stability/grid-management-facility.png" alt="Isometric engineering view of a secured grid management facility and high voltage infrastructure" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Operational software remains connected to the physical infrastructure it helps specialists understand.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section literature-section" aria-labelledby="literature-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">RELATED RESEARCH</p>
+            <h2 id="literature-title">Online assessment connects system behaviour with visual decision support.</h2>
+          </div>
+          <div>
+            <p>Published research also explores data driven online assessment combined with spatial and temporal visualisation. This reinforces a central principle of the project: simulation output creates greater value when specialists can interpret system behaviour through structured and accessible evidence.</p>
+            <a class="interactive-control neon-box-control premium-neon-control literature-link" href="https://doi.org/10.1016/j.ijepes.2020.106316" target="_blank" rel="noopener noreferrer">
+              <span class="neon-box-label">Explore related paper</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="reflection-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">PROFESSIONAL REFLECTION</p>
+          <h2 id="reflection-title">Engineering value emerges through collaboration and disciplined integration.</h2>
+        </div>
+        <div class="experiment-grid grid-reflection">
+          <article><div><span>WHAT I CONTRIBUTED</span><strong>Software and integration</strong><p>Application development, deployment support and validation across interconnected engineering environments.</p></div></article>
+          <article><div><span>WHAT MADE IT COMPLEX</span><strong>Operational context</strong><p>Every technical result depends on consistent data, specialist tools and coordinated interpretation across disciplines.</p></div></article>
+          <article><div><span>WHAT IT STRENGTHENED</span><strong>Systems thinking</strong><p>The work expanded my ability to connect software decisions with power system behaviour and operational reliability.</p></div></article>
+        </div>
+      </section>
+
+      <section class="case-section technology-section" aria-labelledby="grid-technology-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
+          <h2 id="grid-technology-title">Tools supporting the engineering workflow.</h2>
+          <p>The technical environment combines Python application development with PowerTech DSA Tools, containerised services, infrastructure integration, simulation data and deployment across multiple operating systems.</p>
+        </div>
+        <div class="case-tags" aria-label="Core technologies">
+          {project.technicalScope.map((item) => <span>{item}</span>)}
+        </div>
+      </section>
+
+      <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded conceptual transmission stability system architecture">
+        <div class="figure-lightbox-content">
+          <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
+          <img data-lightbox-image src="/images/projects/grid-stability/system-architecture.png" alt="Expanded conceptual transmission stability system architecture" />
+        </div>
+      </dialog>
+    </main>
   ) : (
     <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
-      <nav aria-label="Project navigation" class="project-navigation flex flex-wrap gap-3">
-        <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 12H4" />
-            <path d="m10 6-6 6 6 6" />
-          </svg>
-        </a>
-      </nav>
+      <FloatingBackControl href="/#projects" label="Back to projects" />
 
       <article class="mx-auto mt-24 max-w-4xl">
         <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT CASE STUDY</p>
@@ -410,14 +549,10 @@ END OF REPORT
 
   if (document.querySelector(".case-study")) {
     let scrollEffectTimer: number | undefined;
-    let backControlTimer: number | undefined;
     const updateScrollEffect = () => {
       document.documentElement.classList.add("case-is-scrolling");
-      document.documentElement.classList.add("case-show-back");
       window.clearTimeout(scrollEffectTimer);
-      window.clearTimeout(backControlTimer);
       scrollEffectTimer = window.setTimeout(() => document.documentElement.classList.remove("case-is-scrolling"), 150);
-      backControlTimer = window.setTimeout(() => document.documentElement.classList.remove("case-show-back"), 1000);
     };
 
     window.addEventListener("scroll", updateScrollEffect, { passive: true });
@@ -1094,54 +1229,14 @@ END OF REPORT
   .benchmark-figure figcaption strong { color: rgb(196 181 253); display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .benchmark-figure figcaption span { display: block; margin-top: 0.55rem; }
 
-  .app-flow {
-    --flow-line: rgba(167, 139, 250, 0.38);
-    display: grid;
-    gap: clamp(1.5rem, 4vw, 4rem);
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: 3.5rem;
-    position: relative;
-  }
-
-  .app-flow::before {
-    background: linear-gradient(90deg, transparent, var(--flow-line) 7%, var(--flow-line) 93%, transparent);
-    content: "";
-    height: 1px;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0.42rem;
-  }
-
-  .app-flow article {
-    min-height: 6.5rem;
-    padding-top: 1.9rem;
-    position: relative;
-  }
-
-  .app-flow span {
-    background: rgb(196 181 253);
-    border: 3px solid #000;
-    border-radius: 999px;
-    box-shadow: 0 0 0 1px rgba(196, 181, 253, 0.55), 0 0 1rem rgba(167, 139, 250, 0.75);
-    display: block;
-    height: 0.8rem;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 0.8rem;
-  }
-
-  .app-flow strong { color: rgb(226 232 240); display: block; font-size: 1.05rem; font-weight: 650; letter-spacing: -0.01em; }
-  .app-flow small { color: rgb(100 116 139); display: block; margin-top: 0.35rem; }
   .prediction-report {
     display: grid;
     gap: 1.25rem;
-    margin: 1.5rem auto 0;
-    max-width: 46rem;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    margin: clamp(2rem, 4vw, 3.5rem) 0 0;
   }
 
-  .prediction-study-copy { color: rgb(148 163 184); line-height: 1.75; margin: 3rem auto 0; max-width: 46rem; }
+  .prediction-study-copy { color: rgb(148 163 184); line-height: 1.75; }
 
   .prediction-report-image { background: #020203; border: 1px solid var(--case-border); border-radius: 1.1rem; overflow: hidden; padding: clamp(1rem, 3vw, 2rem); }
   .prediction-report-image img { display: block; height: auto; margin-inline: auto; max-height: 24rem; max-width: 100%; object-fit: contain; width: auto; }
@@ -1159,19 +1254,68 @@ END OF REPORT
     white-space: pre;
   }
 
-  .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; padding: 0 0.2rem; }
+  .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; grid-column: 1 / -1; line-height: 1.55; padding: 0 0.2rem; }
 
   .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
 
+  .grid-case-study {
+    background:
+      radial-gradient(circle at 82% 9%, rgba(124, 58, 237, 0.13), transparent 25rem),
+      radial-gradient(circle at 16% 48%, rgba(196, 181, 253, 0.045), transparent 28rem),
+      #000;
+  }
+
+  .grid-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.75rem, 4vw, 4rem); }
+  .grid-case-study .case-hero-grid { min-height: auto; padding-bottom: clamp(1rem, 2vw, 2rem); padding-top: clamp(3.5rem, 6vw, 5.5rem); }
+  .grid-case-study .case-section { padding-bottom: clamp(2.25rem, 3vw, 3.25rem); padding-top: clamp(2.25rem, 3vw, 3.25rem); }
+  .grid-case-study .technology-section { padding-top: clamp(2.5rem, 3.5vw, 3.75rem); }
+
+  .grid-hero-visual { margin: 0; }
+  .grid-hero-visual figcaption { color: rgb(100 116 139); font-size: 0.72rem; letter-spacing: 0.04em; margin-top: 0.9rem; }
+  .grid-architecture-trigger { background: #fff; border: 1px solid var(--case-border); border-radius: 1.4rem; display: block; overflow: hidden; padding: clamp(0.55rem, 1.5vw, 0.9rem); width: 100%; }
+  .grid-architecture-trigger img { aspect-ratio: 16 / 9; display: block; object-fit: contain; width: 100%; }
+
+  .network-context-layout { align-items: start; display: grid; gap: clamp(1.5rem, 4vw, 4rem); grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr); margin-top: clamp(2rem, 3vw, 3rem); }
+  .network-context-map { margin: 0; }
+  .network-context-map button { background: #fff; border: 1px solid var(--case-border); border-radius: 1.25rem; display: block; overflow: hidden; padding: clamp(0.5rem, 1vw, 0.75rem); width: 100%; }
+  .network-context-map img { aspect-ratio: 2 / 2.35; display: block; object-fit: contain; width: 100%; }
+  .network-context-map figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
+  .network-context-metrics { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .network-context-metrics article,
+  .contingency-grid article { background: var(--case-panel); border: 1px solid var(--case-border); border-radius: 1.1rem; min-height: 12rem; padding: clamp(1.35rem, 2.5vw, 1.85rem); }
+  .network-context-metrics span,
+  .contingency-grid span { color: rgb(167 139 250); display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
+  .network-context-metrics strong { color: rgb(226 232 240); display: block; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin-top: 0.75rem; }
+  .network-context-metrics p,
+  .contingency-grid p { color: rgb(148 163 184); line-height: 1.7; margin-top: 0.65rem; }
+  .network-context-metrics .source-note { grid-column: 1 / -1; margin: 0.25rem 0 0; }
+  .contingency-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(2rem, 3vw, 3rem); }
+  .contingency-grid strong { color: rgb(226 232 240); display: block; font-size: 1.05rem; margin-top: 1rem; }
+  .concept-note { color: rgb(100 116 139); font-size: 0.75rem; line-height: 1.6; margin-top: 1rem; }
+
+  .literature-link { border-radius: 999px; display: inline-flex; margin-top: 1.75rem; min-height: 2.75rem; padding: 0.62rem 1.15rem; width: fit-content; }
+
+  .grid-pipeline li { min-height: 10.5rem; }
+  .grid-reflection { margin-top: clamp(2rem, 3vw, 3rem); }
+
+  .crof-heading { max-width: 58rem; }
+  .crof-heading > p:last-child { max-width: 54rem; }
+  .crof-gallery { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: clamp(2rem, 3vw, 3rem); }
+  .crof-gallery figure { margin: 0; min-width: 0; }
+  .crof-gallery button { aspect-ratio: 16 / 10; background: rgb(5 5 8); border: 1px solid var(--case-border); border-radius: 1.2rem; display: block; overflow: hidden; padding: 0; width: 100%; }
+  .crof-gallery img { display: block; height: 100%; object-fit: contain; width: 100%; }
+  .crof-gallery figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
+
   .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
   .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
-  .academic-report-reference { margin-top: clamp(3rem, 6vw, 5rem); max-width: 64rem; }
-  .academic-report-reference > p:not(.case-eyebrow) { color: rgb(148 163 184); font-size: 1.02rem; line-height: 1.85; margin-top: 1.6rem; max-width: 55rem; }
-  .academic-report-reference > a { border: 1px solid rgba(196, 181, 253, 0.38); border-radius: 999px; color: rgb(196 181 253); display: block; font-size: 0.78rem; font-weight: 650; letter-spacing: 0.08em; margin: 2rem 0 0; padding: 0.8rem 1.35rem; text-decoration: none; text-transform: uppercase; transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease; width: fit-content; }
-  .academic-report-reference a:hover,
-  .academic-report-reference a:focus-visible { border-color: rgb(196 181 253); box-shadow: 0 0 1rem rgba(167, 139, 250, 0.22); color: rgb(237 233 254); transform: translateY(-0.1rem); }
+  .report-access-control { border-radius: 999px; display: inline-flex; margin-top: clamp(2rem, 4vw, 3rem); min-height: 2.75rem; padding: 0.62rem 1.15rem; width: fit-content; }
 
-  .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; }
+  .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; position: relative; }
+  .case-footer::before { animation: footer-neon-line 7s linear infinite; background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.42) 14%, rgb(196 181 253) 38%, rgba(255, 255, 255, 0.92) 50%, rgb(196 181 253) 62%, rgba(139, 92, 246, 0.42) 86%, transparent 100%); background-size: 220% 100%; content: ""; height: 1px; left: clamp(1.35rem, 5vw, 5rem); position: absolute; right: clamp(1.35rem, 5vw, 5rem); top: 0; }
+  @keyframes footer-neon-line {
+    from { background-position: 120% 0; }
+    to { background-position: -120% 0; }
+  }
   .research-references { max-width: 36rem; text-align: center; }
   .research-references > span { color: rgb(139 92 246); display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; }
   .research-references a { align-items: center; color: rgb(148 163 184); display: inline-flex; flex-direction: column; font-size: 0.78rem; gap: 0.75rem; line-height: 1.6; margin-top: 0.75rem; text-decoration: none; }
@@ -1181,95 +1325,6 @@ END OF REPORT
   .research-references a:focus-visible { color: rgb(196 181 253); }
   .research-references a:hover img,
   .research-references a:focus-visible img { filter: drop-shadow(0 0 0.5rem rgba(167, 139, 250, 0.5)); }
-
-  .floating-project-navigation {
-    left: clamp(1.15rem, 3vw, 2.5rem);
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: opacity 420ms ease, visibility 420ms ease;
-    visibility: hidden;
-    z-index: 45;
-  }
-
-  .floating-back-control {
-    backdrop-filter: blur(12px);
-    background: rgba(3, 3, 5, 0.72);
-    height: 3rem;
-    width: 3rem;
-  }
-
-  :global(html.case-show-back) .floating-project-navigation {
-    opacity: 1;
-    pointer-events: auto;
-    visibility: visible;
-  }
-
-  :global(html.case-is-scrolling) .floating-back-control {
-    animation: floating-back-scroll 900ms ease-in-out infinite;
-    border-color: rgb(196 181 253);
-    box-shadow: 0 0 0.7rem rgba(139, 92, 246, 0.22);
-  }
-
-  :global(html.case-is-scrolling) .floating-back-control :global(svg) {
-    animation: floating-arrow-scroll 900ms ease-in-out infinite;
-  }
-
-  @keyframes floating-back-scroll {
-    0%, 100% { border-color: rgba(139, 92, 246, 0.35); transform: translateY(0); }
-    50% { border-color: rgba(237, 233, 254, 0.95); transform: translateY(-0.22rem); }
-  }
-
-  @keyframes floating-arrow-scroll {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-0.18rem); }
-  }
-
-  .project-navigation {
-    width: fit-content;
-  }
-
-  .project-icon-control {
-    align-items: center;
-    border: 1px solid rgba(196, 181, 253, 0.3);
-    border-radius: 999px;
-    color: rgb(148 163 184);
-    display: inline-flex;
-    height: 2.65rem;
-    justify-content: center;
-    padding: 0.35rem;
-    width: 2.65rem;
-  }
-
-  .project-icon-control :global(svg) {
-    height: 1.7rem;
-    min-height: 1.7rem;
-    min-width: 1.7rem;
-    transition: filter 180ms ease, transform 180ms ease;
-    width: 1.7rem;
-  }
-
-  .interactive-control.project-icon-control:hover {
-    animation: nav-link-presence 520ms cubic-bezier(0.22, 1, 0.36, 1);
-    background: transparent;
-    border-color: rgb(196 181 253);
-    box-shadow: none;
-    color: rgb(196 181 253);
-    transform: none;
-  }
-
-  .interactive-control.project-icon-control:hover :global(svg) {
-    filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.5)) drop-shadow(0 0 10px rgba(103, 232, 249, 0.12));
-    transform: translateY(-1px);
-  }
-
-  .interactive-control.project-icon-control:active {
-    border-color: rgb(196 181 253);
-    box-shadow: none;
-    color: rgb(196 181 253);
-  }
 
   .tech-scope-item {
     border: 1px solid rgba(221, 214, 254, 0.3);
@@ -1288,19 +1343,20 @@ END OF REPORT
     .case-hero-grid { min-height: auto; padding-top: 5rem; }
     .hero-visual { max-width: 38rem; }
     .dataset-sources { grid-template-columns: 1fr; }
+    .prediction-report { grid-template-columns: 1fr; margin-top: 2rem; }
+    .network-context-layout,
+    .network-context-metrics,
+    .contingency-grid,
+    .crof-gallery { grid-template-columns: 1fr; }
+    .network-context-metrics article,
+    .contingency-grid article { min-height: auto; }
+    .network-context-metrics .source-note { grid-column: auto; }
+    .grid-case-study .case-hero-grid { padding-bottom: 0.5rem; padding-top: 5rem; }
+    .grid-case-study .case-section { padding-bottom: 2.25rem; padding-top: 2.25rem; }
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pipeline,
     .experiment-grid { max-width: 42rem; }
     .research-references { justify-self: center; text-align: center; }
-    .app-flow { gap: 0; grid-template-columns: 1fr; padding-left: 1.6rem; }
-    .app-flow::before { background: linear-gradient(180deg, transparent, var(--flow-line) 7%, var(--flow-line) 93%, transparent); bottom: 0; height: auto; left: 0.38rem; right: auto; top: 0; width: 1px; }
-    :global(html.case-is-scrolling) .app-flow::before {
-      animation: vertical-neon-scroll 5.5s linear infinite;
-      background: linear-gradient(180deg, transparent 0%, rgb(139 92 246) 8%, rgb(139 92 246) 38%, rgba(255, 255, 255, 0.95) 49%, rgb(196 181 253) 54%, rgb(139 92 246) 92%, transparent 100%);
-      background-size: 100% 220%;
-    }
-    .app-flow article { min-height: 5.6rem; padding-left: 0.9rem; padding-top: 0; }
-    .app-flow span { left: -1.6rem; top: 0.15rem; }
   }
 
   @media (max-width: 48rem) {
@@ -1354,10 +1410,8 @@ END OF REPORT
 
   @media (prefers-reduced-motion: reduce) {
     .scan-line,
+    .case-footer::before,
     :global(html.case-is-scrolling) .pipeline::before,
-    :global(html.case-is-scrolling) .experiment-grid::before,
-    :global(html.case-is-scrolling) .app-flow::before,
-    :global(html.case-is-scrolling) .floating-back-control,
-    :global(html.case-is-scrolling) .floating-back-control :global(svg) { animation: none; }
+    :global(html.case-is-scrolling) .experiment-grid::before { animation: none; }
   }
 </style>

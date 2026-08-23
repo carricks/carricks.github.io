@@ -6,7 +6,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable. The design and interaction foundation is mature enough to support content production, but several sections still need deeper evidence, final copy and publication review.
+The website is functional and navigable. The design and interaction foundation is mature, and the MRI research and grid stability projects now provide complete visual case study patterns. The remaining sections still need deeper evidence, final copy and publication review.
 
 ## Audience
 
@@ -33,7 +33,7 @@ Homepage
     International
   Projects
     MRI Tumour Classification
-    Grid Resilience
+    Grid Stability
     Offshore Integration
     Renewable Control
   Milestones

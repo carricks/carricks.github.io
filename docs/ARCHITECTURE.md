@@ -12,6 +12,7 @@ public/
   favicon.*
   images/                       Fixed-URL company and project assets
     projects/brain-tumour-mri/  Thesis-authored MRI and model figures
+    projects/grid-stability/    Conceptual architecture, regional context and CRoF visuals
 src/
   components/
     common/                     Container, Section and shared icons
@@ -39,7 +40,7 @@ docs/                           Product, content, design and delivery guidance
 /about/experience/
 /about/international/
 /projects/brain-tumour-mri-classification/
-/projects/dynamic-security-assessment/
+/projects/grid-contingency-analysis/
 /projects/secure-offshore-data-integration/
 /projects/renewable-plant-control/
 ```
@@ -74,9 +75,10 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`.
 - Intersection observers provide progressive section and touch feedback.
-- The MRI case study uses one reusable native `dialog` lightbox for all expandable figures. It restores focus to the originating image control when closed.
+- Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
-- A floating Back control appears during active scrolling and fades after the interaction ends.
+- `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
+- The control remains visible at the initial position, appears during active scrolling and fades after the interaction ends.
 - `prefers-reduced-motion` disables nonessential animation.
 
 ## Contact behavior

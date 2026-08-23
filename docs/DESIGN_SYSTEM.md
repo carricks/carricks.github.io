@@ -13,7 +13,7 @@ The interface combines engineering precision with restrained neon detail. It sho
 | Primary text | Slate 200-300 |
 | Secondary text | Slate 400 |
 | Accent | Lilac `rgb(196 181 253)` |
-| Accent support | Violet and restrained cyan inside animated traces |
+| Accent support | Soft white and deeper violet inside animated traces |
 | Error | Red, only for invalid form fields |
 
 Company marks in Experience are normalized to the same lilac to protect visual consistency.
@@ -46,27 +46,27 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ### Neon controls and panels
 
 - Near-black surface, one-pixel lilac border and rounded corners.
-- Animated multicolor trace on hover or focus.
+- Animated black, lilac and soft white trace on hover or focus.
 - Press feedback uses translation, scale and inset shadow.
 - Mobile replaces the heavy arrow with a one-pixel line.
 - Numbered controls are not used.
-- Primary controls use the shared `premium-neon-control` variant: a 1.5-pixel cyan-blue-violet-magenta trace completing its circuit in 900 ms.
+- Primary controls use the shared `premium-neon-control` variant: a 1.5-pixel lilac and soft white trace completing its circuit in 2.5 seconds.
 - Informational panels that need the same hover presence use `premium-neon-surface`; they must not imply clickability.
 - The premium trace is shared by About, Projects, MRI source links and Submit.
 
-### Research figures and lightbox
+### Project figures and lightbox
 
-- Research images sit inside near-black, one-pixel lilac frames.
+- Project images sit inside near-black, one-pixel lilac frames.
 - Expandable figures use a visible zoom affordance and one reusable modal surface.
 - The modal closes through its close control, Escape or a click outside the image, then restores focus to the trigger.
 - MRI class cards preserve a monochrome scientific treatment and equal visual dimensions.
+- Grid stability figures preserve their full composition and use high resolution PNG assets suitable for close inspection.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 
 ### Research references
 
 - Responsible use follows the same open editorial hierarchy as other major sections.
-- Academic report metadata uses standard section typography rather than a separate card.
-- The report action is centered, text only and visually restrained.
+- The academic report is accessed through the shared premium neon control without additional metadata.
 - The ALLEA research integrity reference is centered in the case study footer.
 
 ### Experience logos
@@ -84,9 +84,11 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 ## Motion
 
-- Quick interaction feedback: approximately 160-520 ms.
+- Press feedback remains immediate, while decorative neon movement uses a measured 2.5 second cycle.
 - Continuous neon movement is limited to active accent states.
-- The floating Back control appears during scrolling, moves subtly and fades after one second of inactivity.
+- Every About and Project detail route uses the same floating Back control.
+- The control remains visible at the top, moves subtly during scrolling and fades after one second of inactivity away from the initial position.
+- On small screens its initial position sits between the header line and the first page label.
 - Section opacity and mobile scroll feedback are progressive enhancement.
 - All nonessential animation is disabled or reduced under `prefers-reduced-motion`.
 

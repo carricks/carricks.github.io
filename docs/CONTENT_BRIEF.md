@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 23 August 2026
+Last updated: 24 August 2026
 
 ## Editorial objective
 
@@ -28,7 +28,7 @@ Company names and approved logos may appear in the Experience page. Project case
 
 `Engineering systems that perform when complexity matters.`
 
-The supporting statement positions Diego as a multidisciplinary systems engineer working across industrial control, renewable power, applied software, automation, data and systems integration.
+The supporting statement identifies Diego Carrillo S. and connects his academic background in Electronic Engineering and Robotics and Automation with professional work across industrial control, renewable power, applied software and systems integration.
 
 The About actions are ordered:
 
@@ -42,7 +42,7 @@ The About actions are ordered:
 
 `Systems designed for operational confidence.`
 
-Four active project routes cover MRI tumour classification, grid resilience, offshore integration and renewable control. The academic research project appears first; professional project copy avoids employer and client names.
+Four active project routes cover MRI tumour classification, grid stability, offshore integration and renewable control. The academic research project appears first; professional project copy avoids employer and client names.
 
 ### Milestones
 
@@ -112,17 +112,22 @@ The complete master's report is available through an integrated viewer near the 
 
 The data-provenance section links to the public Figshare, Kaggle and GitHub collections used during academic experimentation. Source links must remain clearly identified as external resources.
 
-### Grid resilience
+### Transmission grid stability decision support
 
-Focus: software and simulation capabilities supporting dynamic security assessment for power networks.
+This professional case study presents collaborative software engineering for applications that evaluate controlled contingencies and support transmission grid stability analysis. It describes the operating context, conceptual contingency examples, analysis workflow, application integration and validation without identifying the client or exposing internal system details.
 
-Publishable evidence still needed:
+The published framing includes:
 
-- Clear problem context.
-- Diego's specific contribution.
-- Constraints and validation approach.
-- Observable outcome without disclosing sensitive grid information.
-- Approved visual material.
+- General context covering the Dutch high voltage grid and a substantial part of the German network.
+- Diego's contribution across application engineering, integration, testing and deployment.
+- PowerTech DSA Tools identified only as part of the technical environment, never as the project name or as Diego's own product.
+- Conceptual representations created specifically for the portfolio.
+- An original system architecture diagram connecting the power system, PMU devices, VAMS server, stability assessment model, visualisation and operator review.
+- An original Dutch grid context map and future planning indicators covering the 2045 horizon, projected demand, generation capacity and offshore wind scale. These are identified as planning scenarios rather than current operational characteristics.
+- A concise Control Room of the Future section describing the integration of automation, human supervision, grid data, network models and decision support.
+- Two original high resolution CRoF visuals showing collaborative operator supervision and a linear grid management facility. Both are expandable and contain no corporate identity.
+- A related research reference to the International Journal of Electrical Power and Energy Systems paper on data driven online assessment and spatial temporal visualisation.
+- No operational data, internal architecture, system criteria or proprietary application names.
 
 ### Offshore integration
 
