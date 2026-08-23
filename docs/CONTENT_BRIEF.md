@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 22 August 2026
+Last updated: 23 August 2026
 
 ## Editorial objective
 
@@ -106,7 +106,9 @@ Suggested structure:
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis-authored figures, four representative MRI classes, the 5,320-image experimental distribution, class-level results and the original browser interface. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision-support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a comparative accuracy chart and a terminal style prediction report. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+
+The complete master's report is available through an integrated viewer near the responsible use statement. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
 The data-provenance section links to the public Figshare, Kaggle and GitHub collections used during academic experimentation. Source links must remain clearly identified as external resources.
 

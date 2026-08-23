@@ -4,7 +4,7 @@ Last updated: 23 August 2026
 
 ## Current product status
 
-The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The main remaining work is content depth, editorial review, accessibility QA, metadata and production readiness.
+The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research project is now a complete flagship case study. The main remaining work is expanding the other projects, completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
 
 ## Completed
 
@@ -17,10 +17,14 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Dedicated Academic page with formal and additional studies.
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
-- Complete MRI tumour-classification case study with research context, open-data provenance, class examples, model evolution, experimental comparison and responsible-use framing.
+- Complete MRI tumour classification case study with research context, open data provenance, class examples, model evolution, experimental comparison and responsible use framing.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI research figures.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
+- Integrated viewer for the complete master's research report, presented without leaving the case study.
+- Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
+- Floating Back control that appears during scrolling on desktop and mobile.
+- Fluid section transitions without rigid divider lines and with a more compact vertical rhythm.
 - Responsive contact form that prepares an email in the visitor's email client.
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
@@ -28,8 +32,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 ## In progress
 
-- Editorial refinement of Academic and Experience copy.
-- Perceptual normalization and final QA of company logos.
+- Final editorial review of Academic and Experience copy.
+- Final permission and rendering review of company logos.
 - Expansion of the remaining three professional project case studies with stronger evidence and approved visuals.
 - International page content and narrative.
 - Milestones, research and recognition content.
@@ -51,7 +55,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 ## Later opportunities
 
 - Research and writing collections.
-- Downloadable or print-friendly professional profile.
+- Print friendly professional profile.
 - Engineering articles, talks and technical explainers.
 - Privacy-friendly analytics after a clear measurement goal is defined.
 

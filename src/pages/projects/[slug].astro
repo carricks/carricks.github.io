@@ -17,8 +17,8 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
   {isResearchCaseStudy ? (
     <main class="case-study">
       <section class="case-hero">
-        <nav aria-label="Project navigation" class="project-navigation">
-          <a href="/#projects" class="interactive-control project-icon-control" aria-label="Back to projects" title="Back to projects">
+        <nav aria-label="Project navigation" class="project-navigation floating-project-navigation">
+          <a href="/#projects" class="interactive-control project-icon-control floating-back-control" aria-label="Back to projects" title="Back to projects">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 12H4" /><path d="m10 6-6 6 6 6" />
             </svg>
@@ -29,13 +29,13 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           <div class="case-hero-copy">
             <p class="case-eyebrow">MASTER'S RESEARCH · COMPUTER VISION</p>
             <h1>Classifying brain tumours from MRI.</h1>
-            <p class="case-lead">An end-to-end research prototype that moved from heterogeneous medical images to a four-class convolutional model and a usable web interface.</p>
+            <p class="case-lead">A complete research prototype that moved from heterogeneous medical images to a convolutional model covering four classes and a usable web interface.</p>
           </div>
 
           <figure class="hero-visual">
             <div class="scan-frame">
               <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge preprocessed MRI samples">
-                <img src="/images/projects/brain-tumour-mri/mri-preprocessing.png" alt="Preprocessed MRI samples showing tumour and non-tumour brain images" />
+                <img src="/images/projects/brain-tumour-mri/mri-preprocessing.png" alt="Preprocessed MRI samples showing brain images with and without tumours" />
                 <span aria-hidden="true">Expand</span>
               </button>
               <div class="scan-line" aria-hidden="true"></div>
@@ -67,7 +67,7 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           </div>
           <div>
             <p>MRI datasets combine different resolutions, anatomical views and acquisition conditions. Tumours may also share location, shape and texture, making the boundary between classes difficult to learn.</p>
-            <p>The work therefore focused as much on data quality and experimental discipline as on model architecture: combining public datasets, removing poor-quality samples, balancing classes and keeping test images outside augmentation.</p>
+            <p>The work therefore focused as much on data quality and experimental discipline as on model architecture: combining public datasets, removing samples with insufficient quality, balancing classes and keeping test images outside augmentation.</p>
           </div>
         </div>
         <div class="class-grid" aria-label="Classification targets">
@@ -94,11 +94,9 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           <h2 id="pipeline-title">From raw images to an interpretable prediction.</h2>
         </div>
         <ol class="pipeline">
-          <li><span>DATA</span><div><strong>Combine & curate</strong><p>Bring together three public MRI collections, remove low-resolution samples and reorganise the material into balanced classes suitable for controlled experimentation.</p></div></li>
-          <li><span>INPUT</span><div><strong>Standardise</strong><p>Convert every image to a consistent 224 × 224 RGB input, then separate training, validation and test data so evaluation remains independent from learning.</p></div></li>
-          <li><span>LEARN</span><div><strong>Train & augment</strong><p>Introduce controlled rotations, shifts, zoom and flips only during training, increasing visual diversity without modifying the validation or test evidence.</p></div></li>
-          <li><span>MODEL</span><div><strong>Transfer knowledge</strong><p>Reuse VGG16's pretrained visual features, freeze the established representation and adapt the final layers to distinguish the four MRI classes.</p></div></li>
-          <li><span>OUTPUT</span><div><strong>Evaluate & serve</strong><p>Compare class-level behaviour through a confusion matrix, then serve the resulting probabilities through Flask for numerical and D3.js visual presentation.</p></div></li>
+          <li><span>DATA</span><div><strong>Prepare the MRI dataset</strong><p>Combine three public collections, remove unsuitable samples, standardise every image and create independent training, validation and test sets.</p></div></li>
+          <li><span>MODEL</span><div><strong>Train through transfer learning</strong><p>Apply controlled augmentation and adapt the visual features learned by VGG16 to distinguish the four MRI classes.</p></div></li>
+          <li><span>OUTPUT</span><div><strong>Evaluate and deliver predictions</strong><p>Assess performance across every class and serve the resulting probabilities through a Flask application with numerical and visual results.</p></div></li>
         </ol>
       </section>
 
@@ -109,21 +107,21 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
             <h2 id="model-title">The first model revealed the problem. VGG16 made it scalable.</h2>
           </div>
           <div>
-            <p>An initial two-class CNN established the preprocessing and evaluation workflow, but its small dataset produced unstable validation behaviour. Increasing and cleaning the data improved the experiment before expanding it to four classes.</p>
+            <p>An initial CNN covering two classes established the preprocessing and evaluation workflow, but its small dataset produced unstable validation behaviour. Increasing and cleaning the data improved the experiment before expanding it to four classes.</p>
             <p>Transfer learning reused VGG16's pretrained visual features. Freezing most of the network and adapting the output reduced the trainable portion to roughly 16,000 parameters for the target classification task.</p>
           </div>
         </div>
         <figure class="research-figure wide-figure">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge VGG16 architecture diagram">
-            <img src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="VGG16 transfer-learning architecture used for four-class MRI classification" />
+            <img src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
-          <figcaption>VGG16 transfer-learning architecture adapted during the research.</figcaption>
+          <figcaption>VGG16 transfer learning architecture adapted during the research.</figcaption>
         </figure>
         <div class="experiment-grid">
-          <article><div><span>INITIAL EXPERIMENT</span><strong>Two-class CNN baseline</strong><p>A custom convolutional network used 620 images of meningioma and non-tumour cases to validate the complete workflow. Its unstable validation behaviour exposed overfitting and the limits of a small dataset.</p></div></article>
-          <article><div><span>FINAL EXPERIMENT</span><strong>Four-class transfer learning</strong><p>The study expanded to 5,320 balanced images covering meningioma, glioma, pituitary and no tumour. VGG16 transfer learning reduced the trainable output to roughly 16,000 parameters.</p></div></article>
-          <article><div><span>INPUT SHAPE</span><strong>224 × 224 × 3</strong><p>Every source image was resized and converted to a consistent three-channel tensor. This common input made heterogeneous resolutions compatible with the same feature-extraction pipeline.</p></div></article>
+          <article><div><span>INITIAL EXPERIMENT</span><strong>CNN baseline with two classes</strong><p>A custom convolutional network used 620 images of meningioma and cases without a tumour to validate the complete workflow. Its unstable validation behaviour exposed overfitting and the limits of a small dataset.</p></div></article>
+          <article><div><span>FINAL EXPERIMENT</span><strong>Transfer learning across four classes</strong><p>The study expanded to 5,320 balanced images covering meningioma, glioma, pituitary and no tumour. VGG16 transfer learning reduced the trainable output to roughly 16,000 parameters.</p></div></article>
+          <article><div><span>INPUT SHAPE</span><strong>224 × 224 × 3</strong><p>Every source image was resized and converted to a consistent tensor with three channels. This common input made heterogeneous resolutions compatible with the same feature extraction pipeline.</p></div></article>
         </div>
       </section>
 
@@ -131,7 +129,7 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
         <div class="split-copy">
           <div>
             <p class="case-eyebrow">DATA STRATEGY</p>
-            <h2 id="data-title">More data helped. Better-controlled data mattered more.</h2>
+            <h2 id="data-title">More data helped. Better controlled data mattered more.</h2>
           </div>
           <div><p>The final experiment used 5,320 MRI images with balanced class counts. A 70/20/10 strategy separated learning, model selection and final evaluation, while augmentation introduced controlled rotations, shifts, zoom and flips exclusively during training.</p></div>
         </div>
@@ -155,11 +153,11 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           </div>
           <div class="source-links">
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://figshare.com/articles/dataset/brain_tumor_dataset/1512427" target="_blank" rel="noreferrer">
-              <span>FIGSHARE</span><strong>Brain Tumor Dataset</strong><small>3,064 contrast-enhanced T1-weighted MRI images across three tumour classes. CC BY 4.0.</small>
+              <span>FIGSHARE</span><strong>Brain Tumor Dataset</strong><small>3,064 T1 weighted MRI images with contrast enhancement across three tumour classes. CC BY 4.0.</small>
               <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri" target="_blank" rel="noreferrer">
-              <span>KAGGLE</span><strong>Brain Tumor Classification (MRI)</strong><small>Public academic collection organised around glioma, meningioma, pituitary and no-tumour images.</small>
+              <span>KAGGLE</span><strong>Brain Tumor Classification (MRI)</strong><small>Public academic collection organised around glioma, meningioma, pituitary and images without a tumour.</small>
               <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
             </a>
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://github.com/MohamedAliHabib/Brain-Tumor-Detection" target="_blank" rel="noreferrer">
@@ -173,15 +171,15 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
       <section class="case-section" aria-labelledby="results-title">
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">EXPERIMENTAL RESULTS</p>
-          <h2 id="results-title">Strong class-level results, with visible room for improvement.</h2>
-          <p>The four-class model reached 88.17% training accuracy. Class-level evaluation showed that glioma remained the most difficult category, reinforcing the effect of visual similarity and dataset quality.</p>
+          <h2 id="results-title">Strong results across classes, with visible room for improvement.</h2>
+          <p>The model covering four classes reached 88.17% training accuracy. Evaluation of each class showed that glioma remained the most difficult category, reinforcing the effect of visual similarity and dataset quality.</p>
         </div>
         <figure class="benchmark-figure">
-          <div class="benchmark-chart" role="group" aria-label="Comparison between target-class reference results and the predicted-label performance of the applied model">
+          <div class="benchmark-chart" role="group" aria-label="Comparison between target class reference results and the predicted label performance of the applied model">
             <section class="performance-card" aria-labelledby="comparison-chart-title">
               <div class="benchmark-panel-heading">
-                <span>CLASS-LEVEL COMPARISON</span>
-                <strong id="comparison-chart-title">Target benchmark vs predicted-label accuracy</strong>
+                <span>COMPARISON BY CLASS</span>
+                <strong id="comparison-chart-title">Target benchmark compared with predicted label accuracy</strong>
                 <div class="chart-legend" aria-label="Chart legend"><span><i class="target-key"></i>Target benchmark</span><span><i class="predicted-key"></i>Predicted label</span></div>
               </div>
               <div class="comparison-plot">
@@ -211,7 +209,7 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           </div>
           <figcaption>
             <strong>Impact of the applied techniques.</strong>
-            <span>Data cleaning, class balancing and controlled augmentation produced a substantial improvement in prediction accuracy. Combined with transfer learning, the final model surpassed the initial benchmark in its strongest classes and added reliable detection of the no-tumour category.</span>
+            <span>Data cleaning, class balancing and controlled augmentation produced a substantial improvement in prediction accuracy. Combined with transfer learning, the final model surpassed the initial benchmark in its strongest classes and added reliable detection of the category without a tumour.</span>
           </figcaption>
         </figure>
       </section>
@@ -220,11 +218,10 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
         <div class="split-copy">
           <div>
             <p class="case-eyebrow">FROM MODEL TO PRODUCT</p>
-            <h2 id="application-title">A web interface made the model accessible beyond the notebook.</h2>
+            <h2 id="application-title">From trained model to functional application.</h2>
           </div>
           <div>
-            <p>The trained Keras model was served through a Python and Flask backend. A browser client submitted an MRI image, received class probabilities and represented them numerically and through D3.js charts.</p>
-            <p>This separated model inference from presentation and demonstrated how an experimental neural network could be integrated into a user-facing workflow.</p>
+            <p>As part of the study, I developed a web application that connected the trained Keras model to a Python and Flask backend. Users could submit an MRI image and receive probabilities across four classes, presented numerically and through D3.js visualisations, demonstrating how the research model could operate within a practical workflow for users.</p>
           </div>
         </div>
         <div class="app-flow" aria-label="Application architecture">
@@ -233,12 +230,13 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
           <article><span aria-hidden="true"></span><strong>Inference</strong><small>VGG16 · Keras</small></article>
           <article><span aria-hidden="true"></span><strong>Probabilities</strong><small>JSON · D3.js</small></article>
         </div>
+        <p class="prediction-study-copy">To demonstrate the complete inference workflow, a pituitary MRI sample was submitted to the application. The report records the selected image, the probability assigned to each class and the final classification returned by the model.</p>
         <figure class="prediction-report">
           <button type="button" class="figure-zoom-trigger prediction-report-image" data-lightbox-trigger aria-label="Enlarge pituitary tumour MRI input">
-            <img src="/images/projects/brain-tumour-mri/class-pituitary.png" alt="Pituitary tumour MRI selected as input for the four-class prediction" />
+            <img src="/images/projects/brain-tumour-mri/class-pituitary.png" alt="Pituitary tumour MRI selected as input for prediction across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
-          <pre aria-label="Four-class prediction report">========================================
+          <pre aria-label="Prediction report covering four classes">========================================
 MRI CLASSIFICATION REPORT
 ========================================
 
@@ -264,24 +262,25 @@ END OF REPORT
         </figure>
       </section>
 
-      <section class="case-section reflection-section" aria-labelledby="reflection-title">
-        <div>
-          <p class="case-eyebrow">ENGINEERING REFLECTION</p>
-          <h2 id="reflection-title">The result was not just a classifier. It was a complete experimental system.</h2>
+      <section class="case-section responsible-use-section" aria-labelledby="responsible-use-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">RESPONSIBLE USE</p>
+          <h2 id="responsible-use-title">Responsible use boundary.</h2>
+          <p>This research prototype supports experimentation and cannot replace diagnosis by qualified medical professionals.</p>
         </div>
-        <div class="reflection-grid">
-          <article><h3>What worked</h3><p>Dataset combination, augmentation and transfer learning produced reproducible multiclass predictions and enabled a functional application layer.</p></article>
-          <article><h3>What remained difficult</h3><p>Image resolution, heterogeneous acquisition views and physical similarity between tumour classes constrained validation performance.</p></article>
-          <article><h3>What comes next</h3><p>Higher-quality clinical datasets, specialist collaboration, stronger validation protocols and evaluation on additional medical image formats.</p></article>
+        <div class="section-heading compact-heading academic-report-reference">
+          <p class="case-eyebrow">ACADEMIC REPORT</p>
+          <h2>Master's research report</h2>
+          <p>Explore the methodology, development and results documented in the complete academic study.</p>
+          <a href="/documents/master-thesis-brain-tumour-mri.pdf" data-report-open>Explore report</a>
         </div>
-        <aside class="ethics-note"><strong>Responsible-use boundary</strong><p>This academic prototype was designed to explore decision support. Its predictions cannot replace multidisciplinary diagnosis by qualified radiology, oncology and neurology professionals.</p></aside>
       </section>
 
       <section class="case-section technology-section" aria-labelledby="technology-title">
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
           <h2 id="technology-title">Tools behind the research.</h2>
-          <p>The stack connected model development, accelerated experimentation, backend inference and browser-based visualisation in one end-to-end workflow.</p>
+          <p>The stack connected model development, accelerated experimentation, backend inference and visualisation in the browser within one complete workflow.</p>
         </div>
         <div class="case-tags" aria-label="Core technologies">
           {project.technicalScope.map((item) => <span>{item}</span>)}
@@ -289,13 +288,30 @@ END OF REPORT
       </section>
 
       <footer class="case-footer">
-        <a href="/#projects" class="interactive-control neon-box-control project-return"><span class="neon-box-label">Back to projects</span><span class="neon-box-arrow" aria-hidden="true">↗</span></a>
+        <div class="research-references">
+          <span>RESEARCH INTEGRITY</span>
+          <a href="https://www.allea.org/wp-content/uploads/2017/05/ALLEA-European-Code-of-Conduct-for-Research-Integrity-2017.pdf" target="_blank" rel="noopener noreferrer">
+            <img src="/images/allea-logo-lilac.png" alt="ALLEA" />
+            <span>The European Code of Conduct for Research Integrity</span>
+          </a>
+        </div>
       </footer>
 
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
           <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="Expanded research figure" />
+        </div>
+      </dialog>
+
+      <dialog class="report-viewer" data-report-viewer aria-label="Academic research report">
+        <div class="report-viewer-content">
+          <button type="button" class="report-viewer-close" data-report-close aria-label="Close research report">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+          <iframe title="Academic research report" data-report-frame data-source="/documents/master-thesis-brain-tumour-mri.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"></iframe>
         </div>
       </dialog>
     </main>
@@ -367,12 +383,41 @@ END OF REPORT
     if (event.target === lightbox) closeLightbox();
   });
 
+  const reportTrigger = document.querySelector<HTMLAnchorElement>("[data-report-open]");
+  const reportViewer = document.querySelector<HTMLDialogElement>("[data-report-viewer]");
+  const reportFrame = document.querySelector<HTMLIFrameElement>("[data-report-frame]");
+  const reportClose = document.querySelector<HTMLButtonElement>("[data-report-close]");
+
+  const closeReport = () => {
+    if (!reportViewer?.open) return;
+    reportViewer.close();
+  };
+
+  reportTrigger?.addEventListener("click", (event) => {
+    if (!reportViewer || !reportFrame) return;
+    event.preventDefault();
+    reportFrame.src = reportFrame.dataset.source ?? reportTrigger.href;
+    reportViewer.showModal();
+  });
+  reportClose?.addEventListener("click", closeReport);
+  reportViewer?.addEventListener("click", (event) => {
+    if (event.target === reportViewer) closeReport();
+  });
+  reportViewer?.addEventListener("close", () => {
+    if (reportFrame) reportFrame.removeAttribute("src");
+    reportTrigger?.focus();
+  });
+
   if (document.querySelector(".case-study")) {
     let scrollEffectTimer: number | undefined;
+    let backControlTimer: number | undefined;
     const updateScrollEffect = () => {
       document.documentElement.classList.add("case-is-scrolling");
+      document.documentElement.classList.add("case-show-back");
       window.clearTimeout(scrollEffectTimer);
+      window.clearTimeout(backControlTimer);
       scrollEffectTimer = window.setTimeout(() => document.documentElement.classList.remove("case-is-scrolling"), 150);
+      backControlTimer = window.setTimeout(() => document.documentElement.classList.remove("case-show-back"), 1000);
     };
 
     window.addEventListener("scroll", updateScrollEffect, { passive: true });
@@ -513,9 +558,8 @@ END OF REPORT
   }
 
   .case-section {
-    border-top: 1px solid var(--case-border);
-    padding-bottom: clamp(5rem, 9vw, 9rem);
-    padding-top: clamp(5rem, 9vw, 9rem);
+    padding-bottom: clamp(3rem, 4vw, 4.5rem);
+    padding-top: clamp(3rem, 4vw, 4.5rem);
   }
 
   .section-heading {
@@ -523,8 +567,7 @@ END OF REPORT
   }
 
   .section-heading h2,
-  .split-copy h2,
-  .reflection-section h2 {
+  .split-copy h2 {
     color: rgb(226 232 240);
     font-size: clamp(2.1rem, 3.7vw, 3.6rem);
     font-weight: 600;
@@ -535,8 +578,7 @@ END OF REPORT
   }
 
   .section-heading > p:last-child,
-  .split-copy > div:last-child p,
-  .reflection-grid p {
+  .split-copy > div:last-child p {
     color: rgb(148 163 184);
     font-size: 1.02rem;
     line-height: 1.85;
@@ -651,8 +693,7 @@ END OF REPORT
   }
 
   .pipeline,
-  .experiment-grid,
-  .reflection-grid {
+  .experiment-grid {
     --timeline-gutter: clamp(2.2rem, 4vw, 3rem);
     display: grid;
     gap: 0;
@@ -665,8 +706,7 @@ END OF REPORT
   }
 
   .pipeline::before,
-  .experiment-grid::before,
-  .reflection-grid::before {
+  .experiment-grid::before {
     background: linear-gradient(180deg, transparent, rgb(139 92 246) 8%, rgb(196 181 253) 50%, rgb(139 92 246) 92%, transparent);
     box-shadow: 0 0 0.75rem rgba(139, 92, 246, 0.75), 0 0 1.25rem rgba(167, 139, 250, 0.24);
     bottom: 0.35rem;
@@ -678,8 +718,7 @@ END OF REPORT
   }
 
   :global(html.case-is-scrolling) .pipeline::before,
-  :global(html.case-is-scrolling) .experiment-grid::before,
-  :global(html.case-is-scrolling) .reflection-grid::before {
+  :global(html.case-is-scrolling) .experiment-grid::before {
     animation: vertical-neon-scroll 5.5s linear infinite;
     background: linear-gradient(180deg, transparent 0%, rgb(139 92 246) 8%, rgb(139 92 246) 38%, rgba(255, 255, 255, 0.95) 49%, rgb(196 181 253) 54%, rgb(139 92 246) 92%, transparent 100%);
     background-size: 100% 220%;
@@ -691,8 +730,7 @@ END OF REPORT
   }
 
   .pipeline li,
-  .experiment-grid article,
-  .reflection-grid article {
+  .experiment-grid article {
     background: transparent;
     border: 0;
     border-radius: 0;
@@ -705,8 +743,7 @@ END OF REPORT
   }
 
   .pipeline li::before,
-  .experiment-grid article::before,
-  .reflection-grid article::before {
+  .experiment-grid article::before {
     background: #030305;
     border: 1px solid rgb(196 181 253);
     border-radius: 999px;
@@ -720,15 +757,12 @@ END OF REPORT
   }
 
   .pipeline li:last-child,
-  .experiment-grid article:last-child,
-  .reflection-grid article:last-child { padding-bottom: 0; }
+  .experiment-grid article:last-child { padding-bottom: 0; }
 
-  .experiment-grid article,
-  .reflection-grid article { grid-template-columns: 1fr; }
+  .experiment-grid article { grid-template-columns: 1fr; }
 
   .pipeline span,
-  .experiment-grid span,
-  .reflection-grid h3 {
+  .experiment-grid span {
     color: rgb(139 92 246);
     font-size: 0.68rem;
     font-weight: 700;
@@ -740,13 +774,14 @@ END OF REPORT
     color: rgb(226 232 240);
     display: block;
     font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
   }
 
   .experiment-grid strong { margin-top: 0.55rem; }
 
   .pipeline p,
-  .experiment-grid p,
-  .reflection-grid p {
+  .experiment-grid p {
     color: rgb(148 163 184);
     font-size: 0.92rem;
     line-height: 1.7;
@@ -881,6 +916,62 @@ END OF REPORT
     box-shadow: 0 0 1.2rem rgba(167, 139, 250, 0.3);
     outline: none;
   }
+
+  .report-viewer {
+    background: transparent;
+    border: 0;
+    height: 100dvh;
+    margin: 0;
+    max-height: none;
+    max-width: none;
+    padding: clamp(0.8rem, 3vw, 2rem);
+    width: 100vw;
+  }
+
+  .report-viewer::backdrop {
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.88);
+  }
+
+  .report-viewer-content {
+    background: #050507;
+    border: 1px solid rgba(196, 181, 253, 0.36);
+    border-radius: 1rem;
+    box-shadow: 0 0 4rem rgba(124, 58, 237, 0.16);
+    height: 100%;
+    margin: 0 auto;
+    max-width: 76rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .report-viewer iframe {
+    background: rgb(24 24 27);
+    border: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .report-viewer-close {
+    align-items: center;
+    background: rgba(8, 5, 14, 0.94);
+    border: 1px solid rgba(196, 181, 253, 0.5);
+    border-radius: 999px;
+    color: rgb(226 232 240);
+    cursor: pointer;
+    display: inline-flex;
+    height: 2.6rem;
+    justify-content: center;
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+    width: 2.6rem;
+    z-index: 2;
+  }
+
+  .report-viewer-close svg { height: 1.2rem; width: 1.2rem; }
+  .report-viewer-close:hover,
+  .report-viewer-close:focus-visible { border-color: rgb(196 181 253); box-shadow: 0 0 1.2rem rgba(167, 139, 250, 0.3); outline: none; }
 
   .dataset-sources {
     align-items: start;
@@ -1041,14 +1132,16 @@ END OF REPORT
     width: 0.8rem;
   }
 
-  .app-flow strong { color: rgb(226 232 240); display: block; }
+  .app-flow strong { color: rgb(226 232 240); display: block; font-size: 1.05rem; font-weight: 650; letter-spacing: -0.01em; }
   .app-flow small { color: rgb(100 116 139); display: block; margin-top: 0.35rem; }
   .prediction-report {
     display: grid;
     gap: 1.25rem;
-    margin: 3rem auto 0;
+    margin: 1.5rem auto 0;
     max-width: 46rem;
   }
+
+  .prediction-study-copy { color: rgb(148 163 184); line-height: 1.75; margin: 3rem auto 0; max-width: 46rem; }
 
   .prediction-report-image { background: #020203; border: 1px solid var(--case-border); border-radius: 1.1rem; overflow: hidden; padding: clamp(1rem, 3vw, 2rem); }
   .prediction-report-image img { display: block; height: auto; margin-inline: auto; max-height: 24rem; max-width: 100%; object-fit: contain; width: auto; }
@@ -1068,18 +1161,71 @@ END OF REPORT
 
   .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; padding: 0 0.2rem; }
 
-  .ethics-note {
-    border-left: 0;
-    margin-top: 3rem;
-    max-width: 64rem;
-    padding: 0.2rem 0;
+  .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
+
+  .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
+  .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
+  .academic-report-reference { margin-top: clamp(3rem, 6vw, 5rem); max-width: 64rem; }
+  .academic-report-reference > p:not(.case-eyebrow) { color: rgb(148 163 184); font-size: 1.02rem; line-height: 1.85; margin-top: 1.6rem; max-width: 55rem; }
+  .academic-report-reference > a { border: 1px solid rgba(196, 181, 253, 0.38); border-radius: 999px; color: rgb(196 181 253); display: block; font-size: 0.78rem; font-weight: 650; letter-spacing: 0.08em; margin: 2rem auto 0; padding: 0.8rem 1.35rem; text-decoration: none; text-transform: uppercase; transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease; width: fit-content; }
+  .academic-report-reference a:hover,
+  .academic-report-reference a:focus-visible { border-color: rgb(196 181 253); box-shadow: 0 0 1rem rgba(167, 139, 250, 0.22); color: rgb(237 233 254); transform: translateY(-0.1rem); }
+
+  .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; }
+  .research-references { max-width: 36rem; text-align: center; }
+  .research-references > span { color: rgb(139 92 246); display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; }
+  .research-references a { align-items: center; color: rgb(148 163 184); display: inline-flex; flex-direction: column; font-size: 0.78rem; gap: 0.75rem; line-height: 1.6; margin-top: 0.75rem; text-decoration: none; }
+  .research-references img { height: 1.75rem; object-fit: contain; width: auto; }
+  .research-references a span { text-decoration: underline; text-decoration-color: rgba(196, 181, 253, 0.35); text-underline-offset: 0.22em; }
+  .research-references a:hover,
+  .research-references a:focus-visible { color: rgb(196 181 253); }
+  .research-references a:hover img,
+  .research-references a:focus-visible img { filter: drop-shadow(0 0 0.5rem rgba(167, 139, 250, 0.5)); }
+
+  .floating-project-navigation {
+    left: clamp(1.15rem, 3vw, 2.5rem);
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 420ms ease, visibility 420ms ease;
+    visibility: hidden;
+    z-index: 45;
   }
 
-  .ethics-note strong { color: rgb(196 181 253); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
-  .ethics-note p { color: rgb(148 163 184); line-height: 1.75; margin-top: 0.65rem; }
+  .floating-back-control {
+    backdrop-filter: blur(12px);
+    background: rgba(3, 3, 5, 0.72);
+    height: 3rem;
+    width: 3rem;
+  }
 
-  .case-footer { border-top: 1px solid var(--case-border); padding-bottom: 6rem; padding-top: 4rem; }
-  .project-return { max-width: 24rem; }
+  :global(html.case-show-back) .floating-project-navigation {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  :global(html.case-is-scrolling) .floating-back-control {
+    animation: floating-back-scroll 900ms ease-in-out infinite;
+    border-color: rgb(196 181 253);
+    box-shadow: 0 0 0.7rem rgba(139, 92, 246, 0.22);
+  }
+
+  :global(html.case-is-scrolling) .floating-back-control :global(svg) {
+    animation: floating-arrow-scroll 900ms ease-in-out infinite;
+  }
+
+  @keyframes floating-back-scroll {
+    0%, 100% { border-color: rgba(139, 92, 246, 0.35); transform: translateY(0); }
+    50% { border-color: rgba(237, 233, 254, 0.95); transform: translateY(-0.22rem); }
+  }
+
+  @keyframes floating-arrow-scroll {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-0.18rem); }
+  }
 
   .project-navigation {
     width: fit-content;
@@ -1144,8 +1290,8 @@ END OF REPORT
     .dataset-sources { grid-template-columns: 1fr; }
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pipeline,
-    .experiment-grid,
-    .reflection-grid { max-width: 42rem; }
+    .experiment-grid { max-width: 42rem; }
+    .research-references { justify-self: center; text-align: center; }
     .app-flow { gap: 0; grid-template-columns: 1fr; padding-left: 1.6rem; }
     .app-flow::before { background: linear-gradient(180deg, transparent, var(--flow-line) 7%, var(--flow-line) 93%, transparent); bottom: 0; height: auto; left: 0.38rem; right: auto; top: 0; width: 1px; }
     :global(html.case-is-scrolling) .app-flow::before {
@@ -1171,14 +1317,12 @@ END OF REPORT
     .case-hero-grid { padding-top: 4rem; }
     .case-hero h1,
     .section-heading h2,
-    .split-copy h2,
-    .reflection-section h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
+    .split-copy h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
     .metric-grid,
     .class-grid { grid-template-columns: 1fr; }
     .metric-grid article { min-height: 7.5rem; }
     .pipeline li,
-    .experiment-grid article,
-    .reflection-grid article { gap: 0.45rem; grid-template-columns: 1fr; }
+    .experiment-grid article { gap: 0.45rem; grid-template-columns: 1fr; }
     .dataset-bar { gap: 1px; grid-template-columns: 7fr 2fr 1fr; }
     .dataset-bar > div { min-height: 3.85rem; min-width: 0; overflow: hidden; padding: 0.55rem 0.28rem; }
     .dataset-bar > div:first-child { border-radius: 1rem 0 0 1rem; }
@@ -1202,6 +1346,9 @@ END OF REPORT
     .figure-lightbox { padding: 0.8rem; }
     .figure-lightbox-content > img { max-height: calc(100dvh - 2rem); }
     .figure-lightbox-close { right: 0.35rem; top: 0.35rem; }
+    .report-viewer { padding: 0.45rem; }
+    .report-viewer-content { border-radius: 0.75rem; }
+    .report-viewer-close { right: 0.45rem; top: 0.45rem; }
     .scan-line { display: none; }
   }
 
@@ -1209,7 +1356,8 @@ END OF REPORT
     .scan-line,
     :global(html.case-is-scrolling) .pipeline::before,
     :global(html.case-is-scrolling) .experiment-grid::before,
-    :global(html.case-is-scrolling) .reflection-grid::before,
-    :global(html.case-is-scrolling) .app-flow::before { animation: none; }
+    :global(html.case-is-scrolling) .app-flow::before,
+    :global(html.case-is-scrolling) .floating-back-control,
+    :global(html.case-is-scrolling) .floating-back-control :global(svg) { animation: none; }
   }
 </style>

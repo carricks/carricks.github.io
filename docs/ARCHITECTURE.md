@@ -8,6 +8,7 @@ This is a static Astro portfolio deployed through GitHub Pages. Astro renders th
 
 ```text
 public/
+  documents/                    Public academic reports
   favicon.*
   images/                       Fixed-URL company and project assets
     projects/brain-tumour-mri/  Thesis-authored MRI and model figures
@@ -54,7 +55,8 @@ All routes must remain compatible with static generation and GitHub Pages. A run
 - `data/` owns typed records that generate repeated navigation or routes.
 - `config/` owns stable site-wide identity and link values.
 - `styles/` owns shared visual tokens and cross-component interaction behavior.
-- `public/images/` is reserved for assets that require stable URLs.
+- `public/images/` is reserved for visual assets that require stable URLs.
+- `public/documents/` contains approved documents intended for public delivery through GitHub Pages.
 
 Dependencies flow from pages to layouts/components/data, never from shared components back into pages.
 
@@ -73,6 +75,8 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The global header uses passive scroll listeners and `requestAnimationFrame`.
 - Intersection observers provide progressive section and touch feedback.
 - The MRI case study uses one reusable native `dialog` lightbox for all expandable figures. It restores focus to the originating image control when closed.
+- The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
+- A floating Back control appears during active scrolling and fades after the interaction ends.
 - `prefers-reduced-motion` disables nonessential animation.
 
 ## Contact behavior

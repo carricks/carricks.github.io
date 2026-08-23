@@ -67,7 +67,9 @@ Homepage introduction
 - Contact form validates locally and opens a prepared `mailto:` message.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
-- Research figures use a browser-native dialog lightbox and require no external runtime dependency.
+- Research figures use a browser native dialog lightbox and require no external runtime dependency.
+- The master's report is delivered from GitHub Pages through an integrated dialog viewer.
+- Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
 
 ## Success criteria
 

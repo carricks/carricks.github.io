@@ -29,7 +29,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ## Layout and spacing
 
 - Shared `Container` controls horizontal alignment.
-- Sections use generous vertical spacing and black backgrounds.
+- Sections use a compact but breathable vertical rhythm on black backgrounds.
 - Detail pages use a readable maximum width rather than full-screen text lines.
 - Experience and study records appear one per row, never in two-column CV grids.
 - Spacing follows a practical rhythm based primarily on 4, 8, 16, 24, 32, 48 and 64 pixels.
@@ -52,7 +52,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Numbered controls are not used.
 - Primary controls use the shared `premium-neon-control` variant: a 1.5-pixel cyan-blue-violet-magenta trace completing its circuit in 900 ms.
 - Informational panels that need the same hover presence use `premium-neon-surface`; they must not imply clickability.
-- The premium trace is shared by About, Projects, MRI source links, engineering-reflection panels and Submit.
+- The premium trace is shared by About, Projects, MRI source links and Submit.
 
 ### Research figures and lightbox
 
@@ -60,6 +60,14 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Expandable figures use a visible zoom affordance and one reusable modal surface.
 - The modal closes through its close control, Escape or a click outside the image, then restores focus to the trigger.
 - MRI class cards preserve a monochrome scientific treatment and equal visual dimensions.
+- The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
+
+### Research references
+
+- Responsible use follows the same open editorial hierarchy as other major sections.
+- Academic report metadata uses standard section typography rather than a separate card.
+- The report action is centered, text only and visually restrained.
+- The ALLEA research integrity reference is centered in the case study footer.
 
 ### Experience logos
 
@@ -77,7 +85,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ## Motion
 
 - Quick interaction feedback: approximately 160-520 ms.
-- Continuous neon movement is limited to active or resting accent states.
+- Continuous neon movement is limited to active accent states.
+- The floating Back control appears during scrolling, moves subtly and fades after one second of inactivity.
 - Section opacity and mobile scroll feedback are progressive enhancement.
 - All nonessential animation is disabled or reduced under `prefers-reduced-motion`.
 
