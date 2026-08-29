@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hybrid renewable plant control architecture</title>
+  <desc id="desc">Integrated engineering diagram showing wind and solar generation, local plant controllers, hybrid coordination, operator supervision and a separate electrical export path.</desc>
+  <defs>
+    <marker id="controlArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#a78bfa"/></marker>
+    <marker id="feedbackArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a78bfa"/></marker>
+    <marker id="powerArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#94a3b8"/></marker>
+    <style>.eyebrow{font:600 18px Arial,sans-serif;letter-spacing:5px;fill:#a78bfa}.heading{font:600 34px Arial,sans-serif;fill:#e5e7eb}.label{font:600 18px Arial,sans-serif;letter-spacing:1.4px;fill:#c4b5fd}.small{font:500 14px Arial,sans-serif;letter-spacing:1.2px;fill:#94a3b8}.micro{font:600 12px Arial,sans-serif;letter-spacing:1.2px;fill:#a78bfa}.box{fill:#060609;stroke:#475569;stroke-width:1.2}.power{fill:none;stroke:#94a3b8;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.powerOut{fill:none;stroke:#94a3b8;stroke-width:1.5;stroke-linecap:round;marker-end:url(#powerArrow)}.control{fill:none;stroke:#a78bfa;stroke-width:1.25;stroke-dasharray:8 7;stroke-linecap:round;stroke-linejoin:round;marker-start:url(#controlArrow);marker-end:url(#controlArrow)}.feedback{fill:none;stroke:#a78bfa;stroke-width:1.25;stroke-dasharray:8 7;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#feedbackArrow)}.detail{fill:none;stroke:#c4b5fd;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.node{fill:#020203;stroke:#c4b5fd;stroke-width:1.5}</style>
+  </defs>
+  <rect width="1600" height="900" rx="34" fill="#020203"/><rect x="22" y="22" width="1556" height="856" rx="26" fill="none" stroke="#334155"/>
+  <text x="76" y="80" class="eyebrow">CONCEPTUAL CONTROL ARCHITECTURE</text><text x="76" y="130" class="heading">Coordinated response across hybrid generation.</text><text x="76" y="166" class="small">LOCAL CONTROL · PLANT REGULATION · SUPERVISED GRID CONNECTION</text>
+  <g transform="translate(1120 104)"><path d="M0 0h56" class="power"/><text x="70" y="5" class="small">ELECTRICAL POWER</text><path d="M0 30h56" class="control"/><text x="70" y="35" class="small">CONTROL / FEEDBACK</text></g>
+
+  <!-- Wind generation and local controller -->
+  <text x="84" y="248" class="micro">WIND FARM</text>
+  <g aria-label="Three wind turbines">
+    <g transform="translate(118 0)"><path d="M0 344-5 441M0 344l-29-28M0 344l34-8M0 344l-10 36M-10 445h20" class="power"/><circle cy="344" r="4.5" fill="#c4b5fd"/></g>
+    <g transform="translate(178 0)"><path d="M0 328-6 441M0 328l-34-34M0 328l40-10M0 328l-12 42M-11 445h22" class="power"/><circle cy="328" r="5" fill="#c4b5fd"/></g>
+    <g transform="translate(238 0)"><path d="M0 345 5 441M0 345l-30-28M0 345l35-9M0 345l-10 36M-10 445h20" class="power"/><circle cy="345" r="4.5" fill="#c4b5fd"/></g>
+    <path d="M100 445H266" class="power"/>
+  </g>
+  <g transform="translate(340 220)"><rect width="250" height="190" rx="18" class="box"/><text x="125" y="40" text-anchor="middle" class="label">WIND PPC</text><text x="125" y="66" text-anchor="middle" class="small">FIELD I/O · LOCAL CONTROL</text><rect x="35" y="88" width="180" height="66" rx="7" fill="#020203" stroke="#334155"/><path d="M59 140v-23M87 140v-36M115 140v-18M143 140V98M171 140v-29M199 140v-37" class="detail"/></g>
+  <path d="M275 315H340" class="control"/>
+
+  <!-- Solar generation and local controller -->
+  <text x="84" y="516" class="micro">SOLAR GENERATION</text><g transform="translate(95 548)"><g transform="skewX(-7)"><rect width="155" height="90" rx="3" fill="#050507" stroke="#c4b5fd" stroke-width="1.25"/><path d="M39 0v90M78 0v90M117 0v90M0 30h155M0 60h155" stroke="#64748b"/></g><path d="M78 90v42M34 132h88" class="power"/></g>
+  <g transform="translate(340 490)"><rect width="250" height="190" rx="18" class="box"/><text x="125" y="40" text-anchor="middle" class="label">SOLAR PPC</text><text x="125" y="66" text-anchor="middle" class="small">FIELD I/O · LOCAL CONTROL</text><rect x="35" y="88" width="180" height="66" rx="7" fill="#020203" stroke="#334155"/><path d="M58 139 86 114l27 17 34-39 39 26" class="detail"/></g>
+  <path d="M252 585H340" class="control"/>
+
+  <!-- Dedicated control corridors, without labels on lines -->
+  <g transform="translate(850 300)"><rect width="330" height="285" rx="22" class="box"/><text x="165" y="44" text-anchor="middle" class="label">HYBRID PPC</text><text x="165" y="70" text-anchor="middle" class="small">PLANT LEVEL COORDINATION</text><rect x="44" y="96" width="242" height="110" rx="9" fill="#020203" stroke="#334155"/><path d="M68 181 108 141l38 24 46-61 58 42 23-13" class="detail"/><path d="M66 232h198M94 252h142" class="power"/></g>
+  <path d="M590 270H750V360H850" class="control"/><path d="M590 540H750V475H850" class="control"/>
+  <g transform="translate(1270 230)"><text x="105" y="0" text-anchor="middle" class="micro">SYSTEM OPERATOR</text><rect y="24" width="210" height="108" rx="16" class="box"/><rect x="40" y="50" width="130" height="54" rx="6" fill="#020203" stroke="#334155"/><path d="M64 89V74M92 89V62M120 89V79M148 89V68" class="detail"/></g><path d="M1180 345H1270" class="control"/>
+
+  <!-- Electrical single-line remains below all control equipment -->
+  <path d="M166 445H700" class="power"/><g transform="translate(610 421)"><circle cx="24" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="63" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><text x="43" y="-8" text-anchor="middle" class="small">TRANSFORMER A</text></g>
+  <path d="M173 710H700" class="power"/><g transform="translate(610 686)"><circle cx="24" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="63" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><text x="43" y="66" text-anchor="middle" class="small">TRANSFORMER B</text></g>
+  <path d="M700 445V710" class="power"/><circle cx="700" cy="445" r="5" fill="#94a3b8"/><circle cx="700" cy="710" r="5" fill="#94a3b8"/><text x="724" y="625" transform="rotate(-90 724 625)" text-anchor="middle" class="small">MV BUS</text>
+  <path d="M700 710H1275" class="power"/><g transform="translate(1260 686)"><circle cx="24" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="63" cy="24" r="22" fill="#020203" stroke="#cbd5e1" stroke-width="1.5"/><text x="43" y="-15" text-anchor="middle" class="small">GRID TRANSFORMER</text></g><path d="M1350 710H1455" class="powerOut"/><circle cx="1475" cy="710" r="10" class="node"/><text x="1475" y="748" text-anchor="middle" class="micro">GRID POI</text>
+  <!-- POI feedback uses an isolated corridor below the Hybrid PPC -->
+  <path d="M1475 690V625H1135V585" class="feedback"/>
+  <text x="76" y="850" class="small">PORTFOLIO RECONSTRUCTION · NON PROPRIETARY SYSTEM VIEW</text>
+</svg>

@@ -18,8 +18,22 @@ const { href, label } = Astro.props;
 
 <script>
   if (document.querySelector("[data-floating-back]")) {
+    const BACK_IDLE_DELAY = 2000;
+    const backNavigation = document.querySelector<HTMLElement>("[data-floating-back]");
     let motionTimer: number | undefined;
     let visibilityTimer: number | undefined;
+
+    const scheduleBackControlHide = () => {
+      window.clearTimeout(visibilityTimer);
+      if (window.scrollY <= 2) return;
+      visibilityTimer = window.setTimeout(() => document.documentElement.classList.remove("back-show"), BACK_IDLE_DELAY);
+    };
+
+    const registerActivity = () => {
+      if (window.scrollY <= 2) return;
+      document.documentElement.classList.add("back-show");
+      scheduleBackControlHide();
+    };
 
     const updateBackControl = () => {
       const isAtTop = window.scrollY <= 2;
@@ -35,11 +49,19 @@ const { href, label } = Astro.props;
       }
 
       document.documentElement.classList.add("back-show");
-      visibilityTimer = window.setTimeout(() => document.documentElement.classList.remove("back-show"), 1000);
+      scheduleBackControlHide();
     };
 
     document.documentElement.classList.toggle("back-at-top", window.scrollY <= 2);
     window.addEventListener("scroll", updateBackControl, { passive: true });
+    window.addEventListener("pointermove", registerActivity, { passive: true });
+    window.addEventListener("pointerdown", registerActivity, { passive: true });
+    window.addEventListener("touchstart", registerActivity, { passive: true });
+    window.addEventListener("keydown", registerActivity);
+    backNavigation?.addEventListener("pointerenter", () => window.clearTimeout(visibilityTimer));
+    backNavigation?.addEventListener("pointerleave", scheduleBackControlHide);
+    backNavigation?.addEventListener("focusin", () => window.clearTimeout(visibilityTimer));
+    backNavigation?.addEventListener("focusout", scheduleBackControlHide);
   }
 </script>
 

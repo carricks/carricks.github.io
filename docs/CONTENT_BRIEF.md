@@ -106,7 +106,7 @@ Suggested structure:
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a comparative accuracy chart and a terminal style prediction report. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a dumbbell comparison chart and a terminal style prediction report. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
 The complete master's report is available through an integrated viewer near the responsible use statement. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
@@ -142,9 +142,9 @@ This professional case study presents Diego's contribution to the deployment and
 The published framing includes:
 
 - A public and verified plant context of 380 MW, more than 930,000 fixed structure panels and 226 inverters.
-- An original aerial photovoltaic plant visual and a responsive conceptual hybrid-control diagram, both expandable through the shared lightbox.
+- An original aerial photovoltaic plant visual with a control building and electrical yard, plus a responsive conceptual hybrid-control diagram; both are expandable through the shared lightbox.
 - A three-stage explanatory flow covering field acquisition, coordinated control and supervised response.
-- A separate engineering architecture that distinguishes the electrical export path from field I/O, local PPC control, hybrid coordination, operator supervision and the grid POI.
+- A separate engineering architecture that distinguishes the electrical export path from field I/O, local PPC control, hybrid coordination, operator supervision and the grid POI. It represents the wind farm with three defined turbines and keeps every label clear of lines, controllers and transformer symbols.
 - Diego's contribution across deployment support, commissioning, integration, testing and technical troubleshooting.
 - Spanish photovoltaic growth context sourced from Red Eléctrica, including the position of solar PV as the leading technology by installed capacity in early 2025.
 - An explicit portfolio boundary excluding source code, operational setpoints, internal topology, procedures and confidential interfaces.

@@ -66,6 +66,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Technical diagrams use black backgrounds without white padding or heavy framing.
 - Continuous grey lines communicate electrical, physical or data paths; dashed lilac lines communicate control, setpoints and feedback. Legends must name these roles rather than relying on color alone.
 - Diagram connections terminate cleanly at equipment, buses, controllers, hubs or external boundaries. Labels must not intersect routes.
+- Diagram labels require dedicated clear space: they must never overlap lines, symbols, cards, nodes or other labels.
+- Scientific diagrams use black, lilac, soft-white and cool-grey tones. Green, mint, olive and teal accents are excluded unless they encode an explicitly approved state.
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 
@@ -93,7 +95,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Press feedback remains immediate, while decorative neon movement uses a measured 2.5 second cycle.
 - Continuous neon movement is limited to active accent states.
 - Every About and Project detail route uses the same floating Back control.
-- The control remains visible at the top, moves subtly during scrolling and fades after one second of inactivity away from the initial position.
+- The control remains visible at the top, moves subtly during scrolling and fades after two seconds of inactivity away from the initial position.
+- Scroll, pointer, touch and keyboard activity reveal the control. Hover and keyboard focus pause its inactivity timer.
 - On small screens its initial position sits between the header line and the first page label.
 - Section opacity and mobile scroll feedback are progressive enhancement.
 - All nonessential animation is disabled or reduced under `prefers-reduced-motion`.

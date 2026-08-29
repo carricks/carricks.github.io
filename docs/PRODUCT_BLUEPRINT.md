@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case-study patterns. Grid and renewable diagrams now share a dark semantic system with explicit physical, electrical and control relationships. The remaining sections still need deeper evidence, final copy and publication review.
+The website is functional and navigable on desktop and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case-study patterns. The MRI results use an accessible dumbbell comparison and an approved lilac VGG16 visual. Grid and renewable diagrams share a dark semantic system with explicit physical, electrical and control relationships, dedicated mobile assets and strict non-overlap rules. The remaining sections still need deeper evidence, final copy and publication review.
 
 ## Audience
 
@@ -60,6 +60,7 @@ Homepage introduction
 - Sticky navigation remains available throughout the experience.
 - Desktop interactions use hover and press feedback.
 - Touch interactions use press and scroll-aware feedback.
+- The shared floating Back control responds to scroll, pointer, touch and keyboard activity and remains available for two seconds after activity ends.
 - Motion must remain subtle and respect `prefers-reduced-motion`.
 - Content must remain readable and complete without animation.
 

@@ -99,7 +99,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="7" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="19" cy="17" r="2"/><path d="m6.7 8.1 3.6 2.8M6.7 15.9l3.6-2.8M13.7 10.9l3.6-2.8M13.7 13.1l3.6 2.8"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M7 6h.01M10 6h.01M8.5 12.5 6 15l2.5 2.5M15.5 12.5 18 15l-2.5 2.5M13.5 11.5l-3 7"/></svg>
             </span>
             <div><span>MODEL</span><strong>Train through transfer learning</strong><p>Use controlled augmentation and adapt VGG16 visual features to distinguish the four MRI classes.</p></div>
           </li>
@@ -125,7 +125,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
         </div>
         <figure class="research-figure wide-figure">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge VGG16 architecture diagram">
-            <img src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
+            <img src="/images/projects/brain-tumour-mri/vgg16-architecture-final-lilac-20260829.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
           <figcaption>VGG16 transfer learning architecture adapted during the research.</figcaption>
@@ -211,22 +211,31 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
               </div>
               <div class="comparison-plot">
                 {[
-                  { label: "Meningioma", target: "74.0", predicted: "95.38" },
-                  { label: "Glioma", target: "85.7", predicted: "81.54" },
-                  { label: "Pituitary", target: "88.4", predicted: "87.66" },
-                  { label: "No tumour", target: null, predicted: "93.08" },
+                  { label: "Meningioma", target: 74.0, predicted: 95.38 },
+                  { label: "Glioma", target: 85.7, predicted: 81.54 },
+                  { label: "Pituitary", target: 88.4, predicted: 87.66 },
+                  { label: "No tumour", target: null, predicted: 93.08 },
                 ].map(({ label, target, predicted }) => (
-                  <div class="comparison-group">
-                    <strong class="comparison-class">{label}</strong>
-                    <div class="comparison-series">
-                      <span class="series-name">Target</span>
-                      <div class:list={["comparison-track", !target && "is-unavailable"]}>{target && <span class="target-bar" style={`--score:${target}%`}></span>}</div>
-                      <strong class="series-value">{target ? `${target}%` : "N/A"}{!target && <small>Not evaluated</small>}</strong>
+                  <div class:list={["comparison-group", target === null && "has-no-target"]} aria-label={`${label}: ${target === null ? "target benchmark not available" : `target ${target.toFixed(2)} percent`}; predicted ${predicted.toFixed(2)} percent`}>
+                    <div class="comparison-row-heading">
+                      <strong class="comparison-class">{label}</strong>
+                      {target !== null
+                        ? <span class:list={["comparison-delta", predicted >= target ? "is-positive" : "is-negative"]}>{predicted >= target ? "+" : ""}{(predicted - target).toFixed(2)} pp</span>
+                        : <span class="comparison-delta is-unavailable">Benchmark not available</span>}
                     </div>
-                    <div class="comparison-series">
-                      <span class="series-name">Predicted</span>
-                      <div class="comparison-track"><span class="predicted-bar" style={`--score:${predicted}%`}></span></div>
-                      <strong class="series-value">{predicted}%</strong>
+                    <div class="dumbbell-row">
+                      <span class="dumbbell-value target-value">{target !== null ? `${target.toFixed(2)}%` : "N/A"}<small>Target</small></span>
+                      <div
+                        class:list={["dumbbell-track", target === null && "is-unavailable"]}
+                        style={`--target:${target ?? predicted}%;--predicted:${predicted}%;--range-start:${Math.min(target ?? predicted, predicted)}%;--range-width:${Math.abs(predicted - (target ?? predicted))}%`}
+                        aria-hidden="true"
+                      >
+                        <span class="dumbbell-axis"></span>
+                        {target !== null && <span class="dumbbell-connector"></span>}
+                        {target !== null && <span class="dumbbell-dot target-dot"></span>}
+                        <span class="dumbbell-dot predicted-dot"></span>
+                      </div>
+                      <span class="dumbbell-value predicted-value">{predicted.toFixed(2)}%<small>Predicted</small></span>
                     </div>
                   </div>
                 ))}
@@ -236,7 +245,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
           </div>
           <figcaption>
             <strong>Impact of the applied techniques.</strong>
-            <span>Data cleaning, class balancing and controlled augmentation produced a substantial improvement in prediction accuracy. Combined with transfer learning, the final model surpassed the initial benchmark in its strongest classes and added reliable detection of the category without a tumour.</span>
+            <span>The model exceeded the reference result for meningioma, remained close for pituitary images and showed a measurable gap for glioma. The no-tumour class reached 93.08%, although no equivalent benchmark was available for a direct comparison.</span>
           </figcaption>
         </figure>
       </section>
@@ -318,7 +327,7 @@ END OF REPORT
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture.png" alt="Expanded research figure" />
+          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture-final-lilac-20260829.png" alt="Expanded research figure" />
         </div>
       </dialog>
 
@@ -412,13 +421,13 @@ END OF REPORT
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2.5L17 8M14 8h3v3M9 21h6M12 17v4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 11 2.2 2.2L13.5 9M9 21h6M12 17v4"/></svg>
             </span>
             <div><span>SIMULATION</span><strong>Evaluate system response</strong><p>Coordinate specialist tools that calculate behaviour during and after the controlled disturbance.</p></div>
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 11 2.2 2.2L13.5 9M9 21h6M12 17v4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2.5L17 8M14 8h3v3M9 21h6M12 17v4"/></svg>
             </span>
             <div><span>REVIEW</span><strong>Deliver traceable results</strong><p>Present structured outputs that specialists can verify, compare and use within established decisions.</p></div>
           </li>
@@ -482,11 +491,26 @@ END OF REPORT
           <p class="case-eyebrow">PROFESSIONAL REFLECTION</p>
           <h2 id="reflection-title">Engineering value emerges through collaboration and disciplined integration.</h2>
         </div>
-        <div class="experiment-grid grid-reflection">
-          <article><div><span>WHAT I CONTRIBUTED</span><strong>Software and integration</strong><p>Application development, deployment support and validation across interconnected engineering environments.</p></div></article>
-          <article><div><span>WHAT MADE IT COMPLEX</span><strong>Operational context</strong><p>Every technical result depends on consistent data, specialist tools and coordinated interpretation across disciplines.</p></div></article>
-          <article><div><span>WHAT IT STRENGTHENED</span><strong>Systems thinking</strong><p>The work expanded my ability to connect software decisions with power system behaviour and operational reliability.</p></div></article>
-        </div>
+        <ol class="plant-flow grid-reflection" aria-label="Professional contribution and learning">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16"/><circle cx="8" cy="6" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="12" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="18" r="0.8" fill="currentColor" stroke="none"/><path d="M12 6h5M12 12h5M12 18h5"/></svg>
+            </span>
+            <div><span>WHAT I CONTRIBUTED</span><strong>Software and integration</strong><p>Application development, deployment support and validation across interconnected engineering environments.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6V2Z"/><path d="M14 2v5h5M9 11h6M9 15h6M9 19h4"/></svg>
+            </span>
+            <div><span>WHAT MADE IT COMPLEX</span><strong>Operational context</strong><p>Every technical result depends on consistent data, specialist tools and coordinated interpretation across disciplines.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h8M6 7V6a3 3 0 0 1 6 0v1"/><circle cx="9" cy="9.5" r="2.2"/><path d="M6.5 21v-6.5A2.5 2.5 0 0 1 9 12h1.2c1.4 0 2.3.7 3.2 1.6l1.1 1.1M9.5 21v-5M13.4 13.6l3.1-2.6"/><path d="M15.5 8.5 18 6l2 1.5 2-3M16 11h6"/></svg>
+            </span>
+            <div><span>WHAT IT STRENGTHENED</span><strong>Systems thinking</strong><p>The work expanded my ability to connect software decisions with power system behaviour and operational reliability.</p></div>
+          </li>
+        </ol>
       </section>
 
       <section class="case-section technology-section" aria-labelledby="grid-technology-title">
@@ -521,10 +545,10 @@ END OF REPORT
 
           <figure class="renewable-hero-visual">
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual view of the photovoltaic plant">
-              <img src="/images/projects/renewable-control/extremadura-solar-plant.png" alt="Original aerial reconstruction of a utility scale photovoltaic plant in Extremadura" />
+              <img src="/images/projects/renewable-control/extremadura-solar-control-plant.png" alt="Aerial reconstruction of a utility scale photovoltaic plant and its control and electrical infrastructure in Extremadura" />
               <span aria-hidden="true">Expand</span>
             </button>
-            <figcaption>Original portfolio visual representing the scale and landscape of the installation.</figcaption>
+            <figcaption>Conceptual reconstruction of the photovoltaic field, control building and electrical infrastructure.</figcaption>
           </figure>
         </div>
       </section>
@@ -617,8 +641,8 @@ END OF REPORT
         <figure class="renewable-control-visual">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual hybrid renewable plant control architecture">
             <picture>
-              <source media="(max-width: 640px)" srcset="/images/projects/renewable-control/hybrid-ppc-architecture-mobile.svg" />
-              <img src="/images/projects/renewable-control/hybrid-ppc-architecture.svg" alt="Conceptual architecture connecting wind and solar plants through local controllers and a hybrid Power Plant Controller to the grid connection point" />
+              <source media="(max-width: 640px)" srcset="/images/projects/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=6" />
+              <img src="/images/projects/renewable-control/hybrid-control-architecture-v4.svg?v=6" alt="Integrated hybrid renewable architecture connecting a three-turbine wind farm and solar generation through local PPCs, hybrid plant coordination, operator supervision and the electrical grid point of interconnection" />
             </picture>
             <span aria-hidden="true">Expand</span>
           </button>
@@ -664,7 +688,7 @@ END OF REPORT
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded photovoltaic plant case study image">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/renewable-control/extremadura-solar-plant.png" alt="Expanded photovoltaic plant case study visual" />
+          <img data-lightbox-image src="/images/projects/renewable-control/extremadura-solar-control-plant.png" alt="Expanded photovoltaic plant and control infrastructure visual" />
         </div>
       </dialog>
     </main>
@@ -1034,119 +1058,6 @@ END OF REPORT
     margin-top: 0.75rem;
   }
 
-  .pipeline,
-  .experiment-grid {
-    --timeline-gutter: clamp(2.2rem, 4vw, 3rem);
-    display: grid;
-    gap: 0;
-    grid-template-columns: 1fr;
-    list-style: none;
-    margin: 3.5rem 0 0;
-    max-width: 68rem;
-    padding: 0 0 0 var(--timeline-gutter);
-    position: relative;
-  }
-
-  .pipeline::before,
-  .experiment-grid::before {
-    background: linear-gradient(180deg, transparent, rgb(139 92 246) 8%, rgb(196 181 253) 50%, rgb(139 92 246) 92%, transparent);
-    box-shadow: 0 0 0.75rem rgba(139, 92, 246, 0.75), 0 0 1.25rem rgba(167, 139, 250, 0.24);
-    bottom: 0.35rem;
-    content: "";
-    left: 0.38rem;
-    position: absolute;
-    top: 0.35rem;
-    width: 1px;
-  }
-
-  :global(html.case-is-scrolling) .pipeline::before,
-  :global(html.case-is-scrolling) .experiment-grid::before {
-    animation: vertical-neon-scroll 5.5s linear infinite;
-    background: linear-gradient(180deg, transparent 0%, rgb(139 92 246) 8%, rgb(139 92 246) 38%, rgba(255, 255, 255, 0.95) 49%, rgb(196 181 253) 54%, rgb(139 92 246) 92%, transparent 100%);
-    background-size: 100% 220%;
-  }
-
-  @keyframes vertical-neon-scroll {
-    from { background-position: 0 100%; }
-    to { background-position: 0 -120%; }
-  }
-
-  .pipeline li,
-  .experiment-grid article {
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    display: grid;
-    gap: clamp(0.75rem, 3vw, 2rem);
-    grid-template-columns: minmax(6rem, 0.24fr) minmax(0, 1fr);
-    min-height: auto;
-    padding: 0 0 clamp(2.1rem, 4vw, 3.2rem);
-    position: relative;
-  }
-
-  .pipeline li::before,
-  .experiment-grid article::before {
-    background: #030305;
-    border: 1px solid rgb(196 181 253);
-    border-radius: 999px;
-    box-shadow: 0 0 0.55rem rgba(196, 181, 253, 0.9), 0 0 1.1rem rgba(139, 92, 246, 0.38);
-    content: "";
-    height: 0.72rem;
-    left: calc(0.02rem - var(--timeline-gutter));
-    position: absolute;
-    top: 0.22rem;
-    width: 0.72rem;
-  }
-
-  .pipeline li::after,
-  .experiment-grid article::after {
-    animation: plant-symbol-orbit 11s linear infinite;
-    background: conic-gradient(from 0deg, transparent 0 66%, rgba(167, 139, 250, 0.25) 76%, rgba(255, 255, 255, 0.72) 86%, rgba(196, 181, 253, 0.38) 94%, transparent 100%);
-    border-radius: 50%;
-    content: "";
-    filter: drop-shadow(0 0 0.3rem rgba(167, 139, 250, 0.34));
-    height: 1.08rem;
-    left: calc(-0.16rem - var(--timeline-gutter));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px));
-    pointer-events: none;
-    position: absolute;
-    top: 0.04rem;
-    width: 1.08rem;
-  }
-
-  .pipeline li:last-child,
-  .experiment-grid article:last-child { padding-bottom: 0; }
-
-  .experiment-grid article { grid-template-columns: 1fr; }
-
-  .pipeline span,
-  .experiment-grid span {
-    color: rgb(139 92 246);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-  }
-
-  .pipeline strong,
-  .experiment-grid strong {
-    color: rgb(226 232 240);
-    display: block;
-    font-size: 1.05rem;
-    font-weight: 650;
-    letter-spacing: -0.01em;
-  }
-
-  .experiment-grid strong { margin-top: 0.55rem; }
-
-  .pipeline p,
-  .experiment-grid p {
-    color: rgb(148 163 184);
-    font-size: 0.92rem;
-    line-height: 1.7;
-    margin-top: 0.65rem;
-    max-width: 46rem;
-  }
-
   .research-figure {
     background: #050507;
     border: 1px solid var(--case-border);
@@ -1428,25 +1339,30 @@ END OF REPORT
   .benchmark-panel-heading > strong { color: rgb(226 232 240); display: block; font-size: 1.1rem; margin-top: 0.45rem; }
   .chart-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1rem; }
   .chart-legend span { align-items: center; color: rgb(148 163 184); display: inline-flex; font-size: 0.72rem; gap: 0.45rem; letter-spacing: 0; }
-  .chart-legend i { display: inline-block; height: 0.45rem; width: 1.5rem; }
-  .target-key,
-  .target-bar { background: rgb(226 232 240); }
-  .predicted-key,
-  .predicted-bar { background: rgb(139 92 246); }
-  .comparison-plot { --label-column: 7rem; --value-column: 5.5rem; }
-  .comparison-scale { margin: 1rem var(--value-column) 0 calc(var(--label-column) + 1rem); }
+  .chart-legend i { border-radius: 50%; display: inline-block; height: 0.55rem; width: 0.55rem; }
+  .target-key { background: rgb(226 232 240); border: 1px solid rgb(226 232 240); }
+  .predicted-key { background: rgb(139 92 246); border: 1px solid rgb(196 181 253); }
+  .comparison-plot { --value-column: 5.4rem; }
+  .comparison-scale { margin: 1.2rem var(--value-column) 0; }
   .comparison-scale > strong { color: rgb(196 181 253); display: block; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; margin-top: 0.4rem; text-align: center; text-transform: uppercase; }
   .comparison-axis { color: rgb(100 116 139); display: flex; font-size: 0.62rem; justify-content: space-between; }
-  .comparison-group { border-top: 1px solid rgba(196, 181, 253, 0.09); margin-top: 1.1rem; padding-top: 1.1rem; }
-  .comparison-class { color: rgb(226 232 240); display: block; font-size: 0.82rem; margin-bottom: 0.65rem; }
-  .comparison-series { align-items: center; display: grid; gap: 1rem; grid-template-columns: var(--label-column) minmax(0, 1fr) var(--value-column); }
-  .comparison-series + .comparison-series { margin-top: 0.55rem; }
-  .series-name { color: rgb(148 163 184); font-size: 0.7rem; }
-  .comparison-track { background: repeating-linear-gradient(90deg, rgba(196, 181, 253, 0.08) 0 1px, transparent 1px 25%); border-bottom: 1px solid rgba(196, 181, 253, 0.18); height: 0.72rem; overflow: hidden; position: relative; }
-  .comparison-track > span { box-shadow: 0 0 0.65rem rgba(167, 139, 250, 0.35); display: block; height: 100%; width: var(--score); }
-  .comparison-track.is-unavailable { background: repeating-linear-gradient(135deg, transparent 0 5px, rgba(148, 163, 184, 0.08) 5px 6px); }
-  .series-value { color: rgb(226 232 240); font-size: 0.78rem; text-align: right; }
-  .series-value small { color: rgb(139 92 246); display: block; font-size: 0.48rem; font-weight: 600; letter-spacing: 0.08em; margin-top: 0.12rem; text-transform: uppercase; }
+  .comparison-group { border-top: 1px solid rgba(196, 181, 253, 0.09); margin-top: 1.15rem; padding-top: 1.15rem; }
+  .comparison-row-heading { align-items: center; display: flex; gap: 1rem; justify-content: space-between; margin-bottom: 0.9rem; }
+  .comparison-class { color: rgb(226 232 240); font-size: 0.86rem; }
+  .comparison-delta { border: 1px solid rgba(196, 181, 253, 0.22); border-radius: 999px; color: rgb(196 181 253); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.28rem 0.55rem; }
+  .comparison-delta.is-negative { color: rgb(148 163 184); }
+  .comparison-delta.is-unavailable { border-color: rgba(148, 163, 184, 0.16); color: rgb(100 116 139); font-weight: 600; }
+  .dumbbell-row { align-items: center; display: grid; gap: 1rem; grid-template-columns: var(--value-column) minmax(0, 1fr) var(--value-column); }
+  .dumbbell-value { color: rgb(226 232 240); font-size: 0.76rem; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .dumbbell-value small { color: rgb(100 116 139); display: block; font-size: 0.52rem; font-weight: 600; letter-spacing: 0.08em; margin-top: 0.15rem; text-transform: uppercase; }
+  .predicted-value { color: rgb(196 181 253); text-align: right; }
+  .dumbbell-track { height: 1.5rem; position: relative; }
+  .dumbbell-axis { background: rgba(148, 163, 184, 0.24); height: 1px; left: 0; position: absolute; right: 0; top: 50%; }
+  .dumbbell-connector { background: rgb(100 116 139); height: 2px; left: var(--range-start); position: absolute; top: calc(50% - 0.5px); width: var(--range-width); }
+  .dumbbell-dot { border-radius: 50%; height: 0.72rem; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 0.72rem; }
+  .target-dot { background: rgb(3 3 5); border: 2px solid rgb(226 232 240); left: var(--target); }
+  .predicted-dot { background: rgb(139 92 246); border: 2px solid rgb(196 181 253); left: var(--predicted); }
+  .dumbbell-track.is-unavailable .dumbbell-axis { background: repeating-linear-gradient(90deg, rgba(100, 116, 139, 0.3) 0 4px, transparent 4px 9px); }
 
   .benchmark-figure figcaption { color: rgb(148 163 184); line-height: 1.75; margin-top: 1.35rem; max-width: 66rem; }
   .benchmark-figure figcaption strong { color: rgb(196 181 253); display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
@@ -1615,8 +1531,6 @@ END OF REPORT
     .renewable-case-study .case-hero-grid { padding-bottom: 0.5rem; padding-top: 5rem; }
     .renewable-case-study .case-section { padding-bottom: 2.25rem; padding-top: 2.25rem; }
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .pipeline,
-    .experiment-grid { max-width: 42rem; }
     .research-references { justify-self: center; text-align: center; }
   }
 
@@ -1648,8 +1562,6 @@ END OF REPORT
     .renewable-control-visual img { max-height: none; }
     .renewable-control-visual img { aspect-ratio: 2 / 3; }
     .metric-grid article { min-height: 7.5rem; }
-    .pipeline li,
-    .experiment-grid article { gap: 0.45rem; grid-template-columns: 1fr; }
     .dataset-bar { gap: 1px; grid-template-columns: 7fr 2fr 1fr; }
     .dataset-bar > div { min-height: 3.85rem; min-width: 0; overflow: hidden; padding: 0.55rem 0.28rem; }
     .dataset-bar > div:first-child { border-radius: 1rem 0 0 1rem; }
@@ -1663,11 +1575,14 @@ END OF REPORT
     .dataset-bar .validation span::after { content: "20%"; }
     .dataset-bar .test span::after { content: "10%"; }
     .performance-card { padding: 1.2rem; }
-    .comparison-plot { --label-column: 4rem; --value-column: 4.2rem; }
-    .comparison-scale { margin-left: calc(var(--label-column) + 0.55rem); }
-    .comparison-series { gap: 0.55rem; }
-    .series-name { font-size: 0.62rem; }
-    .series-value { font-size: 0.68rem; }
+    .comparison-plot { --value-column: 3.85rem; }
+    .comparison-scale { margin-left: var(--value-column); }
+    .comparison-row-heading { align-items: flex-start; }
+    .comparison-delta { font-size: 0.56rem; white-space: nowrap; }
+    .dumbbell-row { gap: 0.55rem; }
+    .dumbbell-value { font-size: 0.67rem; }
+    .dumbbell-value small { font-size: 0.46rem; }
+    .dumbbell-dot { height: 0.65rem; width: 0.65rem; }
     .research-figure { border-radius: 0.9rem; margin-top: 2rem; }
     .figure-zoom-trigger > span { opacity: 1; }
     .figure-lightbox { padding: 0.8rem; }
@@ -1682,10 +1597,6 @@ END OF REPORT
   @media (prefers-reduced-motion: reduce) {
     .scan-line,
     .case-footer::before,
-    .plant-flow-symbol::before,
-    .pipeline li::after,
-    .experiment-grid article::after,
-    :global(html.case-is-scrolling) .pipeline::before,
-    :global(html.case-is-scrolling) .experiment-grid::before { animation: none; }
+    .plant-flow-symbol::before { animation: none; }
   }
 </style>

@@ -79,11 +79,12 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The global header uses passive scroll listeners and `requestAnimationFrame`.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
-- Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries.
-- The renewable-control architecture uses separate desktop and mobile SVG assets so topology and labels remain legible without raster scaling.
+- Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries. Labels must occupy clear space and never overlap routes or equipment.
+- The renewable-control architecture uses separate desktop and mobile SVG assets. Its integrated topology includes a three-turbine wind farm, solar generation, local PPCs, hybrid coordination, operator supervision, an MV bus, transformers and the grid POI.
+- The MRI VGG16 figure uses a final black, soft-white, grey and lilac raster asset with no green accent colors.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
-- The control remains visible at the initial position, appears during active scrolling and fades after the interaction ends.
+- The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
 - `prefers-reduced-motion` disables nonessential animation.
 
 ## Contact behavior
