@@ -7,34 +7,139 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
 ---
 
 <header class="site-header sticky top-0 z-50">
-
   <Container>
-
     <nav class="flex h-20 items-center gap-3 sm:gap-5">
+      <div class="header-actions shrink-0">
+        <a href={sectionHref("about")} class="interactive-control home-control" aria-label="Go to the main introduction" title="About"><HomeIcon /></a>
 
-      <a
-        href={sectionHref("about")}
-        class="interactive-control home-control shrink-0"
-        aria-label="Go to the main introduction"
-        title="About"
-      >
-        <HomeIcon />
-      </a>
+        <details class="language-selector" data-language-selector>
+          <summary class="interactive-control language-trigger" aria-label="Choose display language">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3.5 9h17M3.5 15h17M12 3c2.1 2.35 3.2 5.35 3.2 9S14.1 18.65 12 21M12 3C9.9 5.35 8.8 8.35 8.8 12S9.9 18.65 12 21"></path></svg>
+            <span data-language-code>EN</span>
+            <svg class="language-chevron" aria-hidden="true" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1.5 5 5 5-5"></path></svg>
+          </summary>
+          <div class="language-menu" role="menu" aria-label="Available languages">
+            <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-code="EN"><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>English</span><strong>EN</strong></button>
+            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-code="DE"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>German</span><strong>DE</strong></button>
+            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-code="NL"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>Dutch</span><strong>NL</strong></button>
+          </div>
+        </details>
+      </div>
 
-      <ul class="flex min-w-0 flex-1 justify-end gap-2 overflow-x-auto whitespace-nowrap px-3 py-3 text-xs [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-3 sm:text-sm">
-
+      <ul class="desktop-navigation flex min-w-0 flex-1 justify-end gap-2 overflow-x-auto whitespace-nowrap px-3 py-3 text-xs [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-3 sm:text-sm">
         <li><a class="interactive-control nav-control" href={sectionHref("about")} data-nav-link="about">About</a></li>
-
         <li><a class="interactive-control nav-control" href={sectionHref("projects")} data-nav-link="projects">Projects</a></li>
-
         <li><a class="interactive-control nav-control" href={sectionHref("milestones")} data-nav-link="milestones">Milestones</a></li>
-
         <li><a class="interactive-control nav-control" href={sectionHref("contact")} data-nav-link="contact">Contact</a></li>
-
       </ul>
 
+      <details class="mobile-navigation" data-mobile-navigation>
+        <summary class="interactive-control mobile-menu-trigger" aria-label="Open navigation menu"><span></span><span></span><span></span></summary>
+        <div class="mobile-menu" role="menu" aria-label="Main navigation">
+          <a role="menuitem" href={sectionHref("about")} data-nav-link="about">About</a>
+          <a role="menuitem" href={sectionHref("projects")} data-nav-link="projects">Projects</a>
+          <a role="menuitem" href={sectionHref("milestones")} data-nav-link="milestones">Milestones</a>
+          <a role="menuitem" href={sectionHref("contact")} data-nav-link="contact">Contact</a>
+        </div>
+      </details>
     </nav>
-
   </Container>
-
 </header>
+
+<script>
+  const closeOnEscape = (element: HTMLDetailsElement) => element.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") { element.removeAttribute("open"); element.querySelector<HTMLElement>("summary")?.focus(); }
+  });
+  const languageSelectors = document.querySelectorAll<HTMLDetailsElement>("[data-language-selector]");
+  const mobileMenus = document.querySelectorAll<HTMLDetailsElement>("[data-mobile-navigation]");
+
+  languageSelectors.forEach((selector) => {
+    const code = selector.querySelector<HTMLElement>("[data-language-code]");
+    const options = selector.querySelectorAll<HTMLButtonElement>("[data-language-option]");
+    options.forEach((option) => option.addEventListener("click", () => {
+      if (code) code.textContent = option.dataset.code ?? "EN";
+      options.forEach((item) => item.setAttribute("aria-checked", String(item === option)));
+      selector.removeAttribute("open");
+    }));
+    closeOnEscape(selector);
+  });
+
+  mobileMenus.forEach((menu) => {
+    menu.querySelectorAll<HTMLAnchorElement>("a").forEach((link) => {
+      link.addEventListener("pointerdown", () => {
+        link.classList.remove("is-tap-confirmed");
+        requestAnimationFrame(() => link.classList.add("is-tap-confirmed"));
+      });
+      link.addEventListener("animationend", () => link.classList.remove("is-tap-confirmed"));
+      link.addEventListener("click", () => menu.removeAttribute("open"));
+    });
+    closeOnEscape(menu);
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    [...languageSelectors, ...mobileMenus].forEach((element) => {
+      if (!element.contains(event.target as Node)) element.removeAttribute("open");
+    });
+  });
+</script>
+
+<style>
+  .header-actions { align-items: center; display: flex; gap: 0.55rem; }
+  .language-selector, .mobile-navigation { position: relative; }
+  .language-trigger { align-items: center; border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(203 213 225); cursor: pointer; display: inline-flex; gap: .35rem; height: 2.65rem; justify-content: center; list-style: none; padding: .35rem .55rem; }
+  .language-trigger::-webkit-details-marker, .mobile-menu-trigger::-webkit-details-marker { display: none; }
+  .language-trigger > svg:first-child { height: 1.2rem; width: 1.2rem; }
+  .language-trigger > span { font-size: .68rem; font-weight: 700; letter-spacing: .12em; }
+  .language-chevron { height: .45rem; transition: transform 180ms ease; width: .65rem; }
+  .language-selector[open] .language-chevron { transform: rotate(180deg); }
+  .language-trigger:hover, .language-trigger:focus-visible, .language-selector[open] .language-trigger,
+  .mobile-menu-trigger:hover, .mobile-menu-trigger:focus-visible, .mobile-navigation[open] .mobile-menu-trigger { border-color: rgb(196 181 253); color: rgb(196 181 253); }
+
+  .language-menu, .mobile-menu { background: rgba(5,5,9,.98); border: 1px solid rgba(196,181,253,.28); border-radius: .8rem; box-shadow: 0 16px 36px rgba(0,0,0,.48); min-width: 11rem; padding: .35rem; position: absolute; top: calc(100% + .55rem); }
+  .language-menu { left: 0; }
+  .mobile-menu { right: 0; }
+  .language-menu button { align-items: center; border-radius: .55rem; color: rgb(203 213 225); cursor: pointer; display: grid; font-size: .78rem; gap: .55rem; grid-template-columns: 1.35rem 1fr auto; padding: .62rem .7rem; text-align: left; width: 100%; }
+  .language-menu button:hover, .language-menu button:focus-visible, .mobile-menu a:hover, .mobile-menu a:focus-visible { background: rgba(167,139,250,.1); color: rgb(245 243 255); outline: none; }
+  .language-menu button[aria-checked="true"] { color: rgb(196 181 253); }
+  .language-menu strong { font-size: .68rem; letter-spacing: .12em; }
+  .desktop-navigation .nav-control { color: rgb(196 181 253); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+
+  .language-flag { border-radius: .08rem; display: block; height: .78rem; overflow: hidden; shape-rendering: crispEdges; width: 1.22rem; }
+
+  .mobile-navigation { display: none; margin-left: auto; }
+  .mobile-menu-trigger { align-content: center; border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(203 213 225); cursor: pointer; display: grid; gap: .24rem; height: 2.65rem; justify-content: center; list-style: none; padding: 0; width: 2.65rem; }
+  .mobile-menu-trigger span { background: currentColor; border-radius: 999px; height: 1px; transition: transform 180ms ease, opacity 180ms ease; width: 1.05rem; }
+  .mobile-navigation[open] .mobile-menu-trigger span:nth-child(1) { transform: translateY(.29rem) rotate(45deg); }
+  .mobile-navigation[open] .mobile-menu-trigger span:nth-child(2) { opacity: 0; }
+  .mobile-navigation[open] .mobile-menu-trigger span:nth-child(3) { transform: translateY(-.29rem) rotate(-45deg); }
+  .mobile-menu a { border-radius: .55rem; color: rgb(196 181 253); display: block; font-size: .9rem; font-weight: 650; letter-spacing: .12em; padding: .72rem .8rem; text-transform: uppercase; transition: background-color 180ms ease, color 180ms ease, transform 180ms ease; }
+
+  @keyframes mobile-nav-confirm {
+    0% { background: rgba(167,139,250,.1); color: rgb(245 243 255); transform: scale(1); }
+    42% { background: rgb(196 181 253); color: rgb(5 5 9); transform: scale(.965); }
+    100% { background: rgba(167,139,250,.16); color: rgb(245 243 255); transform: scale(1); }
+  }
+
+  @keyframes mobile-menu-panel-contrast {
+    0%, 100% { background: rgb(5 5 9); border-color: rgba(196,181,253,.32); box-shadow: 0 16px 36px rgba(0,0,0,.48); }
+    50% { background: rgb(18 14 27); border-color: rgb(196 181 253); box-shadow: 0 16px 36px rgba(0,0,0,.58), 0 0 0 1px rgba(196,181,253,.12); }
+  }
+
+  @media (max-width: 639px) {
+    .header-actions { gap: .4rem; }
+    .language-trigger { height: 2.5rem; padding-inline: .48rem; }
+    .language-trigger > svg:first-child { height: 1.1rem; width: 1.1rem; }
+    .language-menu, .mobile-menu { min-width: 10.5rem; }
+    .desktop-navigation { display: none; }
+    .mobile-navigation { display: block; }
+    .mobile-navigation[open] .mobile-menu-trigger { animation: none; background: rgb(196 181 253); border-color: rgb(196 181 253); color: rgb(5 5 9); }
+    .mobile-navigation[open] .mobile-menu { animation: mobile-menu-panel-contrast 5.2s ease-in-out infinite; }
+    .mobile-menu a.is-tap-confirmed { animation: mobile-nav-confirm 360ms cubic-bezier(.22,1,.36,1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu a { transition: none; }
+    .mobile-menu a.is-tap-confirmed { animation: none; background: rgb(196 181 253); color: rgb(5 5 9); }
+    .mobile-navigation[open] .mobile-menu { animation: none; }
+  }
+</style>

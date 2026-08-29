@@ -26,7 +26,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Original expandable photovoltaic plant and industrial controls visuals, plus a conceptual control architecture that excludes proprietary topology, setpoints and interfaces.
 - Rebuilt desktop and mobile hybrid-generation diagrams with separate electrical export, field I/O, coordinated setpoints, feedback, operator supervision and grid POI semantics.
 - Unified grid architecture and Netherlands context diagrams on a black, grey, soft-white and lilac technical palette without white frames.
-- Repository asset audit confirming that all retained project images, company marks, favicons and the public academic report are referenced directly, dynamically or by browser convention.
+- Repository asset audit confirming that all retained project images, company marks, the favicon and the public academic report are referenced directly, dynamically or by browser convention.
 - Verified Spanish photovoltaic context sourced from public plant information and Red Eléctrica.
 - Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
@@ -37,6 +37,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
+- Responsive header with horizontal desktop navigation, a circular mobile dropdown and an EN/DE/NL language-selector prototype ready for future translated routes.
 - Responsive hybrid-control architecture with three defined wind turbines, a direct solar Field I/O connection, clear transformer labels and non-overlapping electrical and control paths.
 - Fluid section transitions without rigid divider lines and with a more compact vertical rhythm.
 - Responsive contact form that prepares an email in the visitor's email client.

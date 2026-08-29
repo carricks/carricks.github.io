@@ -40,5 +40,3 @@ export const projects = [
     outcome: "Delivered a secure data acquisition integration that connected operational environments while protecting critical control network interfaces.",
   },
 ] as const;
-
-export type Project = (typeof projects)[number];

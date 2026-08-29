@@ -24,5 +24,3 @@ export const aboutDestinations = [
       "A growing record of technical collaboration across Europe and Latin America, shaped by different industries, teams and operating contexts.",
   },
 ] as const;
-
-export type AboutDestination = (typeof aboutDestinations)[number];

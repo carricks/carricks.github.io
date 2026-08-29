@@ -72,7 +72,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             { title: "MENINGIOMA", copy: "Tumour arising from the meninges surrounding the brain.", image: "class-meningioma.png" },
             { title: "GLIOMA", copy: "Tumour originating in glial cells, with highly variable appearance.", image: "class-glioma.png" },
             { title: "PITUITARY", copy: "Tumour located around the pituitary gland at the base of the brain.", image: "class-pituitary.png" },
-            { title: "NO TUMOUR", copy: "MRI samples without evidence of the three target tumour classes.", image: "class-no-tumour.png" },
+            { title: "NO TUMOUR", copy: "MRI samples without evidence of the three target tumour classes.", image: "class-no-tumour-clean.png" },
           ].map(({ title, copy, image }) => (
             <article>
               <button type="button" class="figure-zoom-trigger class-image-trigger" data-lightbox-trigger aria-label={`Enlarge MRI example classified as ${title.toLowerCase()}`}>
@@ -1019,15 +1019,26 @@ END OF REPORT
   .class-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
   .class-grid article {
+    background: #050507;
     overflow: hidden;
     padding: 0;
   }
 
+  .class-grid .class-image-trigger {
+    aspect-ratio: 1;
+    background: #020203;
+    overflow: hidden;
+    padding: clamp(0.55rem, 1.1vw, 0.8rem);
+  }
+
   .class-grid .class-image-trigger > img {
     aspect-ratio: 1;
+    background: #020203;
+    border-radius: 0.65rem;
     display: block;
     filter: grayscale(1) contrast(1.08);
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     transition: filter 240ms ease, transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
     width: 100%;
   }
@@ -1076,7 +1087,24 @@ END OF REPORT
   }
 
   .wide-figure img { filter: grayscale(0.25) saturate(0.75) hue-rotate(205deg); }
-  .vgg16-figure img { filter: none; }
+  .vgg16-figure {
+    margin-inline: auto;
+    max-width: 68rem;
+    width: 100%;
+  }
+
+  .vgg16-figure .figure-zoom-trigger {
+    aspect-ratio: 1644 / 900;
+    overflow: hidden;
+  }
+
+  .vgg16-figure img {
+    filter: none;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
 
   .figure-zoom-trigger {
     background: transparent;
