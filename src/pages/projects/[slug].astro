@@ -123,9 +123,9 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <p>Transfer learning reused VGG16's pretrained visual features. Freezing most of the network and adapting the output reduced the trainable portion to roughly 16,000 parameters for the target classification task.</p>
           </div>
         </div>
-        <figure class="research-figure wide-figure">
+        <figure class="research-figure wide-figure vgg16-figure">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge VGG16 architecture diagram">
-            <img src="/images/projects/brain-tumour-mri/vgg16-architecture-final-lilac-20260829.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
+            <img src="/images/projects/brain-tumour-mri/vgg16-architecture-lilac-approved-v2.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
           <figcaption>VGG16 transfer learning architecture adapted during the research.</figcaption>
@@ -327,7 +327,7 @@ END OF REPORT
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture-final-lilac-20260829.png" alt="Expanded research figure" />
+          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture-lilac-approved-v2.png" alt="Expanded research figure" />
         </div>
       </dialog>
 
@@ -1076,6 +1076,7 @@ END OF REPORT
   }
 
   .wide-figure img { filter: grayscale(0.25) saturate(0.75) hue-rotate(205deg); }
+  .vgg16-figure img { filter: none; }
 
   .figure-zoom-trigger {
     background: transparent;
