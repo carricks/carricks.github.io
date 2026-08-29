@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 24 August 2026
+Last updated: 29 August 2026
 
 ## Editorial objective
 
@@ -137,15 +137,26 @@ Keep organisation, platform and client identities anonymous unless approved.
 
 ### Renewable control
 
-Focus: PLC-based power-plant controllers, HMI/SCADA integration, communications and grid-code validation for utility-scale photovoltaic plants.
+This professional case study presents Diego's contribution to the deployment and commissioning of a PLC based Power Plant Controller for a utility scale photovoltaic installation in Extremadura. The narrative connects PPC regulation, PLC automation, SCADA supervision, HMI interaction, industrial communications, redundancy and structured validation without naming the employer, client or project.
 
-Confirm whether published capacity figures are permitted before final release.
+The published framing includes:
+
+- A public and verified plant context of 380 MW, more than 930,000 fixed structure panels and 226 inverters.
+- An original aerial photovoltaic plant visual and a responsive conceptual hybrid-control diagram, both expandable through the shared lightbox.
+- A three-stage explanatory flow covering field acquisition, coordinated control and supervised response.
+- A separate engineering architecture that distinguishes the electrical export path from field I/O, local PPC control, hybrid coordination, operator supervision and the grid POI.
+- Diego's contribution across deployment support, commissioning, integration, testing and technical troubleshooting.
+- Spanish photovoltaic growth context sourced from Red Eléctrica, including the position of solar PV as the leading technology by installed capacity in early 2025.
+- An explicit portfolio boundary excluding source code, operational setpoints, internal topology, procedures and confidential interfaces.
+- No employer, client or project names in the visible case study.
+
+All portfolio-created engineering diagrams use a near-black canvas, soft white and grey physical structure, and lilac control semantics. Connections must terminate at a defined component or boundary and remain readable at the iPhone 12 Pro viewport.
 
 ## Content still needed
 
 1. Final International narrative.
 2. Milestones and research content with dates and verifiable context.
-3. Stronger evidence and approved visuals for the remaining professional projects.
+3. Stronger evidence and approved visuals for the remaining offshore professional project.
 4. Final review of all technical claims against the CV and LinkedIn.
 5. Improved LinkedIn copy consistent with the portfolio narrative.
 6. Desired roles, collaborations and calls to action.

@@ -1,5 +1,7 @@
 # Design system
 
+Last updated: 29 August 2026
+
 ## Direction
 
 The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Black, slate and lilac are the core language; additional colors are reserved for validation or accessibility states.
@@ -61,6 +63,10 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - The modal closes through its close control, Escape or a click outside the image, then restores focus to the trigger.
 - MRI class cards preserve a monochrome scientific treatment and equal visual dimensions.
 - Grid stability figures preserve their full composition and use high resolution PNG assets suitable for close inspection.
+- Technical diagrams use black backgrounds without white padding or heavy framing.
+- Continuous grey lines communicate electrical, physical or data paths; dashed lilac lines communicate control, setpoints and feedback. Legends must name these roles rather than relying on color alone.
+- Diagram connections terminate cleanly at equipment, buses, controllers, hubs or external boundaries. Labels must not intersect routes.
+- Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 
 ### Research references

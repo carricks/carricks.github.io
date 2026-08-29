@@ -20,6 +20,16 @@ export const projects = [
     outcome: "Supported reliable decision support workflows across offline and online environments while preserving traceability, operational context and multidisciplinary review.",
   },
   {
+    slug: "renewable-plant-control",
+    shortLabel: "Photovoltaic Control",
+    title: "Utility Scale Photovoltaic Plant Control",
+    location: "Extremadura, Spain",
+    summary: "Coordinating plant level control, supervision and field automation for a 380 MW photovoltaic installation.",
+    contribution: "Supported the deployment, commissioning and integration of a PLC based Power Plant Controller with SCADA, HMI and plant communications, connecting field behaviour with grid level requirements.",
+    technicalScope: ["PPC", "PLC", "HMI", "SCADA", "Industrial Communications", "Grid Code Validation", "Redundancy"],
+    outcome: "Helped validate a coordinated control workflow for a commercial scale photovoltaic plant with more than 930,000 panels and 226 inverters.",
+  },
+  {
     slug: "secure-offshore-data-integration",
     shortLabel: "Offshore Integration",
     title: "Secure Offshore Operations Data Integration",
@@ -28,16 +38,6 @@ export const projects = [
     contribution: "Led server and workstation deployment, then integrated the data acquisition layer across segregated operational domains while supporting planning, commissioning and technical coordination.",
     technicalScope: ["SCADA", "Linux", "Windows", "FEP", "ICCP", "OPC UA", "Cybersecurity"],
     outcome: "Delivered a secure data acquisition integration that connected operational environments while protecting critical control network interfaces.",
-  },
-  {
-    slug: "renewable-plant-control",
-    shortLabel: "Renewable Control",
-    title: "Grid Code Control for Renewable Plants",
-    location: "Spain",
-    summary: "Turning renewable generation into predictable, grid ready power.",
-    contribution: "Participated in the deployment and end to end integration testing of a modular, PLC based power plant controller, covering HMI, PLC and SCADA integration.",
-    technicalScope: ["PLC", "HMI", "SCADA", "Modbus TCP", "IEC 61850", "VPN", "Redundancy"],
-    outcome: "Validated controller integration and grid code compliance for commercial scale photovoltaic plants, including installations up to 380 MW.",
   },
 ] as const;
 

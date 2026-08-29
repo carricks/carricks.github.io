@@ -1,10 +1,10 @@
 # Roadmap
 
-Last updated: 24 August 2026
+Last updated: 29 August 2026
 
 ## Current product status
 
-The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research project is a complete flagship case study, and the transmission grid stability project now follows the same narrative standard while protecting confidential operational context. The main remaining work is expanding the other projects, completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
+The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research, transmission grid stability and photovoltaic plant control projects now provide complete narrative case studies with original visuals and explicit confidentiality boundaries. The main remaining work is expanding the offshore project, completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
 
 ## Completed
 
@@ -22,9 +22,15 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Original expandable system architecture diagram and verified related research reference for the grid stability case study.
 - Reconstructed Dutch grid context map with sourced 2045 planning indicators and responsive presentation.
 - Control Room of the Future context with original high resolution control room and grid facility visuals, both available through the shared lightbox.
+- Complete photovoltaic plant control case study covering a verified 380 MW public context, PPC, PLC, SCADA, HMI, industrial integration and commissioning experience without naming the employer, client or project.
+- Original expandable photovoltaic plant and industrial controls visuals, plus a conceptual control architecture that excludes proprietary topology, setpoints and interfaces.
+- Rebuilt desktop and mobile hybrid-generation diagrams with separate electrical export, field I/O, coordinated setpoints, feedback, operator supervision and grid POI semantics.
+- Unified grid architecture and Netherlands context diagrams on a black, grey, soft-white and lilac technical palette without white frames.
+- Repository asset audit confirming that all retained project images, company marks, favicons and the public academic report are referenced directly, dynamically or by browser convention.
+- Verified Spanish photovoltaic context sourced from public plant information and Red Eléctrica.
 - Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
-- Accessible image lightbox across the principal MRI and grid stability project figures.
+- Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
@@ -39,7 +45,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 - Final editorial review of Academic and Experience copy.
 - Final permission and rendering review of company logos.
-- Expansion of the remaining two professional project case studies with stronger evidence and approved visuals.
+- Expansion of the remaining offshore professional project case study with stronger evidence and approved visuals.
 - International page content and narrative.
 - Milestones, research and recognition content.
 - Mobile and desktop visual QA across common viewport sizes.
@@ -48,7 +54,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 1. Complete the International and Milestones content.
 2. Review the CV and LinkedIn profile for publishable evidence, achievements and consistent wording.
-3. Expand the remaining professional projects into credible case studies: context, contribution, approach, constraints and outcome.
+3. Expand the remaining offshore project into a credible case study: context, contribution, approach, constraints and outcome.
 4. Confirm publication permission for every company logo, project detail and measurable claim.
 5. Improve the contact flow or connect it to a reliable form service if direct submission is required.
 6. Add canonical metadata, Open Graph images, favicon QA, sitemap and robots policy.

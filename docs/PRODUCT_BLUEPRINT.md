@@ -1,12 +1,14 @@
 # Product blueprint
 
+Last updated: 29 August 2026
+
 ## Vision
 
 Create a focused engineering portfolio that presents Diego Carrillo as a multidisciplinary systems engineer. The product should communicate technical depth without feeling like a chronological CV and should make complex experience easy to explore on desktop and mobile.
 
 ## Current product state
 
-The website is functional and navigable. The design and interaction foundation is mature, and the MRI research and grid stability projects now provide complete visual case study patterns. The remaining sections still need deeper evidence, final copy and publication review.
+The website is functional and navigable on desktop and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case-study patterns. Grid and renewable diagrams now share a dark semantic system with explicit physical, electrical and control relationships. The remaining sections still need deeper evidence, final copy and publication review.
 
 ## Audience
 
@@ -34,8 +36,8 @@ Homepage
   Projects
     MRI Tumour Classification
     Grid Stability
+    Photovoltaic Control
     Offshore Integration
-    Renewable Control
   Milestones
   Contact
 ```
@@ -68,6 +70,7 @@ Homepage introduction
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
 - Research figures use a browser native dialog lightbox and require no external runtime dependency.
+- Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
 

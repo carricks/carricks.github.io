@@ -1,5 +1,7 @@
 # Architecture
 
+Last updated: 29 August 2026
+
 ## Status
 
 This is a static Astro portfolio deployed through GitHub Pages. Astro renders the public routes at build time. Browser JavaScript is limited to navigation motion, viewport-aware effects and contact-form behavior.
@@ -13,6 +15,7 @@ public/
   images/                       Fixed-URL company and project assets
     projects/brain-tumour-mri/  Thesis-authored MRI and model figures
     projects/grid-stability/    Conceptual architecture, regional context and CRoF visuals
+    projects/renewable-control/ Responsive SVG control architecture and photovoltaic context
 src/
   components/
     common/                     Container, Section and shared icons
@@ -76,6 +79,8 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The global header uses passive scroll listeners and `requestAnimationFrame`.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
+- Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries.
+- The renewable-control architecture uses separate desktop and mobile SVG assets so topology and labels remain legible without raster scaling.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during active scrolling and fades after the interaction ends.

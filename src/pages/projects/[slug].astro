@@ -13,6 +13,7 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
 const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
+const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
@@ -89,10 +90,25 @@ const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
           <p class="case-eyebrow">RESEARCH PIPELINE</p>
           <h2 id="pipeline-title">From raw images to an interpretable prediction.</h2>
         </div>
-        <ol class="pipeline">
-          <li><span>DATA</span><div><strong>Prepare the MRI dataset</strong><p>Combine three public collections, remove unsuitable samples, standardise every image and create independent training, validation and test sets.</p></div></li>
-          <li><span>MODEL</span><div><strong>Train through transfer learning</strong><p>Apply controlled augmentation and adapt the visual features learned by VGG16 to distinguish the four MRI classes.</p></div></li>
-          <li><span>OUTPUT</span><div><strong>Evaluate and deliver predictions</strong><p>Assess performance across every class and serve the resulting probabilities through a Flask application with numerical and visual results.</p></div></li>
+        <ol class="plant-flow" aria-label="MRI research workflow">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l4 4v16H6V2Z"/><path d="M14 2v5h5M9 11h6M9 15h6M9 19h4"/></svg>
+            </span>
+            <div><span>DATA</span><strong>Prepare the MRI dataset</strong><p>Combine public collections, remove unsuitable samples and separate training, validation and test data.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="7" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="19" cy="17" r="2"/><path d="m6.7 8.1 3.6 2.8M6.7 15.9l3.6-2.8M13.7 10.9l3.6-2.8M13.7 13.1l3.6 2.8"/></svg>
+            </span>
+            <div><span>MODEL</span><strong>Train through transfer learning</strong><p>Use controlled augmentation and adapt VGG16 visual features to distinguish the four MRI classes.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 13V9M11 13V7M15 13v-3M19 13V6M9 21h6M12 17v4"/></svg>
+            </span>
+            <div><span>OUTPUT</span><strong>Evaluate and deliver predictions</strong><p>Assess every class and serve probabilities through a Flask application with numerical and visual results.</p></div>
+          </li>
         </ol>
       </section>
 
@@ -114,11 +130,26 @@ const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
           </button>
           <figcaption>VGG16 transfer learning architecture adapted during the research.</figcaption>
         </figure>
-        <div class="experiment-grid">
-          <article><div><span>INITIAL EXPERIMENT</span><strong>CNN baseline with two classes</strong><p>A custom convolutional network used 620 images of meningioma and cases without a tumour to validate the complete workflow. Its unstable validation behaviour exposed overfitting and the limits of a small dataset.</p></div></article>
-          <article><div><span>FINAL EXPERIMENT</span><strong>Transfer learning across four classes</strong><p>The study expanded to 5,320 balanced images covering meningioma, glioma, pituitary and no tumour. VGG16 transfer learning reduced the trainable output to roughly 16,000 parameters.</p></div></article>
-          <article><div><span>INPUT SHAPE</span><strong>224 × 224 × 3</strong><p>Every source image was resized and converted to a consistent tensor with three channels. This common input made heterogeneous resolutions compatible with the same feature extraction pipeline.</p></div></article>
-        </div>
+        <ol class="plant-flow" aria-label="MRI model evolution">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="8" r="2"/><circle cx="5" cy="16" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="m6.8 9 3.4 2M6.8 15l3.4-2M14 12h3"/></svg>
+            </span>
+            <div><span>INITIAL EXPERIMENT</span><strong>CNN baseline with two classes</strong><p>A custom network used 620 images to validate the workflow. Unstable validation exposed overfitting and the limits of a small dataset.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="5" height="14" rx="1"/><rect x="10" y="7" width="5" height="10" rx="1"/><rect x="17" y="9" width="4" height="6" rx="1"/><path d="M8 12h2M15 12h2"/></svg>
+            </span>
+            <div><span>FINAL EXPERIMENT</span><strong>Transfer learning across four classes</strong><p>The study expanded to 5,320 balanced images. VGG16 transfer learning reduced the trainable output to roughly 16,000 parameters.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M2 8V2h6M16 2h6v6M22 16v6h-6M8 22H2v-6M9 12h6M12 9v6"/></svg>
+            </span>
+            <div><span>INPUT SHAPE</span><strong>224 × 224 × 3</strong><p>Every image was resized into a consistent three channel tensor, making heterogeneous source resolutions compatible with one feature extraction pipeline.</p></div>
+          </li>
+        </ol>
       </section>
 
       <section class="case-section" aria-labelledby="data-title">
@@ -372,10 +403,25 @@ END OF REPORT
           <p class="case-eyebrow">ANALYSIS WORKFLOW</p>
           <h2 id="grid-flow-title">From operational context to reviewable evidence.</h2>
         </div>
-        <ol class="pipeline grid-pipeline">
-          <li><span>INPUT</span><div><strong>Prepare the operating scenario</strong><p>Transform validated network information and a selected contingency into consistent inputs for the simulation environment.</p></div></li>
-          <li><span>SIMULATION</span><div><strong>Evaluate system response</strong><p>Coordinate specialist tools that calculate how the transmission system behaves during and after the controlled disturbance.</p></div></li>
-          <li><span>REVIEW</span><div><strong>Deliver traceable results</strong><p>Present structured outputs that engineering specialists can verify, compare and use within established decision processes.</p></div></li>
+        <ol class="plant-flow" aria-label="Grid stability analysis workflow">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+            </span>
+            <div><span>INPUT</span><strong>Prepare the operating scenario</strong><p>Transform validated network information and a selected contingency into consistent simulation inputs.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2.5L17 8M14 8h3v3M9 21h6M12 17v4"/></svg>
+            </span>
+            <div><span>SIMULATION</span><strong>Evaluate system response</strong><p>Coordinate specialist tools that calculate behaviour during and after the controlled disturbance.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 11 2.2 2.2L13.5 9M9 21h6M12 17v4"/></svg>
+            </span>
+            <div><span>REVIEW</span><strong>Deliver traceable results</strong><p>Present structured outputs that specialists can verify, compare and use within established decisions.</p></div>
+          </li>
         </ol>
       </section>
 
@@ -458,6 +504,167 @@ END OF REPORT
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
           <img data-lightbox-image src="/images/projects/grid-stability/system-architecture.png" alt="Expanded conceptual transmission stability system architecture" />
+        </div>
+      </dialog>
+    </main>
+  ) : isRenewableControlCaseStudy ? (
+    <main class="case-study renewable-case-study">
+      <section class="case-hero renewable-hero">
+        <FloatingBackControl href="/#projects" label="Back to projects" />
+
+        <div class="case-hero-grid">
+          <div class="case-hero-copy">
+            <p class="case-eyebrow">PROFESSIONAL CONTRIBUTION · RENEWABLE CONTROL</p>
+            <h1>Coordinating utility scale photovoltaic power.</h1>
+            <p class="case-lead">Control and systems integration for a 380 MW photovoltaic plant in Extremadura, Spain, connecting PPC, PLC, SCADA and HMI layers with the operational behaviour expected at the grid connection point.</p>
+          </div>
+
+          <figure class="renewable-hero-visual">
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual view of the photovoltaic plant">
+              <img src="/images/projects/renewable-control/extremadura-solar-plant.png" alt="Original aerial reconstruction of a utility scale photovoltaic plant in Extremadura" />
+              <span aria-hidden="true">Expand</span>
+            </button>
+            <figcaption>Original portfolio visual representing the scale and landscape of the installation.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="solar-context-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">OPERATIONAL CONTEXT</p>
+            <h2 id="solar-context-title">A large plant within Spain's photovoltaic transformation.</h2>
+          </div>
+          <div>
+            <p>Extremadura has become one of Spain's most important solar regions. The plant context used for this portfolio covers 380 MW of capacity, more than 930,000 fixed structure panels and 226 inverters distributed across a vast generation site.</p>
+            <p>That scale changes the control problem. Thousands of field devices must respond as one coordinated power plant, with reliable supervision and a predictable response at the grid connection point.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" aria-labelledby="control-architecture-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">CONTROL ARCHITECTURE</p>
+          <h2 id="control-architecture-title">From solar field to grid response.</h2>
+          <p>Field information moves through deterministic automation and plant level regulation before operators supervise the coordinated response at the connection point.</p>
+        </div>
+        <ol class="plant-flow" aria-label="Conceptual photovoltaic plant control flow">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 7 16-2 1 11-16 2L4 7Z"/><path d="m9.3 6.35 1 10.95M14.65 5.7l1 10.95M4.5 11.25l16-2M4.9 15l16-2"/><path d="M12 17.15V21M8.5 21h7"/></svg>
+            </span>
+            <div><span>FIELD ACQUISITION</span><strong>Panels, inverters and sensors</strong><p>Measurements and equipment states establish the live condition of the solar field.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 15h8M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2"/></svg>
+            </span>
+            <div><span>COORDINATED CONTROL</span><strong>PLC and Power Plant Controller</strong><p>Deterministic logic and plant regulation convert grid targets into coordinated commands.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 12 2.3-2.4 2.2 1.9 3.2-3.2L17 10.5M9 21h6M12 17v4"/></svg>
+            </span>
+            <div><span>SUPERVISED RESPONSE</span><strong>SCADA, HMI and grid connection</strong><p>Operators verify plant behaviour while the installation responds as one generation resource.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section" aria-labelledby="engineering-work-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">ENGINEERING CONTRIBUTION</p>
+            <h2 id="engineering-work-title">Making the control layers work together on site.</h2>
+          </div>
+          <div>
+            <p>My work supported the deployment and commissioning of a PLC based Power Plant Controller, including its integration with the HMI, SCADA environment and plant communications.</p>
+            <p>The role connected control logic with real installation conditions through structured testing, technical troubleshooting and coordination during commissioning, while validating the plant response against defined grid requirements.</p>
+          </div>
+        </div>
+        <ol class="plant-flow" aria-label="Engineering contribution workflow">
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16"/><circle cx="8" cy="6" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="12" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="18" r="0.8" fill="currentColor" stroke="none"/><path d="M12 6h5M12 12h5M12 18h5"/></svg>
+            </span>
+            <div><span>CONTROL</span><strong>Coordinate plant behaviour</strong><p>Support PPC and PLC logic that converts grid level objectives into consistent commands across distributed equipment.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M7 9h4M7 12h7M12 17v4M8.5 21h7"/><circle cx="17.5" cy="9" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <div><span>INTEGRATION</span><strong>Connect automation and supervision</strong><p>Bring SCADA, HMI, controllers and communications into a coherent operational workflow.</p></div>
+          </li>
+          <li>
+            <span class="plant-flow-symbol" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.7 3.2 7.8 7.5 9.5 4.3-1.7 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+            </span>
+            <div><span>VALIDATION</span><strong>Test the complete response</strong><p>Verify signals, sequences, redundancy and plant behaviour under representative commissioning conditions.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section control-system-section" aria-labelledby="control-system-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">INDUSTRIAL TECHNOLOGY</p>
+            <h2 id="control-system-title">Software decisions connected to physical equipment.</h2>
+          </div>
+          <div>
+            <p>PLC hardware executes dependable control close to the process. The PPC coordinates active and reactive behaviour at plant level, while SCADA and HMI systems expose status, alarms and trends to engineering and operations teams.</p>
+            <p>Industrial communications and redundant services keep those layers connected, making signal quality, time consistency and failover behaviour as important as the application logic itself.</p>
+          </div>
+        </div>
+        <figure class="renewable-control-visual">
+          <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual hybrid renewable plant control architecture">
+            <picture>
+              <source media="(max-width: 640px)" srcset="/images/projects/renewable-control/hybrid-ppc-architecture-mobile.svg" />
+              <img src="/images/projects/renewable-control/hybrid-ppc-architecture.svg" alt="Conceptual architecture connecting wind and solar plants through local controllers and a hybrid Power Plant Controller to the grid connection point" />
+            </picture>
+            <span aria-hidden="true">Expand</span>
+          </button>
+          <figcaption>Conceptual hybrid control architecture reconstructed for this portfolio. It does not reproduce proprietary topology, interfaces or operational settings.</figcaption>
+        </figure>
+      </section>
+
+      <section class="case-section" aria-labelledby="solar-transition-title">
+        <div class="split-copy">
+          <div>
+            <p class="case-eyebrow">ENERGY TRANSITION</p>
+            <h2 id="solar-transition-title">Photovoltaic growth increases the value of dependable control.</h2>
+          </div>
+          <div>
+            <p>Spain's photovoltaic fleet expanded rapidly during the last decade. By early 2025, solar PV had become the country's largest generation technology by installed capacity, reaching 32,043 MW and almost one quarter of the national generation fleet.</p>
+            <p>As more solar capacity connects to the system, plant controllers become essential infrastructure: they help large installations translate variable generation into a measurable, supervised and coordinated grid response.</p>
+            <a class="interactive-control neon-box-control premium-neon-control literature-link" href="https://www.ree.es/en/press-office/press-release/news/press-release/2025/02/solar-pv-takes-lead-spains-installed-power-capacity" target="_blank" rel="noopener noreferrer">
+              <span class="neon-box-label">Explore national context</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section responsible-use-section" aria-labelledby="renewable-boundary-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">PORTFOLIO BOUNDARY</p>
+          <h2 id="renewable-boundary-title">Experience presented without proprietary detail.</h2>
+          <p>The descriptions and visuals communicate my engineering contribution at a systems level. They do not disclose plant setpoints, internal topology, source code, operational procedures or confidential interfaces.</p>
+        </div>
+      </section>
+
+      <section class="case-section technology-section" aria-labelledby="renewable-technology-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
+          <h2 id="renewable-technology-title">Tools supporting the plant control workflow.</h2>
+          <p>The environment combined plant level regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning.</p>
+        </div>
+        <div class="case-tags" aria-label="Core technologies">
+          {project.technicalScope.map((item) => <span>{item}</span>)}
+        </div>
+      </section>
+
+      <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded photovoltaic plant case study image">
+        <div class="figure-lightbox-content">
+          <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
+          <img data-lightbox-image src="/images/projects/renewable-control/extremadura-solar-plant.png" alt="Expanded photovoltaic plant case study visual" />
         </div>
       </dialog>
     </main>
@@ -891,6 +1098,22 @@ END OF REPORT
     width: 0.72rem;
   }
 
+  .pipeline li::after,
+  .experiment-grid article::after {
+    animation: plant-symbol-orbit 11s linear infinite;
+    background: conic-gradient(from 0deg, transparent 0 66%, rgba(167, 139, 250, 0.25) 76%, rgba(255, 255, 255, 0.72) 86%, rgba(196, 181, 253, 0.38) 94%, transparent 100%);
+    border-radius: 50%;
+    content: "";
+    filter: drop-shadow(0 0 0.3rem rgba(167, 139, 250, 0.34));
+    height: 1.08rem;
+    left: calc(-0.16rem - var(--timeline-gutter));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px));
+    pointer-events: none;
+    position: absolute;
+    top: 0.04rem;
+    width: 1.08rem;
+  }
+
   .pipeline li:last-child,
   .experiment-grid article:last-child { padding-bottom: 0; }
 
@@ -1272,12 +1495,12 @@ END OF REPORT
 
   .grid-hero-visual { margin: 0; }
   .grid-hero-visual figcaption { color: rgb(100 116 139); font-size: 0.72rem; letter-spacing: 0.04em; margin-top: 0.9rem; }
-  .grid-architecture-trigger { background: #fff; border: 1px solid var(--case-border); border-radius: 1.4rem; display: block; overflow: hidden; padding: clamp(0.55rem, 1.5vw, 0.9rem); width: 100%; }
+  .grid-architecture-trigger { background: #020203; border: 1px solid var(--case-border); border-radius: 1.4rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .grid-architecture-trigger img { aspect-ratio: 16 / 9; display: block; object-fit: contain; width: 100%; }
 
   .network-context-layout { align-items: start; display: grid; gap: clamp(1.5rem, 4vw, 4rem); grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr); margin-top: clamp(2rem, 3vw, 3rem); }
   .network-context-map { margin: 0; }
-  .network-context-map button { background: #fff; border: 1px solid var(--case-border); border-radius: 1.25rem; display: block; overflow: hidden; padding: clamp(0.5rem, 1vw, 0.75rem); width: 100%; }
+  .network-context-map button { background: #020203; border: 1px solid var(--case-border); border-radius: 1.25rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .network-context-map img { aspect-ratio: 2 / 2.35; display: block; object-fit: contain; width: 100%; }
   .network-context-map figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
   .network-context-metrics { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1305,6 +1528,42 @@ END OF REPORT
   .crof-gallery button { aspect-ratio: 16 / 10; background: rgb(5 5 8); border: 1px solid var(--case-border); border-radius: 1.2rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .crof-gallery img { display: block; height: 100%; object-fit: contain; width: 100%; }
   .crof-gallery figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
+
+  .renewable-case-study {
+    background:
+      radial-gradient(circle at 86% 8%, rgba(124, 58, 237, 0.12), transparent 27rem),
+      radial-gradient(circle at 12% 54%, rgba(196, 181, 253, 0.04), transparent 30rem),
+      #000;
+  }
+  .renewable-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.75rem, 4vw, 4rem); }
+  .renewable-case-study .case-hero-grid { min-height: auto; padding-bottom: clamp(1rem, 2vw, 2rem); padding-top: clamp(3.5rem, 6vw, 5.5rem); }
+  .renewable-case-study .case-section { padding-bottom: clamp(2.4rem, 3.4vw, 3.7rem); padding-top: clamp(2.4rem, 3.4vw, 3.7rem); }
+  .renewable-hero-visual,
+  .renewable-control-visual { margin: 0; }
+  .renewable-hero-visual button,
+  .renewable-control-visual button { background: rgb(4 4 7); border: 1px solid var(--case-border); border-radius: 1.35rem; display: block; overflow: hidden; padding: 0; width: 100%; }
+  .renewable-hero-visual img,
+  .renewable-control-visual img { aspect-ratio: 16 / 9; display: block; object-fit: cover; width: 100%; }
+  .renewable-hero-visual figcaption,
+  .renewable-control-visual figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.8rem; }
+
+  .plant-flow { display: grid; gap: 4.6rem; list-style: none; margin: clamp(2.5rem, 5vw, 4.5rem) auto 0; max-width: 48rem; padding: 0; }
+  .plant-flow li { align-items: center; display: grid; gap: clamp(1.4rem, 4vw, 3rem); grid-template-columns: 5rem minmax(0, 1fr); position: relative; }
+  .plant-flow li:not(:last-child)::before { background: linear-gradient(180deg, rgb(196 181 253), rgba(139, 92, 246, 0.28)); content: ""; height: 3.35rem; left: 2.48rem; position: absolute; top: calc(100% + 0.65rem); width: 1px; }
+  .plant-flow li:not(:last-child)::after { border-bottom: 1px solid rgb(196 181 253); border-right: 1px solid rgb(196 181 253); content: ""; height: 0.42rem; left: 2.28rem; position: absolute; top: calc(100% + 3.55rem); transform: rotate(45deg); width: 0.42rem; }
+  .plant-flow-symbol { align-items: center; background: radial-gradient(circle, rgba(124, 58, 237, 0.14), transparent 70%); border: 1px solid rgba(196, 181, 253, 0.38); border-radius: 50%; color: rgb(196 181 253); display: flex; height: 5rem; justify-content: center; position: relative; width: 5rem; }
+  .plant-flow-symbol::before { animation: plant-symbol-orbit 11s linear infinite; background: conic-gradient(from 0deg, transparent 0 66%, rgba(167, 139, 250, 0.28) 76%, rgba(255, 255, 255, 0.72) 86%, rgba(196, 181, 253, 0.4) 94%, transparent 100%); border-radius: inherit; content: ""; filter: drop-shadow(0 0 0.32rem rgba(167, 139, 250, 0.34)); inset: -0.18rem; mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px)); pointer-events: none; position: absolute; }
+  .plant-flow-symbol svg { height: 2rem; position: relative; width: 2rem; z-index: 1; }
+  @keyframes plant-symbol-orbit { to { transform: rotate(360deg); } }
+  .plant-flow li div > span { color: rgb(167 139 250); display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; }
+  .plant-flow strong { color: rgb(226 232 240); display: block; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.35; margin-top: 0.55rem; }
+  .plant-flow p { color: rgb(148 163 184); line-height: 1.7; margin-top: 0.45rem; }
+
+  .renewable-control-visual { margin: clamp(2rem, 4vw, 3.5rem) auto 0; max-width: 68rem; }
+  .renewable-control-visual button { max-height: 38rem; }
+  .renewable-control-visual picture { display: block; }
+  .renewable-control-visual img { max-height: 38rem; object-fit: contain; object-position: center; }
+  .renewable-case-study .technology-section { padding-top: clamp(2.5rem, 3.5vw, 3.75rem); }
 
   .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
   .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
@@ -1353,6 +1612,8 @@ END OF REPORT
     .network-context-metrics .source-note { grid-column: auto; }
     .grid-case-study .case-hero-grid { padding-bottom: 0.5rem; padding-top: 5rem; }
     .grid-case-study .case-section { padding-bottom: 2.25rem; padding-top: 2.25rem; }
+    .renewable-case-study .case-hero-grid { padding-bottom: 0.5rem; padding-top: 5rem; }
+    .renewable-case-study .case-section { padding-bottom: 2.25rem; padding-top: 2.25rem; }
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pipeline,
     .experiment-grid { max-width: 42rem; }
@@ -1376,6 +1637,16 @@ END OF REPORT
     .split-copy h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
     .metric-grid,
     .class-grid { grid-template-columns: 1fr; }
+    .plant-flow { gap: 4rem; }
+    .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
+    .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }
+    .plant-flow-symbol svg { height: 1.55rem; width: 1.55rem; }
+    .plant-flow li:not(:last-child)::before { height: 2.85rem; left: 1.85rem; top: calc(100% + 0.55rem); }
+    .plant-flow li:not(:last-child)::after { left: 1.65rem; top: calc(100% + 2.95rem); }
+    .renewable-control-visual { max-width: 22rem; }
+    .renewable-control-visual button,
+    .renewable-control-visual img { max-height: none; }
+    .renewable-control-visual img { aspect-ratio: 2 / 3; }
     .metric-grid article { min-height: 7.5rem; }
     .pipeline li,
     .experiment-grid article { gap: 0.45rem; grid-template-columns: 1fr; }
@@ -1411,6 +1682,9 @@ END OF REPORT
   @media (prefers-reduced-motion: reduce) {
     .scan-line,
     .case-footer::before,
+    .plant-flow-symbol::before,
+    .pipeline li::after,
+    .experiment-grid article::after,
     :global(html.case-is-scrolling) .pipeline::before,
     :global(html.case-is-scrolling) .experiment-grid::before { animation: none; }
   }
