@@ -26,7 +26,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
           <div class="case-hero-copy">
             <p class="case-eyebrow">MASTER'S RESEARCH · COMPUTER VISION</p>
             <h1>Classifying brain tumours from MRI.</h1>
-            <p class="case-lead">A complete research prototype that moved from heterogeneous medical images to a convolutional model covering four classes and a usable web interface.</p>
+            <p class="case-lead">A complete research prototype that transforms heterogeneous medical images into predictions across four classes through a convolutional model and a usable web interface.</p>
           </div>
 
           <figure class="hero-visual">
@@ -40,6 +40,49 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <figcaption>Preprocessed MRI samples from the experimental workflow.</figcaption>
           </figure>
         </div>
+
+        <section class="interactive-model" aria-labelledby="interactive-model-title">
+          <div class="interactive-model-heading">
+            <div>
+              <p class="case-eyebrow">INTERACTIVE 3D</p>
+              <h2 id="interactive-model-title">Explore the tumour model.</h2>
+            </div>
+            <div class="interactive-model-controls" aria-label="Interactive model controls">
+              <button type="button" data-second-model-reset disabled>Reset View</button>
+              <button type="button" data-second-tumour-toggle aria-pressed="true" disabled>Hide Tumor</button>
+              <button type="button" data-second-tags-toggle aria-pressed="true" disabled>Hide Tags</button>
+            </div>
+          </div>
+          <div class="interactive-model-frame">
+            <iframe
+              data-second-sketchfab-viewer
+              title="3D Brain Tumor Model"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="interactive-model-meta">
+            <span>Drag to rotate · scroll or pinch to zoom</span>
+            <span><a href="https://sketchfab.com/3d-models/3d-brain-tumor-model-a2e063b2d65a4a5190e1de85b7e16dcd" target="_blank" rel="nofollow noreferrer">3D Brain Tumor Model</a> by Rafael G. Malanga on Sketchfab.</span>
+          </div>
+          <div class="interactive-model-variant">
+            <div class="interactive-model-heading">
+              <div class="interactive-model-controls" aria-label="Second interactive model controls">
+                <button type="button" data-model-reset disabled>Reset View</button>
+                <button type="button" data-tumour-toggle aria-pressed="true" disabled>Hide Tumor</button>
+                <button type="button" data-tags-toggle aria-pressed="true" disabled>Hide Tags</button>
+              </div>
+            </div>
+            <div class="interactive-model-frame">
+              <iframe data-sketchfab-viewer title="CT Skull and Brain, with Tumor" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+            </div>
+            <div class="interactive-model-meta">
+              <span>Drag to rotate · scroll or pinch to zoom</span>
+              <span><a href="https://sketchfab.com/3d-models/ct-skull-and-brain-with-tumor-df80f6027970411d8446af01fcb76b1a" target="_blank" rel="nofollow noreferrer">CT Skull and Brain, with Tumor</a> by AlorE on Sketchfab.</span>
+            </div>
+          </div>
+        </section>
+        <script is:inline src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
       </section>
 
       <section class="case-section impact-section" aria-labelledby="impact-title">
@@ -141,7 +184,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="12" rx="2"/><path d="m8 7 2-3h10v12l-4 3M7 12h6M10 9v6"/></svg>
             </span>
-            <div><span>IMPROVING DATASET</span><strong>Expand and strengthen the training input</strong><p>Multiple public sources were cleaned, reorganised and balanced. Controlled rotations, shifts, zoom and flips increased the available training variation, growing the experiment to 5,320 images.</p></div>
+            <div><span>IMPROVING DATASET</span><strong>Expand and strengthen the training input</strong><p>Multiple public sources were cleaned, reorganised and balanced into a dataset of 5,320 images. Controlled rotations, shifts, zoom and flips then increased variation during training.</p></div>
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
@@ -153,7 +196,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6M4 18h16"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg>
             </span>
-            <div><span>OUTCOME</span><strong>Stronger recognition through richer learning</strong><p>The larger and more varied controlled input significantly improved the recognition and learning process, supporting more stable generalisation and meaningful predictions across four classes.</p></div>
+            <div><span>OUTCOME</span><strong>Stronger recognition through richer learning</strong><p>The larger and more varied input improved model learning, supported more stable generalisation and produced meaningful predictions across four classes.</p></div>
           </li>
         </ol>
       </section>
@@ -205,7 +248,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">EXPERIMENTAL RESULTS</p>
           <h2 id="results-title">Strong results across classes, with visible room for improvement.</h2>
-          <p>The model covering four classes reached 88.17% training accuracy. Evaluation of each class showed that glioma remained the most difficult category, reinforcing the effect of visual similarity and dataset quality.</p>
+          <p>The four class model reached 88.17% training accuracy. Evaluation by class showed that glioma remained the most difficult category, reinforcing the importance of visual similarity and dataset quality.</p>
         </div>
         <figure class="benchmark-figure">
           <div class="benchmark-chart" role="group" aria-label="Comparison between target class reference results and the predicted label performance of the applied model">
@@ -262,7 +305,7 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <h2 id="application-title">From trained model to functional application.</h2>
           </div>
           <div>
-            <p>As part of the study, I developed a web application that connected the trained Keras model to a Python and Flask backend. Users could submit an MRI image and receive probabilities across four classes, presented numerically and through D3.js visualisations, demonstrating how the research model could operate within a practical workflow for users.</p>
+            <p>As part of the study, I developed a web application that connected the trained Keras model to a Python and Flask backend. Users could submit an MRI image and receive probabilities across four classes, presented numerically and through D3.js visualisations. This demonstrated how the research model could support a practical review workflow.</p>
             <p class="prediction-study-copy">To demonstrate the complete inference workflow, a pituitary MRI sample was submitted to the application. The report records the selected image, the probability assigned to each class and the final classification returned by the model.</p>
           </div>
         </div>
@@ -297,25 +340,19 @@ END OF REPORT
         </figure>
       </section>
 
-      <section class="case-section responsible-use-section" aria-labelledby="responsible-use-title">
+      <section class="case-section responsible-use-section" aria-labelledby="research-foundation-title">
         <div class="section-heading compact-heading">
-          <p class="case-eyebrow">RESPONSIBLE USE</p>
-          <h2 id="responsible-use-title">Responsible use boundary.</h2>
-          <p>This research prototype supports experimentation and cannot replace diagnosis by qualified medical professionals.</p>
+          <p class="case-eyebrow">RESPONSIBLE RESEARCH · TECHNICAL FOUNDATION</p>
+          <h2 id="research-foundation-title">A complete workflow with a clear clinical boundary.</h2>
+          <p>The stack connected model development, accelerated experimentation, backend inference and browser visualisation within one complete workflow. It remains a research prototype designed to support experimentation and cannot replace diagnosis by qualified medical professionals.</p>
         </div>
-        <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="interactive-control neon-box-control premium-neon-control report-access-control" data-report-open>
-          <span class="neon-box-label">Explore report</span>
-        </a>
-      </section>
-
-      <section class="case-section technology-section" aria-labelledby="technology-title">
-        <div class="section-heading compact-heading">
-          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
-          <h2 id="technology-title">Tools behind the research.</h2>
-          <p>The stack connected model development, accelerated experimentation, backend inference and visualisation in the browser within one complete workflow.</p>
-        </div>
-        <div class="case-tags" aria-label="Core technologies">
-          {project.technicalScope.map((item) => <span>{item}</span>)}
+        <div class="merged-research-tools">
+          <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="interactive-control neon-box-control premium-neon-control report-access-control" data-report-open>
+            <span class="neon-box-label">Explore report</span>
+          </a>
+          <div class="case-tags" aria-label="Core technologies">
+            {project.technicalScope.map((item) => <span>{item}</span>)}
+          </div>
         </div>
       </section>
 
@@ -389,7 +426,7 @@ END OF REPORT
             <figcaption>Conceptual reconstruction of the regional grid vision, centred on the Netherlands.</figcaption>
           </figure>
           <div class="network-context-metrics" aria-label="Future electricity system planning context">
-            <article><span>PLANNING HORIZON</span><strong>2045</strong><p>A long term grid vision connecting offshore generation, energy hubs and reinforced continental infrastructure.</p></article>
+            <article><span>PLANNING HORIZON</span><strong>2045</strong><p>A long term grid vision that connects offshore generation, energy hubs and reinforced continental infrastructure.</p></article>
             <article><span>ELECTRICITY DEMAND</span><strong>More than 2x</strong><p>Projected consumption could more than double across the Dutch and German energy systems.</p></article>
             <article><span>GENERATION CAPACITY</span><strong>5x to 10x</strong><p>Future scenarios anticipate a major expansion of generation capacity as electrification accelerates.</p></article>
             <article><span>OFFSHORE WIND</span><strong>About 70 GW</strong><p>The planning context considers approximately 70 GW of offshore wind for each country.</p></article>
@@ -434,7 +471,7 @@ END OF REPORT
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="m7 13 3-3 2.5 2.5L17 8M14 8h3v3M9 21h6M12 17v4"/></svg>
             </span>
-            <div><span>REVIEW</span><strong>Deliver traceable results</strong><p>Present structured outputs that specialists can verify, compare and use within established decisions.</p></div>
+            <div><span>REVIEW</span><strong>Deliver traceable results</strong><p>Present structured outputs that specialists can verify, compare and use within established decision making processes.</p></div>
           </li>
         </ol>
       </section>
@@ -544,7 +581,7 @@ END OF REPORT
         <div class="case-hero-grid">
           <div class="case-hero-copy">
             <p class="case-eyebrow">PROFESSIONAL CONTRIBUTION · RENEWABLE CONTROL</p>
-            <h1>Coordinating utility scale photovoltaic power.</h1>
+            <h1>Coordinating power across a utility scale photovoltaic plant.</h1>
             <p class="case-lead">Control and systems integration for a 380 MW photovoltaic plant in Extremadura, Spain, connecting PPC, PLC, SCADA and HMI layers with the operational behaviour expected at the grid connection point.</p>
           </div>
 
@@ -565,7 +602,7 @@ END OF REPORT
             <h2 id="solar-context-title">A large plant within Spain's photovoltaic transformation.</h2>
           </div>
           <div>
-            <p>Extremadura has become one of Spain's most important solar regions. The plant context used for this portfolio covers 380 MW of capacity, more than 930,000 fixed structure panels and 226 inverters distributed across a vast generation site.</p>
+            <p>Extremadura has become one of Spain's most important solar regions. The plant context used for this portfolio covers 380 MW of capacity, more than 930,000 panels on fixed support structures and 226 inverters distributed across a vast generation site.</p>
             <p>That scale changes the control problem. Thousands of field devices must respond as one coordinated power plant, with reliable supervision and a predictable response at the grid connection point.</p>
           </div>
         </div>
@@ -575,7 +612,7 @@ END OF REPORT
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">CONTROL ARCHITECTURE</p>
           <h2 id="control-architecture-title">From solar field to grid response.</h2>
-          <p>Field information moves through deterministic automation and plant level regulation before operators supervise the coordinated response at the connection point.</p>
+          <p>Field information moves through deterministic automation and coordinated plant regulation before operators supervise the response at the connection point.</p>
         </div>
         <ol class="plant-flow" aria-label="Conceptual photovoltaic plant control flow">
           <li>
@@ -606,7 +643,7 @@ END OF REPORT
             <h2 id="engineering-work-title">Making the control layers work together on site.</h2>
           </div>
           <div>
-            <p>My work supported the deployment and commissioning of a PLC based Power Plant Controller, including its integration with the HMI, SCADA environment and plant communications.</p>
+            <p>My work supported the deployment and commissioning of a Power Plant Controller implemented on PLC technology, including its integration with the HMI, SCADA environment and plant communications.</p>
             <p>The role connected control logic with real installation conditions through structured testing, technical troubleshooting and coordination during commissioning, while validating the plant response against defined grid requirements.</p>
           </div>
         </div>
@@ -615,7 +652,7 @@ END OF REPORT
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16"/><circle cx="8" cy="6" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="12" r="0.8" fill="currentColor" stroke="none"/><circle cx="8" cy="18" r="0.8" fill="currentColor" stroke="none"/><path d="M12 6h5M12 12h5M12 18h5"/></svg>
             </span>
-            <div><span>CONTROL</span><strong>Coordinate plant behaviour</strong><p>Support PPC and PLC logic that converts grid level objectives into consistent commands across distributed equipment.</p></div>
+            <div><span>CONTROL</span><strong>Coordinate plant behaviour</strong><p>Support PPC and PLC logic that converts grid objectives into consistent commands across distributed equipment.</p></div>
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
@@ -683,7 +720,7 @@ END OF REPORT
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
           <h2 id="renewable-technology-title">Tools supporting the plant control workflow.</h2>
-          <p>The environment combined plant level regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning.</p>
+          <p>The environment combined coordinated plant regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning.</p>
         </div>
         <div class="case-tags" aria-label="Core technologies">
           {project.technicalScope.map((item) => <span>{item}</span>)}
@@ -793,6 +830,212 @@ END OF REPORT
 
     window.addEventListener("scroll", updateScrollEffect, { passive: true });
   }
+
+  const sketchfabFrame = document.querySelector<HTMLIFrameElement>("[data-sketchfab-viewer]");
+  const modelReset = document.querySelector<HTMLButtonElement>("[data-model-reset]");
+  const tumourToggle = document.querySelector<HTMLButtonElement>("[data-tumour-toggle]");
+  const tagsToggle = document.querySelector<HTMLButtonElement>("[data-tags-toggle]");
+  const SketchfabViewer = (window as typeof window & { Sketchfab?: new (version: string, frame: HTMLIFrameElement) => any }).Sketchfab;
+
+  if (sketchfabFrame && SketchfabViewer) {
+    const client = new SketchfabViewer("1.12.1", sketchfabFrame);
+    client.init("df80f6027970411d8446af01fcb76b1a", {
+      autostart: 1,
+      camera: 0,
+      annotations_visible: 1,
+      annotation_tooltip_visible: 1,
+      dnt: 1,
+      success: (api: any) => {
+        api.start();
+        api.addEventListener("viewerready", () => {
+          let tumourVisible = true;
+          let tagsVisible = true;
+          let tumourMaterial: any = null;
+          let originalTumourMaterial: any = null;
+
+          modelReset?.removeAttribute("disabled");
+          tagsToggle?.removeAttribute("disabled");
+          api.setBackground({ color: [0, 0, 0] });
+
+          api.updateAnnotation(0, {
+            title: "Pituitary Tumor",
+            content: "Asymmetrically embedded within normal gland tissue.",
+          });
+          api.removeAnnotation(1, () => {
+            api.updateAnnotation(1, {
+              title: "Brain",
+              content: "Segmentation of CT Brain in lilac.",
+            });
+          });
+
+          api.getMaterialList((error: unknown, materials: any[]) => {
+            if (error || !materials?.length) return;
+            const getColour = (material: any): number[] => {
+              for (const channelName of ["AlbedoPBR", "DiffusePBR", "DiffuseColor"]) {
+                const colour = material.channels?.[channelName]?.color;
+                if (Array.isArray(colour)) return colour;
+              }
+              return [0, 0, 0];
+            };
+            const redScore = (material: any) => {
+              const [red, green, blue] = getColour(material);
+              return red - (green + blue) / 2;
+            };
+            const greenScore = (material: any) => {
+              const [red, green, blue] = getColour(material);
+              return green - (red + blue) / 2;
+            };
+            const setColour = (material: any, colour: number[]) => {
+              ["AlbedoPBR", "DiffusePBR", "DiffuseColor"].forEach((channelName) => {
+                if (material.channels?.[channelName]) material.channels[channelName].color = colour;
+              });
+              api.setMaterial(material);
+            };
+
+            tumourMaterial = materials.find((material) => /tumou?r/i.test(material.name ?? ""))
+              ?? [...materials].sort((a, b) => redScore(b) - redScore(a))[0];
+            const skullMaterial = materials.find((material) => /skull|cran/i.test(material.name ?? ""))
+              ?? [...materials]
+                .filter((material) => material.stateSetID !== tumourMaterial.stateSetID)
+                .sort((a, b) => greenScore(b) - greenScore(a))[0];
+
+            materials.forEach((material) => {
+              if (material.stateSetID === tumourMaterial.stateSetID) setColour(material, [0.88, 0.04, 0.07]);
+              else if (material.stateSetID === skullMaterial?.stateSetID) setColour(material, [0.78, 0.7, 0.92]);
+              else setColour(material, [0.58, 0.42, 0.86]);
+            });
+            originalTumourMaterial = JSON.parse(JSON.stringify(tumourMaterial));
+            tumourToggle?.removeAttribute("disabled");
+          });
+
+          modelReset?.addEventListener("click", () => api.recenterCamera());
+          tumourToggle?.addEventListener("click", () => {
+            if (!tumourMaterial || !originalTumourMaterial) return;
+            tumourVisible = !tumourVisible;
+            if (tumourVisible) {
+              tumourMaterial = JSON.parse(JSON.stringify(originalTumourMaterial));
+            } else {
+              tumourMaterial = JSON.parse(JSON.stringify(originalTumourMaterial));
+              tumourMaterial.channels ??= {};
+              tumourMaterial.channels.Opacity = {
+                ...(tumourMaterial.channels.Opacity ?? {}),
+                enable: true,
+                factor: 0,
+                type: "BLENDING",
+              };
+            }
+            api.setMaterial(tumourMaterial);
+            tumourToggle.setAttribute("aria-pressed", String(tumourVisible));
+            tumourToggle.textContent = tumourVisible ? "Hide Tumor" : "Show Tumor";
+          });
+          tagsToggle?.addEventListener("click", () => {
+            tagsVisible = !tagsVisible;
+            [0, 1].forEach((index) => tagsVisible ? api.showAnnotation(index) : api.hideAnnotation(index));
+            tagsVisible ? api.showAnnotationTooltips() : api.hideAnnotationTooltips();
+            tagsToggle.setAttribute("aria-pressed", String(tagsVisible));
+            tagsToggle.textContent = tagsVisible ? "Hide Tags" : "Show Tags";
+          });
+        });
+      },
+      error: () => console.error("The interactive model could not be loaded."),
+    });
+  }
+
+  const secondSketchfabFrame = document.querySelector<HTMLIFrameElement>("[data-second-sketchfab-viewer]");
+  const secondModelReset = document.querySelector<HTMLButtonElement>("[data-second-model-reset]");
+  const secondTumourToggle = document.querySelector<HTMLButtonElement>("[data-second-tumour-toggle]");
+  const secondTagsToggle = document.querySelector<HTMLButtonElement>("[data-second-tags-toggle]");
+
+  if (secondSketchfabFrame && SketchfabViewer) {
+    const secondClient = new SketchfabViewer("1.12.1", secondSketchfabFrame);
+    secondClient.init("a2e063b2d65a4a5190e1de85b7e16dcd", {
+      autostart: 1,
+      camera: 0,
+      annotations_visible: 1,
+      annotation_tooltip_visible: 1,
+      dnt: 1,
+      success: (api: any) => {
+        api.start();
+        api.addEventListener("viewerready", () => {
+          let tumourVisible = true;
+          let tagsVisible = true;
+          let annotationCount = 0;
+          let tumourMaterial: any = null;
+          let visibleTumourMaterial: any = null;
+
+          secondModelReset?.removeAttribute("disabled");
+          secondTagsToggle?.removeAttribute("disabled");
+          api.setBackground({ color: [0, 0, 0] });
+          api.getAnnotationList((error: unknown, annotations: unknown[]) => {
+            if (!error) annotationCount = annotations?.length ?? 0;
+          });
+
+          api.getMaterialList((error: unknown, materials: any[]) => {
+            if (error || !materials?.length) return;
+            const getColour = (material: any): number[] => {
+              for (const channelName of ["AlbedoPBR", "DiffusePBR", "DiffuseColor"]) {
+                const colour = material.channels?.[channelName]?.color;
+                if (Array.isArray(colour)) return colour;
+              }
+              return [0, 0, 0];
+            };
+            const colourScore = (material: any, channel: number) => {
+              const colour = getColour(material);
+              return colour[channel] - (colour[(channel + 1) % 3] + colour[(channel + 2) % 3]) / 2;
+            };
+            const setColour = (material: any, colour: number[]) => {
+              ["AlbedoPBR", "DiffusePBR", "DiffuseColor"].forEach((channelName) => {
+                if (material.channels?.[channelName]) material.channels[channelName].color = colour;
+              });
+              api.setMaterial(material);
+            };
+
+            const brainMaterial = materials.find((material) => /brain/i.test(material.name ?? "") && !/tumou?r/i.test(material.name ?? ""))
+              ?? [...materials].sort((a, b) => colourScore(b, 0) - colourScore(a, 0))[0];
+            tumourMaterial = materials.find((material) => /tumou?r/i.test(material.name ?? ""))
+              ?? [...materials]
+                .filter((material) => material.stateSetID !== brainMaterial?.stateSetID)
+                .sort((a, b) => colourScore(b, 1) - colourScore(a, 1))[0];
+
+            if (brainMaterial) setColour(brainMaterial, [0.58, 0.42, 0.86]);
+            if (tumourMaterial) {
+              setColour(tumourMaterial, [0.88, 0.04, 0.07]);
+              visibleTumourMaterial = JSON.parse(JSON.stringify(tumourMaterial));
+              secondTumourToggle?.removeAttribute("disabled");
+            }
+          });
+
+          secondModelReset?.addEventListener("click", () => api.recenterCamera());
+          secondTumourToggle?.addEventListener("click", () => {
+            if (!tumourMaterial || !visibleTumourMaterial) return;
+            tumourVisible = !tumourVisible;
+            tumourMaterial = JSON.parse(JSON.stringify(visibleTumourMaterial));
+            if (!tumourVisible) {
+              tumourMaterial.channels ??= {};
+              tumourMaterial.channels.Opacity = {
+                ...(tumourMaterial.channels.Opacity ?? {}),
+                enable: true,
+                factor: 0,
+                type: "BLENDING",
+              };
+            }
+            api.setMaterial(tumourMaterial);
+            secondTumourToggle.setAttribute("aria-pressed", String(tumourVisible));
+            secondTumourToggle.textContent = tumourVisible ? "Hide Tumor" : "Show Tumor";
+          });
+          secondTagsToggle?.addEventListener("click", () => {
+            tagsVisible = !tagsVisible;
+            Array.from({ length: annotationCount }, (_, index) => index)
+              .forEach((index) => tagsVisible ? api.showAnnotation(index) : api.hideAnnotation(index));
+            tagsVisible ? api.showAnnotationTooltips() : api.hideAnnotationTooltips();
+            secondTagsToggle.setAttribute("aria-pressed", String(tagsVisible));
+            secondTagsToggle.textContent = tagsVisible ? "Hide Tags" : "Show Tags";
+          });
+        });
+      },
+      error: () => console.error("The second interactive model could not be loaded."),
+    });
+  }
 </script>
 
 <style>
@@ -855,6 +1098,23 @@ END OF REPORT
     margin-top: 2rem;
     max-width: 40rem;
   }
+
+  .interactive-model { margin-top: clamp(2.5rem, 7vw, 6rem); }
+  .interactive-model-variant { margin-top: clamp(3rem,6vw,5.5rem); padding-top: clamp(2.5rem,5vw,4.5rem); }
+  .interactive-model-variant .interactive-model-heading { justify-content: flex-start; }
+  .interactive-model-heading { align-items: flex-start; display: flex; flex-direction: column; gap: 1.25rem; justify-content: flex-start; margin-bottom: 1rem; }
+  .interactive-model-heading h2 { color: rgb(226 232 240); font-size: clamp(2.1rem, 3.7vw, 3.6rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; margin-top: 1.25rem; text-wrap: balance; }
+  .interactive-model-controls { display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: flex-start; }
+  .interactive-model-controls button { background: rgb(5 5 8); border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(196 181 253); cursor: pointer; font-size: .76rem; min-height: 2.55rem; padding: .55rem .95rem; transition: background-color .2s ease,border-color .2s ease,color .2s ease; }
+  .interactive-model-controls button:hover,
+  .interactive-model-controls button:focus-visible { background: rgba(139,92,246,.15); border-color: rgb(196 181 253); color: white; }
+  .interactive-model-controls button:disabled { cursor: wait; opacity: .42; }
+  .interactive-model-frame { aspect-ratio: 16 / 9; background: #020203; border: 1px solid var(--case-border); border-radius: 1.35rem; overflow: hidden; position: relative; }
+  .interactive-model-frame iframe { border: 0; display: block; height: 100%; width: 100%; }
+  .interactive-model-meta { color: rgb(100 116 139); display: flex; flex-wrap: wrap; font-size: .7rem; gap: .5rem 1rem; justify-content: space-between; margin-top: .75rem; }
+  .interactive-model-meta a { color: rgb(167 139 250); text-decoration: none; }
+  .interactive-model-meta a:hover,
+  .interactive-model-meta a:focus-visible { color: rgb(221 214 254); text-decoration: underline; }
 
   .case-tags {
     display: flex;
@@ -1522,6 +1782,16 @@ END OF REPORT
   .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
   .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
   .report-access-control { border-radius: 999px; display: inline-flex; margin-top: clamp(2rem, 4vw, 3rem); min-height: 2.75rem; padding: 0.62rem 1.15rem; width: fit-content; }
+  .merged-research-tools { display: block; margin-top: clamp(2rem,4vw,3rem); }
+  .merged-research-tools .report-access-control,
+  .merged-research-tools .case-tags { margin-top: 0; }
+  .merged-research-tools .case-tags { gap: .45rem; margin-top: 2.25rem; }
+  .merged-research-tools .case-tags span { font-size: .64rem; letter-spacing: .07em; padding: .38rem .58rem; }
+  .merged-research-tools .report-access-control { background: rgb(196 181 253); border-color: rgb(221 214 254); box-shadow: 0 0 .9rem rgba(167,139,250,.2); color: rgb(5 5 8); min-height: 2.9rem; padding-inline: 1.3rem; }
+  .merged-research-tools .report-access-control::before { display: none; }
+  .merged-research-tools .report-access-control .neon-box-label { color: rgb(5 5 8); font-weight: 800; text-align: center; }
+  .merged-research-tools .report-access-control:hover,
+  .merged-research-tools .report-access-control:focus-visible { background: rgb(221 214 254); border-color: white; box-shadow: 0 0 1.4rem rgba(196,181,253,.38); color: rgb(5 5 8); transform: translateY(-1px); }
 
   .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; position: relative; }
   .case-footer::before { animation: footer-neon-line 7s linear infinite; background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.42) 14%, rgb(196 181 253) 38%, rgba(255, 255, 255, 0.92) 50%, rgb(196 181 253) 62%, rgba(139, 92, 246, 0.42) 86%, transparent 100%); background-size: 220% 100%; content: ""; height: 1px; left: clamp(1.35rem, 5vw, 5rem); position: absolute; right: clamp(1.35rem, 5vw, 5rem); top: 0; }
@@ -1570,6 +1840,8 @@ END OF REPORT
     .renewable-case-study .case-section { padding-bottom: 2.25rem; padding-top: 2.25rem; }
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .research-references { justify-self: center; text-align: center; }
+    .interactive-model-heading { align-items: flex-start; flex-direction: column; }
+    .interactive-model-controls { justify-content: flex-start; }
   }
 
   @media (max-width: 48rem) {
@@ -1626,6 +1898,10 @@ END OF REPORT
     .report-viewer { padding: 0.45rem; }
     .report-viewer-content { border-radius: 0.75rem; }
     .report-viewer-close { right: 0.45rem; top: 0.45rem; }
+    .interactive-model-frame { aspect-ratio: 4 / 5; border-radius: 1rem; }
+    .interactive-model-controls { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
+    .interactive-model-controls button { font-size: .68rem; min-width: 0; padding-inline: .45rem; }
+    .interactive-model-meta { flex-direction: column; }
   }
 
   @media (prefers-reduced-motion: reduce) {

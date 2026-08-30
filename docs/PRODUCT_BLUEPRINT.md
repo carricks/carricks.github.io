@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 29 August 2026
+Last updated: 30 August 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case-study patterns. The MRI results use an accessible paired line-and-node comparison and an approved lilac VGG16 visual. Grid and renewable diagrams share a dark semantic system with explicit physical, electrical and control relationships, dedicated mobile assets and strict non-overlap rules. The remaining sections still need deeper evidence, final copy and publication review.
+The website is functional and navigable on desktop and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case study patterns. The MRI case study combines static research evidence with two independently controlled 3D models. Grid and renewable diagrams share a dark semantic system with explicit physical, electrical and control relationships, dedicated mobile assets and strict non overlap rules. The remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -70,10 +70,11 @@ Homepage introduction
 - Contact form validates locally and opens a prepared `mailto:` message.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
-- Research figures use a browser native dialog lightbox and require no external runtime dependency.
+- Static research figures use a browser native dialog lightbox. The two interactive anatomy models depend on the public Sketchfab Viewer API and retain creator attribution.
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
+- The portfolio remains readable if an external 3D model is unavailable.
 
 ## Success criteria
 

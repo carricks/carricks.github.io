@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 29 August 2026
+Last updated: 30 August 2026
 
 ## Current product status
 
@@ -18,6 +18,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
 - Complete MRI tumour classification case study with research context, open data provenance, class examples, model evolution, experimental comparison and responsible use framing.
+- Two interactive MRI related anatomy models with independent reset, tumour and annotation controls, visible attribution and a shared black, lilac and red palette.
+- Consolidated responsible research and technical foundation content with a distinct report action and compact technology tags.
 - Confidentiality aware transmission grid stability case study covering controlled contingencies, collaborative application engineering, integration and validation without identifying the client.
 - Original expandable system architecture diagram and verified related research reference for the grid stability case study.
 - Reconstructed Dutch grid context map with sourced 2045 planning indicators and responsive presentation.
@@ -26,7 +28,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Original expandable photovoltaic plant and industrial controls visuals, plus a conceptual control architecture that excludes proprietary topology, setpoints and interfaces.
 - Rebuilt desktop and mobile hybrid-generation diagrams with separate electrical export, field I/O, coordinated setpoints, feedback, operator supervision and grid POI semantics.
 - Unified grid architecture and Netherlands context diagrams on a black, grey, soft-white and lilac technical palette without white frames.
-- Repository asset audit confirming that all retained project images, company marks, the favicon and the public academic report are referenced directly, dynamically or by browser convention.
+- Repository asset audit confirming that all retained project images, company marks, the favicon and the public academic report are referenced directly, dynamically or by browser convention. Superseded local 3D prototypes, generated model data and development scripts have been removed.
 - Verified Spanish photovoltaic context sourced from public plant information and Red Eléctrica.
 - Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
@@ -47,10 +49,10 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 ## In progress
 
-- Final editorial review of Academic and Experience copy.
+- Final factual review of Academic and Experience claims.
 - Final permission and rendering review of company logos.
 - Expansion of the remaining offshore professional project case study with stronger evidence and approved visuals.
-- International page content and narrative.
+- Supporting evidence for the International page narrative.
 - Milestones, research and recognition content.
 - Mobile and desktop visual QA across common viewport sizes.
 

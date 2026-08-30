@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 29 August 2026
+Last updated: 30 August 2026
 
 ## Editorial objective
 
@@ -46,7 +46,7 @@ Four active project routes cover MRI tumour classification, grid stability, offs
 
 ### Milestones
 
-The section exists but still requires final research, competition, recognition and personal-milestone content.
+The section introduces technical milestones and recognition but still requires verified research, competition and personal milestone evidence before detailed entries are published.
 
 ### Contact
 
@@ -58,7 +58,7 @@ The form supports technical conversations, collaborations and engineering opport
 
 ## Academic page
 
-Status: content foundation complete; final editorial review pending.
+Status: content reviewed and structurally complete.
 
 The page contains:
 
@@ -72,7 +72,7 @@ Academic Background and Additional Studies use the same title-and-description ca
 
 ## Experience page
 
-Status: functional and visually developed; final wording and logo-permission review pending.
+Status: content reviewed and visually developed; final logo permission review pending.
 
 The introduction presents a multidisciplinary profile shaped by work in Mediterranean and Northeastern Europe. Each company appears once in a narrative card with a location or international context and a concise description of the engineering experience.
 
@@ -89,9 +89,9 @@ Company logos are monochrome lilac and replace repeated textual headings. Entrie
 
 ## International page
 
-Status: route functional; substantive content pending.
+Status: concise narrative foundation published; supporting evidence remains pending.
 
-The page should explain how professional and academic work across different regions changed engineering judgment, communication and collaboration. It should avoid becoming a country checklist.
+The page explains how professional and academic work across Spain, the Netherlands, Portugal and Latin America strengthened technical communication, coordination and adaptation to local practice. Future additions should provide evidence without turning the page into a country checklist.
 
 Suggested structure:
 
@@ -107,6 +107,8 @@ Suggested structure:
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
 Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison and a terminal style prediction report. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+
+The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent controls for camera reset, tumour visibility and annotation visibility, with clear attribution to the original creator.
 
 The complete master's report is available through an integrated viewer near the responsible use statement. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
@@ -154,14 +156,14 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 
 ## Content still needed
 
-1. Final International narrative.
+1. Supporting evidence for the International narrative.
 2. Milestones and research content with dates and verifiable context.
 3. Stronger evidence and approved visuals for the remaining offshore professional project.
 4. Final review of all technical claims against the CV and LinkedIn.
 5. Improved LinkedIn copy consistent with the portfolio narrative.
 6. Desired roles, collaborations and calls to action.
-7. Permission record for company logos and public project information.
-8. Final metadata descriptions and social-sharing copy.
+7. Permission record for company logos, public project information and embedded media.
+8. Final metadata descriptions and social sharing copy.
 
 ## Final editorial checklist
 

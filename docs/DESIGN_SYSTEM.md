@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 29 August 2026
+Last updated: 30 August 2026
 
 ## Direction
 
@@ -73,10 +73,21 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 
+### Interactive 3D models
+
+- Interactive anatomy appears inside proportional black frames with a 16:9 desktop ratio and a taller mobile ratio.
+- Viewer controls sit above each model and align to the left on every viewport.
+- Both models use the same semantic palette: lilac for brain tissue, red for tumour tissue and black for the background.
+- The CT model uses a softer lilac for the exterior head layer so that it remains distinct from the brain without introducing another hue.
+- Camera reset, tumour visibility and annotation visibility are independent for each model.
+- Native creator attribution remains visible beneath every embed.
+- The page does not duplicate the loading message already supplied by Sketchfab.
+
 ### Research references
 
-- Responsible use follows the same open editorial hierarchy as other major sections.
-- The academic report is accessed through the shared premium neon control without additional metadata.
+- Responsible use and technical foundation share one concise editorial section.
+- The academic report uses a solid lilac button with black text so that it reads as the primary action rather than a technology tag.
+- Technology tags are smaller than the report action and occupy a separate row.
 - The ALLEA research integrity reference is centered in the case study footer.
 
 ### Experience logos

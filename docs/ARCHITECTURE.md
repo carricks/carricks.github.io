@@ -1,10 +1,10 @@
 # Architecture
 
-Last updated: 29 August 2026
+Last updated: 30 August 2026
 
 ## Status
 
-This is a static Astro portfolio deployed through GitHub Pages. Astro renders the public routes at build time. Browser JavaScript is limited to navigation motion, viewport-aware effects and contact-form behavior.
+This is a static Astro portfolio deployed through GitHub Pages. Astro renders the public routes at build time. Browser JavaScript supports navigation, viewport aware effects, the contact form, accessible media dialogs and the Sketchfab Viewer API used by the MRI case study.
 
 ## Current structure
 
@@ -82,6 +82,7 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries. Labels must occupy clear space and never overlap routes or equipment.
 - The renewable-control architecture uses separate desktop and mobile SVG assets. Its integrated topology includes a three-turbine wind farm, solar generation, local PPCs, hybrid coordination, operator supervision, an MV bus, transformers and the grid POI.
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
+- The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera, tumour and annotation controls. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
@@ -93,11 +94,12 @@ The contact form has no backend. It validates fields in the browser and opens a 
 
 ## Security and privacy
 
-- No secrets or API credentials belong in the repository.
+- No secrets or API credentials belong in the repository. The public Sketchfab viewers require no repository credential.
 - Environment files are ignored.
 - External links use `target="_blank"` with `rel="noopener noreferrer"`.
 - Published company names, logos and project details require authorization.
 - Dependency audit and static build are required before sprint commits.
+- External 3D embeds must fail without blocking the surrounding case study content.
 
 ## Quality checks
 
