@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 30 August 2026
+Last updated: 31 August 2026
 
 ## Direction
 
@@ -43,7 +43,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Sticky translucent header.
 - Thin animated neon line only at the top resting position.
 - Stronger blur while scrolling; subtle directional tilt.
-- Desktop navigation remains horizontal. On small screens, a Home-sized circular menu trigger opens the primary links in a right-aligned dropdown.
+- Desktop navigation remains horizontal above 1366 pixels. Phones, tablets, coarse-pointer devices and detected iPads use a Home-sized circular trigger with a right-aligned dropdown. Tablet panels use wider spacing and larger touch targets than the compact phone variant.
 - The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. Until translated routes exist, selection changes visual state only.
 
 ### Neon controls and panels
@@ -65,6 +65,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - MRI class cards preserve a monochrome scientific treatment, a uniform black image stage, equal square dimensions, consistent inner spacing and contain-fit anatomy.
 - The MRI preprocessing visual uses the same restrained one-pixel lilac scan on desktop and mobile. Its five-second cycle traverses the image proportionally so the motion remains consistent across aspect ratios.
 - Grid stability figures preserve their full composition and use high resolution PNG assets suitable for close inspection.
+- The CRoF single-line interface uses a symmetrical black HMI canvas with sparse generic labels, soft-white equipment and lilac network structure. Its paired isometric substation uses a pure black background, cool-grey equipment and restrained lilac perimeter light.
 - Technical diagrams use black backgrounds without white padding or heavy framing.
 - Continuous grey lines communicate electrical, physical or data paths; dashed lilac lines communicate control, setpoints and feedback. Legends must name these roles rather than relying on color alone.
 - Diagram connections terminate cleanly at equipment, buses, controllers, hubs or external boundaries. Labels must not intersect routes.
@@ -76,10 +77,11 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ### Interactive 3D models
 
 - Interactive anatomy appears inside proportional black frames with a 16:9 desktop ratio and a taller mobile ratio.
-- Viewer controls sit above each model and align to the left on every viewport.
+- Viewer controls sit above each model and align to the right on every viewport.
 - Both models use the same semantic palette: lilac for brain tissue, red for tumour tissue and black for the background.
 - The CT model uses a softer lilac for the exterior head layer so that it remains distinct from the brain without introducing another hue.
-- Camera reset, tumour visibility and annotation visibility are independent for each model.
+- Camera reset restores the initial position, target and field of view through a short transition. Tumour visibility remains independent for each model, and annotation visibility is offered only by the CT viewer.
+- Control buttons use a fixed width so `Hide` and `Show` label changes never shift adjacent controls. Pointer and touch activation produce a brief lilac background, dark text, subtle compression and glow.
 - Native creator attribution remains visible beneath every embed.
 - The page does not duplicate the loading message already supplied by Sketchfab.
 

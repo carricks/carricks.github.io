@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 30 August 2026
+Last updated: 31 August 2026
 
 ## Editorial objective
 
@@ -108,7 +108,7 @@ The first and most developed case study presents the master's research prototype
 
 Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison and a terminal style prediction report. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
-The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent controls for camera reset, tumour visibility and annotation visibility, with clear attribution to the original creator.
+The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. Reset restores the complete initial camera state, and every control uses fixed dimensions and immediate lilac press feedback on pointer and touch devices. Creator attribution remains visible.
 
 The complete master's report is available through an integrated viewer near the responsible use statement. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
@@ -127,7 +127,7 @@ The published framing includes:
 - An original system architecture diagram connecting the power system, PMU devices, VAMS server, stability assessment model, visualisation and operator review.
 - An original Dutch grid context map and future planning indicators covering the 2045 horizon, projected demand, generation capacity and offshore wind scale. These are identified as planning scenarios rather than current operational characteristics.
 - A concise Control Room of the Future section describing the integration of automation, human supervision, grid data, network models and decision support.
-- Two original high resolution CRoF visuals showing collaborative operator supervision and a linear grid management facility. Both are expandable and contain no corporate identity.
+- Two original high resolution CRoF visuals: a simplified SCADA single-line interface and a clearly defined isometric grid management facility on black. Both are expandable, use the portfolio palette and contain no corporate identity or operational values.
 - A related research reference to the International Journal of Electrical Power and Energy Systems paper on data driven online assessment and spatial temporal visualisation.
 - No operational data, internal architecture, system criteria or proprietary application names.
 
@@ -149,7 +149,7 @@ The published framing includes:
 - A separate engineering architecture that distinguishes the electrical export path from field I/O, local PPC control, hybrid coordination, operator supervision and the grid POI. It represents the wind farm with three defined turbines and keeps every label clear of lines, controllers and transformer symbols.
 - Diego's contribution across deployment support, commissioning, integration, testing and technical troubleshooting.
 - Spanish photovoltaic growth context sourced from Red Eléctrica, including the position of solar PV as the leading technology by installed capacity in early 2025.
-- An explicit portfolio boundary excluding source code, operational setpoints, internal topology, procedures and confidential interfaces.
+- One merged portfolio boundary and technical foundation section covering the control stack while excluding source code, operational setpoints, internal topology, procedures and confidential interfaces.
 - No employer, client or project names in the visible case study.
 
 All portfolio-created engineering diagrams use a near-black canvas, soft white and grey physical structure, and lilac control semantics. Connections must terminate at a defined component or boundary and remain readable at the iPhone 12 Pro viewport.

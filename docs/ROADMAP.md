@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 30 August 2026
+Last updated: 31 August 2026
 
 ## Current product status
 
@@ -18,12 +18,12 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
 - Complete MRI tumour classification case study with research context, open data provenance, class examples, model evolution, experimental comparison and responsible use framing.
-- Two interactive MRI related anatomy models with independent reset, tumour and annotation controls, visible attribution and a shared black, lilac and red palette.
+- Two interactive MRI related anatomy models with complete camera-state reset, independent tumour controls, annotation control only where tags exist, visible attribution and a shared black, lilac and red palette. Fixed-width buttons remain right aligned and provide the same lilac press feedback on desktop and touch devices.
 - Consolidated responsible research and technical foundation content with a distinct report action and compact technology tags.
 - Confidentiality aware transmission grid stability case study covering controlled contingencies, collaborative application engineering, integration and validation without identifying the client.
 - Original expandable system architecture diagram and verified related research reference for the grid stability case study.
 - Reconstructed Dutch grid context map with sourced 2045 planning indicators and responsive presentation.
-- Control Room of the Future context with original high resolution control room and grid facility visuals, both available through the shared lightbox.
+- Control Room of the Future context with an original high resolution SCADA single-line interface and a black-background grid facility visual, both available through the shared lightbox.
 - Complete photovoltaic plant control case study covering a verified 380 MW public context, PPC, PLC, SCADA, HMI, industrial integration and commissioning experience without naming the employer, client or project.
 - Original expandable photovoltaic plant and industrial controls visuals, plus a conceptual control architecture that excludes proprietary topology, setpoints and interfaces.
 - Rebuilt desktop and mobile hybrid-generation diagrams with separate electrical export, field I/O, coordinated setpoints, feedback, operator supervision and grid POI semantics.
@@ -39,13 +39,13 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
-- Responsive header with horizontal desktop navigation, a circular mobile dropdown and an EN/DE/NL/FR language-selector prototype ready for future translated routes.
+- Responsive header with horizontal navigation only on wide desktop layouts, a circular dropdown for phones and iPads, an enlarged tablet menu panel and an EN/DE/NL/FR language-selector prototype ready for future translated routes.
 - Responsive hybrid-control architecture with three defined wind turbines, a direct solar Field I/O connection, clear transformer labels and non-overlapping electrical and control paths.
 - Fluid section transitions without rigid divider lines and with a more compact vertical rhythm.
 - Responsive contact form that prepares an email in the visitor's email client.
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
-- Removal of unused background artwork and dependency audit with zero known vulnerabilities.
+- Removal of unused background artwork, obsolete prototype assets, the empty content-collection placeholder and temporary audit files. All retained public assets are referenced directly, dynamically or by browser convention.
 
 ## In progress
 

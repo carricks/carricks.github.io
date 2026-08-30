@@ -50,7 +50,6 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <div class="interactive-model-controls" aria-label="Interactive model controls">
               <button type="button" data-second-model-reset disabled>Reset View</button>
               <button type="button" data-second-tumour-toggle aria-pressed="true" disabled>Hide Tumor</button>
-              <button type="button" data-second-tags-toggle aria-pressed="true" disabled>Hide Tags</button>
             </div>
           </div>
           <div class="interactive-model-frame">
@@ -497,11 +496,11 @@ END OF REPORT
         </div>
         <div class="crof-gallery">
           <figure>
-            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge future electricity control room view">
-              <img src="/images/projects/grid-stability/control-room-future.png" alt="Three operators reviewing network diagrams and operational displays in an integrated electricity control room" />
+            <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual electrical single-line diagram">
+              <img src="/images/projects/grid-stability/control-room-future.png" alt="Conceptual SCADA single-line diagram with two transformer branches, paired busbars and eight monitored feeders" />
               <span aria-hidden="true">Expand</span>
             </button>
-            <figcaption>Integrated monitoring places network behaviour and operational evidence within one review environment.</figcaption>
+            <figcaption>A simplified single-line interface brings network state, switching structure and operational status into one review environment.</figcaption>
           </figure>
           <figure>
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge grid management facility view">
@@ -708,19 +707,11 @@ END OF REPORT
         </div>
       </section>
 
-      <section class="case-section responsible-use-section" aria-labelledby="renewable-boundary-title">
+      <section class="case-section responsible-use-section technology-section" aria-labelledby="renewable-foundation-title">
         <div class="section-heading compact-heading">
-          <p class="case-eyebrow">PORTFOLIO BOUNDARY</p>
-          <h2 id="renewable-boundary-title">Experience presented without proprietary detail.</h2>
-          <p>The descriptions and visuals communicate my engineering contribution at a systems level. They do not disclose plant setpoints, internal topology, source code, operational procedures or confidential interfaces.</p>
-        </div>
-      </section>
-
-      <section class="case-section technology-section" aria-labelledby="renewable-technology-title">
-        <div class="section-heading compact-heading">
-          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
-          <h2 id="renewable-technology-title">Tools supporting the plant control workflow.</h2>
-          <p>The environment combined coordinated plant regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning.</p>
+          <p class="case-eyebrow">PORTFOLIO BOUNDARY · TECHNICAL FOUNDATION</p>
+          <h2 id="renewable-foundation-title">Plant control experience, presented with professional discretion.</h2>
+          <p>The work combined coordinated plant regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning. This portfolio presents that contribution at a systems level while protecting plant setpoints, internal topology, source code, operational procedures and confidential interfaces.</p>
         </div>
         <div class="case-tags" aria-label="Core technologies">
           {project.technicalScope.map((item) => <span>{item}</span>)}
@@ -852,10 +843,22 @@ END OF REPORT
           let tagsVisible = true;
           let tumourMaterial: any = null;
           let originalTumourMaterial: any = null;
+          let initialCamera: { position: number[]; target: number[]; fov?: number } | null = null;
 
-          modelReset?.removeAttribute("disabled");
           tagsToggle?.removeAttribute("disabled");
           api.setBackground({ color: [0, 0, 0] });
+
+          api.getCameraLookAt((cameraError: unknown, camera: { position: number[]; target: number[] }) => {
+            if (cameraError || !camera) return;
+            api.getFov((fovError: unknown, fov: number) => {
+              initialCamera = {
+                position: [...camera.position],
+                target: [...camera.target],
+                ...(!fovError && Number.isFinite(fov) ? { fov } : {}),
+              };
+              modelReset?.removeAttribute("disabled");
+            });
+          });
 
           api.updateAnnotation(0, {
             title: "Pituitary Tumor",
@@ -908,7 +911,11 @@ END OF REPORT
             tumourToggle?.removeAttribute("disabled");
           });
 
-          modelReset?.addEventListener("click", () => api.recenterCamera());
+          modelReset?.addEventListener("click", () => {
+            if (!initialCamera) return;
+            if (typeof initialCamera.fov === "number") api.setFov(initialCamera.fov);
+            api.setCameraLookAt(initialCamera.position, initialCamera.target, 0.8);
+          });
           tumourToggle?.addEventListener("click", () => {
             if (!tumourMaterial || !originalTumourMaterial) return;
             tumourVisible = !tumourVisible;
@@ -944,30 +951,35 @@ END OF REPORT
   const secondSketchfabFrame = document.querySelector<HTMLIFrameElement>("[data-second-sketchfab-viewer]");
   const secondModelReset = document.querySelector<HTMLButtonElement>("[data-second-model-reset]");
   const secondTumourToggle = document.querySelector<HTMLButtonElement>("[data-second-tumour-toggle]");
-  const secondTagsToggle = document.querySelector<HTMLButtonElement>("[data-second-tags-toggle]");
 
   if (secondSketchfabFrame && SketchfabViewer) {
     const secondClient = new SketchfabViewer("1.12.1", secondSketchfabFrame);
     secondClient.init("a2e063b2d65a4a5190e1de85b7e16dcd", {
       autostart: 1,
       camera: 0,
-      annotations_visible: 1,
-      annotation_tooltip_visible: 1,
+      annotations_visible: 0,
+      annotation_tooltip_visible: 0,
       dnt: 1,
       success: (api: any) => {
         api.start();
         api.addEventListener("viewerready", () => {
           let tumourVisible = true;
-          let tagsVisible = true;
-          let annotationCount = 0;
           let tumourMaterial: any = null;
           let visibleTumourMaterial: any = null;
+          let secondInitialCamera: { position: number[]; target: number[]; fov?: number } | null = null;
 
-          secondModelReset?.removeAttribute("disabled");
-          secondTagsToggle?.removeAttribute("disabled");
           api.setBackground({ color: [0, 0, 0] });
-          api.getAnnotationList((error: unknown, annotations: unknown[]) => {
-            if (!error) annotationCount = annotations?.length ?? 0;
+
+          api.getCameraLookAt((cameraError: unknown, camera: { position: number[]; target: number[] }) => {
+            if (cameraError || !camera) return;
+            api.getFov((fovError: unknown, fov: number) => {
+              secondInitialCamera = {
+                position: [...camera.position],
+                target: [...camera.target],
+                ...(!fovError && Number.isFinite(fov) ? { fov } : {}),
+              };
+              secondModelReset?.removeAttribute("disabled");
+            });
           });
 
           api.getMaterialList((error: unknown, materials: any[]) => {
@@ -1005,7 +1017,11 @@ END OF REPORT
             }
           });
 
-          secondModelReset?.addEventListener("click", () => api.recenterCamera());
+          secondModelReset?.addEventListener("click", () => {
+            if (!secondInitialCamera) return;
+            if (typeof secondInitialCamera.fov === "number") api.setFov(secondInitialCamera.fov);
+            api.setCameraLookAt(secondInitialCamera.position, secondInitialCamera.target, 0.8);
+          });
           secondTumourToggle?.addEventListener("click", () => {
             if (!tumourMaterial || !visibleTumourMaterial) return;
             tumourVisible = !tumourVisible;
@@ -1023,19 +1039,20 @@ END OF REPORT
             secondTumourToggle.setAttribute("aria-pressed", String(tumourVisible));
             secondTumourToggle.textContent = tumourVisible ? "Hide Tumor" : "Show Tumor";
           });
-          secondTagsToggle?.addEventListener("click", () => {
-            tagsVisible = !tagsVisible;
-            Array.from({ length: annotationCount }, (_, index) => index)
-              .forEach((index) => tagsVisible ? api.showAnnotation(index) : api.hideAnnotation(index));
-            tagsVisible ? api.showAnnotationTooltips() : api.hideAnnotationTooltips();
-            secondTagsToggle.setAttribute("aria-pressed", String(tagsVisible));
-            secondTagsToggle.textContent = tagsVisible ? "Hide Tags" : "Show Tags";
-          });
         });
       },
       error: () => console.error("The second interactive model could not be loaded."),
     });
   }
+
+  document.querySelectorAll<HTMLButtonElement>(".interactive-model-controls button").forEach((button) => {
+    button.addEventListener("pointerdown", () => {
+      if (button.disabled) return;
+      button.classList.remove("is-control-confirmed");
+      requestAnimationFrame(() => button.classList.add("is-control-confirmed"));
+    });
+    button.addEventListener("animationend", () => button.classList.remove("is-control-confirmed"));
+  });
 </script>
 
 <style>
@@ -1104,11 +1121,17 @@ END OF REPORT
   .interactive-model-variant .interactive-model-heading { justify-content: flex-start; }
   .interactive-model-heading { align-items: flex-start; display: flex; flex-direction: column; gap: 1.25rem; justify-content: flex-start; margin-bottom: 1rem; }
   .interactive-model-heading h2 { color: rgb(226 232 240); font-size: clamp(2.1rem, 3.7vw, 3.6rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; margin-top: 1.25rem; text-wrap: balance; }
-  .interactive-model-controls { display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: flex-start; }
-  .interactive-model-controls button { background: rgb(5 5 8); border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(196 181 253); cursor: pointer; font-size: .76rem; min-height: 2.55rem; padding: .55rem .95rem; transition: background-color .2s ease,border-color .2s ease,color .2s ease; }
+  .interactive-model-controls { align-self: flex-end; display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: flex-end; margin-inline: 0; }
+  .interactive-model-controls button { background: rgb(5 5 8); border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(196 181 253); cursor: pointer; font-size: .76rem; inline-size: 6.75rem; min-height: 2.55rem; padding: .55rem .45rem; transition: background-color .2s ease,border-color .2s ease,color .2s ease; white-space: nowrap; }
   .interactive-model-controls button:hover,
   .interactive-model-controls button:focus-visible { background: rgba(139,92,246,.15); border-color: rgb(196 181 253); color: white; }
+  .interactive-model-controls button.is-control-confirmed { animation: model-control-confirm 360ms cubic-bezier(.22,1,.36,1); }
   .interactive-model-controls button:disabled { cursor: wait; opacity: .42; }
+  @keyframes model-control-confirm {
+    0% { background: rgb(5 5 8); color: rgb(196 181 253); transform: scale(1); }
+    42% { background: rgb(196 181 253); border-color: rgb(221 214 254); box-shadow: 0 0 1rem rgba(167,139,250,.36); color: rgb(5 5 8); transform: scale(.965); }
+    100% { background: rgba(139,92,246,.15); border-color: rgb(196 181 253); color: white; transform: scale(1); }
+  }
   .interactive-model-frame { aspect-ratio: 16 / 9; background: #020203; border: 1px solid var(--case-border); border-radius: 1.35rem; overflow: hidden; position: relative; }
   .interactive-model-frame iframe { border: 0; display: block; height: 100%; width: 100%; }
   .interactive-model-meta { color: rgb(100 116 139); display: flex; flex-wrap: wrap; font-size: .7rem; gap: .5rem 1rem; justify-content: space-between; margin-top: .75rem; }
@@ -1802,7 +1825,7 @@ END OF REPORT
   .research-references { max-width: 36rem; text-align: center; }
   .research-references > span { color: rgb(139 92 246); display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; }
   .research-references a { align-items: center; color: rgb(148 163 184); display: inline-flex; flex-direction: column; font-size: 0.78rem; gap: 0.75rem; line-height: 1.6; margin-top: 0.75rem; text-decoration: none; }
-  .research-references img { height: 1.75rem; object-fit: contain; width: auto; }
+  .research-references img { height: 1.6rem; object-fit: contain; width: auto; }
   .research-references a span { text-decoration: underline; text-decoration-color: rgba(196, 181, 253, 0.35); text-underline-offset: 0.22em; }
   .research-references a:hover,
   .research-references a:focus-visible { color: rgb(196 181 253); }
@@ -1841,7 +1864,7 @@ END OF REPORT
     .class-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .research-references { justify-self: center; text-align: center; }
     .interactive-model-heading { align-items: flex-start; flex-direction: column; }
-    .interactive-model-controls { justify-content: flex-start; }
+    .interactive-model-controls { justify-content: flex-end; }
   }
 
   @media (max-width: 48rem) {
@@ -1899,14 +1922,16 @@ END OF REPORT
     .report-viewer-content { border-radius: 0.75rem; }
     .report-viewer-close { right: 0.45rem; top: 0.45rem; }
     .interactive-model-frame { aspect-ratio: 4 / 5; border-radius: 1rem; }
-    .interactive-model-controls { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); width: 100%; }
-    .interactive-model-controls button { font-size: .68rem; min-width: 0; padding-inline: .45rem; }
+    .interactive-model-controls { display: flex; width: auto; }
+    .interactive-model-controls button { font-size: .68rem; }
     .interactive-model-meta { flex-direction: column; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .scan-line,
     .case-footer::before,
-    .plant-flow-symbol::before { animation: none; }
+    .plant-flow-symbol::before,
+    .interactive-model-controls button.is-control-confirmed { animation: none; }
+    .interactive-model-controls button.is-control-confirmed { background: rgb(196 181 253); color: rgb(5 5 8); }
   }
 </style>
