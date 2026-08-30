@@ -19,9 +19,10 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
             <svg class="language-chevron" aria-hidden="true" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1.5 5 5 5-5"></path></svg>
           </summary>
           <div class="language-menu" role="menu" aria-label="Available languages">
-            <button type="button" role="menuitemradio" aria-checked="true" data-language-option data-code="EN"><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>English</span><strong>EN</strong></button>
-            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-code="DE"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>German</span><strong>DE</strong></button>
-            <button type="button" role="menuitemradio" aria-checked="false" data-language-option data-code="NL"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>Dutch</span><strong>NL</strong></button>
+            <button type="button" role="menuitemradio" aria-label="English" aria-checked="true" data-language-option data-code="EN"><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>EN</span></button>
+            <button type="button" role="menuitemradio" aria-label="German" aria-checked="false" data-language-option data-code="DE"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>DE</span></button>
+            <button type="button" role="menuitemradio" aria-label="Dutch" aria-checked="false" data-language-option data-code="NL"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>NL</span></button>
+            <button type="button" role="menuitemradio" aria-label="French" aria-checked="false" data-language-option data-code="FR"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#0055a4" d="M0 0h5v9H0z"/><path fill="#fff" d="M5 0h5v9H5z"/><path fill="#ef4135" d="M10 0h5v9h-5z"/></svg><span>FR</span></button>
           </div>
         </details>
       </div>
@@ -96,12 +97,11 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
   .mobile-menu-trigger:hover, .mobile-menu-trigger:focus-visible, .mobile-navigation[open] .mobile-menu-trigger { border-color: rgb(196 181 253); color: rgb(196 181 253); }
 
   .language-menu, .mobile-menu { background: rgba(5,5,9,.98); border: 1px solid rgba(196,181,253,.28); border-radius: .8rem; box-shadow: 0 16px 36px rgba(0,0,0,.48); min-width: 11rem; padding: .35rem; position: absolute; top: calc(100% + .55rem); }
-  .language-menu { left: 0; }
+  .language-menu { left: 0; min-width: 5.6rem; }
   .mobile-menu { right: 0; }
-  .language-menu button { align-items: center; border-radius: .55rem; color: rgb(203 213 225); cursor: pointer; display: grid; font-size: .78rem; gap: .55rem; grid-template-columns: 1.35rem 1fr auto; padding: .62rem .7rem; text-align: left; width: 100%; }
+  .language-menu button { align-items: center; border-radius: .55rem; color: rgb(203 213 225); cursor: pointer; display: grid; font-size: .72rem; font-weight: 700; gap: .55rem; grid-template-columns: 1.35rem 1fr; letter-spacing: .12em; padding: .62rem .7rem; text-align: left; width: 100%; }
   .language-menu button:hover, .language-menu button:focus-visible, .mobile-menu a:hover, .mobile-menu a:focus-visible { background: rgba(167,139,250,.1); color: rgb(245 243 255); outline: none; }
   .language-menu button[aria-checked="true"] { color: rgb(196 181 253); }
-  .language-menu strong { font-size: .68rem; letter-spacing: .12em; }
   .desktop-navigation .nav-control { color: rgb(196 181 253); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 
   .language-flag { border-radius: .08rem; display: block; height: .78rem; overflow: hidden; shape-rendering: crispEdges; width: 1.22rem; }
@@ -129,7 +129,8 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
     .header-actions { gap: .4rem; }
     .language-trigger { height: 2.5rem; padding-inline: .48rem; }
     .language-trigger > svg:first-child { height: 1.1rem; width: 1.1rem; }
-    .language-menu, .mobile-menu { min-width: 10.5rem; }
+    .language-menu { min-width: 5.6rem; }
+    .mobile-menu { min-width: 10.5rem; }
     .desktop-navigation { display: none; }
     .mobile-navigation { display: block; }
     .mobile-navigation[open] .mobile-menu-trigger { animation: none; background: rgb(196 181 253); border-color: rgb(196 181 253); color: rgb(5 5 9); }

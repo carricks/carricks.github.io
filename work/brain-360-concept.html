@@ -1,0 +1,197 @@
+<section id="brain-360-concept" aria-labelledby="brain-360-title">
+  <div class="brain360-heading">
+    <div>
+      <span>INTERACTIVE MRI CONCEPT</span>
+      <h2 id="brain-360-title">Pituitary tumour &middot; 360&deg; view</h2>
+    </div>
+    <div class="viz-row brain360-actions">
+      <button class="btn btn-ghost" type="button" data-action="rotate" aria-pressed="true"><i data-lucide="rotate-3d" aria-hidden="true"></i><span>Pause</span></button>
+      <button class="btn btn-ghost" type="button" data-action="reset"><i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Reset view</span></button>
+    </div>
+  </div>
+
+  <div class="brain360-stage" role="img" aria-label="Interactive conceptual three-dimensional brain with a highlighted pituitary tumour. Drag to rotate and pinch or scroll to zoom.">
+    <canvas></canvas>
+    <div class="brain360-hint"><i data-lucide="move-3d" aria-hidden="true"></i><span>Drag to rotate · Pinch or scroll to zoom</span></div>
+    <div class="brain360-label" aria-hidden="true"><span></span><strong>PITUITARY TUMOUR</strong></div>
+  </div>
+
+  <div class="brain360-status" aria-live="polite"><span class="brain360-dot"></span><span>Conceptual anatomy · not a diagnostic reconstruction</span></div>
+</section>
+
+<style>
+  #brain-360-concept { color: var(--foreground); width: 100%; }
+  #brain-360-concept .brain360-heading { align-items: end; display: flex; gap: 1rem; justify-content: space-between; margin-bottom: 0.8rem; }
+  #brain-360-concept .brain360-heading > div:first-child > span { color: var(--purple); display: block; font-weight: 500; letter-spacing: 0.14em; margin-bottom: 0.35rem; }
+  #brain-360-concept h2 { margin: 0; }
+  #brain-360-concept .brain360-actions { justify-content: flex-end; }
+  #brain-360-concept .brain360-actions .btn { align-items: center; display: inline-flex; gap: 0.4rem; }
+  #brain-360-concept .brain360-stage { background: color-mix(in srgb, var(--background) 94%, var(--purple) 6%); border-radius: 1rem; height: 520px; overflow: hidden; position: relative; touch-action: none; }
+  #brain-360-concept canvas { display: block; height: 100%; width: 100%; }
+  #brain-360-concept .brain360-hint { align-items: center; bottom: 0.8rem; color: var(--muted-foreground); display: flex; gap: 0.4rem; left: 0.9rem; pointer-events: none; position: absolute; }
+  #brain-360-concept .brain360-label { align-items: center; color: var(--foreground); display: flex; gap: 0.45rem; pointer-events: none; position: absolute; right: 1rem; top: 1rem; }
+  #brain-360-concept .brain360-label > span { background: var(--purple); border-radius: 50%; box-shadow: 0 0 0.65rem var(--purple); height: 0.5rem; width: 0.5rem; }
+  #brain-360-concept .brain360-label strong { font-weight: 500; letter-spacing: 0.1em; }
+  #brain-360-concept .brain360-status { align-items: center; color: var(--muted-foreground); display: flex; gap: 0.45rem; margin-top: 0.75rem; }
+  #brain-360-concept .brain360-dot { background: var(--purple); border-radius: 50%; height: 0.4rem; width: 0.4rem; }
+  @media (max-width: 520px) {
+    #brain-360-concept .brain360-heading { align-items: flex-start; flex-direction: column; }
+    #brain-360-concept .brain360-actions { justify-content: flex-start; }
+    #brain-360-concept .brain360-stage { height: 420px; }
+    #brain-360-concept .brain360-label { left: 0.9rem; right: auto; }
+    #brain-360-concept .brain360-hint { max-width: calc(100% - 1.8rem); }
+  }
+</style>
+
+<script type="module">
+  import * as THREE from "https://esm.sh/three@0.170.0";
+  import { OrbitControls } from "https://esm.sh/three@0.170.0/examples/jsm/controls/OrbitControls.js";
+
+  const root = document.getElementById("brain-360-concept");
+  const stage = root.querySelector(".brain360-stage");
+  const canvas = root.querySelector("canvas");
+  const rotateButton = root.querySelector('[data-action="rotate"]');
+  const resetButton = root.querySelector('[data-action="reset"]');
+
+  const resolvedColor = (token) => {
+    const probe = document.createElement("span");
+    probe.style.color = `var(${token})`;
+    probe.style.display = "none";
+    root.appendChild(probe);
+    const value = getComputedStyle(probe).color;
+    probe.remove();
+    return value;
+  };
+
+  const colors = {
+    foreground: resolvedColor("--foreground"),
+    background: resolvedColor("--background"),
+    muted: resolvedColor("--muted-foreground"),
+    purple: resolvedColor("--purple")
+  };
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+  camera.position.set(0.2, 0.1, 6.3);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.055;
+  controls.enablePan = false;
+  controls.minDistance = 4.1;
+  controls.maxDistance = 8.4;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 0.72;
+
+  scene.add(new THREE.HemisphereLight(colors.foreground, colors.background, 1.7));
+  const key = new THREE.DirectionalLight(colors.foreground, 2.7);
+  key.position.set(3, 4, 5);
+  scene.add(key);
+  const rim = new THREE.PointLight(colors.purple, 12, 12, 2);
+  rim.position.set(-3, 0.5, 2.5);
+  scene.add(rim);
+
+  const brain = new THREE.Group();
+  brain.rotation.x = -0.08;
+  scene.add(brain);
+
+  const tissueMaterial = new THREE.MeshPhysicalMaterial({
+    color: colors.muted,
+    roughness: 0.68,
+    metalness: 0.02,
+    transmission: 0.1,
+    transparent: true,
+    opacity: 0.9,
+    clearcoat: 0.3,
+    clearcoatRoughness: 0.72,
+    side: THREE.DoubleSide
+  });
+  const grooveMaterial = new THREE.MeshBasicMaterial({ color: colors.foreground, wireframe: true, transparent: true, opacity: 0.095 });
+
+  const makeHemisphere = (side) => {
+    const geometry = new THREE.SphereGeometry(1, 72, 52);
+    const positions = geometry.attributes.position;
+    const vertex = new THREE.Vector3();
+    for (let i = 0; i < positions.count; i++) {
+      vertex.fromBufferAttribute(positions, i);
+      const theta = Math.atan2(vertex.z, vertex.x);
+      const phi = Math.acos(THREE.MathUtils.clamp(vertex.y, -1, 1));
+      const folds = 1 + 0.038 * Math.sin(theta * 11 + Math.sin(phi * 5)) * Math.sin(phi * 8) + 0.022 * Math.sin(theta * 17 - phi * 7);
+      vertex.multiplyScalar(folds);
+      positions.setXYZ(i, vertex.x, vertex.y, vertex.z);
+    }
+    geometry.computeVertexNormals();
+    const lobe = new THREE.Mesh(geometry, tissueMaterial);
+    lobe.scale.set(0.87, 1.28, 1.02);
+    lobe.position.x = side * 0.72;
+    lobe.rotation.z = side * -0.08;
+    const grooves = new THREE.Mesh(geometry.clone(), grooveMaterial);
+    grooves.scale.copy(lobe.scale).multiplyScalar(1.006);
+    grooves.position.copy(lobe.position);
+    grooves.rotation.copy(lobe.rotation);
+    brain.add(lobe, grooves);
+  };
+
+  makeHemisphere(-1);
+  makeHemisphere(1);
+
+  const stem = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.72, 8, 20), tissueMaterial);
+  stem.position.set(0, -1.35, -0.08);
+  brain.add(stem);
+
+  const tumourMaterial = new THREE.MeshPhysicalMaterial({ color: colors.purple, emissive: colors.purple, emissiveIntensity: 0.75, roughness: 0.32, clearcoat: 0.8 });
+  const tumour = new THREE.Mesh(new THREE.IcosahedronGeometry(0.28, 4), tumourMaterial);
+  tumour.scale.set(1.25, 0.82, 1.05);
+  tumour.position.set(0.05, -0.98, 0.78);
+  brain.add(tumour);
+
+  const haloMaterial = new THREE.MeshBasicMaterial({ color: colors.purple, transparent: true, opacity: 0.13, side: THREE.BackSide });
+  const halo = new THREE.Mesh(new THREE.SphereGeometry(0.42, 32, 24), haloMaterial);
+  halo.position.copy(tumour.position);
+  brain.add(halo);
+
+  const resetView = () => {
+    camera.position.set(0.2, 0.1, 6.3);
+    controls.target.set(0, 0, 0);
+    controls.update();
+  };
+
+  rotateButton.addEventListener("click", () => {
+    controls.autoRotate = !controls.autoRotate;
+    rotateButton.setAttribute("aria-pressed", String(controls.autoRotate));
+    rotateButton.querySelector("span").textContent = controls.autoRotate ? "Pause" : "Auto rotate";
+  });
+  resetButton.addEventListener("click", resetView);
+
+  const resize = () => {
+    const width = stage.clientWidth;
+    const height = stage.clientHeight;
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  };
+  new ResizeObserver(resize).observe(stage);
+  resize();
+
+  let frame;
+  const render = () => {
+    controls.update();
+    const pulse = 1 + Math.sin(performance.now() * 0.0022) * 0.045;
+    halo.scale.setScalar(pulse);
+    renderer.render(scene, camera);
+    frame = requestAnimationFrame(render);
+  };
+  render();
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting && !frame) render();
+    if (!entry.isIntersecting && frame) { cancelAnimationFrame(frame); frame = null; }
+  });
+  observer.observe(root);
+</script>

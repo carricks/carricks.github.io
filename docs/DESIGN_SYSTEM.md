@@ -44,7 +44,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Thin animated neon line only at the top resting position.
 - Stronger blur while scrolling; subtle directional tilt.
 - Desktop navigation remains horizontal. On small screens, a Home-sized circular menu trigger opens the primary links in a right-aligned dropdown.
-- The language selector presents constructed rectangular US, German and Dutch flags with EN, DE and NL codes. Until translated routes exist, selection changes visual state only.
+- The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. Until translated routes exist, selection changes visual state only.
 
 ### Neon controls and panels
 
@@ -63,6 +63,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Expandable figures use a visible zoom affordance and one reusable modal surface.
 - The modal closes through its close control, Escape or a click outside the image, then restores focus to the trigger.
 - MRI class cards preserve a monochrome scientific treatment, a uniform black image stage, equal square dimensions, consistent inner spacing and contain-fit anatomy.
+- The MRI preprocessing visual uses the same restrained one-pixel lilac scan on desktop and mobile. Its five-second cycle traverses the image proportionally so the motion remains consistent across aspect ratios.
 - Grid stability figures preserve their full composition and use high resolution PNG assets suitable for close inspection.
 - Technical diagrams use black backgrounds without white padding or heavy framing.
 - Continuous grey lines communicate electrical, physical or data paths; dashed lilac lines communicate control, setpoints and feedback. Legends must name these roles rather than relying on color alone.

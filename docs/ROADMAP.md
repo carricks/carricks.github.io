@@ -32,12 +32,12 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
-- Modern dumbbell comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
+- Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
-- Responsive header with horizontal desktop navigation, a circular mobile dropdown and an EN/DE/NL language-selector prototype ready for future translated routes.
+- Responsive header with horizontal desktop navigation, a circular mobile dropdown and an EN/DE/NL/FR language-selector prototype ready for future translated routes.
 - Responsive hybrid-control architecture with three defined wind turbines, a direct solar Field I/O connection, clear transformer labels and non-overlapping electrical and control paths.
 - Fluid section transitions without rigid divider lines and with a more compact vertical rhythm.
 - Responsive contact form that prepares an email in the visitor's email client.

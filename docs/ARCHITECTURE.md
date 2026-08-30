@@ -76,7 +76,7 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - Local `<style>` blocks own route-specific presentation.
 - `src/styles/global.css` owns shared controls, neon traces, navigation states and motion preferences.
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
-- The global header uses passive scroll listeners and `requestAnimationFrame`. Desktop keeps the horizontal section links; mobile exposes the same destinations through an accessible circular dropdown. A separate EN/DE/NL selector currently updates presentation state only and does not yet switch routes or translated content.
+- The global header uses passive scroll listeners and `requestAnimationFrame`. Desktop keeps the horizontal section links; mobile exposes the same destinations through an accessible circular dropdown. A separate EN/DE/NL/FR selector currently updates presentation state only and does not yet switch routes or translated content.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
 - Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries. Labels must occupy clear space and never overlap routes or equipment.
