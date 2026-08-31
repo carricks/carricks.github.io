@@ -14,6 +14,46 @@ const { project } = Astro.props;
 const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
 const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
 const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
+
+const pieCenter = { x: 60, y: 53 };
+const pieRadius = 44;
+const polarPoint = (angle: number, radius = pieRadius) => {
+  const radians = (angle * Math.PI) / 180;
+  return { x: pieCenter.x + radius * Math.cos(radians), y: pieCenter.y + radius * Math.sin(radians) };
+};
+const piePath = (start: number, end: number) => {
+  const from = polarPoint(start);
+  const to = polarPoint(end);
+  return `M ${pieCenter.x} ${pieCenter.y} L ${from.x.toFixed(3)} ${from.y.toFixed(3)} A ${pieRadius} ${pieRadius} 0 ${end - start > 180 ? 1 : 0} 1 ${to.x.toFixed(3)} ${to.y.toFixed(3)} Z`;
+};
+const pieEdgePath = (start: number, end: number, depth = 22) => {
+  const from = polarPoint(start);
+  const to = polarPoint(end);
+  return `M ${from.x.toFixed(3)} ${from.y.toFixed(3)} V ${(from.y + depth).toFixed(3)} M ${to.x.toFixed(3)} ${to.y.toFixed(3)} V ${(to.y + depth).toFixed(3)}`;
+};
+let pieAngle = -80;
+const predictionPie = [
+  { label: "Pituitary", value: 94.1363, className: "is-pituitary", offset: 1.5 },
+  { label: "Glioma", value: 5.1178, className: "is-glioma", offset: 3.4 },
+  { label: "Meningioma", value: 0.7176, className: "is-meningioma", offset: 4.2 },
+  { label: "No tumour", value: 0.0283, className: "is-no-tumour", offset: 4.8 },
+].map((slice) => {
+  const start = pieAngle;
+  const end = start + slice.value * 3.6;
+  const midpoint = (start + end) / 2;
+  const radians = (midpoint * Math.PI) / 180;
+  pieAngle = end;
+  return {
+    ...slice,
+    path: piePath(start, end),
+    edgePath: pieEdgePath(start, end),
+    transform: `translate(${(Math.cos(radians) * slice.offset).toFixed(2)} ${(Math.sin(radians) * slice.offset).toFixed(2)})`,
+  };
+});
+const pieMeshSpokes = Array.from({ length: 32 }, (_, index) => {
+  const point = polarPoint(index * 11.25, 46);
+  return `M ${pieCenter.x} ${pieCenter.y} L ${point.x.toFixed(3)} ${point.y.toFixed(3)}`;
+}).join(" ");
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
@@ -27,6 +67,10 @@ const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
             <p class="case-eyebrow">MASTER'S RESEARCH · COMPUTER VISION</p>
             <h1>Classifying brain tumours from MRI.</h1>
             <p class="case-lead">A complete research prototype that transforms heterogeneous medical images into predictions across four classes through a convolutional model and a usable web interface.</p>
+            <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="report-access-control" data-report-open>
+              <span>Explore report</span>
+              <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13 13 5M7 5h6v6" /></svg>
+            </a>
           </div>
 
           <figure class="hero-visual">
@@ -337,6 +381,71 @@ END OF REPORT
 ========================================</pre>
           <figcaption>Pituitary MRI input and the four probability values returned by the trained model.</figcaption>
         </figure>
+        <figure class="prediction-distribution" aria-labelledby="prediction-distribution-title">
+          <p class="prediction-chart-kicker" id="prediction-distribution-title">PREDICTION DISTRIBUTION</p>
+
+          <div class="prediction-donut-wrap">
+            <svg class="prediction-donut" viewBox="0 0 120 120" role="img" aria-labelledby="prediction-donut-title prediction-donut-desc">
+              <title id="prediction-donut-title">Prediction probability distribution</title>
+              <desc id="prediction-donut-desc">Pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent.</desc>
+              <defs>
+                <pattern id="pie-dot-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+                  <circle cx="0.8" cy="0.8" r="0.28" fill="rgba(221, 214, 254, 0.58)"></circle>
+                </pattern>
+                {predictionPie.map((slice, index) => (
+                  <clipPath id={`pie-clip-${index}`}>
+                    <path d={slice.path}></path>
+                  </clipPath>
+                ))}
+              </defs>
+              <g class="pie-depth" aria-hidden="true">
+                {predictionPie.map((slice) => (
+                  <g transform={slice.transform}>
+                    <path class:list={["pie-slice-depth", slice.className]} d={slice.path} transform="translate(0 22)"></path>
+                    <path class:list={["pie-slice-contour", slice.className]} d={slice.path} transform="translate(0 15)"></path>
+                    <path class:list={["pie-slice-contour", slice.className]} d={slice.path} transform="translate(0 8)"></path>
+                    <path class:list={["pie-depth-edges", slice.className]} d={slice.edgePath}></path>
+                  </g>
+                ))}
+              </g>
+              <g class="pie-surfaces">
+                {predictionPie.map((slice, index) => (
+                  <g transform={slice.transform}>
+                    <path class:list={["pie-slice", slice.className]} d={slice.path}></path>
+                    <g class:list={["pie-mesh", slice.className]} clip-path={`url(#pie-clip-${index})`} aria-hidden="true">
+                      <path class="pie-mesh-spokes" d={pieMeshSpokes}></path>
+                      {[11, 22, 33, 42].map((radius) => <circle cx={pieCenter.x} cy={pieCenter.y} r={radius}></circle>)}
+                      <path class="pie-dot-field" d={slice.path}></path>
+                    </g>
+                  </g>
+                ))}
+              </g>
+            </svg>
+          </div>
+
+          <div class="prediction-legend" aria-label="Prediction values by class">
+            <div class="prediction-legend-row is-primary is-pituitary">
+              <span class="prediction-legend-swatch is-pituitary" aria-hidden="true"></span>
+              <span class="prediction-legend-label"><small>01</small><strong>Pituitary</strong></span>
+              <strong class="prediction-legend-value">94.1363<span>%</span></strong>
+            </div>
+            <div class="prediction-legend-row is-glioma">
+              <span class="prediction-legend-swatch is-glioma" aria-hidden="true"></span>
+              <span class="prediction-legend-label"><small>02</small><strong>Glioma</strong></span>
+              <strong class="prediction-legend-value">5.1178<span>%</span></strong>
+            </div>
+            <div class="prediction-legend-row is-meningioma">
+              <span class="prediction-legend-swatch is-meningioma" aria-hidden="true"></span>
+              <span class="prediction-legend-label"><small>03</small><strong>Meningioma</strong></span>
+              <strong class="prediction-legend-value">0.7176<span>%</span></strong>
+            </div>
+            <div class="prediction-legend-row is-no-tumour">
+              <span class="prediction-legend-swatch is-no-tumour" aria-hidden="true"></span>
+              <span class="prediction-legend-label"><small>04</small><strong>No tumour</strong></span>
+              <strong class="prediction-legend-value">0.0283<span>%</span></strong>
+            </div>
+          </div>
+        </figure>
       </section>
 
       <section class="case-section responsible-use-section" aria-labelledby="research-foundation-title">
@@ -346,9 +455,6 @@ END OF REPORT
           <p>The stack connected model development, accelerated experimentation, backend inference and browser visualisation within one complete workflow. It remains a research prototype designed to support experimentation and cannot replace diagnosis by qualified medical professionals.</p>
         </div>
         <div class="merged-research-tools">
-          <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="interactive-control neon-box-control premium-neon-control report-access-control" data-report-open>
-            <span class="neon-box-label">Explore report</span>
-          </a>
           <div class="case-tags" aria-label="Core technologies">
             {project.technicalScope.map((item) => <span>{item}</span>)}
           </div>
@@ -1716,6 +1822,76 @@ END OF REPORT
 
   .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; grid-column: 1 / -1; line-height: 1.55; padding: 0 0.2rem; }
 
+  .prediction-distribution {
+    align-items: center;
+    background: radial-gradient(ellipse at 30% 55%, rgba(109, 40, 217, 0.12), transparent 19rem), rgba(3, 2, 7, 0.72);
+    border: 1px solid rgba(196, 181, 253, 0.2);
+    border-radius: 1.25rem;
+    display: grid;
+    gap: clamp(4rem, 8vw, 8rem);
+    grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, 0.85fr);
+    margin: 1.25rem 0 0;
+    overflow: hidden;
+    padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 6vw, 5.5rem);
+    position: relative;
+  }
+  .prediction-distribution::before { background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.75), transparent); content: ""; height: 1px; left: 8%; position: absolute; right: 8%; top: 0; }
+  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.62rem; font-weight: 750; left: clamp(1.5rem, 4vw, 3rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.35rem; }
+  .prediction-donut-wrap { aspect-ratio: 1; display: grid; margin-inline: auto; max-width: 23rem; place-items: center; position: relative; width: 100%; }
+  .prediction-donut { filter: drop-shadow(0 1.4rem 1.5rem rgba(0, 0, 0, 0.72)); grid-area: 1 / 1; height: 100%; overflow: visible; transform: perspective(32rem) rotateX(43deg) rotateZ(-6deg); transform-origin: center; width: 100%; }
+  .pie-slice,
+  .pie-slice-depth,
+  .pie-slice-contour,
+  .pie-mesh,
+  .pie-depth-edges { stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .pie-slice { fill: var(--slice-fill); filter: drop-shadow(0 0 1.4px var(--slice-colour)) drop-shadow(0 0 4px var(--slice-glow)); stroke: var(--slice-colour); stroke-width: 0.8; }
+  .pie-slice-depth { fill: rgba(1, 1, 4, 0.7); filter: drop-shadow(0 0 2px var(--slice-glow)); stroke: var(--slice-glow); stroke-width: 0.7; }
+  .pie-slice-contour { fill: none; opacity: 0.48; stroke: var(--slice-glow); stroke-width: 0.32; }
+  .pie-depth-edges { fill: none; opacity: 0.6; stroke: var(--slice-glow); stroke-width: 0.42; }
+  .pie-mesh { color: var(--slice-colour); opacity: 0.32; }
+  .pie-mesh-spokes,
+  .pie-mesh circle { fill: none; stroke: currentColor; stroke-dasharray: 0.35 1.55; stroke-width: 0.3; }
+  .pie-dot-field { fill: url(#pie-dot-grid); opacity: 0.36; stroke: none; }
+  .pie-slice.is-pituitary,
+  .pie-slice-depth.is-pituitary,
+  .pie-slice-contour.is-pituitary,
+  .pie-mesh.is-pituitary,
+  .pie-depth-edges.is-pituitary { --slice-colour: rgb(196 181 253); --slice-fill: rgba(167, 139, 250, 0.1); --slice-depth: rgba(109, 40, 217, 0.07); --slice-glow: rgba(196, 181, 253, 0.62); }
+  .pie-slice.is-glioma,
+  .pie-slice-depth.is-glioma,
+  .pie-slice-contour.is-glioma,
+  .pie-mesh.is-glioma,
+  .pie-depth-edges.is-glioma { --slice-colour: rgb(248 250 252); --slice-fill: rgba(248, 250, 252, 0.1); --slice-depth: rgba(203, 213, 225, 0.06); --slice-glow: rgba(248, 250, 252, 0.62); }
+  .pie-slice.is-meningioma,
+  .pie-slice-depth.is-meningioma,
+  .pie-slice-contour.is-meningioma,
+  .pie-mesh.is-meningioma,
+  .pie-depth-edges.is-meningioma { --slice-colour: rgb(139 92 246); --slice-fill: rgba(124, 58, 237, 0.1); --slice-depth: rgba(76, 29, 149, 0.07); --slice-glow: rgba(139, 92, 246, 0.68); }
+  .pie-slice.is-no-tumour,
+  .pie-slice-depth.is-no-tumour,
+  .pie-slice-contour.is-no-tumour,
+  .pie-mesh.is-no-tumour,
+  .pie-depth-edges.is-no-tumour { --slice-colour: rgb(100 116 139); --slice-fill: rgba(100, 116, 139, 0.1); --slice-depth: rgba(51, 65, 85, 0.06); --slice-glow: rgba(148, 163, 184, 0.52); }
+  .prediction-legend { display: grid; gap: 0.7rem; position: relative; }
+  .prediction-legend-row { align-items: center; backdrop-filter: blur(8px); background: linear-gradient(90deg, var(--tag-wash), transparent 72%); border: 1px solid rgba(196, 181, 253, 0.12); border-left-color: var(--tag-colour); border-radius: 0.65rem; display: grid; gap: 0.75rem; grid-template-columns: auto minmax(0, 1fr) auto; min-height: 3.35rem; padding: 0.65rem 0.85rem; position: relative; }
+  .prediction-legend-row::before { background: linear-gradient(90deg, transparent, var(--tag-colour)); content: ""; height: 1px; left: -3.2rem; opacity: 0.5; position: absolute; top: 50%; width: 3.2rem; }
+  .prediction-legend-row::after { background: var(--tag-colour); border-radius: 50%; box-shadow: 0 0 0.55rem var(--tag-colour); content: ""; height: 0.3rem; left: -3.3rem; position: absolute; top: calc(50% - 0.15rem); width: 0.3rem; }
+  .prediction-legend-row.is-pituitary { --tag-colour: rgb(196 181 253); --tag-wash: rgba(167, 139, 250, 0.09); }
+  .prediction-legend-row.is-glioma { --tag-colour: rgb(248 250 252); --tag-wash: rgba(248, 250, 252, 0.055); margin-left: 1.4rem; }
+  .prediction-legend-row.is-meningioma { --tag-colour: rgb(139 92 246); --tag-wash: rgba(124, 58, 237, 0.08); margin-left: 0.55rem; }
+  .prediction-legend-row.is-no-tumour { --tag-colour: rgb(100 116 139); --tag-wash: rgba(100, 116, 139, 0.07); margin-left: 1.8rem; }
+  .prediction-legend-swatch { background: currentColor; border-radius: 50%; box-shadow: 0 0 0.65rem currentColor; height: 0.42rem; width: 0.42rem; }
+  .prediction-legend-swatch.is-pituitary { color: rgb(167 139 250); }
+  .prediction-legend-swatch.is-glioma { color: rgb(248 250 252); }
+  .prediction-legend-swatch.is-meningioma { color: rgb(109 40 217); }
+  .prediction-legend-swatch.is-no-tumour { color: rgb(71 85 105); }
+  .prediction-legend-label { align-items: baseline; color: rgb(226 232 240); display: flex; font-size: 0.78rem; gap: 0.55rem; }
+  .prediction-legend-label small { color: rgb(100 116 139); font-size: 0.54rem; font-weight: 650; letter-spacing: 0.12em; }
+  .prediction-legend-label strong { font-size: 0.78rem; }
+  .prediction-legend-value { color: rgb(203 213 225); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+  .prediction-legend-value span { color: var(--tag-colour); font-size: 0.7em; margin-left: 0.12em; }
+  .prediction-legend-row.is-primary .prediction-legend-value { color: rgb(196 181 253); }
+
   .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
 
   .grid-case-study {
@@ -1804,17 +1980,33 @@ END OF REPORT
 
   .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
   .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
-  .report-access-control { border-radius: 999px; display: inline-flex; margin-top: clamp(2rem, 4vw, 3rem); min-height: 2.75rem; padding: 0.62rem 1.15rem; width: fit-content; }
+  .report-access-control {
+    align-items: center;
+    background: #020203;
+    border: 1px solid rgba(221, 214, 254, 0.38);
+    border-radius: 999px;
+    color: rgb(226 232 240);
+    display: inline-flex;
+    font-size: 0.66rem;
+    font-weight: 750;
+    gap: 1.4rem;
+    justify-content: space-between;
+    letter-spacing: 0.15em;
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+    min-height: 2.75rem;
+    padding: 0.65rem 0.8rem 0.65rem 1.25rem;
+    text-transform: uppercase;
+    transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
+    width: fit-content;
+  }
+  .report-access-control svg { border: 1px solid rgba(196, 181, 253, 0.24); border-radius: 50%; height: 1.75rem; padding: 0.38rem; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; width: 1.75rem; }
+  .report-access-control:hover,
+  .report-access-control:focus-visible { border-color: rgba(221, 214, 254, 0.78); box-shadow: 0 0 1rem rgba(139, 92, 246, 0.15); color: rgb(221 214 254); transform: translateY(-1px); }
+  .report-access-control:focus-visible { outline: 2px solid rgba(196, 181, 253, 0.42); outline-offset: 3px; }
   .merged-research-tools { display: block; margin-top: clamp(2rem,4vw,3rem); }
-  .merged-research-tools .report-access-control,
   .merged-research-tools .case-tags { margin-top: 0; }
   .merged-research-tools .case-tags { gap: .45rem; margin-top: 2.25rem; }
   .merged-research-tools .case-tags span { font-size: .64rem; letter-spacing: .07em; padding: .38rem .58rem; }
-  .merged-research-tools .report-access-control { background: rgb(196 181 253); border-color: rgb(221 214 254); box-shadow: 0 0 .9rem rgba(167,139,250,.2); color: rgb(5 5 8); min-height: 2.9rem; padding-inline: 1.3rem; }
-  .merged-research-tools .report-access-control::before { display: none; }
-  .merged-research-tools .report-access-control .neon-box-label { color: rgb(5 5 8); font-weight: 800; text-align: center; }
-  .merged-research-tools .report-access-control:hover,
-  .merged-research-tools .report-access-control:focus-visible { background: rgb(221 214 254); border-color: white; box-shadow: 0 0 1.4rem rgba(196,181,253,.38); color: rgb(5 5 8); transform: translateY(-1px); }
 
   .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; position: relative; }
   .case-footer::before { animation: footer-neon-line 7s linear infinite; background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.42) 14%, rgb(196 181 253) 38%, rgba(255, 255, 255, 0.92) 50%, rgb(196 181 253) 62%, rgba(139, 92, 246, 0.42) 86%, transparent 100%); background-size: 220% 100%; content: ""; height: 1px; left: clamp(1.35rem, 5vw, 5rem); position: absolute; right: clamp(1.35rem, 5vw, 5rem); top: 0; }
@@ -1850,6 +2042,7 @@ END OF REPORT
     .hero-visual { max-width: 38rem; }
     .dataset-sources { grid-template-columns: 1fr; }
     .prediction-report { grid-template-columns: 1fr; margin-top: 2rem; }
+    .prediction-distribution { grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1fr); }
     .network-context-layout,
     .network-context-metrics,
     .contingency-grid,
@@ -1884,6 +2077,14 @@ END OF REPORT
     .split-copy h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
     .metric-grid,
     .class-grid { grid-template-columns: 1fr; }
+    .prediction-distribution { gap: 1.75rem; grid-template-columns: 1fr; }
+    .prediction-donut-wrap { max-width: 15rem; }
+    .prediction-legend { width: 100%; }
+    .prediction-legend-row.is-glioma,
+    .prediction-legend-row.is-meningioma,
+    .prediction-legend-row.is-no-tumour { margin-left: 0; }
+    .prediction-legend-row::before,
+    .prediction-legend-row::after { display: none; }
     .plant-flow { gap: 4rem; }
     .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
     .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }

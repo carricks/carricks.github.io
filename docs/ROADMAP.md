@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 31 August 2026
+Last updated: 1 September 2026
 
 ## Current product status
 
@@ -34,6 +34,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
+- Build-time four-class prediction visualization with exact sector geometry, a deep wireframe treatment, no text inside the graphic and external value tags.
+- Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
 - Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
@@ -46,6 +48,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
 - Removal of unused background artwork, obsolete prototype assets, the empty content-collection placeholder and temporary audit files. All retained public assets are referenced directly, dynamically or by browser convention.
+- Sprint 06 repository audit covering public assets, source imports, generated output boundaries and empty scaffolding directories; no referenced image, document, component or module was removed.
 
 ## In progress
 

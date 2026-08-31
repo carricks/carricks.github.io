@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 31 August 2026
+Last updated: 1 September 2026
 
 ## Editorial objective
 
@@ -106,11 +106,11 @@ Suggested structure:
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison and a terminal style prediction report. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart is deliberately free of embedded numbers and labels: a deep lilac, white, violet and graphite wireframe occupies one visual field, while external tags carry the class names and values. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
 The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. Reset restores the complete initial camera state, and every control uses fixed dimensions and immediate lilac press feedback on pointer and touch devices. Creator attribution remains visible.
 
-The complete master's report is available through an integrated viewer near the responsible use statement. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
+The complete master's report is available through a black outlined capsule directly beneath the hero description and opens in an integrated viewer. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
 The data-provenance section links to the public Figshare, Kaggle and GitHub collections used during academic experimentation. Source links must remain clearly identified as external resources.
 

@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 31 August 2026
+Last updated: 1 September 2026
 
 ## Status
 
@@ -85,6 +85,8 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. Reset restores the captured initial position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Fixed-width controls remain right aligned and use the same press-confirmation animation on pointer and touch devices.
 - The grid-stability CRoF gallery pairs a simplified portfolio-safe SCADA single-line diagram with a black-background isometric substation. Both use high-resolution raster assets and the shared lightbox.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
+- The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
+- The MRI prediction distribution is generated as inline SVG from the four exact probability values. Astro computes the sector geometry at build time; the chart contains no text, while its external HTML tags preserve readable labels and tabular values. The SVG uses clipped radial and dotted wireframe layers, separated sectors and stacked depth contours without adding a chart dependency or client-side runtime.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
 - `prefers-reduced-motion` disables nonessential animation.
@@ -120,3 +122,9 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - Add content collections when the authored-content volume justifies them.
 - Add automated accessibility and route smoke tests.
 - Document the production deployment workflow and branch policy.
+
+## Sprint 06 repository audit
+
+- Every retained file in `public/images/` and `public/documents/` is referenced directly, through a page-local image record, or by browser convention in the case of `favicon.ico`.
+- Every source component, data module, configuration module and shared type has an active import path.
+- Empty untracked scaffolding directories were removed; build output, dependencies and generated Astro types remain intentionally ignored.

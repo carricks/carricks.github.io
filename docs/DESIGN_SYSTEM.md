@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 31 August 2026
+Last updated: 1 September 2026
 
 ## Direction
 
@@ -73,6 +73,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Scientific diagrams use black, lilac, soft-white and cool-grey tones. Green, mint, olive and teal accents are excluded unless they encode an explicitly approved state.
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
+- The MRI prediction chart is an inline SVG wireframe sculpture: separated three-dimensional sectors, restrained dotted and radial mesh, translucent dark surfaces and class-colored neon perimeters. The chart itself contains no visible text or numbers; names and exact percentages sit in external black tags connected through fine guide lines.
+- Prediction colors remain subordinate to the page: soft lilac for pituitary, soft white for glioma, deeper violet for meningioma and graphite for no tumour. Glow is limited to edges, dots and guide terminals.
 
 ### Interactive 3D models
 
@@ -88,7 +90,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ### Research references
 
 - Responsible use and technical foundation share one concise editorial section.
-- The academic report uses a solid lilac button with black text so that it reads as the primary action rather than a technology tag.
+- The academic report uses a black, fine-outlined capsule beneath the MRI hero description. A circular arrow terminal distinguishes the action without introducing a filled primary button.
 - Technology tags are smaller than the report action and occupy a separate row.
 - The ALLEA research integrity reference is centered in the case study footer.
 
