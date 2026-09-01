@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 1 September 2026
+Last updated: 2 September 2026
 
 ## Editorial objective
 
@@ -42,7 +42,7 @@ The About actions are ordered:
 
 `Systems designed for operational confidence.`
 
-Four active project routes cover MRI tumour classification, grid stability, offshore integration and renewable control. The academic research project appears first; professional project copy avoids employer and client names.
+Four active project routes cover MRI tumour classification, grid stability, renewable control and telecommunications coverage deployment. The academic research project appears first; professional project copy follows the publication boundary approved for each case.
 
 ### Milestones
 
@@ -131,11 +131,17 @@ The published framing includes:
 - A related research reference to the International Journal of Electrical Power and Energy Systems paper on data driven online assessment and spatial temporal visualisation.
 - No operational data, internal architecture, system criteria or proprietary application names.
 
-### Offshore integration
+### Telecommunications coverage deployment
 
-Focus: SCADA, Linux and Windows deployment, segmented operational environments, industrial protocols and secure data integration.
+This concise project case study presents end-to-end mobile coverage engineering delivered through Xacom Communications, a Madrid telecommunications technology company. The page covers site surveys, RF architecture, repeater and distributed antenna integration, installation, testing, troubleshooting and final certification across GSM, UMTS/3G, LTE and emerging 5G systems.
 
-Keep organisation, platform and client identities anonymous unless approved.
+The published framing includes:
+
+- Large buildings, underground facilities, underwater tunnels, industrial sites and remote environments where conventional mobile connectivity was limited.
+- Signal repeaters, distributed antenna systems, M2M communication devices and industrial networking equipment.
+- A portfolio-authored, expandable SVG showing an outdoor donor antenna, lightning protection, signal repeater, RF splitter, low-loss coaxial backbone and indoor antennas across multiple levels. Labels use dedicated clear space and never cross RF paths or distribution nodes.
+- A project reference to Aigües de Barcelona and the extension of mobile availability across operational facilities and challenging areas.
+- No site-specific measurements, operator configuration, client infrastructure detail or reproduction of an installed system.
 
 ### Renewable control
 
@@ -158,7 +164,7 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 
 1. Supporting evidence for the International narrative.
 2. Milestones and research content with dates and verifiable context.
-3. Stronger evidence and approved visuals for the remaining offshore professional project.
+3. Final technical and publication review of the telecommunications coverage project.
 4. Final review of all technical claims against the CV and LinkedIn.
 5. Improved LinkedIn copy consistent with the portfolio narrative.
 6. Desired roles, collaborations and calls to action.

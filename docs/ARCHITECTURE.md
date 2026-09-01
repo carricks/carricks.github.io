@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 1 September 2026
+Last updated: 2 September 2026
 
 ## Status
 
@@ -16,6 +16,7 @@ public/
     projects/brain-tumour-mri/  Thesis-authored MRI and model figures
     projects/grid-stability/    Conceptual architecture, regional context and CRoF visuals
     projects/renewable-control/ Responsive SVG control architecture and photovoltaic context
+    projects/telecommunications-coverage/ Portfolio-authored distributed coverage SVG
 src/
   components/
     common/                     Container, Section and shared icons
@@ -44,7 +45,7 @@ docs/                           Product, content, design and delivery guidance
 /about/international/
 /projects/brain-tumour-mri-classification/
 /projects/grid-contingency-analysis/
-/projects/secure-offshore-data-integration/
+/projects/telecommunications-coverage-deployment/
 /projects/renewable-plant-control/
 ```
 
@@ -84,6 +85,7 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
 - The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. Reset restores the captured initial position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Fixed-width controls remain right aligned and use the same press-confirmation animation on pointer and touch devices.
 - The grid-stability CRoF gallery pairs a simplified portfolio-safe SCADA single-line diagram with a black-background isometric substation. Both use high-resolution raster assets and the shared lightbox.
+- The telecommunications project uses one external SVG for the distributed coverage architecture. Its labels occupy reserved negative space, and the shared native-dialog lightbox provides lossless enlargement, close control, Escape handling and focus restoration.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
 - The MRI prediction distribution is generated as inline SVG from the four exact probability values. Astro computes the sector geometry at build time; the chart contains no text, while its external HTML tags preserve readable labels and tabular values. The SVG uses clipped radial and dotted wireframe layers, separated sectors and stacked depth contours without adding a chart dependency or client-side runtime.

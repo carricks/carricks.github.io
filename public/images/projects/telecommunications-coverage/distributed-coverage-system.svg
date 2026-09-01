@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Distributed mobile coverage system for a large building</title>
+  <desc id="desc">A cellular base station feeds an outdoor donor antenna, lightning protection, a signal repeater, a splitter and three indoor antennas connected through a cable riser across three building levels.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0912" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#020204" stop-opacity=".98"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset=".48" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1l8 4-8 4z" fill="#c4b5fd"/>
+    </marker>
+  </defs>
+
+  <rect x=".5" y=".5" width="1199" height="759" rx="30" fill="url(#panel)" stroke="#c4b5fd" stroke-opacity=".18"/>
+
+  <!-- External mobile network -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(56 173)" stroke="#94a3b8" stroke-width="2">
+      <path d="M74 26 20 190h108L74 26Z"/>
+      <path d="M46 108h56M34 151h80M74 26v164M50 190l24-39 24 39" opacity=".65"/>
+      <path d="M49 20a36 36 0 0 1 50 0M34 5a58 58 0 0 1 80 0" stroke="#c4b5fd" opacity=".7"/>
+      <circle cx="74" cy="25" r="5" fill="#f8fafc" stroke="none" filter="url(#glow)"/>
+    </g>
+    <text x="68" y="410" fill="#64748b" font-family="Inter,Arial,sans-serif" font-size="13" letter-spacing="2">MOBILE NETWORK</text>
+    <path d="M185 190C250 145 285 127 350 122" stroke="url(#signal)" stroke-width="1.5" stroke-dasharray="5 8" marker-end="url(#arrow)"/>
+    <path d="M206 215C270 172 300 157 350 150" stroke="#8b5cf6" stroke-opacity=".35" stroke-width="1" stroke-dasharray="3 10"/>
+  </g>
+
+  <!-- Building shell -->
+  <g fill="none" stroke="#94a3b8" stroke-linejoin="round">
+    <path d="M329 208 685 64l356 144v474H329Z" stroke-width="1.4" opacity=".75"/>
+    <path d="M290 218 685 48l395 170" stroke="#c4b5fd" stroke-width="1.2" opacity=".72"/>
+    <path d="M329 353h712M329 505h712" stroke-width="1" opacity=".38"/>
+    <path d="M786 208v474" stroke-width="1" opacity=".28"/>
+    <path d="M520 208v474" stroke-width="1" opacity=".2"/>
+    <path d="M991 256h24v80h-24M991 408h24v80h-24M991 560h24v80h-24" opacity=".25"/>
+    <path d="M354 329h130v-82H354Zm0 152h130v-82H354Zm0 153h130v-83H354Z" opacity=".23"/>
+    <path d="M817 329h162v-82H817Zm0 152h162v-82H817Zm0 153h162v-83H817Z" opacity=".23"/>
+  </g>
+
+  <!-- Outdoor donor antenna and head-end -->
+  <g font-family="Inter,Arial,sans-serif">
+    <g transform="translate(356 91)">
+      <path d="M0 22 78 5v50L0 38Z" fill="#c4b5fd" fill-opacity=".14" stroke="#ddd6fe" stroke-width="1.5"/>
+      <path d="M80 8v44" stroke="#64748b"/>
+      <path d="M-10 16c-12 7-12 22 0 29M-22 8c-23 14-23 38 0 51" fill="none" stroke="#8b5cf6" stroke-width="1.5"/>
+    </g>
+    <text x="354" y="79" fill="#f8fafc" font-size="13" font-weight="650">OUTDOOR DONOR ANTENNA</text>
+    <text x="354" y="174" fill="#64748b" font-size="11" letter-spacing="1.4">RECEIVES OPERATOR SIGNAL</text>
+
+    <path d="M436 119h64v47" fill="none" stroke="#c4b5fd" stroke-width="1.4" stroke-dasharray="4 5"/>
+    <g transform="translate(476 166)">
+      <rect width="49" height="38" rx="7" fill="#030305" stroke="#c4b5fd" stroke-opacity=".58"/>
+      <path d="M25 8v8m-7 0h14l-7 13-7-13Z" fill="none" stroke="#f8fafc" stroke-width="1.2"/>
+    </g>
+    <text x="543" y="182" fill="#cbd5e1" font-size="12">Lightning protection</text>
+
+    <path d="M500 204v28" stroke="#c4b5fd" stroke-width="1.4" stroke-dasharray="4 5"/>
+    <g transform="translate(458 232)">
+      <rect width="84" height="54" rx="10" fill="#8b5cf6" fill-opacity=".1" stroke="#c4b5fd" stroke-width="1.4"/>
+      <circle cx="25" cy="27" r="8" fill="none" stroke="#f8fafc"/>
+      <path d="M39 20h27M39 27h20M39 34h25" stroke="#94a3b8"/>
+    </g>
+    <text x="458" y="219" fill="#f8fafc" font-size="13" font-weight="650">SIGNAL REPEATER</text>
+    <text x="458" y="305" fill="#64748b" font-size="11">Amplification + filtering</text>
+
+    <path d="M542 259h87" stroke="#c4b5fd" stroke-width="1.4"/>
+    <g transform="translate(629 238)">
+      <rect width="58" height="42" rx="9" fill="#030305" stroke="#c4b5fd" stroke-opacity=".62"/>
+      <path d="M12 21h13m8 0h13M29 12v18" stroke="#f8fafc"/>
+    </g>
+    <text x="629" y="225" fill="#cbd5e1" font-size="12">RF splitter</text>
+  </g>
+
+  <!-- Cable distribution backbone -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M687 259h54v342" stroke="#1e293b" stroke-width="7"/>
+    <path d="M687 259h54v342" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="6 7"/>
+    <circle cx="741" cy="314" r="4" fill="#c4b5fd" stroke="none" filter="url(#glow)"/>
+    <circle cx="741" cy="437" r="4" fill="#c4b5fd" stroke="none" filter="url(#glow)"/>
+    <circle cx="741" cy="590" r="4" fill="#c4b5fd" stroke="none" filter="url(#glow)"/>
+    <path d="M702 375h31" stroke="#64748b" stroke-width=".7"/>
+    <rect x="548" y="361" width="154" height="28" rx="7" fill="#030305" stroke="#c4b5fd" stroke-opacity=".2"/>
+    <text x="560" y="379" fill="#94a3b8" font-family="Inter,Arial,sans-serif" font-size="10" letter-spacing="1.2">COAXIAL BACKBONE</text>
+  </g>
+
+  <!-- Indoor antenna branches -->
+  <g font-family="Inter,Arial,sans-serif" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(0 0)">
+      <path d="M741 314H894" stroke="#c4b5fd" stroke-width="1.3" stroke-dasharray="5 6"/>
+      <path d="M876 300h36l-8 12h-20Z" fill="#c4b5fd" fill-opacity=".18" stroke="#ddd6fe"/>
+      <path d="M885 323c7 8 19 8 26 0M879 329c11 14 28 14 39 0" stroke="#8b5cf6" stroke-width="1.3"/>
+      <text x="822" y="286" fill="#f8fafc" font-size="12" font-weight="650">INDOOR ANTENNA · LEVEL 03</text>
+    </g>
+    <g transform="translate(0 123)">
+      <path d="M741 314H894" stroke="#c4b5fd" stroke-width="1.3" stroke-dasharray="5 6"/>
+      <path d="M876 300h36l-8 12h-20Z" fill="#c4b5fd" fill-opacity=".18" stroke="#ddd6fe"/>
+      <path d="M885 323c7 8 19 8 26 0M879 329c11 14 28 14 39 0" stroke="#8b5cf6" stroke-width="1.3"/>
+      <text x="822" y="286" fill="#f8fafc" font-size="12" font-weight="650">INDOOR ANTENNA · LEVEL 02</text>
+    </g>
+    <g transform="translate(0 276)">
+      <path d="M741 314H894" stroke="#c4b5fd" stroke-width="1.3" stroke-dasharray="5 6"/>
+      <path d="M876 300h36l-8 12h-20Z" fill="#c4b5fd" fill-opacity=".18" stroke="#ddd6fe"/>
+      <path d="M885 323c7 8 19 8 26 0M879 329c11 14 28 14 39 0" stroke="#8b5cf6" stroke-width="1.3"/>
+      <text x="822" y="286" fill="#f8fafc" font-size="12" font-weight="650">INDOOR ANTENNA · LEVEL 01</text>
+    </g>
+  </g>
+
+  <!-- Footer legend -->
+  <g transform="translate(70 704)" font-family="Inter,Arial,sans-serif" font-size="11" letter-spacing="1.2">
+    <path d="M0 0h34" stroke="#c4b5fd" stroke-width="1.5" stroke-dasharray="5 6"/>
+    <text x="46" y="4" fill="#94a3b8">RF / DISTRIBUTION PATH</text>
+    <circle cx="286" cy="0" r="4" fill="#c4b5fd" filter="url(#glow)"/>
+    <text x="302" y="4" fill="#94a3b8">ACTIVE DISTRIBUTION POINT</text>
+    <text x="693" y="4" fill="#64748b">GSM · UMTS / 3G · LTE · 5G</text>
+  </g>
+</svg>

@@ -46,7 +46,7 @@ git diff --check
 - `/about/international/`
 - `/projects/brain-tumour-mri-classification/`
 - `/projects/grid-contingency-analysis/`
-- `/projects/secure-offshore-data-integration/`
+- `/projects/telecommunications-coverage-deployment/`
 - `/projects/renewable-plant-control/`
 
 The project builds as a static site for GitHub Pages. Public documents and images live under `public/` and must not contain confidential material.

@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 1 September 2026
+Last updated: 2 September 2026
 
 ## Vision
 
@@ -37,7 +37,7 @@ Homepage
     MRI Tumour Classification
     Grid Stability
     Photovoltaic Control
-    Offshore Integration
+    Telecommunications Coverage Deployment
   Milestones
   Contact
 ```
@@ -72,6 +72,7 @@ Homepage introduction
 - Project and About detail pages are statically generated.
 - Static research figures use a browser native dialog lightbox. The two interactive anatomy models depend on the public Sketchfab Viewer API, retain creator attribution and restore their complete initial camera state through the API.
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
+- The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture rather than a full-length professional case study.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
 - Probability visualization remains dependency-free and is rendered as accessible inline SVG plus external semantic HTML labels.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.

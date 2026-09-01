@@ -1,10 +1,10 @@
 # Roadmap
 
-Last updated: 1 September 2026
+Last updated: 2 September 2026
 
 ## Current product status
 
-The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research, transmission grid stability and photovoltaic plant control projects now provide complete narrative case studies with original visuals and explicit confidentiality boundaries. The main remaining work is expanding the offshore project, completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
+The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research, transmission grid stability, photovoltaic plant control and telecommunications coverage projects now provide visual case-study patterns with explicit publication boundaries. The main remaining work is completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
 
 ## Completed
 
@@ -33,6 +33,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
+- Concise telecommunications coverage deployment project with verified CV framing, a portfolio-authored distributed antenna architecture and lossless SVG lightbox enlargement.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
 - Build-time four-class prediction visualization with exact sector geometry, a deep wireframe treatment, no text inside the graphic and external value tags.
 - Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
@@ -54,7 +55,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 - Final factual review of Academic and Experience claims.
 - Final permission and rendering review of company logos.
-- Expansion of the remaining offshore professional project case study with stronger evidence and approved visuals.
+- Final technical and publication review of the telecommunications coverage project.
 - Supporting evidence for the International page narrative.
 - Milestones, research and recognition content.
 - Mobile and desktop visual QA across common viewport sizes.
@@ -63,7 +64,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 
 1. Complete the International and Milestones content.
 2. Review the CV and LinkedIn profile for publishable evidence, achievements and consistent wording.
-3. Expand the remaining offshore project into a credible case study: context, contribution, approach, constraints and outcome.
+3. Review the telecommunications coverage case study against approved project references and publication boundaries.
 4. Confirm publication permission for every company logo, project detail and measurable claim.
 5. Improve the contact flow or connect it to a reliable form service if direct submission is required.
 6. Add canonical metadata, Open Graph images, favicon QA, sitemap and robots policy.
