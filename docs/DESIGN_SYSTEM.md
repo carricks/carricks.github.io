@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 2 September 2026
+Last updated: 6 September 2026
 
 ## Direction
 
@@ -73,9 +73,9 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Scientific diagrams use black, lilac, soft-white and cool-grey tones. Green, mint, olive and teal accents are excluded unless they encode an explicitly approved state.
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
-- The telecommunications coverage SVG follows the engineering-diagram rules and uses reserved negative space for equipment labels. Its repeater, splitter, cable backbone and indoor-antenna labels must not overlap RF paths, branch lines or active distribution points. The figure uses the shared lightbox at full vector resolution.
-- The MRI prediction chart is an inline SVG wireframe sculpture: separated three-dimensional sectors, restrained dotted and radial mesh, translucent dark surfaces and class-colored neon perimeters. The chart itself contains no visible text or numbers; names and exact percentages sit in external black tags connected through fine guide lines.
-- Prediction colors remain subordinate to the page: soft lilac for pituitary, soft white for glioma, deeper violet for meningioma and graphite for no tumour. Glow is limited to edges, dots and guide terminals.
+- The telecommunications coverage SVG follows the engineering-diagram rules and uses reserved negative space for equipment labels. Its donor, protection, repeater, splitter, backbone and indoor antenna fields remain spatially independent from RF paths and active distribution points. The figure uses the shared lightbox at full vector resolution.
+- The MRI prediction chart is a flat, centered inline SVG pie with contiguous sectors and no visible labels, values or legend. It avoids perspective, depth, mesh, exploded slices, guide lines and decorative containers so the probability shape remains the only visual subject.
+- Prediction colors remain subordinate to the page: soft lilac for pituitary, soft white for glioma, deeper violet for meningioma and graphite for no tumour. A restrained ambient shadow is the only dimensional treatment.
 
 ### Interactive 3D models
 

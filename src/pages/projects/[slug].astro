@@ -27,34 +27,21 @@ const piePath = (start: number, end: number) => {
   const to = polarPoint(end);
   return `M ${pieCenter.x} ${pieCenter.y} L ${from.x.toFixed(3)} ${from.y.toFixed(3)} A ${pieRadius} ${pieRadius} 0 ${end - start > 180 ? 1 : 0} 1 ${to.x.toFixed(3)} ${to.y.toFixed(3)} Z`;
 };
-const pieEdgePath = (start: number, end: number, depth = 22) => {
-  const from = polarPoint(start);
-  const to = polarPoint(end);
-  return `M ${from.x.toFixed(3)} ${from.y.toFixed(3)} V ${(from.y + depth).toFixed(3)} M ${to.x.toFixed(3)} ${to.y.toFixed(3)} V ${(to.y + depth).toFixed(3)}`;
-};
-let pieAngle = -80;
+let pieAngle = -90;
 const predictionPie = [
-  { label: "Pituitary", value: 94.1363, className: "is-pituitary", offset: 1.5 },
-  { label: "Glioma", value: 5.1178, className: "is-glioma", offset: 3.4 },
-  { label: "Meningioma", value: 0.7176, className: "is-meningioma", offset: 4.2 },
-  { label: "No tumour", value: 0.0283, className: "is-no-tumour", offset: 4.8 },
+  { label: "Pituitary", value: 94.1363, className: "is-pituitary" },
+  { label: "Glioma", value: 5.1178, className: "is-glioma" },
+  { label: "Meningioma", value: 0.7176, className: "is-meningioma" },
+  { label: "No tumour", value: 0.0283, className: "is-no-tumour" },
 ].map((slice) => {
   const start = pieAngle;
   const end = start + slice.value * 3.6;
-  const midpoint = (start + end) / 2;
-  const radians = (midpoint * Math.PI) / 180;
   pieAngle = end;
   return {
     ...slice,
     path: piePath(start, end),
-    edgePath: pieEdgePath(start, end),
-    transform: `translate(${(Math.cos(radians) * slice.offset).toFixed(2)} ${(Math.sin(radians) * slice.offset).toFixed(2)})`,
   };
 });
-const pieMeshSpokes = Array.from({ length: 32 }, (_, index) => {
-  const point = polarPoint(index * 11.25, 46);
-  return `M ${pieCenter.x} ${pieCenter.y} L ${point.x.toFixed(3)} ${point.y.toFixed(3)}`;
-}).join(" ");
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
@@ -107,7 +94,7 @@ const pieMeshSpokes = Array.from({ length: 32 }, (_, index) => {
           </div>
           <div class="interactive-model-meta">
             <span>Drag to rotate · scroll or pinch to zoom</span>
-            <span><a href="https://sketchfab.com/3d-models/3d-brain-tumor-model-a2e063b2d65a4a5190e1de85b7e16dcd" target="_blank" rel="nofollow noreferrer">3D Brain Tumor Model</a> by Rafael G. Malanga on Sketchfab.</span>
+            <span>3D Brain Tumor Model by Rafael G. Malanga on Sketchfab.</span>
           </div>
           <div class="interactive-model-variant">
             <div class="interactive-model-heading">
@@ -122,7 +109,7 @@ const pieMeshSpokes = Array.from({ length: 32 }, (_, index) => {
             </div>
             <div class="interactive-model-meta">
               <span>Drag to rotate · scroll or pinch to zoom</span>
-              <span><a href="https://sketchfab.com/3d-models/ct-skull-and-brain-with-tumor-df80f6027970411d8446af01fcb76b1a" target="_blank" rel="nofollow noreferrer">CT Skull and Brain, with Tumor</a> by AlorE on Sketchfab.</span>
+              <span>CT Skull and Brain, with Tumor by AlorE on Sketchfab.</span>
             </div>
           </div>
         </section>
@@ -389,60 +376,14 @@ END OF REPORT
             <svg class="prediction-donut" viewBox="0 0 120 120" role="img" aria-labelledby="prediction-donut-title prediction-donut-desc">
               <title id="prediction-donut-title">Prediction probability distribution</title>
               <desc id="prediction-donut-desc">Pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent.</desc>
-              <defs>
-                <pattern id="pie-dot-grid" width="4" height="4" patternUnits="userSpaceOnUse">
-                  <circle cx="0.8" cy="0.8" r="0.28" fill="rgba(221, 214, 254, 0.58)"></circle>
-                </pattern>
-                {predictionPie.map((slice, index) => (
-                  <clipPath id={`pie-clip-${index}`}>
-                    <path d={slice.path}></path>
-                  </clipPath>
-                ))}
-              </defs>
-              <g class="pie-depth" aria-hidden="true">
-                {predictionPie.map((slice) => (
-                  <g transform={slice.transform}>
-                    <path class:list={["pie-slice-depth", slice.className]} d={slice.path} transform="translate(0 22)"></path>
-                    <path class:list={["pie-depth-edges", slice.className]} d={slice.edgePath}></path>
-                  </g>
-                ))}
-              </g>
               <g class="pie-surfaces">
-                {predictionPie.map((slice, index) => (
-                  <g transform={slice.transform}>
+                {predictionPie.map((slice) => (
+                  <g>
                     <path class:list={["pie-slice", slice.className]} d={slice.path}></path>
-                    <g class:list={["pie-mesh", slice.className]} clip-path={`url(#pie-clip-${index})`} aria-hidden="true">
-                      <path class="pie-mesh-spokes" d={pieMeshSpokes}></path>
-                      {[11, 22, 33, 42].map((radius) => <circle cx={pieCenter.x} cy={pieCenter.y} r={radius}></circle>)}
-                      <path class="pie-dot-field" d={slice.path}></path>
-                    </g>
                   </g>
                 ))}
               </g>
             </svg>
-          </div>
-
-          <div class="prediction-legend" aria-label="Prediction values by class">
-            <div class="prediction-legend-row is-primary is-pituitary">
-              <span class="prediction-legend-swatch is-pituitary" aria-hidden="true"></span>
-              <strong class="prediction-legend-label">Pituitary</strong>
-              <strong class="prediction-legend-value">94.1363<span>%</span></strong>
-            </div>
-            <div class="prediction-legend-row is-glioma">
-              <span class="prediction-legend-swatch is-glioma" aria-hidden="true"></span>
-              <strong class="prediction-legend-label">Glioma</strong>
-              <strong class="prediction-legend-value">5.1178<span>%</span></strong>
-            </div>
-            <div class="prediction-legend-row is-meningioma">
-              <span class="prediction-legend-swatch is-meningioma" aria-hidden="true"></span>
-              <strong class="prediction-legend-label">Meningioma</strong>
-              <strong class="prediction-legend-value">0.7176<span>%</span></strong>
-            </div>
-            <div class="prediction-legend-row is-no-tumour">
-              <span class="prediction-legend-swatch is-no-tumour" aria-hidden="true"></span>
-              <strong class="prediction-legend-label">No tumour</strong>
-              <strong class="prediction-legend-value">0.0283<span>%</span></strong>
-            </div>
           </div>
         </figure>
       </section>
@@ -845,9 +786,6 @@ END OF REPORT
             <h1>{project.title}</h1>
             <p class="case-lead">{project.summary}</p>
             <p class="telecom-support">At Xacom Communications, I connected RF engineering with practical field delivery: site surveys, system design, installation, testing, troubleshooting and final certification across multiple generations of mobile technology.</p>
-            <div class="case-tags telecom-hero-tags" aria-label="Core telecommunications technologies">
-              {project.technicalScope.map((item) => <span>{item}</span>)}
-            </div>
           </div>
 
           <figure class="telecom-coverage-figure">
@@ -872,12 +810,20 @@ END OF REPORT
         </div>
         <ol class="telecom-delivery-grid">
           {[
-            { number: "01", title: "Survey and design", copy: "Assess signal conditions, physical constraints and the coverage objective before defining the RF architecture." },
-            { number: "02", title: "Deploy and integrate", copy: "Install repeaters, distributed antennas, protection, cabling, M2M devices and network equipment." },
-            { number: "03", title: "Test and certify", copy: "Measure performance, resolve field issues and certify the completed solution against the required coverage." },
+            { icon: "survey", title: "Survey and design", copy: "Assess signal conditions, physical constraints and the coverage objective before defining the RF architecture." },
+            { icon: "deploy", title: "Deploy and integrate", copy: "Install repeaters, distributed antennas, protection, cabling, M2M devices and network equipment." },
+            { icon: "verify", title: "Test and certify", copy: "Measure performance, resolve field issues and certify the completed solution against the required coverage." },
           ].map((stage) => (
             <li>
-              <span>{stage.number}</span>
+              <div class:list={["telecom-stage-symbol", `is-${stage.icon}`]} aria-hidden="true">
+                {stage.icon === "survey" ? (
+                  <svg viewBox="0 0 64 64" fill="none"><circle cx="24" cy="31" r="5"/><path d="M14 23a14 14 0 0 1 20 0M8 17a23 23 0 0 1 32 0M24 36v14M17 50h14"/><path class="accent" d="M44 39l5 5 9-12"/></svg>
+                ) : stage.icon === "deploy" ? (
+                  <svg viewBox="0 0 64 64" fill="none"><rect x="19" y="20" width="26" height="24" rx="4"/><path d="M25 28h14M25 35h8M32 14v6M32 44v7M13 32h6M45 32h7"/><circle class="accent" cx="32" cy="32" r="17"/></svg>
+                ) : (
+                  <svg viewBox="0 0 64 64" fill="none"><path d="M32 10 15 17v13c0 12 7 20 17 24 10-4 17-12 17-24V17L32 10Z"/><path class="accent" d="m23 32 6 6 12-14"/><path d="M8 30h7M49 30h7"/></svg>
+                )}
+              </div>
               <h3>{stage.title}</h3>
               <p>{stage.copy}</p>
             </li>
@@ -893,6 +839,40 @@ END OF REPORT
         <div>
           <p>I supported integrated communication systems designed to extend mobile network availability across operational facilities and technically challenging areas. The work covered underground facilities, underwater tunnels, industrial sites and remote locations where conventional mobile connectivity was limited or unavailable.</p>
           <p>Reliable coverage supported everyday coordination and dependable communications for operational personnel, including emergency response scenarios.</p>
+          <div class="telecom-environments" aria-label="Deployment environments">
+            <span>Underground</span>
+            <span>Industrial</span>
+            <span>Remote sites</span>
+            <span>Emergency coverage</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section telecom-foundation" aria-labelledby="telecom-foundation-title">
+        <div class="section-heading compact-heading">
+          <p class="case-eyebrow">TECHNICAL FOUNDATION</p>
+          <h2 id="telecom-foundation-title">A connected spectrum of field technologies.</h2>
+        </div>
+
+        <div class="telecom-technology-map" aria-label="Telecommunications technologies grouped by system layer">
+          <div class="telecom-map-row">
+            <p><span>01</span> Mobile network</p>
+            <div class="telecom-map-track">
+              {project.technicalScope.slice(0, 4).map((item) => <span>{item}</span>)}
+            </div>
+          </div>
+          <div class="telecom-map-row telecom-map-row-coverage">
+            <p><span>02</span> Coverage layer</p>
+            <div class="telecom-map-track">
+              <span>DAS</span>
+            </div>
+          </div>
+          <div class="telecom-map-row">
+            <p><span>03</span> Remote integration</p>
+            <div class="telecom-map-track">
+              {project.technicalScope.slice(5).map((item) => <span>{item}</span>)}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1029,11 +1009,27 @@ END OF REPORT
           api.getCameraLookAt((cameraError: unknown, camera: { position: number[]; target: number[] }) => {
             if (cameraError || !camera) return;
             api.getFov((fovError: unknown, fov: number) => {
+              const zAngle = (540 * Math.PI) / 180;
+              const xAngle = (90 * Math.PI) / 180;
+              const yAngle = (180 * Math.PI) / 180;
+              const offsetX = camera.position[0] - camera.target[0];
+              const offsetY = camera.position[1] - camera.target[1];
+              const offsetZ = camera.position[2] - camera.target[2];
+              const zRotatedX = offsetX * Math.cos(zAngle) - offsetY * Math.sin(zAngle);
+              const zRotatedY = offsetX * Math.sin(zAngle) + offsetY * Math.cos(zAngle);
+              const xRotatedY = zRotatedY * Math.cos(xAngle) - offsetZ * Math.sin(xAngle);
+              const xRotatedZ = zRotatedY * Math.sin(xAngle) + offsetZ * Math.cos(xAngle);
+              const rotatedPosition = [
+                camera.target[0] + zRotatedX * Math.cos(yAngle) + xRotatedZ * Math.sin(yAngle),
+                camera.target[1] + xRotatedY,
+                camera.target[2] - zRotatedX * Math.sin(yAngle) + xRotatedZ * Math.cos(yAngle),
+              ];
               initialCamera = {
-                position: [...camera.position],
+                position: rotatedPosition,
                 target: [...camera.target],
                 ...(!fovError && Number.isFinite(fov) ? { fov } : {}),
               };
+              api.setCameraLookAt(initialCamera.position, initialCamera.target, 0);
               modelReset?.removeAttribute("disabled");
             });
           });
@@ -1313,9 +1309,6 @@ END OF REPORT
   .interactive-model-frame { aspect-ratio: 16 / 9; background: #020203; border: 1px solid var(--case-border); border-radius: 1.35rem; overflow: hidden; position: relative; }
   .interactive-model-frame iframe { border: 0; display: block; height: 100%; width: 100%; }
   .interactive-model-meta { color: rgb(100 116 139); display: flex; flex-wrap: wrap; font-size: .7rem; gap: .5rem 1rem; justify-content: space-between; margin-top: .75rem; }
-  .interactive-model-meta a { color: rgb(167 139 250); text-decoration: none; }
-  .interactive-model-meta a:hover,
-  .interactive-model-meta a:focus-visible { color: rgb(221 214 254); text-decoration: underline; }
 
   .case-tags {
     display: flex;
@@ -1895,66 +1888,24 @@ END OF REPORT
   .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; grid-column: 1 / -1; line-height: 1.55; padding: 0 0.2rem; }
 
   .prediction-distribution {
-    align-items: center;
-    background: radial-gradient(ellipse at 30% 55%, rgba(109, 40, 217, 0.12), transparent 19rem), rgba(3, 2, 7, 0.72);
-    border: 1px solid rgba(196, 181, 253, 0.2);
-    border-radius: 1.25rem;
-    display: grid;
-    gap: clamp(4rem, 8vw, 8rem);
-    grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, 0.85fr);
-    margin: 1.25rem 0 0;
+    background: #020203;
+    border-bottom: 1px solid rgba(196, 181, 253, 0.16);
+    border-top: 1px solid rgba(196, 181, 253, 0.16);
+    display: flex;
+    justify-content: center;
+    margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
     overflow: hidden;
-    padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 6vw, 5.5rem);
+    padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 5vw, 4.5rem) clamp(3.5rem, 6vw, 5rem);
     position: relative;
   }
-  .prediction-distribution::before { background: linear-gradient(90deg, transparent, rgba(196, 181, 253, 0.75), transparent); content: ""; height: 1px; left: 8%; position: absolute; right: 8%; top: 0; }
-  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.62rem; font-weight: 750; left: clamp(1.5rem, 4vw, 3rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.35rem; }
-  .prediction-donut-wrap { aspect-ratio: 1; display: grid; margin-inline: auto; max-width: 23rem; place-items: center; position: relative; width: 100%; }
-  .prediction-donut { filter: drop-shadow(0 1.4rem 1.5rem rgba(0, 0, 0, 0.72)); grid-area: 1 / 1; height: 100%; overflow: visible; transform: perspective(32rem) rotateX(43deg) rotateZ(-6deg); transform-origin: center; width: 100%; }
-  .pie-slice,
-  .pie-slice-depth,
-  .pie-mesh,
-  .pie-depth-edges { stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-  .pie-slice { fill: var(--slice-fill); filter: drop-shadow(0 0 1.4px var(--slice-colour)) drop-shadow(0 0 4px var(--slice-glow)); stroke: var(--slice-colour); stroke-width: 0.8; }
-  .pie-slice-depth { fill: rgba(1, 1, 4, 0.7); filter: drop-shadow(0 0 2px var(--slice-glow)); stroke: var(--slice-glow); stroke-width: 0.7; }
-  .pie-depth-edges { fill: none; opacity: 0.6; stroke: var(--slice-glow); stroke-width: 0.42; }
-  .pie-mesh { color: var(--slice-colour); opacity: 0.32; }
-  .pie-mesh-spokes,
-  .pie-mesh circle { fill: none; stroke: currentColor; stroke-dasharray: 0.35 1.55; stroke-width: 0.3; }
-  .pie-dot-field { fill: url(#pie-dot-grid); opacity: 0.36; stroke: none; }
-  .pie-slice.is-pituitary,
-  .pie-slice-depth.is-pituitary,
-  .pie-mesh.is-pituitary,
-  .pie-depth-edges.is-pituitary { --slice-colour: rgb(196 181 253); --slice-fill: rgba(167, 139, 250, 0.1); --slice-depth: rgba(109, 40, 217, 0.07); --slice-glow: rgba(196, 181, 253, 0.62); }
-  .pie-slice.is-glioma,
-  .pie-slice-depth.is-glioma,
-  .pie-mesh.is-glioma,
-  .pie-depth-edges.is-glioma { --slice-colour: rgb(248 250 252); --slice-fill: rgba(248, 250, 252, 0.1); --slice-depth: rgba(203, 213, 225, 0.06); --slice-glow: rgba(248, 250, 252, 0.62); }
-  .pie-slice.is-meningioma,
-  .pie-slice-depth.is-meningioma,
-  .pie-mesh.is-meningioma,
-  .pie-depth-edges.is-meningioma { --slice-colour: rgb(139 92 246); --slice-fill: rgba(124, 58, 237, 0.1); --slice-depth: rgba(76, 29, 149, 0.07); --slice-glow: rgba(139, 92, 246, 0.68); }
-  .pie-slice.is-no-tumour,
-  .pie-slice-depth.is-no-tumour,
-  .pie-mesh.is-no-tumour,
-  .pie-depth-edges.is-no-tumour { --slice-colour: rgb(100 116 139); --slice-fill: rgba(100, 116, 139, 0.1); --slice-depth: rgba(51, 65, 85, 0.06); --slice-glow: rgba(148, 163, 184, 0.52); }
-  .prediction-legend { display: grid; gap: 0.7rem; position: relative; }
-  .prediction-legend-row { align-items: center; backdrop-filter: blur(8px); background: linear-gradient(90deg, var(--tag-wash), transparent 72%); border: 1px solid rgba(196, 181, 253, 0.16); border-left-color: var(--tag-colour); border-radius: 0.65rem; display: grid; gap: 0.9rem; grid-template-columns: auto minmax(0, 1fr) auto; min-height: 3.75rem; padding: 0.75rem 1rem; position: relative; }
-  .prediction-legend-row::before { background: linear-gradient(90deg, transparent, var(--tag-colour)); content: ""; height: 1px; left: -3.2rem; opacity: 0.5; position: absolute; top: 50%; width: 3.2rem; }
-  .prediction-legend-row::after { background: var(--tag-colour); border-radius: 50%; box-shadow: 0 0 0.55rem var(--tag-colour); content: ""; height: 0.3rem; left: -3.3rem; position: absolute; top: calc(50% - 0.15rem); width: 0.3rem; }
-  .prediction-legend-row.is-pituitary { --tag-colour: rgb(196 181 253); --tag-wash: rgba(167, 139, 250, 0.09); }
-  .prediction-legend-row.is-glioma { --tag-colour: rgb(248 250 252); --tag-wash: rgba(248, 250, 252, 0.055); }
-  .prediction-legend-row.is-meningioma { --tag-colour: rgb(139 92 246); --tag-wash: rgba(124, 58, 237, 0.08); }
-  .prediction-legend-row.is-no-tumour { --tag-colour: rgb(100 116 139); --tag-wash: rgba(100, 116, 139, 0.07); }
-  .prediction-legend-swatch { background: currentColor; border-radius: 50%; box-shadow: 0 0 0.65rem currentColor; height: 0.42rem; width: 0.42rem; }
-  .prediction-legend-swatch.is-pituitary { color: rgb(167 139 250); }
-  .prediction-legend-swatch.is-glioma { color: rgb(248 250 252); }
-  .prediction-legend-swatch.is-meningioma { color: rgb(109 40 217); }
-  .prediction-legend-swatch.is-no-tumour { color: rgb(71 85 105); }
-  .prediction-legend-label { color: rgb(241 245 249); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.01em; }
-  .prediction-legend-value { color: rgb(226 232 240); font-size: 0.88rem; font-variant-numeric: tabular-nums; }
-  .prediction-legend-value span { color: var(--tag-colour); font-size: 0.7em; margin-left: 0.12em; }
-  .prediction-legend-row.is-primary .prediction-legend-value { color: rgb(196 181 253); }
+  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.62rem; font-weight: 750; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.5rem; }
+  .prediction-donut-wrap { aspect-ratio: 1; display: grid; max-width: 21rem; place-items: center; width: min(72vw, 21rem); }
+  .prediction-donut { filter: drop-shadow(0 0 1.4rem rgba(139,92,246,.12)); grid-area: 1 / 1; height: 100%; overflow: visible; width: 100%; }
+  .pie-slice { fill: var(--slice-fill); stroke: #020203; stroke-linejoin: round; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+  .pie-slice.is-pituitary { --slice-fill: rgb(196 181 253); }
+  .pie-slice.is-glioma { --slice-fill: rgb(248 250 252); }
+  .pie-slice.is-meningioma { --slice-fill: rgb(124 58 237); }
+  .pie-slice.is-no-tumour { --slice-fill: rgb(100 116 139); }
 
   .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
 
@@ -2100,8 +2051,6 @@ END OF REPORT
   .telecom-identity img { height: 2.2rem; object-fit: contain; width: auto; }
   .telecom-identity span { border-left: 1px solid rgba(196,181,253,.25); color: rgb(100 116 139); font-size: .65rem; letter-spacing: .13em; padding-left: 1rem; text-transform: uppercase; }
   .telecom-support { color: rgb(100 116 139); font-size: .9rem; line-height: 1.75; margin: 1rem 0 0; max-width: 36rem; }
-  .telecom-hero-tags { gap: .45rem; margin-top: 1.55rem; }
-  .telecom-hero-tags span { font-size: .62rem; letter-spacing: .07em; padding: .38rem .62rem; }
   .telecom-coverage-figure { margin: 0; min-width: 0; }
   .telecom-coverage-frame { background: rgba(2,2,4,.88); border: 1px solid rgba(196,181,253,.2); border-radius: 1.35rem; overflow: hidden; padding: .35rem; position: relative; }
   .telecom-coverage-frame::before { background: linear-gradient(90deg, transparent, rgba(196,181,253,.72), transparent); content: ""; height: 1px; left: 10%; position: absolute; right: 10%; top: 0; }
@@ -2113,15 +2062,40 @@ END OF REPORT
   .telecom-lightbox .figure-lightbox-content { max-width: min(96vw, 92rem); }
   .telecom-lightbox .figure-lightbox-content > img { background: #020204; max-height: calc(100dvh - 3rem); object-fit: contain; width: 100%; }
   .telecom-case-study .case-section { padding-bottom: clamp(2.8rem, 4vw, 4rem); padding-top: clamp(2.8rem, 4vw, 4rem); }
-  .telecom-delivery-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3,minmax(0,1fr)); list-style: none; margin: 2.2rem 0 0; padding: 0; }
-  .telecom-delivery-grid li { background: linear-gradient(145deg,rgba(12,9,20,.65),rgba(2,2,4,.9)); border: 1px solid rgba(196,181,253,.14); border-radius: 1rem; min-height: 13rem; padding: 1.4rem; }
-  .telecom-delivery-grid li > span { color: rgb(139 92 246); font-size: .62rem; font-weight: 750; letter-spacing: .16em; }
-  .telecom-delivery-grid h3 { color: rgb(226 232 240); font-size: 1rem; margin: 2.35rem 0 0; }
-  .telecom-delivery-grid p { color: rgb(100 116 139); font-size: .83rem; line-height: 1.72; margin: .7rem 0 0; }
+  .telecom-delivery-grid { display: grid; gap: clamp(2rem,5vw,5rem); grid-template-columns: repeat(3,minmax(0,1fr)); list-style: none; margin: 3rem 0 0; padding: 0; position: relative; }
+  .telecom-delivery-grid::before { background: linear-gradient(90deg,transparent,rgba(139,92,246,.6) 18%,rgba(241,245,249,.34) 50%,rgba(139,92,246,.6) 82%,transparent); box-shadow: 0 0 1rem rgba(139,92,246,.16); content: ""; height: 1px; left: 3rem; position: absolute; right: 3rem; top: 3.35rem; }
+  .telecom-delivery-grid::after { background: linear-gradient(90deg,transparent,rgba(167,139,250,.18),transparent); content: ""; filter: blur(.8rem); height: 3rem; left: 8%; pointer-events: none; position: absolute; right: 8%; top: 1.85rem; }
+  .telecom-delivery-grid li { min-height: 12rem; padding: 0; position: relative; }
+  .telecom-stage-symbol { align-items: center; background: #000; color: rgb(196 181 253); display: flex; height: 6.7rem; justify-content: center; position: relative; width: 6.7rem; z-index: 1; }
+  .telecom-stage-symbol::before,
+  .telecom-stage-symbol::after { border: 1px solid rgba(167,139,250,.22); border-radius: 50%; content: ""; inset: .45rem; position: absolute; }
+  .telecom-stage-symbol::after { border-color: rgba(241,245,249,.1); inset: 1.05rem; }
+  .telecom-stage-symbol svg { filter: drop-shadow(0 0 .55rem rgba(167,139,250,.3)); height: 3.15rem; overflow: visible; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.25; width: 3.15rem; }
+  .telecom-stage-symbol .accent { stroke: rgb(241 245 249); }
+  .telecom-stage-symbol::before { animation: telecom-signal-ring 3.6s ease-in-out infinite; }
+  .telecom-delivery-grid li:nth-child(2) .telecom-stage-symbol::before { animation-delay: .8s; }
+  .telecom-delivery-grid li:nth-child(3) .telecom-stage-symbol::before { animation-delay: 1.6s; }
+  .telecom-delivery-grid h3 { color: rgb(226 232 240); font-size: 1rem; margin: 1.05rem 0 0; }
+  .telecom-delivery-grid p { color: rgb(100 116 139); font-size: .83rem; line-height: 1.72; margin: .7rem 0 0; max-width: 21rem; }
+  @keyframes telecom-signal-ring { 0%,100% { border-color: rgba(167,139,250,.18); box-shadow: 0 0 0 rgba(139,92,246,0); transform: scale(.94); } 50% { border-color: rgba(196,181,253,.5); box-shadow: 0 0 1.15rem rgba(139,92,246,.18); transform: scale(1); } }
   .telecom-reference { align-items: start; display: grid; gap: clamp(2rem,6vw,6rem); grid-template-columns: minmax(15rem,.68fr) minmax(0,1.32fr); }
   .telecom-reference h2 { color: rgb(241 245 249); font-size: clamp(1.8rem,3vw,2.7rem); letter-spacing: -.04em; margin: .75rem 0 0; }
   .telecom-reference > div:last-child p { color: rgb(148 163 184); line-height: 1.82; margin: 0; }
   .telecom-reference > div:last-child p + p { margin-top: 1rem; }
+  .telecom-environments { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.5rem; }
+  .telecom-environments span { border: 1px solid rgba(148,163,184,.16); border-radius: 999px; color: rgb(148 163 184); font-size: .61rem; letter-spacing: .08em; padding: .42rem .7rem; text-transform: uppercase; }
+  .telecom-foundation { overflow: hidden; }
+  .telecom-technology-map { border-bottom: 1px solid rgba(196,181,253,.13); border-top: 1px solid rgba(196,181,253,.13); margin-top: 2.4rem; position: relative; }
+  .telecom-technology-map::before { background: linear-gradient(180deg,transparent,rgba(139,92,246,.5),transparent); content: ""; left: clamp(11rem,22vw,17rem); position: absolute; top: 12%; bottom: 12%; width: 1px; }
+  .telecom-map-row { align-items: center; display: grid; gap: clamp(2rem,6vw,6rem); grid-template-columns: clamp(9rem,18vw,14rem) minmax(0,1fr); min-height: 7.2rem; position: relative; }
+  .telecom-map-row + .telecom-map-row { border-top: 1px solid rgba(148,163,184,.1); }
+  .telecom-map-row > p { color: rgb(148 163 184); font-size: .66rem; letter-spacing: .13em; margin: 0; text-transform: uppercase; }
+  .telecom-map-row > p span { color: rgb(139 92 246); font-family: ui-monospace,SFMono-Regular,Menlo,monospace; margin-right: .75rem; }
+  .telecom-map-track { align-items: center; display: flex; flex-wrap: wrap; gap: clamp(.8rem,2.8vw,2.2rem); min-width: 0; position: relative; }
+  .telecom-map-track::before { background: linear-gradient(90deg,rgba(139,92,246,.55),rgba(226,232,240,.18),transparent); content: ""; height: 1px; left: -2.5rem; position: absolute; right: 0; top: 50%; }
+  .telecom-map-track > span { backdrop-filter: blur(.45rem); background: rgba(4,3,8,.82); border: 1px solid rgba(196,181,253,.24); border-radius: 999px; color: rgb(226 232 240); font-size: .68rem; letter-spacing: .06em; padding: .55rem .82rem; position: relative; white-space: nowrap; z-index: 1; }
+  .telecom-map-track > span::before { background: rgb(167 139 250); border-radius: 50%; box-shadow: 0 0 .55rem rgba(167,139,250,.75); content: ""; height: .24rem; left: -.14rem; position: absolute; top: calc(50% - .12rem); width: .24rem; }
+  .telecom-map-row-coverage .telecom-map-track > span { border-color: rgba(241,245,249,.42); box-shadow: 0 0 1.2rem rgba(139,92,246,.12); color: rgb(241 245 249); }
 
   .tech-scope-item {
     border: 1px solid rgba(221, 214, 254, 0.3);
@@ -2141,7 +2115,6 @@ END OF REPORT
     .hero-visual { max-width: 38rem; }
     .dataset-sources { grid-template-columns: 1fr; }
     .prediction-report { grid-template-columns: 1fr; margin-top: 2rem; }
-    .prediction-distribution { grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 1fr); }
     .network-context-layout,
     .network-context-metrics,
     .contingency-grid,
@@ -2159,8 +2132,11 @@ END OF REPORT
     .interactive-model-controls { justify-content: flex-end; }
     .telecom-coverage-figure { margin-inline: auto; max-width: 48rem; width: 100%; }
     .telecom-delivery-grid { grid-template-columns: 1fr; }
-    .telecom-delivery-grid li { min-height: auto; }
-    .telecom-delivery-grid h3 { margin-top: 1.4rem; }
+    .telecom-delivery-grid::before { background: linear-gradient(180deg,transparent,rgba(139,92,246,.55),transparent); bottom: 8%; height: auto; left: 3.35rem; right: auto; top: 8%; width: 1px; }
+    .telecom-delivery-grid::after { bottom: 8%; height: auto; left: 1.85rem; right: auto; top: 8%; width: 3rem; }
+    .telecom-delivery-grid li { min-height: auto; padding-left: 8.25rem; }
+    .telecom-stage-symbol { left: 0; position: absolute; top: -.7rem; }
+    .telecom-delivery-grid h3 { margin-top: 0; }
   }
 
   @media (max-width: 48rem) {
@@ -2184,14 +2160,13 @@ END OF REPORT
     .telecom-identity span { border-left: 0; padding-left: 0; }
     .telecom-reference { grid-template-columns: 1fr; }
     .telecom-coverage-frame { border-radius: .9rem; padding: .25rem; }
-    .prediction-distribution { gap: 1.75rem; grid-template-columns: 1fr; }
-    .prediction-donut-wrap { max-width: 15rem; }
-    .prediction-legend { width: 100%; }
-    .prediction-legend-row.is-glioma,
-    .prediction-legend-row.is-meningioma,
-    .prediction-legend-row.is-no-tumour { margin-left: 0; }
-    .prediction-legend-row::before,
-    .prediction-legend-row::after { display: none; }
+    .telecom-technology-map::before { display: none; }
+    .telecom-map-row { align-items: start; gap: 1.2rem; grid-template-columns: 1fr; padding: 1.6rem 0; }
+    .telecom-map-row > p { padding-left: .2rem; }
+    .telecom-map-track { gap: .65rem; padding-left: 1rem; }
+    .telecom-map-track::before { left: 0; }
+    .telecom-map-track > span { font-size: .62rem; padding: .48rem .68rem; }
+    .prediction-donut-wrap { max-width: 18rem; }
     .plant-flow { gap: 4rem; }
     .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
     .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }
@@ -2239,6 +2214,7 @@ END OF REPORT
     .scan-line,
     .case-footer::before,
     .plant-flow-symbol::before,
+    .telecom-stage-symbol::before,
     .interactive-model-controls button.is-control-confirmed { animation: none; }
     .interactive-model-controls button.is-control-confirmed { background: rgb(196 181 253); color: rgb(5 5 8); }
   }

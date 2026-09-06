@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 2 September 2026
+Last updated: 6 September 2026
 
 ## Editorial objective
 
@@ -106,9 +106,9 @@ Suggested structure:
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart is deliberately free of embedded numbers and labels: a deep lilac, white, violet and graphite wireframe occupies one visual field, while external tags carry the class names and values. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart is now a deliberately minimal two-dimensional pie: contiguous lilac, white, violet and graphite sectors contain no visible numbers, labels, legend, mesh or depth effects. The exact values remain available in the adjacent report and the chart's accessible description. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
-The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. Reset restores the complete initial camera state, and every control uses fixed dimensions and immediate lilac press feedback on pointer and touch devices. Creator attribution remains visible.
+The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. The CT reference view uses an approved composed-axis orientation and reset restores that complete camera state. Creator attribution remains visible as plain text without opening another page.
 
 The complete master's report is available through a black outlined capsule directly beneath the hero description and opens in an integrated viewer. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
@@ -140,6 +140,7 @@ The published framing includes:
 - Large buildings, underground facilities, underwater tunnels, industrial sites and remote environments where conventional mobile connectivity was limited.
 - Signal repeaters, distributed antenna systems, M2M communication devices and industrial networking equipment.
 - A portfolio-authored, expandable SVG showing an outdoor donor antenna, lightning protection, signal repeater, RF splitter, low-loss coaxial backbone and indoor antennas across multiple levels. Labels use dedicated clear space and never cross RF paths or distribution nodes.
+- An open, icon-led delivery sequence without numbered cards, plus a closing technology map that groups mobile access, DAS coverage and remote integration protocols.
 - A project reference to Aigües de Barcelona and the extension of mobile availability across operational facilities and challenging areas.
 - No site-specific measurements, operator configuration, client infrastructure detail or reproduction of an installed system.
 

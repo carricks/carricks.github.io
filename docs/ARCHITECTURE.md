@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 2 September 2026
+Last updated: 6 September 2026
 
 ## Status
 
@@ -83,12 +83,12 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries. Labels must occupy clear space and never overlap routes or equipment.
 - The renewable-control architecture uses separate desktop and mobile SVG assets. Its integrated topology includes a three-turbine wind farm, solar generation, local PPCs, hybrid coordination, operator supervision, an MV bus, transformers and the grid POI.
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
-- The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. Reset restores the captured initial position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Fixed-width controls remain right aligned and use the same press-confirmation animation on pointer and touch devices.
+- The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. The CT viewer derives a deterministic reference camera through ordered Z, X and Y rotations, applies it when ready and restores the same position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Creator credits beneath both embeds are static text rather than navigation links.
 - The grid-stability CRoF gallery pairs a simplified portfolio-safe SCADA single-line diagram with a black-background isometric substation. Both use high-resolution raster assets and the shared lightbox.
-- The telecommunications project uses one external SVG for the distributed coverage architecture. Its labels occupy reserved negative space, and the shared native-dialog lightbox provides lossless enlargement, close control, Escape handling and focus restoration.
+- The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. The route also uses an open icon-led delivery sequence and a final three-layer technology map; all related styles remain scoped to `.telecom-case-study`.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
-- The MRI prediction distribution is generated as inline SVG from the four exact probability values. Astro computes the sector geometry at build time; the chart contains no text, while its external HTML tags preserve readable labels and tabular values. The SVG uses clipped radial and dotted wireframe layers, separated sectors and stacked depth contours without adding a chart dependency or client-side runtime.
+- The MRI prediction distribution is generated as a flat inline SVG from the four exact probability values. Astro computes contiguous two-dimensional sectors at build time. The visible chart intentionally contains no labels, percentages, legend, mesh or depth effects; its accessible title and description preserve the complete values without adding a chart dependency or client-side runtime.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
 - `prefers-reduced-motion` disables nonessential animation.
@@ -130,3 +130,4 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - Every retained file in `public/images/` and `public/documents/` is referenced directly, through a page-local image record, or by browser convention in the case of `favicon.ico`.
 - Every source component, data module, configuration module and shared type has an active import path.
 - Empty untracked scaffolding directories were removed; build output, dependencies and generated Astro types remain intentionally ignored.
+- The 6 September closeout rechecked dynamic MRI class-image records, the public report, company marks, project figures and browser-convention favicon before retaining them; no public asset qualified for safe deletion.

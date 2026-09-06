@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 2 September 2026
+Last updated: 6 September 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop, tablet and mobile. The design and interaction foundation is mature, and the MRI research, grid stability and photovoltaic plant control projects provide complete visual case study patterns. The MRI case study combines static research evidence, an external-labelled four-class wireframe prediction chart and two independently controlled 3D models whose camera and visibility controls behave consistently across input modes. Its report action now sits directly in the hero. Grid and renewable diagrams share a dark semantic system with explicit physical, electrical and control relationships, dedicated mobile assets and strict non overlap rules. The grid gallery now connects a simplified SCADA single-line interface to a black-background physical substation view. The remaining sections still need deeper evidence and publication review.
+The website is functional and navigable on desktop, tablet and mobile. The design and interaction foundation is mature, and the MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case study patterns. The MRI case study combines static research evidence, a minimal two-dimensional probability pie and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share a dark semantic system with explicit system relationships and strict non-overlap rules. The remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -70,11 +70,11 @@ Homepage introduction
 - Contact form validates locally and opens a prepared `mailto:` message.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
-- Static research figures use a browser native dialog lightbox. The two interactive anatomy models depend on the public Sketchfab Viewer API, retain creator attribution and restore their complete initial camera state through the API.
+- Static research figures use a browser native dialog lightbox. The two interactive anatomy models depend on the public Sketchfab Viewer API, retain plain-text creator attribution and restore their complete initial camera state through the API.
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
-- The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture rather than a full-length professional case study.
+- The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture, an open delivery sequence and a layered technology map.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
-- Probability visualization remains dependency-free and is rendered as accessible inline SVG plus external semantic HTML labels.
+- Probability visualization remains dependency-free and is rendered as a label-free, accessible two-dimensional inline SVG; exact values remain in the adjacent prediction report and accessible description.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
 - The portfolio remains readable if an external 3D model is unavailable.
 

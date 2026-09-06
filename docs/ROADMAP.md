@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 2 September 2026
+Last updated: 6 September 2026
 
 ## Current product status
 
@@ -18,7 +18,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
 - Complete MRI tumour classification case study with research context, open data provenance, class examples, model evolution, experimental comparison and responsible use framing.
-- Two interactive MRI related anatomy models with complete camera-state reset, independent tumour controls, annotation control only where tags exist, visible attribution and a shared black, lilac and red palette. Fixed-width buttons remain right aligned and provide the same lilac press feedback on desktop and touch devices.
+- Two interactive MRI related anatomy models with complete camera-state reset, independent tumour controls, annotation control only where tags exist, static creator attribution and a shared black, lilac and red palette. The CT model now restores the approved composed-axis reference view.
 - Consolidated responsible research and technical foundation content with a distinct report action and compact technology tags.
 - Confidentiality aware transmission grid stability case study covering controlled contingencies, collaborative application engineering, integration and validation without identifying the client.
 - Original expandable system architecture diagram and verified related research reference for the grid stability case study.
@@ -33,9 +33,9 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
-- Concise telecommunications coverage deployment project with verified CV framing, a portfolio-authored distributed antenna architecture and lossless SVG lightbox enlargement.
+- Concise telecommunications coverage deployment project with verified CV framing, a rebuilt non-overlapping distributed antenna architecture, an open icon-led delivery flow, a layered technology map and lossless SVG lightbox enlargement.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
-- Build-time four-class prediction visualization with exact sector geometry, a deep wireframe treatment, no text inside the graphic and external value tags.
+- Build-time four-class prediction visualization with exact contiguous 2D sector geometry and no visible labels, values, legend, mesh or depth treatment.
 - Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
 - Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
@@ -49,7 +49,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
 - Removal of unused background artwork, obsolete prototype assets, the empty content-collection placeholder and temporary audit files. All retained public assets are referenced directly, dynamically or by browser convention.
-- Sprint 06 repository audit covering public assets, source imports, generated output boundaries and empty scaffolding directories; no referenced image, document, component or module was removed.
+- Sprint 06 repository audit covering public assets, dynamic MRI image records, source imports, generated output boundaries and empty scaffolding directories; no asset or code qualified for safe removal in the 6 September closeout.
 
 ## In progress
 
