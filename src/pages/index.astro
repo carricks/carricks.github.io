@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/sections/AboutSection.astro";
 import PortfolioSection from "../components/sections/PortfolioSection.astro";
 import ContactSection from "../components/sections/ContactSection.astro";
+import AboutDestinationIcon from "../components/common/AboutDestinationIcon.astro";
+import ArrowIcon from "../components/common/ArrowIcon.astro";
 import { projects } from "../data/projects";
 ---
 
@@ -23,7 +25,7 @@ import { projects } from "../data/projects";
           class="interactive-control neon-box-control premium-neon-control project-link"
         >
           <span class="neon-box-label">{project.shortLabel}</span>
-          <span class="neon-box-arrow" aria-hidden="true">↗</span>
+          <ArrowIcon />
         </a>
       ))}
     </div>
@@ -34,7 +36,19 @@ import { projects } from "../data/projects";
     eyebrow="MILESTONES"
     title="Technical milestones and recognition."
     description="Selected academic work, international technology competitions and personal milestones that complement my professional engineering practice."
-  />
+  >
+    <div class="mt-12 flex max-w-xl flex-col gap-3 text-sm text-violet-100" aria-label="Milestone entries">
+      <a
+        href="/milestones/hardwarethon/"
+        aria-label="Explore Hardwarethon Costa Rica 2019"
+        class="interactive-control neon-box-control premium-neon-control project-link"
+      >
+        <span class="neon-box-symbol"><AboutDestinationIcon icon="trophy" /></span>
+        <span class="neon-box-label">Hardwarethon 2019</span>
+        <ArrowIcon />
+      </a>
+    </div>
+  </PortfolioSection>
 
   <ContactSection />
 </BaseLayout>

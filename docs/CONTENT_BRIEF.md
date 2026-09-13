@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 6 September 2026
+Last updated: 13 September 2026
 
 ## Editorial objective
 
@@ -34,7 +34,6 @@ The About actions are ordered:
 
 1. Experience
 2. Academic
-3. International
 
 ### Projects
 
@@ -46,7 +45,7 @@ Four active project routes cover MRI tumour classification, grid stability, rene
 
 ### Milestones
 
-The section introduces technical milestones and recognition but still requires verified research, competition and personal milestone evidence before detailed entries are published.
+The section now links to a concise Hardwarethon 2019 entry describing third-place recognition for a multidisciplinary coffee-production monitoring concept developed during a 48-hour challenge in Costa Rica. Additional milestones still require verified evidence before publication.
 
 ### Contact
 
@@ -54,7 +53,7 @@ The section introduces technical milestones and recognition but still requires v
 
 `Let's build resilient systems.`
 
-The form supports technical conversations, collaborations and engineering opportunities. It currently prepares an email rather than sending data to a backend.
+The form supports technical conversations, collaborations and engineering opportunities. It currently prepares an email rather than sending data to a backend. Its interaction changes only the translucent field surface; text, caret and icons remain consistently lilac on desktop and mobile.
 
 ## Academic page
 
@@ -87,26 +86,13 @@ Current entries:
 
 Company logos are monochrome lilac and replace repeated textual headings. Entries are thematic and intentionally omit dates and job-title chronology.
 
-## International page
-
-Status: concise narrative foundation published; supporting evidence remains pending.
-
-The page explains how professional and academic work across Spain, the Netherlands, Portugal and Latin America strengthened technical communication, coordination and adaptation to local practice. Future additions should provide evidence without turning the page into a country checklist.
-
-Suggested structure:
-
-1. Working across technical cultures.
-2. Mediterranean European experience.
-3. Current professional growth in Northeastern Europe.
-4. International competitions and collaboration, where evidence is available.
-
 ## Project case studies
 
 ### MRI tumour classification
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart is now a deliberately minimal two-dimensional pie: contiguous lilac, white, violet and graphite sectors contain no visible numbers, labels, legend, mesh or depth effects. The exact values remain available in the adjacent report and the chart's accessible description. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart uses a softened orbital wireframe with restrained depth, distinct class colors and external labels. Fine desktop leaders connect each label to its corresponding slice; mobile retains the chart and moves the labels into a clean grid without connector overlap. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
 The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. The CT reference view uses an approved composed-axis orientation and reset restores that complete camera state. Creator attribution remains visible as plain text without opening another page.
 
@@ -163,14 +149,13 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 
 ## Content still needed
 
-1. Supporting evidence for the International narrative.
-2. Milestones and research content with dates and verifiable context.
-3. Final technical and publication review of the telecommunications coverage project.
-4. Final review of all technical claims against the CV and LinkedIn.
-5. Improved LinkedIn copy consistent with the portfolio narrative.
-6. Desired roles, collaborations and calls to action.
-7. Permission record for company logos, public project information and embedded media.
-8. Final metadata descriptions and social sharing copy.
+1. Additional milestones and research content with dates and verifiable context.
+2. Final technical and publication review of the telecommunications coverage project.
+3. Final review of all technical claims against the CV and LinkedIn.
+4. Improved LinkedIn copy consistent with the portfolio narrative.
+5. Desired roles, collaborations and calls to action.
+6. Permission record for company logos, public project information and embedded media.
+7. Final metadata descriptions and social sharing copy.
 
 ## Final editorial checklist
 

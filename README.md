@@ -43,7 +43,7 @@ git diff --check
 - `/`
 - `/about/experience/`
 - `/about/academic/`
-- `/about/international/`
+- `/milestones/hardwarethon/`
 - `/projects/brain-tumour-mri-classification/`
 - `/projects/grid-contingency-analysis/`
 - `/projects/telecommunications-coverage-deployment/`

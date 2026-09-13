@@ -1,19 +1,19 @@
 # Roadmap
 
-Last updated: 6 September 2026
+Last updated: 13 September 2026
 
 ## Current product status
 
-The portfolio is functional as a static Astro website on desktop and mobile. Its visual language, navigation, core routes and interaction patterns are established. The MRI research, transmission grid stability, photovoltaic plant control and telecommunications coverage projects now provide visual case-study patterns with explicit publication boundaries. The main remaining work is completing the International and Milestones narratives, accessibility QA, metadata and production readiness.
+The portfolio is functional as a static Astro website on desktop and mobile. Its persistent dark/light presentation, navigation, core routes and interaction patterns are established. The MRI research, transmission grid stability, photovoltaic plant control and telecommunications coverage projects provide visual case-study patterns with explicit publication boundaries, and Hardwarethon 2019 provides the first published milestone. The main remaining work is expanding verified milestone evidence, accessibility QA, metadata and production readiness.
 
 ## Completed
 
 - Static Astro architecture and GitHub Pages configuration.
-- Responsive black-and-lilac visual foundation.
+- Responsive dark and light visual foundations with persistent visitor preference.
 - Sticky translucent navigation with scroll blur and restrained motion.
 - Reusable premium neon controls and informational surfaces with unified hover, focus, press and touch feedback.
 - Homepage sections for About, Projects, Milestones and Contact.
-- About navigation ordered as Experience, Academic and International.
+- About navigation simplified to Experience and Academic; the International route and action were retired.
 - Dedicated Academic page with formal and additional studies.
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
@@ -35,7 +35,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Concise telecommunications coverage deployment project with verified CV framing, a rebuilt non-overlapping distributed antenna architecture, an open icon-led delivery flow, a layered technology map and lossless SVG lightbox enlargement.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
-- Build-time four-class prediction visualization with exact contiguous 2D sector geometry and no visible labels, values, legend, mesh or depth treatment.
+- Four-class orbital prediction visualization with a softened wireframe, externally positioned labels, exact percentages and correctly aligned desktop connectors.
 - Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
 - Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
@@ -43,26 +43,28 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
 - Responsive header with horizontal navigation only on wide desktop layouts, a circular dropdown for phones and iPads, an enlarged tablet menu panel and an EN/DE/NL/FR language-selector prototype ready for future translated routes.
+- Thin vector header controls with consistent optical strokes, restrained borders and matched desktop/mobile interaction states.
+- Published Hardwarethon 2019 milestone page and homepage action.
 - Responsive hybrid-control architecture with three defined wind turbines, a direct solar Field I/O connection, clear transformer labels and non-overlapping electrical and control paths.
 - Fluid section transitions without rigid divider lines and with a more compact vertical rhythm.
-- Responsive contact form that prepares an email in the visitor's email client.
+- Responsive contact form with stable lilac text/icons, translucent resting and active surfaces, and mail-client handoff.
 - External profile and credit links with safe new-tab attributes.
 - Reduced-motion support for the main animation system.
 - Removal of unused background artwork, obsolete prototype assets, the empty content-collection placeholder and temporary audit files. All retained public assets are referenced directly, dynamically or by browser convention.
 - Sprint 06 repository audit covering public assets, dynamic MRI image records, source imports, generated output boundaries and empty scaffolding directories; no asset or code qualified for safe removal in the 6 September closeout.
+- Sprint 06 follow-up audit covering the theme layer, Hardwarethon route, shared SVG controls, contact states and MRI prediction asset; no retained asset or source module qualified for safe removal on 13 September.
 
 ## In progress
 
 - Final factual review of Academic and Experience claims.
 - Final permission and rendering review of company logos.
 - Final technical and publication review of the telecommunications coverage project.
-- Supporting evidence for the International page narrative.
-- Milestones, research and recognition content.
+- Additional milestones, research and recognition content.
 - Mobile and desktop visual QA across common viewport sizes.
 
 ## Next priorities
 
-1. Complete the International and Milestones content.
+1. Add further verified Milestones content.
 2. Review the CV and LinkedIn profile for publishable evidence, achievements and consistent wording.
 3. Review the telecommunications coverage case study against approved project references and publication boundaries.
 4. Confirm publication permission for every company logo, project detail and measurable claim.

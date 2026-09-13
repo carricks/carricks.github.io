@@ -2,6 +2,7 @@
 import { projects } from "../../data/projects";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FloatingBackControl from "../../components/common/FloatingBackControl.astro";
+import ArrowIcon from "../../components/common/ArrowIcon.astro";
 
 export function getStaticPaths() {
   return projects.map((project) => ({
@@ -15,33 +16,6 @@ const isResearchCaseStudy = project.slug === "brain-tumour-mri-classification";
 const isGridStabilityCaseStudy = project.slug === "grid-contingency-analysis";
 const isRenewableControlCaseStudy = project.slug === "renewable-plant-control";
 const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage-deployment";
-
-const pieCenter = { x: 60, y: 53 };
-const pieRadius = 44;
-const polarPoint = (angle: number, radius = pieRadius) => {
-  const radians = (angle * Math.PI) / 180;
-  return { x: pieCenter.x + radius * Math.cos(radians), y: pieCenter.y + radius * Math.sin(radians) };
-};
-const piePath = (start: number, end: number) => {
-  const from = polarPoint(start);
-  const to = polarPoint(end);
-  return `M ${pieCenter.x} ${pieCenter.y} L ${from.x.toFixed(3)} ${from.y.toFixed(3)} A ${pieRadius} ${pieRadius} 0 ${end - start > 180 ? 1 : 0} 1 ${to.x.toFixed(3)} ${to.y.toFixed(3)} Z`;
-};
-let pieAngle = -90;
-const predictionPie = [
-  { label: "Pituitary", value: 94.1363, className: "is-pituitary" },
-  { label: "Glioma", value: 5.1178, className: "is-glioma" },
-  { label: "Meningioma", value: 0.7176, className: "is-meningioma" },
-  { label: "No tumour", value: 0.0283, className: "is-no-tumour" },
-].map((slice) => {
-  const start = pieAngle;
-  const end = start + slice.value * 3.6;
-  pieAngle = end;
-  return {
-    ...slice,
-    path: piePath(start, end),
-  };
-});
 ---
 
 <BaseLayout title={`${project.title} | Diego Carrillo`} description={project.summary}>
@@ -261,15 +235,15 @@ const predictionPie = [
           <div class="source-links">
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://figshare.com/articles/dataset/brain_tumor_dataset/1512427" target="_blank" rel="noreferrer">
               <span>FIGSHARE</span><strong>Brain Tumor Dataset</strong><small>3,064 T1 weighted MRI images with contrast enhancement across three tumour classes. CC BY 4.0.</small>
-              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+              <ArrowIcon class="dataset-source-arrow" />
             </a>
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri" target="_blank" rel="noreferrer">
               <span>KAGGLE</span><strong>Brain Tumor Classification (MRI)</strong><small>Public academic collection organised around glioma, meningioma, pituitary and images without a tumour.</small>
-              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+              <ArrowIcon class="dataset-source-arrow" />
             </a>
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://github.com/MohamedAliHabib/Brain-Tumor-Detection" target="_blank" rel="noreferrer">
               <span>GITHUB</span><strong>Brain Tumor Detection Dataset</strong><small>Open reference repository containing MRI samples and CNN experimentation material.</small>
-              <span class="dataset-source-arrow neon-box-arrow" aria-hidden="true">↗</span>
+              <ArrowIcon class="dataset-source-arrow" />
             </a>
           </div>
         </section>
@@ -372,18 +346,28 @@ END OF REPORT
         <figure class="prediction-distribution" aria-labelledby="prediction-distribution-title">
           <p class="prediction-chart-kicker" id="prediction-distribution-title">PREDICTION DISTRIBUTION</p>
 
-          <div class="prediction-donut-wrap">
-            <svg class="prediction-donut" viewBox="0 0 120 120" role="img" aria-labelledby="prediction-donut-title prediction-donut-desc">
-              <title id="prediction-donut-title">Prediction probability distribution</title>
-              <desc id="prediction-donut-desc">Pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent.</desc>
-              <g class="pie-surfaces">
-                {predictionPie.map((slice) => (
-                  <g>
-                    <path class:list={["pie-slice", slice.className]} d={slice.path}></path>
-                  </g>
-                ))}
-              </g>
+          <div class="prediction-orbital-stage">
+            <img
+              class="prediction-orbital-wireframe"
+              src="/images/projects/brain-tumour-mri/prediction-orbital-wireframe.png"
+              alt="Orbital wireframe concept for the prediction distribution: pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent"
+            />
+
+            <svg class="prediction-orbital-leaders" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true">
+              <path class="is-pituitary" d="M352 202H250L205 158H76" />
+              <circle class="is-pituitary" cx="352" cy="202" r="3" />
+              <path class="is-glioma" d="M592 216H735L774 160H926" />
+              <circle class="is-glioma" cx="592" cy="216" r="3" />
+              <path class="is-meningioma" d="M626 280H754L808 326H942" />
+              <circle class="is-meningioma" cx="626" cy="280" r="4" />
+              <path class="is-no-tumour" d="M628 307H746L790 476H916" />
+              <circle class="is-no-tumour" cx="628" cy="307" r="4" />
             </svg>
+
+            <div class="prediction-orbital-tag is-pituitary"><span>Pituitary</span><strong>94.1363%</strong></div>
+            <div class="prediction-orbital-tag is-glioma"><span>Glioma</span><strong>5.1178%</strong></div>
+            <div class="prediction-orbital-tag is-meningioma"><span>Meningioma</span><strong>0.7176%</strong></div>
+            <div class="prediction-orbital-tag is-no-tumour"><span>No tumour</span><strong>0.0283%</strong></div>
           </div>
         </figure>
       </section>
@@ -1899,13 +1883,23 @@ END OF REPORT
     position: relative;
   }
   .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.62rem; font-weight: 750; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.5rem; }
-  .prediction-donut-wrap { aspect-ratio: 1; display: grid; max-width: 21rem; place-items: center; width: min(72vw, 21rem); }
-  .prediction-donut { filter: drop-shadow(0 0 1.4rem rgba(139,92,246,.12)); grid-area: 1 / 1; height: 100%; overflow: visible; width: 100%; }
-  .pie-slice { fill: var(--slice-fill); stroke: #020203; stroke-linejoin: round; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
-  .pie-slice.is-pituitary { --slice-fill: rgb(196 181 253); }
-  .pie-slice.is-glioma { --slice-fill: rgb(248 250 252); }
-  .pie-slice.is-meningioma { --slice-fill: rgb(124 58 237); }
-  .pie-slice.is-no-tumour { --slice-fill: rgb(100 116 139); }
+  .prediction-orbital-stage { height: clamp(30rem, 48vw, 36rem); max-width: 76rem; position: relative; width: 100%; }
+  .prediction-orbital-wireframe { display: block; filter: saturate(.52) brightness(.88) contrast(.92); height: auto; left: 50%; max-width: 38rem; object-fit: contain; opacity: .8; position: absolute; top: 50%; transform: translate(-50%,-48%); width: 58%; }
+  .prediction-orbital-leaders { height: 100%; inset: 0; overflow: visible; position: absolute; width: 100%; }
+  .prediction-orbital-leaders path { fill: none; opacity: .44; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .prediction-orbital-leaders circle { fill: currentColor; filter: drop-shadow(0 0 .3rem currentColor); }
+  .prediction-orbital-leaders .is-pituitary { color: rgb(196 181 253); }
+  .prediction-orbital-leaders .is-glioma { color: rgb(248 250 252); }
+  .prediction-orbital-leaders .is-meningioma { color: rgb(207 116 225); }
+  .prediction-orbital-leaders .is-no-tumour { color: rgb(103 188 218); }
+  .prediction-orbital-tag { align-items: baseline; border-left: 1px solid var(--tag-colour); display: flex; gap: .8rem; justify-content: space-between; min-width: 10.5rem; padding: .25rem 0 .25rem .75rem; position: absolute; }
+  .prediction-orbital-tag span { color: var(--tag-colour); font-size: .9rem; font-weight: 650; letter-spacing: .015em; }
+  .prediction-orbital-tag strong { color: rgb(241 245 249); font-size: .78rem; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .prediction-orbital-tag.is-pituitary { --tag-colour: rgb(196 181 253); left: 1%; top: 23%; }
+  .prediction-orbital-tag.is-pituitary strong { color: rgb(196 181 253); }
+  .prediction-orbital-tag.is-glioma { --tag-colour: rgb(248 250 252); right: 0; top: 23%; }
+  .prediction-orbital-tag.is-meningioma { --tag-colour: rgb(207 116 225); right: -1%; top: 51.5%; }
+  .prediction-orbital-tag.is-no-tumour { --tag-colour: rgb(103 188 218); right: 1%; top: 78%; }
 
   .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
 
@@ -2166,7 +2160,13 @@ END OF REPORT
     .telecom-map-track { gap: .65rem; padding-left: 1rem; }
     .telecom-map-track::before { left: 0; }
     .telecom-map-track > span { font-size: .62rem; padding: .48rem .68rem; }
-    .prediction-donut-wrap { max-width: 18rem; }
+    .prediction-distribution { padding-bottom: 2.2rem; }
+    .prediction-orbital-stage { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(2,minmax(0,1fr)); height: auto; padding-top: 1rem; }
+    .prediction-orbital-wireframe { grid-column: 1 / -1; left: auto; margin: 0 auto 1rem; max-width: 19rem; position: relative; top: auto; transform: none; width: 82%; }
+    .prediction-orbital-leaders { display: none; }
+    .prediction-orbital-tag { min-width: 0; position: static; width: 100%; }
+    .prediction-orbital-tag span { font-size: .78rem; }
+    .prediction-orbital-tag strong { font-size: .68rem; }
     .plant-flow { gap: 4rem; }
     .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
     .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }

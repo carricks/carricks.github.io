@@ -15,12 +15,4 @@ export const aboutDestinations = [
     summary:
       "Academic projects and research that connect robotics, machine learning and engineering practice.",
   },
-  {
-    slug: "international",
-    label: "International",
-    icon: "globe",
-    title: "Global Engineering Perspective",
-    summary:
-      "A growing record of technical collaboration across Europe and Latin America, shaped by different industries, teams and operating contexts.",
-  },
 ] as const;

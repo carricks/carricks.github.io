@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 6 September 2026
+Last updated: 13 September 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop, tablet and mobile. The design and interaction foundation is mature, and the MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case study patterns. The MRI case study combines static research evidence, a minimal two-dimensional probability pie and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share a dark semantic system with explicit system relationships and strict non-overlap rules. The remaining sections still need deeper evidence and publication review.
+The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. The design and interaction foundation is mature, and the MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled orbital probability chart and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share a dark semantic system with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -32,13 +32,13 @@ Homepage
   About
     Experience
     Academic
-    International
   Projects
     MRI Tumour Classification
     Grid Stability
     Photovoltaic Control
     Telecommunications Coverage Deployment
   Milestones
+    Hardwarethon 2019
   Contact
 ```
 
@@ -54,7 +54,7 @@ Homepage introduction
 
 ## Experience principles
 
-- Black canvas with a restrained lilac accent system.
+- Persistent dark and light presentations with a restrained lilac accent system and shared semantic hierarchy.
 - Strong typography and generous spacing instead of decorative backgrounds.
 - One clear action per row; no numbered controls that resemble a CV.
 - Sticky navigation remains available throughout the experience. Tablets and iPads use the same dropdown model as phones, with a larger panel suited to their available space; only wide desktop layouts retain horizontal navigation.
@@ -74,7 +74,7 @@ Homepage introduction
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
 - The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture, an open delivery sequence and a layered technology map.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
-- Probability visualization remains dependency-free and is rendered as a label-free, accessible two-dimensional inline SVG; exact values remain in the adjacent prediction report and accessible description.
+- Probability visualization remains dependency-free and combines an optimized raster chart, accessible alternative text, external HTML labels and a decorative SVG leader overlay.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
 - The portfolio remains readable if an external 3D model is unavailable.
 

@@ -1,10 +1,10 @@
 # Design system
 
-Last updated: 6 September 2026
+Last updated: 13 September 2026
 
 ## Direction
 
-The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Black, slate and lilac are the core language; additional colors are reserved for validation or accessibility states.
+The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Dark mode uses black, slate and lilac; light mode uses a softened off-white canvas, dark lilac headings and controlled translucent lilac surfaces. Additional colors are reserved for validation, accessibility or approved data encoding.
 
 ## Color roles
 
@@ -17,6 +17,8 @@ The interface combines engineering precision with restrained neon detail. It sho
 | Accent | Lilac `rgb(196 181 253)` |
 | Accent support | Soft white and deeper violet inside animated traces |
 | Error | Red, only for invalid form fields |
+
+Light mode inverts surface luminance without changing information hierarchy. Small section labels use a clearer lilac, while large headings use the darker lilac required for sustained contrast.
 
 Company marks in Experience are normalized to the same lilac to protect visual consistency.
 
@@ -40,18 +42,19 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 ### Navigation
 
-- Sticky translucent header.
+- Sticky translucent header in both themes, with a lilac-tinted light-mode surface.
 - Thin animated neon line only at the top resting position.
 - Stronger blur while scrolling; subtle directional tilt.
 - Desktop navigation remains horizontal above 1366 pixels. Phones, tablets, coarse-pointer devices and detected iPads use a Home-sized circular trigger with a right-aligned dropdown. Tablet panels use wider spacing and larger touch targets than the compact phone variant.
 - The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. Until translated routes exist, selection changes visual state only.
+- Home, theme, language and mobile-menu controls use vector icons, a 0.75-pixel optical outline and no outer glow; icon strokes remain geometrically precise at desktop and mobile sizes.
 
 ### Neon controls and panels
 
 - Near-black surface, one-pixel lilac border and rounded corners.
 - Animated black, lilac and soft white trace on hover or focus.
 - Press feedback uses translation, scale and inset shadow.
-- Mobile replaces the heavy arrow with a one-pixel line.
+- Shared action arrows are thin SVG components rather than text glyphs or emoji.
 - Numbered controls are not used.
 - Primary controls use the shared `premium-neon-control` variant: a 1.5-pixel lilac and soft white trace completing its circuit in 2.5 seconds.
 - Informational panels that need the same hover presence use `premium-neon-surface`; they must not imply clickability.
@@ -74,8 +77,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 - The telecommunications coverage SVG follows the engineering-diagram rules and uses reserved negative space for equipment labels. Its donor, protection, repeater, splitter, backbone and indoor antenna fields remain spatially independent from RF paths and active distribution points. The figure uses the shared lightbox at full vector resolution.
-- The MRI prediction chart is a flat, centered inline SVG pie with contiguous sectors and no visible labels, values or legend. It avoids perspective, depth, mesh, exploded slices, guide lines and decorative containers so the probability shape remains the only visual subject.
-- Prediction colors remain subordinate to the page: soft lilac for pituitary, soft white for glioma, deeper violet for meningioma and graphite for no tumour. A restrained ambient shadow is the only dimensional treatment.
+- The MRI prediction chart uses a softened orbital wireframe raster with restrained depth. Labels and percentages remain outside the chart; fine SVG leaders connect to slice centers on desktop and are removed on mobile in favor of a compact label grid.
+- Prediction colors remain subordinate to the page while distinguishing every class: soft lilac for pituitary, soft white for glioma, muted magenta for meningioma and muted cyan for no tumour.
 
 ### Interactive 3D models
 
@@ -105,6 +108,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ### Forms
 
 - Visible focus state and semantic labels.
+- Contact fields rest on an 80-percent-transparent lilac surface and change only their background to equally transparent white on hover, touch focus or keyboard focus.
+- Text, caret and icons retain one stable lilac through resting and active states; the light-mode value color remains legible after focus leaves the field.
 - Invalid fields use red border and short feedback animation.
 - Status updates use an `aria-live` region.
 

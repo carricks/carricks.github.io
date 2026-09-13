@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 6 September 2026
+Last updated: 13 September 2026
 
 ## Status
 
@@ -29,7 +29,7 @@ src/
     index.astro                 Homepage
     about/academic.astro        Academic background
     about/experience.astro      Professional experience
-    about/[slug].astro          Remaining About detail routes
+    milestones/hardwarethon.astro Published recognition detail
     projects/[slug].astro       Static project case studies
   styles/                       Tailwind entry point and global interactions
   types/                        Shared TypeScript contracts
@@ -42,7 +42,7 @@ docs/                           Product, content, design and delivery guidance
 /
 /about/academic/
 /about/experience/
-/about/international/
+/milestones/hardwarethon/
 /projects/brain-tumour-mri-classification/
 /projects/grid-contingency-analysis/
 /projects/telecommunications-coverage-deployment/
@@ -69,13 +69,13 @@ Dependencies flow from pages to layouts/components/data, never from shared compo
 
 The current content volume is small enough to use typed arrays in `src/data/` and page-local records. Introduce an Astro content collection only when projects, research or writing require repeatable authored entries, validation and frontmatter.
 
-Project detail routes are generated from `src/data/projects.ts`. About destinations are generated from `src/data/about-destinations.ts`, with dedicated pages excluded from the generic slug route.
+Project detail routes are generated from `src/data/projects.ts`. Homepage About destinations link directly to the dedicated Experience and Academic pages; the retired generic About slug route is no longer part of the build.
 
 ## Styling and interaction
 
 - Tailwind utilities handle most layout and typography.
 - Local `<style>` blocks own route-specific presentation.
-- `src/styles/global.css` owns shared controls, neon traces, navigation states and motion preferences.
+- `src/styles/global.css` owns shared controls, neon traces, navigation states, the persisted dark/light theme and motion preferences.
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment. A separate EN/DE/NL/FR selector currently updates presentation state only and does not yet switch routes or translated content.
 - Intersection observers provide progressive section and touch feedback.
@@ -88,14 +88,14 @@ Project detail routes are generated from `src/data/projects.ts`. About destinati
 - The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. The route also uses an open icon-led delivery sequence and a final three-layer technology map; all related styles remain scoped to `.telecom-case-study`.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
-- The MRI prediction distribution is generated as a flat inline SVG from the four exact probability values. Astro computes contiguous two-dimensional sectors at build time. The visible chart intentionally contains no labels, percentages, legend, mesh or depth effects; its accessible title and description preserve the complete values without adding a chart dependency or client-side runtime.
+- The MRI prediction distribution uses one optimized raster wireframe chart with four external HTML labels and an SVG connector overlay. Desktop leaders terminate inside their corresponding slices; mobile removes the leaders and presents the same labels in a compact two-column arrangement. The image alternative text preserves the complete values.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
 - `prefers-reduced-motion` disables nonessential animation.
 
 ## Contact behavior
 
-The contact form has no backend. It validates fields in the browser and opens a prepared email through `mailto:`. If reliable in-page delivery becomes a requirement, a dedicated form service and privacy review are needed.
+The contact form has no backend. It validates fields in the browser and opens a prepared email through `mailto:`. Fields share one pointer/touch state model: an 80-percent-transparent lilac resting surface changes to equally transparent white during interaction, while text, caret and icons retain a stable lilac. If reliable in-page delivery becomes a requirement, a dedicated form service and privacy review are needed.
 
 ## Security and privacy
 
@@ -131,3 +131,4 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - Every source component, data module, configuration module and shared type has an active import path.
 - Empty untracked scaffolding directories were removed; build output, dependencies and generated Astro types remain intentionally ignored.
 - The 6 September closeout rechecked dynamic MRI class-image records, the public report, company marks, project figures and browser-convention favicon before retaining them; no public asset qualified for safe deletion.
+- The 13 September closeout rechecked the new prediction wireframe, all static project assets, direct and dynamic source references, the removed generic About route and the Hardwarethon route. No retained asset or source module qualified for safe deletion.

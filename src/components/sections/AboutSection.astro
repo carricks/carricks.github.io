@@ -3,11 +3,12 @@ import Container from "../common/Container.astro";
 import Section from "../common/Section.astro";
 import { aboutDestinations } from "../../data/about-destinations.ts";
 import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
+import ArrowIcon from "../common/ArrowIcon.astro";
 ---
 
 <Section
   id="about"
-  class="relative isolate overflow-hidden bg-black py-32 lg:py-40"
+  class="relative isolate overflow-hidden bg-black py-24 lg:py-28"
 >
   <Container>
     <div class="max-w-3xl">
@@ -20,7 +21,7 @@ import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
       </h2>
 
       <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-400">
-        I am Diego Carrillo S., a multidisciplinary systems engineer with an academic background in Electronic Engineering and an MSc in Robotics and Automation. My professional experience spans industrial control, renewable power, applied software and systems integration across Spain, the Netherlands, Portugal and Latin America, connecting automation, data and engineering to improve the reliability of complex infrastructure.
+        I am Diego Carrillo, a multidisciplinary systems engineer with an academic background in Electronic Engineering and an MSc in Robotics and Automation. My professional experience spans industrial control, renewable power, applied software and systems integration across Spain, the Netherlands, Portugal and Latin America, connecting automation, data and engineering to improve the reliability of complex infrastructure.
       </p>
 
       <div class="mt-10 flex w-full max-w-xl flex-col gap-3" aria-label="About sections">
@@ -32,7 +33,7 @@ import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
           >
             <span class="neon-box-symbol"><AboutDestinationIcon icon={destination.icon} /></span>
             <span class="neon-box-label">{destination.label}</span>
-            <span class="neon-box-arrow" aria-hidden="true">↗</span>
+            <ArrowIcon />
           </a>
         ))}
       </div>

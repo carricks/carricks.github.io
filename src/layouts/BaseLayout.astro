@@ -20,6 +20,17 @@ const {
 <head>
   <meta charset="UTF-8" />
 
+  <script is:inline>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -29,6 +40,8 @@ const {
     name="description"
     content={description}
   />
+
+  <meta name="color-scheme" content="dark light" />
 
   <title>{title}</title>
 </head>
