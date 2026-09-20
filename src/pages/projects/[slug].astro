@@ -1,5 +1,6 @@
 ---
 import { projects } from "../../data/projects";
+import { imageLibrary } from "../../data/image-library";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FloatingBackControl from "../../components/common/FloatingBackControl.astro";
 import ArrowIcon from "../../components/common/ArrowIcon.astro";
@@ -38,7 +39,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           <figure class="hero-visual">
             <div class="scan-frame">
               <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge preprocessed MRI samples">
-                <img src="/images/projects/brain-tumour-mri/mri-preprocessing.png" alt="Preprocessed MRI samples showing brain images with and without tumours" />
+                <img src={imageLibrary.projects.brainTumourMri.preprocessing.dark.desktop} alt="Preprocessed MRI samples showing brain images with and without tumours" />
                 <span aria-hidden="true">Expand</span>
               </button>
               <div class="scan-line" aria-hidden="true"></div>
@@ -117,14 +118,14 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         </div>
         <div class="class-grid" aria-label="Classification targets">
           {[
-            { title: "MENINGIOMA", copy: "Tumour arising from the meninges surrounding the brain.", image: "class-meningioma.png" },
-            { title: "GLIOMA", copy: "Tumour originating in glial cells, with highly variable appearance.", image: "class-glioma.png" },
-            { title: "PITUITARY", copy: "Tumour located around the pituitary gland at the base of the brain.", image: "class-pituitary.png" },
-            { title: "NO TUMOUR", copy: "MRI samples without evidence of the three target tumour classes.", image: "class-no-tumour-clean.png" },
+            { title: "MENINGIOMA", copy: "Tumour arising from the meninges surrounding the brain.", image: imageLibrary.projects.brainTumourMri.classMeningioma.dark.desktop },
+            { title: "GLIOMA", copy: "Tumour originating in glial cells, with highly variable appearance.", image: imageLibrary.projects.brainTumourMri.classGlioma.dark.desktop },
+            { title: "PITUITARY", copy: "Tumour located around the pituitary gland at the base of the brain.", image: imageLibrary.projects.brainTumourMri.classPituitary.dark.desktop },
+            { title: "NO TUMOUR", copy: "MRI samples without evidence of the three target tumour classes.", image: imageLibrary.projects.brainTumourMri.classNoTumour.dark.desktop },
           ].map(({ title, copy, image }) => (
             <article>
               <button type="button" class="figure-zoom-trigger class-image-trigger" data-lightbox-trigger aria-label={`Enlarge MRI example classified as ${title.toLowerCase()}`}>
-                <img src={`/images/projects/brain-tumour-mri/${image}`} alt={`MRI example classified as ${title.toLowerCase()}`} />
+                <img src={image} alt={`MRI example classified as ${title.toLowerCase()}`} />
                 <span aria-hidden="true">Expand</span>
               </button>
               <div><h3>{title}</h3><p>{copy}</p></div>
@@ -173,7 +174,8 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         </div>
         <figure class="research-figure wide-figure vgg16-figure">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge VGG16 architecture diagram">
-            <img src="/images/projects/brain-tumour-mri/vgg16-architecture-lilac-approved-v2.png" alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
+            <img class="vgg16-theme-image vgg16-theme-image--dark" data-theme-image="dark" src={imageLibrary.projects.brainTumourMri.vgg16.dark.desktop} alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
+            <img class="vgg16-theme-image vgg16-theme-image--light" data-theme-image="light" src={imageLibrary.projects.brainTumourMri.vgg16.light.desktop} alt="VGG16 transfer learning architecture used for MRI classification across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
           <figcaption>VGG16 transfer learning architecture adapted during the research.</figcaption>
@@ -219,9 +221,9 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           <div class="validation"><strong>1,080</strong><span>Validation · 20%</span></div>
           <div class="test"><strong>520</strong><span>Test · 10%</span></div>
         </div>
-        <figure class="research-figure">
+        <figure class="research-figure augmentation-figure">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge MRI data augmentation examples">
-            <img src="/images/projects/brain-tumour-mri/data-augmentation.png" alt="MRI image and augmented variants used during model training" />
+            <img src={imageLibrary.projects.brainTumourMri.dataAugmentation.dark.desktop} alt="MRI image and augmented variants used during model training" />
             <span aria-hidden="true">Expand</span>
           </button>
           <figcaption>Controlled augmentation generated new training variants while preserving the original anatomy.</figcaption>
@@ -316,7 +318,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         </div>
         <figure class="prediction-report">
           <button type="button" class="figure-zoom-trigger prediction-report-image" data-lightbox-trigger aria-label="Enlarge pituitary tumour MRI input">
-            <img src="/images/projects/brain-tumour-mri/class-pituitary.png" alt="Pituitary tumour MRI selected as input for prediction across four classes" />
+            <img src={imageLibrary.projects.brainTumourMri.classPituitary.dark.desktop} alt="Pituitary tumour MRI selected as input for prediction across four classes" />
             <span aria-hidden="true">Expand</span>
           </button>
           <pre aria-label="Prediction report covering four classes">========================================
@@ -349,19 +351,27 @@ END OF REPORT
           <div class="prediction-orbital-stage">
             <img
               class="prediction-orbital-wireframe"
-              src="/images/projects/brain-tumour-mri/prediction-orbital-wireframe.png"
+              src={imageLibrary.projects.brainTumourMri.predictionOrbital.dark.desktop}
               alt="Orbital wireframe concept for the prediction distribution: pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent"
             />
 
             <svg class="prediction-orbital-leaders" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true">
-              <path class="is-pituitary" d="M352 202H250L205 158H76" />
-              <circle class="is-pituitary" cx="352" cy="202" r="3" />
-              <path class="is-glioma" d="M592 216H735L774 160H926" />
-              <circle class="is-glioma" cx="592" cy="216" r="3" />
-              <path class="is-meningioma" d="M626 280H754L808 326H942" />
-              <circle class="is-meningioma" cx="626" cy="280" r="4" />
-              <path class="is-no-tumour" d="M628 307H746L790 476H916" />
-              <circle class="is-no-tumour" cx="628" cy="307" r="4" />
+              <defs>
+                <filter id="prediction-background-key" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+                  <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0.2126 0.7152 0.0722 0 0" />
+                  <feComponentTransfer>
+                    <feFuncA type="discrete" tableValues="0 0 1 1 1 1 1 1" />
+                  </feComponentTransfer>
+                </filter>
+              </defs>
+              <path class="is-pituitary" d="M382 230H250L205 158H76" />
+              <circle class="is-pituitary" cx="382" cy="230" r="3" />
+              <path class="is-glioma" d="M650 208H735L774 160H926" />
+              <circle class="is-glioma" cx="650" cy="208" r="3" />
+              <path class="is-meningioma" d="M682 254H754L808 326H942" />
+              <circle class="is-meningioma" cx="682" cy="254" r="4" />
+              <path class="is-no-tumour" d="M670 287H724L790 476H916" />
+              <circle class="is-no-tumour" cx="670" cy="287" r="4" />
             </svg>
 
             <div class="prediction-orbital-tag is-pituitary"><span>Pituitary</span><strong>94.1363%</strong></div>
@@ -389,16 +399,16 @@ END OF REPORT
         <div class="research-references">
           <span>RESEARCH INTEGRITY</span>
           <a href="https://www.allea.org/wp-content/uploads/2017/05/ALLEA-European-Code-of-Conduct-for-Research-Integrity-2017.pdf" target="_blank" rel="noopener noreferrer">
-            <img src="/images/allea-logo-lilac.png" alt="ALLEA" />
+            <img src={imageLibrary.logos.allea.dark.desktop} alt="ALLEA" />
             <span>The European Code of Conduct for Research Integrity</span>
           </a>
         </div>
       </footer>
 
-      <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
+      <dialog class="figure-lightbox vgg16-lightbox" data-figure-lightbox aria-label="Expanded VGG16 architecture diagram">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/brain-tumour-mri/vgg16-architecture-lilac-approved-v2.png" alt="Expanded research figure" />
+          <img data-lightbox-image src={imageLibrary.projects.brainTumourMri.vgg16.dark.desktop} alt="Expanded research figure" />
         </div>
       </dialog>
 
@@ -427,7 +437,7 @@ END OF REPORT
 
           <figure class="grid-hero-visual">
             <button type="button" class="figure-zoom-trigger grid-architecture-trigger" data-lightbox-trigger aria-label="Enlarge conceptual transmission stability system architecture">
-              <img src="/images/projects/grid-stability/system-architecture.png" alt="Conceptual architecture linking the power system, PMU devices, a VAMS server, database, stability assessment model, visualisation and operators" />
+              <img src={imageLibrary.projects.gridStability.systemArchitecture.dark.desktop} alt="Conceptual architecture linking the power system, PMU devices, a VAMS server, database, stability assessment model, visualisation and operators" />
               <span aria-hidden="true">Expand</span>
             </button>
             <figcaption>Conceptual system architecture reconstructed for this portfolio from the public engineering workflow.</figcaption>
@@ -449,7 +459,7 @@ END OF REPORT
         <div class="network-context-layout">
           <figure class="network-context-map">
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual map of the Dutch transmission grid and North Sea connections">
-              <img src="/images/projects/grid-stability/dutch-grid-context.png" alt="Conceptual map highlighting the Netherlands, its transmission network, North Sea wind areas, energy hubs and regional corridors" />
+              <img src={imageLibrary.projects.gridStability.dutchGrid.dark.desktop} alt="Conceptual map highlighting the Netherlands, its transmission network, North Sea wind areas, energy hubs and regional corridors" />
               <span aria-hidden="true">Expand</span>
             </button>
             <figcaption>Conceptual reconstruction of the regional grid vision, centred on the Netherlands.</figcaption>
@@ -527,14 +537,14 @@ END OF REPORT
         <div class="crof-gallery">
           <figure>
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual electrical single-line diagram">
-              <img src="/images/projects/grid-stability/control-room-future.png" alt="Conceptual SCADA single-line diagram with two transformer branches, paired busbars and eight monitored feeders" />
+              <img src={imageLibrary.projects.gridStability.controlRoom.dark.desktop} alt="Conceptual SCADA single-line diagram with two transformer branches, paired busbars and eight monitored feeders" />
               <span aria-hidden="true">Expand</span>
             </button>
             <figcaption>A simplified single-line interface brings network state, switching structure and operational status into one review environment.</figcaption>
           </figure>
           <figure>
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge grid management facility view">
-              <img src="/images/projects/grid-stability/grid-management-facility.png" alt="Isometric engineering view of a secured grid management facility and high voltage infrastructure" />
+              <img src={imageLibrary.projects.gridStability.facility.dark.desktop} alt="Isometric engineering view of a secured grid management facility and high voltage infrastructure" />
               <span aria-hidden="true">Expand</span>
             </button>
             <figcaption>Operational software remains connected to the physical infrastructure it helps specialists understand.</figcaption>
@@ -598,7 +608,7 @@ END OF REPORT
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded conceptual transmission stability system architecture">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/grid-stability/system-architecture.png" alt="Expanded conceptual transmission stability system architecture" />
+          <img data-lightbox-image src={imageLibrary.projects.gridStability.systemArchitecture.dark.desktop} alt="Expanded conceptual transmission stability system architecture" />
         </div>
       </dialog>
     </main>
@@ -616,7 +626,7 @@ END OF REPORT
 
           <figure class="renewable-hero-visual">
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual view of the photovoltaic plant">
-              <img src="/images/projects/renewable-control/extremadura-solar-control-plant.png" alt="Aerial reconstruction of a utility scale photovoltaic plant and its control and electrical infrastructure in Extremadura" />
+              <img src={imageLibrary.projects.renewableControl.solarPlant.dark.desktop} alt="Aerial reconstruction of a utility scale photovoltaic plant and its control and electrical infrastructure in Extremadura" />
               <span aria-hidden="true">Expand</span>
             </button>
             <figcaption>Conceptual reconstruction of the photovoltaic field, control building and electrical infrastructure.</figcaption>
@@ -712,8 +722,8 @@ END OF REPORT
         <figure class="renewable-control-visual">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label="Enlarge conceptual hybrid renewable plant control architecture">
             <picture>
-              <source media="(max-width: 640px)" srcset="/images/projects/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=6" />
-              <img src="/images/projects/renewable-control/hybrid-control-architecture-v4.svg?v=6" alt="Integrated hybrid renewable architecture connecting a three-turbine wind farm and solar generation through local PPCs, hybrid plant coordination, operator supervision and the electrical grid point of interconnection" />
+              <source media="(max-width: 640px)" srcset={imageLibrary.projects.renewableControl.hybridArchitecture.dark.mobile} />
+              <img src={imageLibrary.projects.renewableControl.hybridArchitecture.dark.desktop} alt="Integrated hybrid renewable architecture connecting a three-turbine wind farm and solar generation through local PPCs, hybrid plant coordination, operator supervision and the electrical grid point of interconnection" />
             </picture>
             <span aria-hidden="true">Expand</span>
           </button>
@@ -751,7 +761,7 @@ END OF REPORT
       <dialog class="figure-lightbox" data-figure-lightbox aria-label="Expanded photovoltaic plant case study image">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/renewable-control/extremadura-solar-control-plant.png" alt="Expanded photovoltaic plant and control infrastructure visual" />
+          <img data-lightbox-image src={imageLibrary.projects.renewableControl.solarPlant.dark.desktop} alt="Expanded photovoltaic plant and control infrastructure visual" />
         </div>
       </dialog>
     </main>
@@ -763,7 +773,7 @@ END OF REPORT
         <div class="case-hero-grid telecom-hero-grid">
           <div class="case-hero-copy">
             <div class="telecom-identity">
-              <img src="/images/xacom-logo-lilac.svg" alt="Xacom Communications" />
+              <img src={imageLibrary.logos.xacom.dark.desktop} alt="Xacom Communications" />
               <span>Madrid · Telecommunications</span>
             </div>
             <p class="case-eyebrow">TELECOMMUNICATIONS · FIELD DEPLOYMENT</p>
@@ -776,7 +786,7 @@ END OF REPORT
             <div class="telecom-coverage-frame">
               <button type="button" class="figure-zoom-trigger telecom-coverage-trigger" data-lightbox-trigger aria-label="Enlarge distributed mobile coverage architecture">
                 <img
-                  src="/images/projects/telecommunications-coverage/distributed-coverage-system.svg"
+                  src={imageLibrary.projects.telecommunications.distributedCoverage.dark.desktop}
                   alt="Conceptual distributed mobile coverage system with an outdoor antenna, protection, signal repeater, splitter, cable backbone and indoor antennas"
                 />
                 <span aria-hidden="true">Expand</span>
@@ -824,7 +834,6 @@ END OF REPORT
           <p>I supported integrated communication systems designed to extend mobile network availability across operational facilities and technically challenging areas. The work covered underground facilities, underwater tunnels, industrial sites and remote locations where conventional mobile connectivity was limited or unavailable.</p>
           <p>Reliable coverage supported everyday coordination and dependable communications for operational personnel, including emergency response scenarios.</p>
           <div class="telecom-environments" aria-label="Deployment environments">
-            <span>Underground</span>
             <span>Industrial</span>
             <span>Remote sites</span>
             <span>Emergency coverage</span>
@@ -863,7 +872,7 @@ END OF REPORT
       <dialog class="figure-lightbox telecom-lightbox" data-figure-lightbox aria-label="Expanded distributed mobile coverage architecture">
         <div class="figure-lightbox-content">
           <button type="button" class="figure-lightbox-close" data-figure-close aria-label="Close enlarged image">×</button>
-          <img data-lightbox-image src="/images/projects/telecommunications-coverage/distributed-coverage-system.svg" alt="Expanded conceptual distributed mobile coverage system" />
+          <img data-lightbox-image src={imageLibrary.projects.telecommunications.distributedCoverage.dark.desktop} alt="Expanded conceptual distributed mobile coverage system" />
         </div>
       </dialog>
     </main>
@@ -913,11 +922,24 @@ END OF REPORT
 
   zoomTriggers.forEach((trigger) => {
     trigger.addEventListener("click", () => {
-      const sourceImage = trigger.querySelector<HTMLImageElement>("img");
+      const activeTheme = document.documentElement.dataset.theme === "light" ? "light" : "dark";
+      const sourceImage = trigger.querySelector<HTMLImageElement>(`img[data-theme-image="${activeTheme}"]`) ?? trigger.querySelector<HTMLImageElement>("img");
       if (!lightbox || !lightboxImage || !sourceImage) return;
+      const sourceStyles = getComputedStyle(sourceImage);
       activeTrigger = trigger;
       lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
       lightboxImage.alt = `Expanded ${sourceImage.alt}`;
+      lightboxImage.style.filter = sourceStyles.filter;
+      lightboxImage.style.mixBlendMode = sourceStyles.mixBlendMode;
+      lightboxImage.style.opacity = sourceStyles.opacity;
+      lightboxImage.style.setProperty("mask-image", sourceStyles.getPropertyValue("mask-image"));
+      lightboxImage.style.setProperty("mask-mode", sourceStyles.getPropertyValue("mask-mode"));
+      lightboxImage.style.setProperty("mask-position", sourceStyles.getPropertyValue("mask-position"));
+      lightboxImage.style.setProperty("mask-repeat", sourceStyles.getPropertyValue("mask-repeat"));
+      lightboxImage.style.setProperty("mask-size", sourceStyles.getPropertyValue("mask-size"));
+      lightboxImage.style.setProperty("-webkit-mask-image", sourceStyles.getPropertyValue("-webkit-mask-image"));
+      lightbox.dataset.theme = activeTheme;
+      lightboxImage.style.backgroundColor = activeTheme === "light" ? "#f1eef5" : "#020203";
       lightbox.setAttribute("aria-label", lightboxImage.alt);
       lightbox.showModal();
     });
@@ -1873,8 +1895,6 @@ END OF REPORT
 
   .prediction-distribution {
     background: #020203;
-    border-bottom: 1px solid rgba(196, 181, 253, 0.16);
-    border-top: 1px solid rgba(196, 181, 253, 0.16);
     display: flex;
     justify-content: center;
     margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
@@ -1882,9 +1902,9 @@ END OF REPORT
     padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 5vw, 4.5rem) clamp(3.5rem, 6vw, 5rem);
     position: relative;
   }
-  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.62rem; font-weight: 750; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.5rem; }
+  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.72rem; font-weight: 400; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.5rem; }
   .prediction-orbital-stage { height: clamp(30rem, 48vw, 36rem); max-width: 76rem; position: relative; width: 100%; }
-  .prediction-orbital-wireframe { display: block; filter: saturate(.52) brightness(.88) contrast(.92); height: auto; left: 50%; max-width: 38rem; object-fit: contain; opacity: .8; position: absolute; top: 50%; transform: translate(-50%,-48%); width: 58%; }
+  .prediction-orbital-wireframe { display: block; filter: url('#prediction-background-key') saturate(.52) brightness(.88) contrast(.92); height: auto; left: 50%; max-width: none; object-fit: contain; opacity: .8; position: absolute; top: 50%; transform: translate(-50%,-48%); width: 58%; }
   .prediction-orbital-leaders { height: 100%; inset: 0; overflow: visible; position: absolute; width: 100%; }
   .prediction-orbital-leaders path { fill: none; opacity: .44; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; }
   .prediction-orbital-leaders circle { fill: currentColor; filter: drop-shadow(0 0 .3rem currentColor); }
@@ -1997,7 +2017,7 @@ END OF REPORT
     color: rgb(226 232 240);
     display: inline-flex;
     font-size: 0.66rem;
-    font-weight: 750;
+    font-weight: 400;
     gap: 1.4rem;
     justify-content: space-between;
     letter-spacing: 0.15em;

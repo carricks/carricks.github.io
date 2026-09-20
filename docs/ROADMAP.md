@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 13 September 2026
+Last updated: 20 September 2026
 
 ## Current product status
 
@@ -39,6 +39,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
 - Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
+- Theme-aware VGG16 presentation with a dedicated page-matched light asset, the original dark treatment and consistent resting/lightbox rendering.
+- Canonical image library for all company marks and project figures, with explicit dark/light and desktop/mobile destinations and shared files for intentionally neutral artwork.
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
@@ -53,6 +55,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Removal of unused background artwork, obsolete prototype assets, the empty content-collection placeholder and temporary audit files. All retained public assets are referenced directly, dynamically or by browser convention.
 - Sprint 06 repository audit covering public assets, dynamic MRI image records, source imports, generated output boundaries and empty scaffolding directories; no asset or code qualified for safe removal in the 6 September closeout.
 - Sprint 06 follow-up audit covering the theme layer, Hardwarethon route, shared SVG controls, contact states and MRI prediction asset; no retained asset or source module qualified for safe removal on 13 September.
+- Sprint 07 visual-system pass covering page-matched light figures, theme-consistent zoom states, higher-contrast Experience marks and countries, refined technical tags and centralized media references.
 
 ## In progress
 

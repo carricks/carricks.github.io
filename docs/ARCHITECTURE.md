@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 13 September 2026
+Last updated: 20 September 2026
 
 ## Status
 
@@ -12,7 +12,8 @@ This is a static Astro portfolio deployed through GitHub Pages. Astro renders th
 public/
   documents/                    Public academic reports
   favicon.*
-  images/                       Fixed-URL company and project assets
+  images/library/               Canonical themed and responsive media library
+    logos/                      Company and research marks
     projects/brain-tumour-mri/  Thesis-authored MRI and model figures
     projects/grid-stability/    Conceptual architecture, regional context and CRoF visuals
     projects/renewable-control/ Responsive SVG control architecture and photovoltaic context
@@ -58,6 +59,7 @@ All routes must remain compatible with static generation and GitHub Pages. A run
 - `components/sections/` owns reusable homepage compositions.
 - `components/common/` owns small layout and icon primitives.
 - `data/` owns typed records that generate repeated navigation or routes.
+- `data/image-library.ts` is the single source of truth for dark/light and desktop/mobile asset selection. Theme-neutral resources deliberately reuse one canonical file instead of creating byte-identical duplicates.
 - `config/` owns stable site-wide identity and link values.
 - `styles/` owns shared visual tokens and cross-component interaction behavior.
 - `public/images/` is reserved for visual assets that require stable URLs.
@@ -80,7 +82,7 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment. A separate EN/DE/NL/FR selector currently updates presentation state only and does not yet switch routes or translated content.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
-- Engineering diagrams use a dark semantic language: continuous grey paths for electrical or physical flows, dashed lilac paths for control and feedback, and labelled nodes for functional boundaries. Labels must occupy clear space and never overlap routes or equipment.
+- Engineering diagrams use theme-aware semantic variants: dark pages use black canvases, while light pages match the surrounding soft off-white canvas. Continuous grey paths identify electrical or physical flows, dashed lilac paths identify control and feedback, and labels occupy clear space without overlapping routes or equipment.
 - The renewable-control architecture uses separate desktop and mobile SVG assets. Its integrated topology includes a three-turbine wind farm, solar generation, local PPCs, hybrid coordination, operator supervision, an MV bus, transformers and the grid POI.
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
 - The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. The CT viewer derives a deterministic reference camera through ordered Z, X and Y rotations, applies it when ready and restores the same position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Creator credits beneath both embeds are static text rather than navigation links.
@@ -132,3 +134,10 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - Empty untracked scaffolding directories were removed; build output, dependencies and generated Astro types remain intentionally ignored.
 - The 6 September closeout rechecked dynamic MRI class-image records, the public report, company marks, project figures and browser-convention favicon before retaining them; no public asset qualified for safe deletion.
 - The 13 September closeout rechecked the new prediction wireframe, all static project assets, direct and dynamic source references, the removed generic About route and the Hardwarethon route. No retained asset or source module qualified for safe deletion.
+
+## Sprint 07 repository audit
+
+- The 20 September closeout rechecked every public document and image against direct URLs, the central image-library registry, page-local records and browser-convention favicon use.
+- All source components, data modules, configuration modules and shared types retain active import paths; no empty source or public directories remain.
+- No retained asset or code module qualified for safe deletion. Generated Astro output, dependencies and local build metadata remain ignored rather than committed.
+- Theme-specific figure treatments, lightbox presentation, responsive renewable diagrams, telecommunications artwork and Experience logo rendering are documented as current behavior.

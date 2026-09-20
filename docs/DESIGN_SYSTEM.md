@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 13 September 2026
+Last updated: 20 September 2026
 
 ## Direction
 
@@ -69,7 +69,9 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - The MRI preprocessing visual uses the same restrained one-pixel lilac scan on desktop and mobile. Its five-second cycle traverses the image proportionally so the motion remains consistent across aspect ratios.
 - Grid stability figures preserve their full composition and use high resolution PNG assets suitable for close inspection.
 - The CRoF single-line interface uses a symmetrical black HMI canvas with sparse generic labels, soft-white equipment and lilac network structure. Its paired isometric substation uses a pure black background, cool-grey equipment and restrained lilac perimeter light.
-- Technical diagrams use black backgrounds without white padding or heavy framing.
+- Technical diagrams are theme-aware: dark mode uses a black canvas, while light mode uses the same soft off-white as the page without a contrasting image rectangle. Both avoid heavy framing.
+- Lightbox zoom preserves the active theme and the figure treatment shown before enlargement.
+- Every public logo and project figure is registered through the central image library with dark/light and desktop/mobile destinations. A destination may share a canonical file when the visual is intentionally theme-neutral.
 - Continuous grey lines communicate electrical, physical or data paths; dashed lilac lines communicate control, setpoints and feedback. Legends must name these roles rather than relying on color alone.
 - Diagram connections terminate cleanly at equipment, buses, controllers, hubs or external boundaries. Labels must not intersect routes.
 - Diagram labels require dedicated clear space: they must never overlap lines, symbols, cards, nodes or other labels.
@@ -100,7 +102,8 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 ### Experience logos
 
-- Monochrome lilac with transparent backgrounds.
+- Monochrome lilac with transparent backgrounds and no visible rectangular image canvas.
+- Logo and country use the same theme token: soft lilac in dark mode and high-contrast `#3b0764` in light mode.
 - Original proportions are preserved.
 - Per-brand dimensions compensate for different source aspect ratios.
 - Logo and country share a vertically centered heading row.

@@ -1,46 +1,59 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FloatingBackControl from "../../components/common/FloatingBackControl.astro";
+import { imageLibrary } from "../../data/image-library";
 
 const experiences = [
   {
     company: "Capgemini",
     country: "The Netherlands",
-    logo: "/images/capgemini-logo-lilac.png",
+    logo: imageLibrary.logos.capgemini.dark.desktop,
+    logoId: "capgemini",
+    logoViewBox: "0 0 2081 462",
     logoClass: "experience-company-logo--capgemini",
     description: "I contribute to critical software for the Dutch transmission grid by developing and validating applications that transform operational data into large scale simulations and structured evidence for power system stability analysis. The work combines software engineering, complex data flows and power system analysis in an environment where reliability, traceability and close technical collaboration are essential.",
   },
   {
     company: "AspenTech",
     country: "Spain",
-    logo: "/images/aspentech-logo-lilac.png",
+    logo: imageLibrary.logos.aspentech.dark.desktop,
+    logoId: "aspentech",
+    logoViewBox: "0 0 1800 362",
     logoClass: "experience-company-logo--aspentech",
     description: "I worked across SCADA solution design, Linux and Windows deployment, and secure industrial integration for offshore energy operations, connecting segregated environments while protecting critical control network boundaries. This experience strengthened my ability to translate operational requirements into robust architectures and support their configuration, testing and delivery across multidisciplinary teams.",
   },
   {
     company: "Isemaren",
     country: "Spain",
-    logo: "/images/isemaren-logo-lilac.png",
+    logo: imageLibrary.logos.isemaren.dark.desktop,
+    logoId: "isemaren",
+    logoViewBox: "0 0 2171 246",
     logoClass: "experience-company-logo--isemaren",
     description: "I supported the deployment and commissioning of Power Plant Controllers implemented on PLC technology for large solar plants. The work integrated HMI, SCADA and communications while validating grid code behaviour across installations of up to 380 MW. It connected control logic with real plant conditions through structured testing, technical troubleshooting and coordination throughout commissioning.",
   },
   {
     company: "Universidad Carlos III de Madrid",
     country: "Spain",
-    logo: "/images/uc3m-logo-lilac.png",
+    logo: imageLibrary.logos.uc3m.dark.desktop,
+    logoId: "uc3m",
+    logoViewBox: "0 0 598 182",
     description: "Within the Social Robotics Group, I helped evolve an assistive robotics research platform through web services, user and licensing systems, databases, and the Linux server infrastructure supporting connected interaction between people and robots. The role brought together research and practical software development, turning experimental requirements into maintainable services for a growing robotics ecosystem.",
   },
   {
     company: "Boston Scientific",
     country: "International",
-    logo: "/images/boston-scientific-logo-lilac.svg",
+    logo: imageLibrary.logos.bostonScientific.dark.desktop,
+    logoId: "boston-scientific",
+    logoViewBox: "0 0 126 62",
     logoClass: "experience-company-logo--boston",
     description: "I supported regulated medical device manufacturing by maintaining the accuracy and compliance of measurement equipment while contributing to automated testing and calibration solutions based on PLC technology. This work developed my understanding of engineering governed by quality, where technical documentation, measurement reliability and controlled processes are fundamental to production continuity.",
   },
   {
     company: "Xacom Communications",
     country: "Spain",
-    logo: "/images/xacom-logo-lilac.svg",
+    logo: imageLibrary.logos.xacom.dark.desktop,
+    logoId: "xacom",
+    logoViewBox: "0 0 100 112",
     logoClass: "experience-company-logo--xacom",
     description: "I designed and delivered mobile coverage solutions for technically demanding industrial, underground and remote environments, combining radio frequency systems, network infrastructure and field validation across multiple generations of mobile technology. Each project required adapting the design to demanding physical conditions and verifying performance through measurements, commissioning and problem solving in the field.",
   },
@@ -62,7 +75,29 @@ const experiences = [
             <div class="experience-heading">
               <div class="experience-company">
                 {"logo" in experience ? (
-                  <img class:list={["experience-company-logo", "logoClass" in experience && experience.logoClass]} src={experience.logo} alt={experience.company} loading="lazy" decoding="async" />
+                  <svg
+                    class:list={["experience-company-logo", "logoClass" in experience && experience.logoClass]}
+                    viewBox={experience.logoViewBox}
+                    role="img"
+                    aria-label={experience.company}
+                    preserveAspectRatio="xMinYMid meet"
+                  >
+                    <defs>
+                      <filter id={`experience-logo-${experience.logoId}`} x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                        <feFlood class="experience-company-logo-colour" flood-color="rgb(196 181 253)" result="logo-colour" />
+                        <feComposite in="logo-colour" in2="SourceAlpha" operator="in" />
+                      </filter>
+                    </defs>
+                    <image
+                      href={experience.logo}
+                      x="0"
+                      y="0"
+                      width="100%"
+                      height="100%"
+                      preserveAspectRatio="xMinYMid meet"
+                      filter={`url(#experience-logo-${experience.logoId})`}
+                    />
+                  </svg>
                 ) : (
                   <h2>{experience.company}</h2>
                 )}
@@ -83,12 +118,13 @@ const experiences = [
   .experience-heading { align-items: center; display: flex; gap: 1rem; justify-content: space-between; }
   .experience-company { align-items: center; display: flex; gap: .8rem; min-height: 2.25rem; min-width: 0; }
   .experience-heading h2 { color: rgb(196 181 253); font-size: 1.15rem; font-weight: 600; letter-spacing: -.01em; }
-  .experience-company-logo { display: block; height: 1.15rem; object-fit: contain; object-position: left center; width: auto; }
-  .experience-company-logo--capgemini { height: 1.5rem; }
-  .experience-company-logo--aspentech { height: 1.5rem; }
-  .experience-company-logo--isemaren { height: auto; width: 7rem; }
-  .experience-company-logo--boston { height: auto; width: 4rem; }
-  .experience-company-logo--xacom { height: auto; width: 1.75rem; }
+  .experience-company-logo { color: rgb(196 181 253); display: block; height: 1.15rem; width: 3.78rem; }
+  .experience-company-logo-colour { flood-color: rgb(196 181 253); }
+  .experience-company-logo--capgemini { height: 1.5rem; width: 6.76rem; }
+  .experience-company-logo--aspentech { height: 1.5rem; width: 7.46rem; }
+  .experience-company-logo--isemaren { height: .8rem; width: 7rem; }
+  .experience-company-logo--boston { height: 1.97rem; width: 4rem; }
+  .experience-company-logo--xacom { height: 1.96rem; width: 1.75rem; }
   .experience-heading p { color: rgb(196 181 253); flex: 0 0 auto; font-size: .72rem; font-weight: 600; letter-spacing: .12em; line-height: 1; text-transform: uppercase; }
   .experience-description { color: rgb(148 163 184); font-size: .95rem; line-height: 1.9; margin-top: .85rem; }
 
@@ -96,11 +132,11 @@ const experiences = [
     .experience-module { padding: 1.35rem; }
     .experience-heading { align-items: center; flex-direction: row; gap: 1rem; }
     .experience-company { gap: .65rem; min-height: 2rem; }
-    .experience-company-logo { height: 1.05rem; }
-    .experience-company-logo--capgemini { height: 1.35rem; }
-    .experience-company-logo--aspentech { height: 1.35rem; }
-    .experience-company-logo--isemaren { height: auto; width: 6.25rem; }
-    .experience-company-logo--boston { height: auto; width: 3.75rem; }
-    .experience-company-logo--xacom { height: auto; width: 1.6rem; }
+    .experience-company-logo { height: 1.05rem; width: 3.45rem; }
+    .experience-company-logo--capgemini { height: 1.35rem; width: 6.08rem; }
+    .experience-company-logo--aspentech { height: 1.35rem; width: 6.71rem; }
+    .experience-company-logo--isemaren { height: .71rem; width: 6.25rem; }
+    .experience-company-logo--boston { height: 1.85rem; width: 3.75rem; }
+    .experience-company-logo--xacom { height: 1.79rem; width: 1.6rem; }
   }
 </style>

@@ -9,7 +9,7 @@
       .structure{fill:none;stroke:#64748b;stroke-width:1.15;vector-effect:non-scaling-stroke}.subtle{opacity:.28}.device{fill:#05040a;stroke:#c4b5fd;stroke-width:1.35;vector-effect:non-scaling-stroke}.device-line{fill:none;stroke:#e2e8f0;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}.rf-path{fill:none;stroke:url(#rf);stroke-width:1.45;stroke-dasharray:6 7;vector-effect:non-scaling-stroke}.label{fill:#f1f5f9;font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:650;letter-spacing:.35px}.meta{fill:#64748b;font-family:Inter,Arial,sans-serif;font-size:10px;letter-spacing:1.35px}.note{fill:#94a3b8;font-family:Inter,Arial,sans-serif;font-size:10.5px}.node{fill:#c4b5fd;filter:url(#glow)}
     </style>
   </defs>
-  <rect x=".5" y=".5" width="1199" height="759" rx="28" fill="url(#panel)" stroke="#c4b5fd" stroke-opacity=".2"/>
+  <rect x=".5" y=".5" width="1199" height="759" rx="28" fill="none" stroke="#c4b5fd" stroke-opacity=".2"/>
 
   <g class="structure">
     <path d="M350 220 720 58l370 162v446H350Z" opacity=".7"/><path d="M315 226 720 42l405 184" stroke="#c4b5fd" opacity=".62"/>

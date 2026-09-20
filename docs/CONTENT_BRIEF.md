@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 13 September 2026
+Last updated: 20 September 2026
 
 ## Editorial objective
 
@@ -84,7 +84,7 @@ Current entries:
 - Boston Scientific - International
 - Xacom Communications - Spain
 
-Company logos are monochrome lilac and replace repeated textual headings. Entries are thematic and intentionally omit dates and job-title chronology.
+Company logos are rendered as transparent monochrome marks and replace repeated textual headings. Each mark matches its country label: soft lilac in dark mode and a stronger dark lilac in light mode. Entries are thematic and intentionally omit dates and job-title chronology.
 
 ## Project case studies
 
@@ -166,3 +166,10 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 - Are paragraphs short enough for mobile reading?
 - Are names, capitalization and locations consistent?
 - Has every image or logo been cleared for public use?
+
+## Sprint 07 editorial alignment
+
+- Light-mode technical figures use the same soft off-white field as the surrounding page, with darker lilac, graphite and data-specific accents supplying contrast.
+- Dark-mode figures retain their black field and restrained soft-lilac hierarchy.
+- Enlarged figures preserve the active theme instead of switching to a contradictory canvas.
+- Technology tags, pipeline labels, form values and Experience identifiers use stronger dark-lilac contrast on light surfaces.
