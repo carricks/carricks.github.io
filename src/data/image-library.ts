@@ -34,7 +34,10 @@ export const imageLibrary = {
       classPituitary: shared(`${projectsRoot}/brain-tumour-mri/class-pituitary.png`),
       dataAugmentation: shared(`${projectsRoot}/brain-tumour-mri/data-augmentation-4k.png`),
       preprocessing: shared(`${projectsRoot}/brain-tumour-mri/mri-preprocessing.png`),
-      predictionOrbital: shared(`${projectsRoot}/brain-tumour-mri/prediction-orbital-wireframe.png`),
+      predictionOrbital: themed(
+        `${projectsRoot}/brain-tumour-mri/prediction-orbital-solid-dark-v2.png`,
+        `${projectsRoot}/brain-tumour-mri/prediction-orbital-solid-light-v2.png`,
+      ),
       vgg16: themed(
         `${projectsRoot}/brain-tumour-mri/vgg16-architecture-lilac-approved-v2.png`,
         `${projectsRoot}/brain-tumour-mri/vgg16-architecture-light-v4.png`,

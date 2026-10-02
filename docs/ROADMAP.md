@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 20 September 2026
+Last updated: 2 October 2026
 
 ## Current product status
 
@@ -35,7 +35,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Concise telecommunications coverage deployment project with verified CV framing, a rebuilt non-overlapping distributed antenna architecture, an open icon-led delivery flow, a layered technology map and lossless SVG lightbox enlargement.
 - Responsive thesis-style results comparison and a terminal-inspired four-class prediction report.
-- Four-class orbital prediction visualization with a softened wireframe, externally positioned labels, exact percentages and correctly aligned desktop connectors.
+- Four-class orbital prediction visualization with paired dark/light solid renders, controlled translucency, externally positioned labels, exact percentages and correctly aligned desktop connectors.
 - Hero-level master's report action restyled as a restrained black outlined capsule while retaining the integrated accessible viewer.
 - Clear paired line-and-node comparison for MRI class performance, including explicit benchmark gaps and an unavailable-benchmark state.
 - Final VGG16 architecture visual on the approved black, lilac, soft-white and grey palette, with the retired green version removed.
@@ -56,6 +56,11 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Sprint 06 repository audit covering public assets, dynamic MRI image records, source imports, generated output boundaries and empty scaffolding directories; no asset or code qualified for safe removal in the 6 September closeout.
 - Sprint 06 follow-up audit covering the theme layer, Hardwarethon route, shared SVG controls, contact states and MRI prediction asset; no retained asset or source module qualified for safe removal on 13 September.
 - Sprint 07 visual-system pass covering page-matched light figures, theme-consistent zoom states, higher-contrast Experience marks and countries, refined technical tags and centralized media references.
+- Semantic typography pass using the About introduction as the canonical body treatment across all routes, viewports and themes, with shared display, section, card, UI, caption and metric roles.
+- Compact vertical-rhythm pass reducing purposeless gaps between homepage and case-study sections while retaining clear grouping.
+- Unified homepage destination controls with lightweight labels and dedicated outline icons for all four Projects, matching the established About and Milestones pattern.
+- Theme-specific solid MRI prediction assets with controlled translucency, grid-free surfaces and corrected label connectors; the superseded wireframe raster has been removed.
+- Sprint 07 repository closeout on 2 October covering public-asset references, source-module imports, documentation, generated-output boundaries, duplicate hashes and temporary artifacts.
 
 ## In progress
 

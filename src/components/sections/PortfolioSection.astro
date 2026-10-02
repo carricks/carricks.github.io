@@ -14,19 +14,19 @@ const { id, eyebrow, title, description } = Astro.props;
 
 <Section
   id={id}
-  class="relative isolate scroll-mt-20 overflow-hidden bg-black py-24 lg:py-28"
+  class="relative isolate scroll-mt-20 overflow-hidden bg-black"
 >
   <Container>
     <div class="max-w-3xl">
-      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">
+      <p class="section-eyebrow text-violet-300">
         {eyebrow}
       </p>
 
-      <h2 class="interactive-heading mt-6 text-4xl font-semibold tracking-tight text-slate-400 sm:text-5xl">
+      <h2 class="interactive-heading section-title mt-6 text-slate-400">
         {title}
       </h2>
 
-      <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+      <p class="body-copy-reference mt-8 max-w-2xl text-slate-300">
         {description}
       </p>
 

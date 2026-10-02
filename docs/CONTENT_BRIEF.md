@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 20 September 2026
+Last updated: 2 October 2026
 
 ## Editorial objective
 
@@ -42,6 +42,8 @@ The About actions are ordered:
 `Systems designed for operational confidence.`
 
 Four active project routes cover MRI tumour classification, grid stability, renewable control and telecommunications coverage deployment. The academic research project appears first; professional project copy follows the publication boundary approved for each case.
+
+Every Project action now follows the same visual grammar as the About actions: a dedicated thin-line domain icon, a lightweight uppercase label and a terminal arrow. The four symbols represent a convolutional network, a transmission tower, a photovoltaic array and a telecommunications antenna.
 
 ### Milestones
 
@@ -92,7 +94,7 @@ Company logos are rendered as transparent monochrome marks and replace repeated 
 
 The first and most developed case study presents the master's research prototype for four-class brain MRI classification. Its narrative covers medical context, dataset curation, preprocessing, CNN experimentation, data augmentation, VGG16 transfer learning, evaluation and Flask-based delivery.
 
-Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart uses a softened orbital wireframe with restrained depth, distinct class colors and external labels. Fine desktop leaders connect each label to its corresponding slice; mobile retains the chart and moves the labels into a clean grid without connector overlap. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
+Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart uses paired dark/light solid renders with controlled translucency, smooth grid-free surfaces, distinct class colors and external labels. Fine desktop leaders connect each label to its corresponding slice; mobile retains the chart and moves the labels into a clean grid without connector overlap. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
 The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. The CT reference view uses an approved composed-axis orientation and reset restores that complete camera state. Creator attribution remains visible as plain text without opening another page.
 
@@ -173,3 +175,5 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 - Dark-mode figures retain their black field and restrained soft-lilac hierarchy.
 - Enlarged figures preserve the active theme instead of switching to a contradictory canvas.
 - Technology tags, pipeline labels, form values and Experience identifiers use stronger dark-lilac contrast on light surfaces.
+- Narrative paragraphs use the About introduction as the shared body-copy reference across desktop and mobile. Display, section, card, UI and caption roles remain distinct but draw from one sans-serif scale in both themes.
+- Project and About action labels remain lightweight rather than bold, preserving the restrained engineering character of the interface.

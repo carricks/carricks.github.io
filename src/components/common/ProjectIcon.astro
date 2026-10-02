@@ -1,0 +1,47 @@
+---
+interface Props {
+  icon:
+    | "brain-tumour-mri-classification"
+    | "grid-contingency-analysis"
+    | "renewable-plant-control"
+    | "telecommunications-coverage-deployment";
+}
+
+const { icon } = Astro.props;
+---
+
+{icon === "brain-tumour-mri-classification" && (
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="6.5" width="4" height="11" rx="1" />
+    <rect x="10" y="8" width="3.5" height="8" rx="1" />
+    <path d="m7 8.5 3 1.25M7 12h3M7 15.5l3-1.25M13.5 10l3.5-2M13.5 12H17M13.5 14l3.5 2" />
+    <circle cx="19" cy="7" r="1.5" />
+    <circle cx="19" cy="12" r="1.5" />
+    <circle cx="19" cy="17" r="1.5" />
+  </svg>
+)}
+
+{icon === "grid-contingency-analysis" && (
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3 7.5 21M12 3l4.5 18M6 21h12" />
+    <path d="M5 8h14M7 8l2 3h6l2-3M7.5 13h9M9 17h6" />
+    <path d="m8.5 13 6.5 4M15.5 13 9 17" />
+    <path d="M5 8v2M19 8v2M7.5 13v1.75M16.5 13v1.75" />
+  </svg>
+)}
+
+{icon === "renewable-plant-control" && (
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="17.5" cy="6.5" r="2.5" />
+    <path d="M17.5 1.75v1M17.5 10v1M12.75 6.5h1M21.25 6.5h1M14.15 3.15l.7.7M20.15 9.15l.7.7" />
+    <path d="M3.5 12.5h13l2 7h-17l2-7ZM4.25 16h13.5M7.75 12.5l-.5 7M12.25 12.5l.5 7" />
+  </svg>
+)}
+
+{icon === "telecommunications-coverage-deployment" && (
+  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 10.5v9M8.5 19.5h7M9.5 19.5 12 10.5l2.5 9" />
+    <circle cx="12" cy="8" r="1.25" />
+    <path d="M8.5 4.75a4.6 4.6 0 0 0 0 6.5M15.5 4.75a4.6 4.6 0 0 1 0 6.5M5.75 2a8.5 8.5 0 0 0 0 12M18.25 2a8.5 8.5 0 0 1 0 12" />
+  </svg>
+)}

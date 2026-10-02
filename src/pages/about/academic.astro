@@ -7,18 +7,18 @@ import FloatingBackControl from "../../components/common/FloatingBackControl.ast
   title="Academic | Diego Carrillo"
   description="University education in robotics, automation and electronic engineering, complemented by professional studies in networking, cybersecurity, software practices and artificial intelligence."
 >
-  <section class="min-h-[calc(100svh-5rem)] bg-black px-6 py-10 sm:px-10 lg:px-16">
+  <section class="bg-black px-6 py-8 sm:px-10 lg:px-16">
     <FloatingBackControl href="/#about" label="Back to about" />
 
-    <article class="mx-auto mt-20 max-w-5xl pb-20">
-      <p class="text-sm font-medium tracking-[0.22em] text-violet-300">ACADEMIC</p>
-      <h1 class="interactive-heading mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-slate-300 sm:text-6xl">
+    <article class="mx-auto mt-12 max-w-5xl pb-12 sm:mt-14 sm:pb-14">
+      <p class="section-eyebrow text-violet-300">ACADEMIC</p>
+      <h1 class="interactive-heading page-title mt-5 max-w-4xl text-slate-300">
         Built on electronics, robotics and control.
       </h1>
 
       <section class="academic-section mt-16" aria-labelledby="university-education">
         <p class="section-label" id="university-education">ACADEMIC BACKGROUND</p>
-        <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+        <p class="body-copy-reference mt-6 max-w-3xl text-slate-400">
           My academic background combines Electronic Engineering, postgraduate specialisation in Robotics and Automation, and networking studies. Together, these disciplines established a foundation in intelligent systems, control and connected infrastructure. Studying in international environments also strengthened my ability to apply this knowledge across academic, technical and practical settings.
         </p>
 
@@ -48,7 +48,7 @@ import FloatingBackControl from "../../components/common/FloatingBackControl.ast
 
       <section class="academic-section mt-20" aria-labelledby="professional-studies">
         <p class="section-label" id="professional-studies">ADDITIONAL STUDIES</p>
-        <p class="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+        <p class="body-copy-reference mt-6 max-w-3xl text-slate-400">
           These studies complement my background in AI, cybersecurity and software delivery.
         </p>
 
@@ -87,14 +87,18 @@ import FloatingBackControl from "../../components/common/FloatingBackControl.ast
 
   .section-label {
     color: rgb(196 181 253);
-    font-size: 0.75rem;
+    font-size: var(--type-caption-size);
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: var(--type-label-letter-spacing);
   }
 
   .learning-item p:last-child {
     color: rgb(148 163 184);
-    line-height: 1.9;
+    font-family: var(--font-sans);
+    font-size: var(--type-body-size);
+    font-weight: var(--type-body-weight);
+    letter-spacing: var(--type-body-letter-spacing);
+    line-height: var(--type-body-line-height);
   }
 
   .learning-list {
@@ -109,15 +113,13 @@ import FloatingBackControl from "../../components/common/FloatingBackControl.ast
 
   .learning-item h2 {
     color: rgb(196 181 253);
-    font-size: 1.15rem;
+    font-size: var(--type-card-title-size);
     font-weight: 600;
     letter-spacing: -0.01em;
+    line-height: var(--type-card-title-line-height);
   }
 
-  .learning-item p:last-child {
-    font-size: 0.95rem;
-    margin-top: 0.75rem;
-  }
+  .learning-item p:last-child { margin-top: 0.75rem; }
 
   @media (min-width: 48.001rem) {
     .learning-item p:last-child {

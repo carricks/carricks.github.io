@@ -350,24 +350,22 @@ END OF REPORT
 
           <div class="prediction-orbital-stage">
             <img
-              class="prediction-orbital-wireframe"
+              class="prediction-orbital-wireframe prediction-orbital-image--dark"
               src={imageLibrary.projects.brainTumourMri.predictionOrbital.dark.desktop}
-              alt="Orbital wireframe concept for the prediction distribution: pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent"
+              alt="Solid 3D prediction distribution: pituitary 94.1363 percent, glioma 5.1178 percent, meningioma 0.7176 percent and no tumour 0.0283 percent"
+            />
+            <img
+              class="prediction-orbital-wireframe prediction-orbital-image--light"
+              src={imageLibrary.projects.brainTumourMri.predictionOrbital.light.desktop}
+              alt=""
+              aria-hidden="true"
             />
 
             <svg class="prediction-orbital-leaders" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <filter id="prediction-background-key" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-                  <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0.2126 0.7152 0.0722 0 0" />
-                  <feComponentTransfer>
-                    <feFuncA type="discrete" tableValues="0 0 1 1 1 1 1 1" />
-                  </feComponentTransfer>
-                </filter>
-              </defs>
               <path class="is-pituitary" d="M382 230H250L205 158H76" />
               <circle class="is-pituitary" cx="382" cy="230" r="3" />
-              <path class="is-glioma" d="M650 208H735L774 160H926" />
-              <circle class="is-glioma" cx="650" cy="208" r="3" />
+              <path class="is-glioma" d="M620 190H716L774 160H926" />
+              <circle class="is-glioma" cx="620" cy="190" r="3" />
               <path class="is-meningioma" d="M682 254H754L808 326H942" />
               <circle class="is-meningioma" cx="682" cy="254" r="4" />
               <path class="is-no-tumour" d="M670 287H724L790 476H916" />
@@ -849,19 +847,19 @@ END OF REPORT
 
         <div class="telecom-technology-map" aria-label="Telecommunications technologies grouped by system layer">
           <div class="telecom-map-row">
-            <p><span>01</span> Mobile network</p>
+            <p class="telecom-map-label"><span>01</span> Mobile network</p>
             <div class="telecom-map-track">
               {project.technicalScope.slice(0, 4).map((item) => <span>{item}</span>)}
             </div>
           </div>
           <div class="telecom-map-row telecom-map-row-coverage">
-            <p><span>02</span> Coverage layer</p>
+            <p class="telecom-map-label"><span>02</span> Coverage layer</p>
             <div class="telecom-map-track">
               <span>DAS</span>
             </div>
           </div>
           <div class="telecom-map-row">
-            <p><span>03</span> Remote integration</p>
+            <p class="telecom-map-label"><span>03</span> Remote integration</p>
             <div class="telecom-map-track">
               {project.technicalScope.slice(5).map((item) => <span>{item}</span>)}
             </div>
@@ -877,28 +875,28 @@ END OF REPORT
       </dialog>
     </main>
   ) : (
-    <section class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden px-6 py-10 sm:px-10 lg:px-16">
+    <section class="relative isolate overflow-hidden px-6 py-8 sm:px-10 lg:px-16">
       <FloatingBackControl href="/#projects" label="Back to projects" />
 
-      <article class="mx-auto mt-24 max-w-4xl">
-        <p class="text-sm font-medium tracking-[0.22em] text-violet-300">PROJECT CASE STUDY</p>
-        <p class="mt-5 text-sm text-slate-400">{project.location}</p>
-        <h1 class="interactive-heading mt-4 text-4xl font-semibold tracking-tight text-slate-400 sm:text-6xl">{project.title}</h1>
-        <p class="mt-8 max-w-3xl text-xl leading-9 text-slate-300">{project.summary}</p>
+      <article class="mx-auto mt-12 max-w-4xl pb-12 sm:mt-14 sm:pb-14">
+        <p class="section-eyebrow text-violet-300">PROJECT CASE STUDY</p>
+        <p class="mt-5 text-[length:var(--type-ui-size)] text-slate-400">{project.location}</p>
+        <h1 class="interactive-heading page-title mt-4 text-slate-400">{project.title}</h1>
+        <p class="body-copy-reference mt-8 max-w-3xl text-slate-300">{project.summary}</p>
 
-        <div class="mt-16 grid gap-12 border-t border-violet-300/15 pt-10 sm:grid-cols-2">
+        <div class="mt-10 grid gap-8 border-t border-violet-300/15 pt-8 sm:grid-cols-2">
           <section>
-            <p class="text-sm font-medium tracking-[0.18em] text-violet-300">CONTRIBUTION</p>
-            <p class="mt-4 leading-8 text-slate-400">{project.contribution}</p>
+            <p class="section-eyebrow text-violet-300">CONTRIBUTION</p>
+            <p class="body-copy-reference mt-4 text-slate-400">{project.contribution}</p>
           </section>
           <section>
-            <p class="text-sm font-medium tracking-[0.18em] text-violet-300">OUTCOME</p>
-            <p class="mt-4 leading-8 text-slate-400">{project.outcome}</p>
+            <p class="section-eyebrow text-violet-300">OUTCOME</p>
+            <p class="body-copy-reference mt-4 text-slate-400">{project.outcome}</p>
           </section>
         </div>
 
-        <section class="mt-14 border-t border-violet-300/15 pt-10">
-          <p class="text-sm font-medium tracking-[0.18em] text-violet-300">TECHNICAL SCOPE</p>
+        <section class="mt-10 border-t border-violet-300/15 pt-8">
+          <p class="section-eyebrow text-violet-300">TECHNICAL SCOPE</p>
           <div class="mt-5 flex flex-wrap gap-3">
             {project.technicalScope.map((item) => <span class="tech-scope-item">{item}</span>)}
           </div>
@@ -1256,9 +1254,9 @@ END OF REPORT
   }
 
   .case-hero {
-    min-height: calc(100svh - 5rem);
-    padding-bottom: clamp(5rem, 10vw, 9rem);
-    padding-top: 2.5rem;
+    min-height: auto;
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+    padding-top: 2rem;
   }
 
   .case-hero-grid {
@@ -1266,23 +1264,24 @@ END OF REPORT
     display: grid;
     gap: clamp(3rem, 7vw, 8rem);
     grid-template-columns: minmax(0, 1.03fr) minmax(22rem, 0.97fr);
-    min-height: calc(100svh - 12rem);
-    padding-top: 2rem;
+    min-height: auto;
+    padding-top: clamp(3rem, 5vw, 4.5rem);
   }
 
   .case-eyebrow {
     color: rgb(196 181 253);
-    font-size: 0.76rem;
+    font-size: var(--type-caption-size);
     font-weight: 700;
-    letter-spacing: 0.2em;
+    letter-spacing: var(--type-label-letter-spacing);
+    line-height: var(--type-caption-line-height);
   }
 
   .case-hero h1 {
     color: rgb(226 232 240);
-    font-size: clamp(2.1rem, 3.7vw, 3.6rem);
-    font-weight: 620;
-    letter-spacing: -0.055em;
-    line-height: 0.94;
+    font-size: var(--type-display-size);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: var(--type-display-line-height);
     margin-top: 1.4rem;
     max-width: 12ch;
     text-wrap: balance;
@@ -1290,19 +1289,19 @@ END OF REPORT
 
   .case-lead {
     color: rgb(148 163 184);
-    font-size: clamp(1.12rem, 1.65vw, 1.4rem);
-    line-height: 1.75;
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-line-height);
     margin-top: 2rem;
     max-width: 40rem;
   }
 
-  .interactive-model { margin-top: clamp(2.5rem, 7vw, 6rem); }
-  .interactive-model-variant { margin-top: clamp(3rem,6vw,5.5rem); padding-top: clamp(2.5rem,5vw,4.5rem); }
+  .interactive-model { margin-top: clamp(2rem, 4vw, 3.5rem); }
+  .interactive-model-variant { margin-top: clamp(2.25rem, 4vw, 3.5rem); padding-top: clamp(2rem, 3.5vw, 3rem); }
   .interactive-model-variant .interactive-model-heading { justify-content: flex-start; }
   .interactive-model-heading { align-items: flex-start; display: flex; flex-direction: column; gap: 1.25rem; justify-content: flex-start; margin-bottom: 1rem; }
-  .interactive-model-heading h2 { color: rgb(226 232 240); font-size: clamp(2.1rem, 3.7vw, 3.6rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; margin-top: 1.25rem; text-wrap: balance; }
+  .interactive-model-heading h2 { color: rgb(226 232 240); font-size: var(--type-section-size); font-weight: 600; letter-spacing: -0.045em; line-height: var(--type-section-line-height); margin-top: 1.25rem; text-wrap: balance; }
   .interactive-model-controls { align-self: flex-end; display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: flex-end; margin-inline: 0; }
-  .interactive-model-controls button { background: rgb(5 5 8); border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(196 181 253); cursor: pointer; font-size: .76rem; inline-size: 6.75rem; min-height: 2.55rem; padding: .55rem .45rem; transition: background-color .2s ease,border-color .2s ease,color .2s ease; white-space: nowrap; }
+  .interactive-model-controls button { background: rgb(5 5 8); border: 1px solid rgba(196,181,253,.3); border-radius: 999px; color: rgb(196 181 253); cursor: pointer; font-size: var(--type-ui-size); inline-size: 6.75rem; line-height: var(--type-ui-line-height); min-height: 2.55rem; padding: .55rem .45rem; transition: background-color .2s ease,border-color .2s ease,color .2s ease; white-space: nowrap; }
   .interactive-model-controls button:hover,
   .interactive-model-controls button:focus-visible { background: rgba(139,92,246,.15); border-color: rgb(196 181 253); color: white; }
   .interactive-model-controls button.is-control-confirmed { animation: model-control-confirm 360ms cubic-bezier(.22,1,.36,1); }
@@ -1314,7 +1313,7 @@ END OF REPORT
   }
   .interactive-model-frame { aspect-ratio: 16 / 9; background: #020203; border: 1px solid var(--case-border); border-radius: 1.35rem; overflow: hidden; position: relative; }
   .interactive-model-frame iframe { border: 0; display: block; height: 100%; width: 100%; }
-  .interactive-model-meta { color: rgb(100 116 139); display: flex; flex-wrap: wrap; font-size: .7rem; gap: .5rem 1rem; justify-content: space-between; margin-top: .75rem; }
+  .interactive-model-meta { color: rgb(100 116 139); display: flex; flex-wrap: wrap; font-size: var(--type-caption-size); gap: .5rem 1rem; justify-content: space-between; line-height: var(--type-caption-line-height); margin-top: .75rem; }
 
   .case-tags {
     display: flex;
@@ -1327,9 +1326,10 @@ END OF REPORT
     border: 1px solid rgba(196, 181, 253, 0.23);
     border-radius: 999px;
     color: rgb(196 181 253);
-    font-size: 0.72rem;
+    font-size: var(--type-caption-size);
     font-weight: 650;
     letter-spacing: 0.08em;
+    line-height: var(--type-caption-line-height);
     padding: 0.52rem 0.72rem;
     text-transform: uppercase;
   }
@@ -1384,14 +1384,15 @@ END OF REPORT
   .hero-visual figcaption,
   .research-figure figcaption {
     color: rgb(100 116 139);
-    font-size: 0.75rem;
+    font-size: var(--type-caption-size);
+    line-height: var(--type-caption-line-height);
     letter-spacing: 0.04em;
     margin-top: 0.85rem;
   }
 
   .case-section {
-    padding-bottom: clamp(3rem, 4vw, 4.5rem);
-    padding-top: clamp(3rem, 4vw, 4.5rem);
+    padding-bottom: clamp(2rem, 3vw, 3rem);
+    padding-top: clamp(2rem, 3vw, 3rem);
   }
 
   .section-heading {
@@ -1401,10 +1402,10 @@ END OF REPORT
   .section-heading h2,
   .split-copy h2 {
     color: rgb(226 232 240);
-    font-size: clamp(2.1rem, 3.7vw, 3.6rem);
+    font-size: var(--type-section-size);
     font-weight: 600;
     letter-spacing: -0.045em;
-    line-height: 1.05;
+    line-height: var(--type-section-line-height);
     margin-top: 1.25rem;
     text-wrap: balance;
   }
@@ -1412,8 +1413,6 @@ END OF REPORT
   .section-heading > p:last-child,
   .split-copy > div:last-child p {
     color: rgb(148 163 184);
-    font-size: 1.02rem;
-    line-height: 1.85;
   }
 
   .section-heading > p:last-child { margin-top: 1.6rem; }
@@ -1443,7 +1442,7 @@ END OF REPORT
   .metric-grid strong {
     color: rgb(196 181 253);
     display: block;
-    font-size: clamp(2rem, 3.25vw, 3rem);
+    font-size: var(--type-metric-size);
     letter-spacing: -0.05em;
   }
 
@@ -1456,8 +1455,8 @@ END OF REPORT
 
   .source-note {
     color: rgb(100 116 139);
-    font-size: 0.78rem;
-    line-height: 1.6;
+    font-size: var(--type-caption-size);
+    line-height: var(--type-caption-line-height);
     margin-top: 1.25rem;
   }
 
@@ -1527,14 +1526,12 @@ END OF REPORT
 
   .class-grid h3 {
     color: rgb(196 181 253);
-    font-size: 0.8rem;
-    letter-spacing: 0.13em;
+    font-size: var(--type-caption-size);
+    letter-spacing: var(--type-label-letter-spacing);
   }
 
   .class-grid p {
     color: rgb(148 163 184);
-    font-size: 0.9rem;
-    line-height: 1.65;
     margin-top: 0.75rem;
   }
 
@@ -1599,7 +1596,7 @@ END OF REPORT
   .figure-zoom-trigger > span {
     bottom: 1rem;
     color: rgb(221 214 254);
-    font-size: 0.68rem;
+    font-size: var(--type-micro-size);
     font-weight: 700;
     letter-spacing: 0.13em;
     opacity: 0;
@@ -1666,7 +1663,7 @@ END OF REPORT
     color: rgb(237 233 254);
     cursor: pointer;
     display: flex;
-    font-size: 1.5rem;
+    font-size: var(--type-card-title-size);
     height: 2.6rem;
     justify-content: center;
     line-height: 1;
@@ -1745,15 +1742,15 @@ END OF REPORT
     display: grid;
     gap: clamp(2rem, 7vw, 7rem);
     grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
-    margin-top: clamp(4rem, 8vw, 7rem);
+    margin-top: clamp(2.25rem, 4vw, 3.5rem);
   }
 
   .dataset-sources h3 {
     color: rgb(226 232 240);
-    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-size: var(--type-section-size);
     font-weight: 600;
     letter-spacing: -0.035em;
-    line-height: 1.1;
+    line-height: var(--type-section-line-height);
     margin-top: 1rem;
   }
 
@@ -1792,8 +1789,8 @@ END OF REPORT
     transform: translate(0.12rem, calc(-50% - 0.12rem));
   }
 
-  .source-links a > span:first-child { color: rgb(139 92 246); font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; }
-  .source-links strong { color: rgb(226 232 240); font-size: 1rem; }
+  .source-links a > span:first-child { color: rgb(139 92 246); font-size: var(--type-caption-size); font-weight: 700; letter-spacing: var(--type-label-letter-spacing); }
+  .source-links strong { color: rgb(226 232 240); font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); }
   .source-links small { color: rgb(100 116 139); line-height: 1.6; max-width: 44rem; }
 
   .dataset-bar {
@@ -1815,8 +1812,8 @@ END OF REPORT
   .dataset-bar > div:last-child { border-radius: 0 1rem 1rem 0; }
   .dataset-bar .validation { background: rgba(139, 92, 246, 0.21); }
   .dataset-bar .test { background: rgba(34, 211, 238, 0.11); }
-  .dataset-bar strong { color: rgb(226 232 240); display: block; font-size: clamp(1.25rem, 2vw, 1.8rem); }
-  .dataset-bar span { color: rgb(196 181 253); display: block; font-size: 0.68rem; margin-top: 0.35rem; }
+  .dataset-bar strong { color: rgb(226 232 240); display: block; font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); }
+  .dataset-bar span { color: rgb(196 181 253); display: block; font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); margin-top: 0.35rem; }
 
   .benchmark-figure { margin: 4rem 0 0; max-width: 72rem; }
 
@@ -1833,23 +1830,23 @@ END OF REPORT
   }
 
   .benchmark-panel-heading { border-bottom: 1px solid rgba(196, 181, 253, 0.15); margin-bottom: 1.8rem; padding-bottom: 1.2rem; }
-  .benchmark-panel-heading > span { color: rgb(139 92 246); display: block; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; }
-  .benchmark-panel-heading > strong { color: rgb(226 232 240); display: block; font-size: 1.1rem; margin-top: 0.45rem; }
+  .benchmark-panel-heading > span { color: rgb(139 92 246); display: block; font-size: var(--type-caption-size); font-weight: 700; letter-spacing: var(--type-label-letter-spacing); }
+  .benchmark-panel-heading > strong { color: rgb(226 232 240); display: block; font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); margin-top: 0.45rem; }
   .chart-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1rem; }
-  .chart-legend span { align-items: center; color: rgb(148 163 184); display: inline-flex; font-size: 0.72rem; gap: 0.45rem; letter-spacing: 0; }
+  .chart-legend span { align-items: center; color: rgb(148 163 184); display: inline-flex; font-size: var(--type-caption-size); gap: 0.45rem; letter-spacing: 0; line-height: var(--type-caption-line-height); }
   .chart-legend i { display: inline-block; height: 1px; position: relative; width: 1rem; }
   .chart-legend i::after { background: inherit; border-radius: 50%; content: ""; height: 0.36rem; position: absolute; right: -0.12rem; top: 50%; transform: translateY(-50%); width: 0.36rem; }
   .target-key { background: rgb(226 232 240); }
   .predicted-key { background: rgb(139 92 246); box-shadow: 0 0 0.45rem rgba(167, 139, 250, 0.45); }
   .comparison-group { border-top: 1px solid rgba(196, 181, 253, 0.09); margin-top: 1.25rem; padding-top: 1.25rem; }
   .comparison-row-heading { align-items: center; display: flex; gap: 1rem; justify-content: space-between; margin-bottom: 0.9rem; }
-  .comparison-class { color: rgb(226 232 240); font-size: 0.86rem; }
-  .comparison-delta { border: 1px solid rgba(196, 181, 253, 0.22); border-radius: 999px; color: rgb(196 181 253); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.04em; padding: 0.28rem 0.55rem; }
+  .comparison-class { color: rgb(226 232 240); font-size: var(--type-ui-size); line-height: var(--type-ui-line-height); }
+  .comparison-delta { border: 1px solid rgba(196, 181, 253, 0.22); border-radius: 999px; color: rgb(196 181 253); font-size: var(--type-micro-size); font-weight: 700; letter-spacing: 0.04em; padding: 0.28rem 0.55rem; }
   .comparison-delta.is-negative { color: rgb(148 163 184); }
   .comparison-delta.is-unavailable { border-color: rgba(148, 163, 184, 0.16); color: rgb(100 116 139); font-weight: 600; }
   .paired-bars { display: grid; gap: 0.65rem; }
   .metric-bar-row { align-items: center; display: grid; gap: 0.85rem; grid-template-columns: 4.2rem minmax(0, 1fr) 4.2rem; }
-  .metric-bar-label { color: rgb(148 163 184); font-size: 0.64rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; }
+  .metric-bar-label { color: rgb(148 163 184); font-size: var(--type-micro-size); font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; }
   .metric-bar-track { background: rgba(100, 116, 139, 0.3); display: block; height: 1px; overflow: visible; position: relative; }
   .metric-bar-fill { display: block; height: 1px; left: 0; position: absolute; top: 0; }
   .metric-bar-fill::after { border-radius: 50%; content: ""; height: 0.52rem; position: absolute; right: -0.26rem; top: 50%; transform: translateY(-50%); width: 0.52rem; }
@@ -1857,13 +1854,13 @@ END OF REPORT
   .target-bar::after { background: rgb(3 3 5); border: 1.5px solid rgb(226 232 240); }
   .model-bar { background: rgb(139 92 246); box-shadow: 0 0 0.4rem rgba(167, 139, 250, 0.5); }
   .model-bar::after { background: rgb(139 92 246); border: 1.5px solid rgb(196 181 253); box-shadow: 0 0 0.55rem rgba(167, 139, 250, 0.62); }
-  .metric-bar-row strong { color: rgb(226 232 240); font-size: 0.72rem; font-variant-numeric: tabular-nums; text-align: right; }
+  .metric-bar-row strong { color: rgb(226 232 240); font-size: var(--type-caption-size); font-variant-numeric: tabular-nums; text-align: right; }
   .metric-bar-row .model-value { color: rgb(196 181 253); }
   .metric-bar-row.is-unavailable .metric-bar-track { background: repeating-linear-gradient(90deg, rgba(100, 116, 139, 0.38) 0 4px, transparent 4px 9px); }
   .metric-bar-row.is-unavailable strong { color: rgb(100 116 139); }
 
   .benchmark-figure figcaption { color: rgb(148 163 184); line-height: 1.75; margin-top: 1.35rem; max-width: 66rem; }
-  .benchmark-figure figcaption strong { color: rgb(196 181 253); display: block; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .benchmark-figure figcaption strong { color: rgb(196 181 253); display: block; font-size: var(--type-caption-size); letter-spacing: 0.08em; line-height: var(--type-caption-line-height); text-transform: uppercase; }
   .benchmark-figure figcaption span { display: block; margin-top: 0.55rem; }
 
   .prediction-report {
@@ -1882,8 +1879,8 @@ END OF REPORT
     border: 1px solid var(--case-border);
     border-radius: 1.1rem;
     color: rgb(226 232 240);
-    font-family: Consolas, "Courier New", monospace;
-    font-size: clamp(0.7rem, 1.5vw, 0.88rem);
+    font-family: var(--font-mono);
+    font-size: var(--type-ui-size);
     line-height: 1.7;
     margin: 0;
     overflow-x: auto;
@@ -1891,7 +1888,7 @@ END OF REPORT
     white-space: pre;
   }
 
-  .prediction-report figcaption { color: rgb(100 116 139); font-size: 0.72rem; grid-column: 1 / -1; line-height: 1.55; padding: 0 0.2rem; }
+  .prediction-report figcaption { color: rgb(100 116 139); font-size: var(--type-caption-size); grid-column: 1 / -1; line-height: var(--type-caption-line-height); padding: 0 0.2rem; }
 
   .prediction-distribution {
     background: #020203;
@@ -1902,9 +1899,10 @@ END OF REPORT
     padding: clamp(4.5rem, 7vw, 6rem) clamp(1rem, 5vw, 4.5rem) clamp(3.5rem, 6vw, 5rem);
     position: relative;
   }
-  .prediction-chart-kicker { color: rgb(196 181 253); font-size: 0.72rem; font-weight: 400; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: 0.2em; margin: 0; position: absolute; top: 1.5rem; }
+  .prediction-chart-kicker { color: rgb(196 181 253); font-size: var(--type-caption-size); font-weight: 400; left: clamp(1rem, 5vw, 4.5rem); letter-spacing: var(--type-label-letter-spacing); margin: 0; position: absolute; top: 1.5rem; }
   .prediction-orbital-stage { height: clamp(30rem, 48vw, 36rem); max-width: 76rem; position: relative; width: 100%; }
-  .prediction-orbital-wireframe { display: block; filter: url('#prediction-background-key') saturate(.52) brightness(.88) contrast(.92); height: auto; left: 50%; max-width: none; object-fit: contain; opacity: .8; position: absolute; top: 50%; transform: translate(-50%,-48%); width: 58%; }
+  .prediction-orbital-wireframe { display: block; filter: none; height: auto; left: 50%; max-width: none; object-fit: contain; opacity: .25; position: absolute; top: 50%; transform: translate(-50%,-48%); width: 58%; }
+  .prediction-orbital-image--light { display: none; }
   .prediction-orbital-leaders { height: 100%; inset: 0; overflow: visible; position: absolute; width: 100%; }
   .prediction-orbital-leaders path { fill: none; opacity: .44; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; }
   .prediction-orbital-leaders circle { fill: currentColor; filter: drop-shadow(0 0 .3rem currentColor); }
@@ -1913,15 +1911,15 @@ END OF REPORT
   .prediction-orbital-leaders .is-meningioma { color: rgb(207 116 225); }
   .prediction-orbital-leaders .is-no-tumour { color: rgb(103 188 218); }
   .prediction-orbital-tag { align-items: baseline; border-left: 1px solid var(--tag-colour); display: flex; gap: .8rem; justify-content: space-between; min-width: 10.5rem; padding: .25rem 0 .25rem .75rem; position: absolute; }
-  .prediction-orbital-tag span { color: var(--tag-colour); font-size: .9rem; font-weight: 650; letter-spacing: .015em; }
-  .prediction-orbital-tag strong { color: rgb(241 245 249); font-size: .78rem; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .prediction-orbital-tag span { color: var(--tag-colour); font-size: var(--type-ui-size); font-weight: 650; letter-spacing: .015em; line-height: var(--type-ui-line-height); }
+  .prediction-orbital-tag strong { color: rgb(241 245 249); font-size: var(--type-caption-size); font-variant-numeric: tabular-nums; font-weight: 700; }
   .prediction-orbital-tag.is-pituitary { --tag-colour: rgb(196 181 253); left: 1%; top: 23%; }
   .prediction-orbital-tag.is-pituitary strong { color: rgb(196 181 253); }
   .prediction-orbital-tag.is-glioma { --tag-colour: rgb(248 250 252); right: 0; top: 23%; }
   .prediction-orbital-tag.is-meningioma { --tag-colour: rgb(207 116 225); right: -1%; top: 51.5%; }
   .prediction-orbital-tag.is-no-tumour { --tag-colour: rgb(103 188 218); right: 1%; top: 78%; }
 
-  .application-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); }
+  .application-section { padding-bottom: clamp(2rem, 3vw, 3rem); }
 
   .grid-case-study {
     background:
@@ -1930,13 +1928,13 @@ END OF REPORT
       #000;
   }
 
-  .grid-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.75rem, 4vw, 4rem); }
-  .grid-case-study .case-hero-grid { min-height: auto; padding-bottom: clamp(1rem, 2vw, 2rem); padding-top: clamp(3.5rem, 6vw, 5.5rem); }
-  .grid-case-study .case-section { padding-bottom: clamp(2.25rem, 3vw, 3.25rem); padding-top: clamp(2.25rem, 3vw, 3.25rem); }
-  .grid-case-study .technology-section { padding-top: clamp(2.5rem, 3.5vw, 3.75rem); }
+  .grid-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.25rem, 3vw, 3.25rem); }
+  .grid-case-study .case-hero-grid { min-height: auto; padding-bottom: 1rem; padding-top: clamp(3rem, 4vw, 4rem); }
+  .grid-case-study .case-section { padding-bottom: clamp(2rem, 2.75vw, 2.75rem); padding-top: clamp(2rem, 2.75vw, 2.75rem); }
+  .grid-case-study .technology-section { padding-top: clamp(2rem, 3vw, 3rem); }
 
   .grid-hero-visual { margin: 0; }
-  .grid-hero-visual figcaption { color: rgb(100 116 139); font-size: 0.72rem; letter-spacing: 0.04em; margin-top: 0.9rem; }
+  .grid-hero-visual figcaption { color: rgb(100 116 139); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); letter-spacing: 0.04em; margin-top: 0.9rem; }
   .grid-architecture-trigger { background: #020203; border: 1px solid var(--case-border); border-radius: 1.4rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .grid-architecture-trigger img { aspect-ratio: 16 / 9; display: block; object-fit: contain; width: 100%; }
 
@@ -1944,19 +1942,19 @@ END OF REPORT
   .network-context-map { margin: 0; }
   .network-context-map button { background: #020203; border: 1px solid var(--case-border); border-radius: 1.25rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .network-context-map img { aspect-ratio: 2 / 2.35; display: block; object-fit: contain; width: 100%; }
-  .network-context-map figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
+  .network-context-map figcaption { color: rgb(100 116 139); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); margin-top: 0.75rem; }
   .network-context-metrics { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .network-context-metrics article,
   .contingency-grid article { background: var(--case-panel); border: 1px solid var(--case-border); border-radius: 1.1rem; min-height: 12rem; padding: clamp(1.35rem, 2.5vw, 1.85rem); }
   .network-context-metrics span,
-  .contingency-grid span { color: rgb(167 139 250); display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
-  .network-context-metrics strong { color: rgb(226 232 240); display: block; font-size: clamp(1.7rem, 3vw, 2.6rem); letter-spacing: -0.04em; margin-top: 0.75rem; }
+  .contingency-grid span { color: rgb(167 139 250); display: block; font-size: var(--type-caption-size); font-weight: 700; letter-spacing: var(--type-label-letter-spacing); }
+  .network-context-metrics strong { color: rgb(226 232 240); display: block; font-size: var(--type-metric-size); letter-spacing: -0.04em; margin-top: 0.75rem; }
   .network-context-metrics p,
   .contingency-grid p { color: rgb(148 163 184); line-height: 1.7; margin-top: 0.65rem; }
   .network-context-metrics .source-note { grid-column: 1 / -1; margin: 0.25rem 0 0; }
   .contingency-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(2rem, 3vw, 3rem); }
-  .contingency-grid strong { color: rgb(226 232 240); display: block; font-size: 1.05rem; margin-top: 1rem; }
-  .concept-note { color: rgb(100 116 139); font-size: 0.75rem; line-height: 1.6; margin-top: 1rem; }
+  .contingency-grid strong { color: rgb(226 232 240); display: block; font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); margin-top: 1rem; }
+  .concept-note { color: rgb(100 116 139); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); margin-top: 1rem; }
 
   .literature-link { border-radius: 999px; display: inline-flex; margin-top: 1.75rem; min-height: 2.75rem; padding: 0.62rem 1.15rem; width: fit-content; }
 
@@ -1969,7 +1967,7 @@ END OF REPORT
   .crof-gallery figure { margin: 0; min-width: 0; }
   .crof-gallery button { aspect-ratio: 16 / 10; background: rgb(5 5 8); border: 1px solid var(--case-border); border-radius: 1.2rem; display: block; overflow: hidden; padding: 0; width: 100%; }
   .crof-gallery img { display: block; height: 100%; object-fit: contain; width: 100%; }
-  .crof-gallery figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.75rem; }
+  .crof-gallery figcaption { color: rgb(100 116 139); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); margin-top: 0.75rem; }
 
   .renewable-case-study {
     background:
@@ -1977,9 +1975,9 @@ END OF REPORT
       radial-gradient(circle at 12% 54%, rgba(196, 181, 253, 0.04), transparent 30rem),
       #000;
   }
-  .renewable-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.75rem, 4vw, 4rem); }
-  .renewable-case-study .case-hero-grid { min-height: auto; padding-bottom: clamp(1rem, 2vw, 2rem); padding-top: clamp(3.5rem, 6vw, 5.5rem); }
-  .renewable-case-study .case-section { padding-bottom: clamp(2.4rem, 3.4vw, 3.7rem); padding-top: clamp(2.4rem, 3.4vw, 3.7rem); }
+  .renewable-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.25rem, 3vw, 3.25rem); }
+  .renewable-case-study .case-hero-grid { min-height: auto; padding-bottom: 1rem; padding-top: clamp(3rem, 4vw, 4rem); }
+  .renewable-case-study .case-section { padding-bottom: clamp(2rem, 2.75vw, 2.75rem); padding-top: clamp(2rem, 2.75vw, 2.75rem); }
   .renewable-hero-visual,
   .renewable-control-visual { margin: 0; }
   .renewable-hero-visual button,
@@ -1987,7 +1985,7 @@ END OF REPORT
   .renewable-hero-visual img,
   .renewable-control-visual img { aspect-ratio: 16 / 9; display: block; object-fit: cover; width: 100%; }
   .renewable-hero-visual figcaption,
-  .renewable-control-visual figcaption { color: rgb(100 116 139); font-size: 0.72rem; line-height: 1.55; margin-top: 0.8rem; }
+  .renewable-control-visual figcaption { color: rgb(100 116 139); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); margin-top: 0.8rem; }
 
   .plant-flow { display: grid; gap: 4.6rem; list-style: none; margin: clamp(2.5rem, 5vw, 4.5rem) auto 0; max-width: 48rem; padding: 0; }
   .plant-flow li { align-items: center; display: grid; gap: clamp(1.4rem, 4vw, 3rem); grid-template-columns: 5rem minmax(0, 1fr); position: relative; }
@@ -1997,18 +1995,18 @@ END OF REPORT
   .plant-flow-symbol::before { animation: plant-symbol-orbit 11s linear infinite; background: conic-gradient(from 0deg, transparent 0 66%, rgba(167, 139, 250, 0.28) 76%, rgba(255, 255, 255, 0.72) 86%, rgba(196, 181, 253, 0.4) 94%, transparent 100%); border-radius: inherit; content: ""; filter: drop-shadow(0 0 0.32rem rgba(167, 139, 250, 0.34)); inset: -0.18rem; mask: radial-gradient(farthest-side, transparent calc(100% - 1px), #000 calc(100% - 1px)); pointer-events: none; position: absolute; }
   .plant-flow-symbol svg { height: 2rem; position: relative; width: 2rem; z-index: 1; }
   @keyframes plant-symbol-orbit { to { transform: rotate(360deg); } }
-  .plant-flow li div > span { color: rgb(167 139 250); display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; }
-  .plant-flow strong { color: rgb(226 232 240); display: block; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.35; margin-top: 0.55rem; }
+  .plant-flow li div > span { color: rgb(167 139 250); display: block; font-size: var(--type-caption-size); font-weight: 700; letter-spacing: var(--type-label-letter-spacing); }
+  .plant-flow strong { color: rgb(226 232 240); display: block; font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); margin-top: 0.55rem; }
   .plant-flow p { color: rgb(148 163 184); line-height: 1.7; margin-top: 0.45rem; }
 
   .renewable-control-visual { margin: clamp(2rem, 4vw, 3.5rem) auto 0; max-width: 68rem; }
   .renewable-control-visual button { max-height: 38rem; }
   .renewable-control-visual picture { display: block; }
   .renewable-control-visual img { max-height: 38rem; object-fit: contain; object-position: center; }
-  .renewable-case-study .technology-section { padding-top: clamp(2.5rem, 3.5vw, 3.75rem); }
+  .renewable-case-study .technology-section { padding-top: clamp(2rem, 3vw, 3rem); }
 
-  .responsible-use-section { padding-bottom: clamp(2.5rem, 4vw, 4rem); padding-top: clamp(1rem, 2vw, 2rem); }
-  .technology-section { padding-top: clamp(3.5rem, 6vw, 6rem); }
+  .responsible-use-section { padding-bottom: clamp(2rem, 3vw, 3rem); padding-top: 1rem; }
+  .technology-section { padding-top: clamp(2.25rem, 3.5vw, 3.5rem); }
   .report-access-control {
     align-items: center;
     background: #020203;
@@ -2016,7 +2014,7 @@ END OF REPORT
     border-radius: 999px;
     color: rgb(226 232 240);
     display: inline-flex;
-    font-size: 0.66rem;
+    font-size: var(--type-caption-size);
     font-weight: 400;
     gap: 1.4rem;
     justify-content: space-between;
@@ -2035,17 +2033,17 @@ END OF REPORT
   .merged-research-tools { display: block; margin-top: clamp(2rem,4vw,3rem); }
   .merged-research-tools .case-tags { margin-top: 0; }
   .merged-research-tools .case-tags { gap: .45rem; margin-top: 2.25rem; }
-  .merged-research-tools .case-tags span { font-size: .64rem; letter-spacing: .07em; padding: .38rem .58rem; }
+  .merged-research-tools .case-tags span { font-size: var(--type-caption-size); letter-spacing: .07em; padding: .38rem .58rem; }
 
-  .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 6rem; padding-top: 4rem; position: relative; }
+  .case-footer { align-items: center; display: flex; justify-content: center; padding-bottom: 4rem; padding-top: 2.5rem; position: relative; }
   .case-footer::before { animation: footer-neon-line 7s linear infinite; background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.42) 14%, rgb(196 181 253) 38%, rgba(255, 255, 255, 0.92) 50%, rgb(196 181 253) 62%, rgba(139, 92, 246, 0.42) 86%, transparent 100%); background-size: 220% 100%; content: ""; height: 1px; left: clamp(1.35rem, 5vw, 5rem); position: absolute; right: clamp(1.35rem, 5vw, 5rem); top: 0; }
   @keyframes footer-neon-line {
     from { background-position: 120% 0; }
     to { background-position: -120% 0; }
   }
   .research-references { max-width: 36rem; text-align: center; }
-  .research-references > span { color: rgb(139 92 246); display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; }
-  .research-references a { align-items: center; color: rgb(148 163 184); display: inline-flex; flex-direction: column; font-size: 0.78rem; gap: 0.75rem; line-height: 1.6; margin-top: 0.75rem; text-decoration: none; }
+  .research-references > span { color: rgb(139 92 246); display: block; font-size: var(--type-caption-size); font-weight: 700; letter-spacing: var(--type-label-letter-spacing); }
+  .research-references a { align-items: center; color: rgb(148 163 184); display: inline-flex; flex-direction: column; font-size: var(--type-caption-size); gap: 0.75rem; line-height: var(--type-caption-line-height); margin-top: 0.75rem; text-decoration: none; }
   .research-references img { height: 1.6rem; object-fit: contain; width: auto; }
   .research-references a span { text-decoration: underline; text-decoration-color: rgba(196, 181, 253, 0.35); text-underline-offset: 0.22em; }
   .research-references a:hover,
@@ -2059,12 +2057,12 @@ END OF REPORT
       radial-gradient(circle at 14% 66%, rgba(196, 181, 253, 0.035), transparent 28rem),
       #000;
   }
-  .telecom-case-study .case-hero { min-height: auto; padding-bottom: clamp(3rem, 5vw, 4.5rem); }
-  .telecom-hero-grid { align-items: center; min-height: auto; padding-bottom: 1rem; padding-top: clamp(4.5rem, 8vw, 7rem); }
+  .telecom-case-study .case-hero { min-height: auto; padding-bottom: clamp(2.25rem, 3vw, 3.25rem); }
+  .telecom-hero-grid { align-items: center; min-height: auto; padding-bottom: 1rem; padding-top: clamp(3rem, 4vw, 4rem); }
   .telecom-identity { align-items: center; display: flex; gap: 1rem; margin-bottom: 2.2rem; }
   .telecom-identity img { height: 2.2rem; object-fit: contain; width: auto; }
-  .telecom-identity span { border-left: 1px solid rgba(196,181,253,.25); color: rgb(100 116 139); font-size: .65rem; letter-spacing: .13em; padding-left: 1rem; text-transform: uppercase; }
-  .telecom-support { color: rgb(100 116 139); font-size: .9rem; line-height: 1.75; margin: 1rem 0 0; max-width: 36rem; }
+  .telecom-identity span { border-left: 1px solid rgba(196,181,253,.25); color: rgb(100 116 139); font-size: var(--type-caption-size); letter-spacing: var(--type-label-letter-spacing); padding-left: 1rem; text-transform: uppercase; }
+  .telecom-support { color: rgb(100 116 139); font-size: var(--type-body-size); line-height: var(--type-body-line-height); margin: 1rem 0 0; max-width: 36rem; }
   .telecom-coverage-figure { margin: 0; min-width: 0; }
   .telecom-coverage-frame { background: rgba(2,2,4,.88); border: 1px solid rgba(196,181,253,.2); border-radius: 1.35rem; overflow: hidden; padding: .35rem; position: relative; }
   .telecom-coverage-frame::before { background: linear-gradient(90deg, transparent, rgba(196,181,253,.72), transparent); content: ""; height: 1px; left: 10%; position: absolute; right: 10%; top: 0; }
@@ -2072,10 +2070,10 @@ END OF REPORT
   .telecom-coverage-trigger img { display: block; height: auto; transform: scale(1.035); transition: filter 220ms ease, transform 260ms ease; width: 100%; }
   .telecom-coverage-trigger:hover img,
   .telecom-coverage-trigger:focus-visible img { filter: brightness(1.1) contrast(1.04); transform: scale(1.055); }
-  .telecom-coverage-figure figcaption { color: rgb(71 85 105); font-size: .68rem; letter-spacing: .035em; margin-top: .75rem; }
+  .telecom-coverage-figure figcaption { color: rgb(71 85 105); font-size: var(--type-caption-size); line-height: var(--type-caption-line-height); letter-spacing: .035em; margin-top: .75rem; }
   .telecom-lightbox .figure-lightbox-content { max-width: min(96vw, 92rem); }
   .telecom-lightbox .figure-lightbox-content > img { background: #020204; max-height: calc(100dvh - 3rem); object-fit: contain; width: 100%; }
-  .telecom-case-study .case-section { padding-bottom: clamp(2.8rem, 4vw, 4rem); padding-top: clamp(2.8rem, 4vw, 4rem); }
+  .telecom-case-study .case-section { padding-bottom: clamp(2rem, 2.75vw, 2.75rem); padding-top: clamp(2rem, 2.75vw, 2.75rem); }
   .telecom-delivery-grid { display: grid; gap: clamp(2rem,5vw,5rem); grid-template-columns: repeat(3,minmax(0,1fr)); list-style: none; margin: 3rem 0 0; padding: 0; position: relative; }
   .telecom-delivery-grid::before { background: linear-gradient(90deg,transparent,rgba(139,92,246,.6) 18%,rgba(241,245,249,.34) 50%,rgba(139,92,246,.6) 82%,transparent); box-shadow: 0 0 1rem rgba(139,92,246,.16); content: ""; height: 1px; left: 3rem; position: absolute; right: 3rem; top: 3.35rem; }
   .telecom-delivery-grid::after { background: linear-gradient(90deg,transparent,rgba(167,139,250,.18),transparent); content: ""; filter: blur(.8rem); height: 3rem; left: 8%; pointer-events: none; position: absolute; right: 8%; top: 1.85rem; }
@@ -2089,25 +2087,25 @@ END OF REPORT
   .telecom-stage-symbol::before { animation: telecom-signal-ring 3.6s ease-in-out infinite; }
   .telecom-delivery-grid li:nth-child(2) .telecom-stage-symbol::before { animation-delay: .8s; }
   .telecom-delivery-grid li:nth-child(3) .telecom-stage-symbol::before { animation-delay: 1.6s; }
-  .telecom-delivery-grid h3 { color: rgb(226 232 240); font-size: 1rem; margin: 1.05rem 0 0; }
-  .telecom-delivery-grid p { color: rgb(100 116 139); font-size: .83rem; line-height: 1.72; margin: .7rem 0 0; max-width: 21rem; }
+  .telecom-delivery-grid h3 { color: rgb(226 232 240); font-size: var(--type-card-title-size); line-height: var(--type-card-title-line-height); margin: 1.05rem 0 0; }
+  .telecom-delivery-grid p { color: rgb(100 116 139); font-size: var(--type-body-size); line-height: var(--type-body-line-height); margin: .7rem 0 0; max-width: 21rem; }
   @keyframes telecom-signal-ring { 0%,100% { border-color: rgba(167,139,250,.18); box-shadow: 0 0 0 rgba(139,92,246,0); transform: scale(.94); } 50% { border-color: rgba(196,181,253,.5); box-shadow: 0 0 1.15rem rgba(139,92,246,.18); transform: scale(1); } }
   .telecom-reference { align-items: start; display: grid; gap: clamp(2rem,6vw,6rem); grid-template-columns: minmax(15rem,.68fr) minmax(0,1.32fr); }
-  .telecom-reference h2 { color: rgb(241 245 249); font-size: clamp(1.8rem,3vw,2.7rem); letter-spacing: -.04em; margin: .75rem 0 0; }
+  .telecom-reference h2 { color: rgb(241 245 249); font-size: var(--type-section-size); line-height: var(--type-section-line-height); letter-spacing: -.04em; margin: .75rem 0 0; }
   .telecom-reference > div:last-child p { color: rgb(148 163 184); line-height: 1.82; margin: 0; }
   .telecom-reference > div:last-child p + p { margin-top: 1rem; }
   .telecom-environments { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.5rem; }
-  .telecom-environments span { border: 1px solid rgba(148,163,184,.16); border-radius: 999px; color: rgb(148 163 184); font-size: .61rem; letter-spacing: .08em; padding: .42rem .7rem; text-transform: uppercase; }
+  .telecom-environments span { border: 1px solid rgba(148,163,184,.16); border-radius: 999px; color: rgb(148 163 184); font-size: var(--type-micro-size); letter-spacing: .08em; padding: .42rem .7rem; text-transform: uppercase; }
   .telecom-foundation { overflow: hidden; }
   .telecom-technology-map { border-bottom: 1px solid rgba(196,181,253,.13); border-top: 1px solid rgba(196,181,253,.13); margin-top: 2.4rem; position: relative; }
   .telecom-technology-map::before { background: linear-gradient(180deg,transparent,rgba(139,92,246,.5),transparent); content: ""; left: clamp(11rem,22vw,17rem); position: absolute; top: 12%; bottom: 12%; width: 1px; }
   .telecom-map-row { align-items: center; display: grid; gap: clamp(2rem,6vw,6rem); grid-template-columns: clamp(9rem,18vw,14rem) minmax(0,1fr); min-height: 7.2rem; position: relative; }
   .telecom-map-row + .telecom-map-row { border-top: 1px solid rgba(148,163,184,.1); }
-  .telecom-map-row > p { color: rgb(148 163 184); font-size: .66rem; letter-spacing: .13em; margin: 0; text-transform: uppercase; }
-  .telecom-map-row > p span { color: rgb(139 92 246); font-family: ui-monospace,SFMono-Regular,Menlo,monospace; margin-right: .75rem; }
+  .telecom-map-row > p { color: rgb(148 163 184); font-size: var(--type-caption-size); letter-spacing: var(--type-label-letter-spacing); margin: 0; text-transform: uppercase; }
+  .telecom-map-row > p span { color: rgb(139 92 246); font-family: var(--font-mono); margin-right: .75rem; }
   .telecom-map-track { align-items: center; display: flex; flex-wrap: wrap; gap: clamp(.8rem,2.8vw,2.2rem); min-width: 0; position: relative; }
   .telecom-map-track::before { background: linear-gradient(90deg,rgba(139,92,246,.55),rgba(226,232,240,.18),transparent); content: ""; height: 1px; left: -2.5rem; position: absolute; right: 0; top: 50%; }
-  .telecom-map-track > span { backdrop-filter: blur(.45rem); background: rgba(4,3,8,.82); border: 1px solid rgba(196,181,253,.24); border-radius: 999px; color: rgb(226 232 240); font-size: .68rem; letter-spacing: .06em; padding: .55rem .82rem; position: relative; white-space: nowrap; z-index: 1; }
+  .telecom-map-track > span { backdrop-filter: blur(.45rem); background: rgba(4,3,8,.82); border: 1px solid rgba(196,181,253,.24); border-radius: 999px; color: rgb(226 232 240); font-size: var(--type-caption-size); letter-spacing: .06em; padding: .55rem .82rem; position: relative; white-space: nowrap; z-index: 1; }
   .telecom-map-track > span::before { background: rgb(167 139 250); border-radius: 50%; box-shadow: 0 0 .55rem rgba(167,139,250,.75); content: ""; height: .24rem; left: -.14rem; position: absolute; top: calc(50% - .12rem); width: .24rem; }
   .telecom-map-row-coverage .telecom-map-track > span { border-color: rgba(241,245,249,.42); box-shadow: 0 0 1.2rem rgba(139,92,246,.12); color: rgb(241 245 249); }
 
@@ -2117,7 +2115,7 @@ END OF REPORT
     background: rgba(167, 139, 250, 0.1);
     color: rgb(221 214 254);
     cursor: default;
-    font-size: 0.875rem;
+    font-size: var(--type-ui-size);
     font-weight: 600;
     padding: 0.55rem 0.8rem;
   }
@@ -2165,9 +2163,9 @@ END OF REPORT
   @media (max-width: 640px) {
     .case-hero { min-height: auto; padding-top: 1.5rem; }
     .case-hero-grid { padding-top: 4rem; }
-    .case-hero h1,
+    .case-hero h1 { font-size: var(--type-display-size); }
     .section-heading h2,
-    .split-copy h2 { font-size: clamp(2rem, 9vw, 2.75rem); }
+    .split-copy h2 { font-size: var(--type-section-size); }
     .metric-grid,
     .class-grid { grid-template-columns: 1fr; }
     .telecom-identity { align-items: flex-start; flex-direction: column; gap: .7rem; }
@@ -2179,14 +2177,12 @@ END OF REPORT
     .telecom-map-row > p { padding-left: .2rem; }
     .telecom-map-track { gap: .65rem; padding-left: 1rem; }
     .telecom-map-track::before { left: 0; }
-    .telecom-map-track > span { font-size: .62rem; padding: .48rem .68rem; }
+    .telecom-map-track > span { padding: .48rem .68rem; }
     .prediction-distribution { padding-bottom: 2.2rem; }
     .prediction-orbital-stage { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(2,minmax(0,1fr)); height: auto; padding-top: 1rem; }
     .prediction-orbital-wireframe { grid-column: 1 / -1; left: auto; margin: 0 auto 1rem; max-width: 19rem; position: relative; top: auto; transform: none; width: 82%; }
     .prediction-orbital-leaders { display: none; }
     .prediction-orbital-tag { min-width: 0; position: static; width: 100%; }
-    .prediction-orbital-tag span { font-size: .78rem; }
-    .prediction-orbital-tag strong { font-size: .68rem; }
     .plant-flow { gap: 4rem; }
     .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
     .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }
@@ -2202,20 +2198,18 @@ END OF REPORT
     .dataset-bar > div { min-height: 3.85rem; min-width: 0; overflow: hidden; padding: 0.55rem 0.28rem; }
     .dataset-bar > div:first-child { border-radius: 1rem 0 0 1rem; }
     .dataset-bar > div:last-child { border-radius: 0 1rem 1rem 0; }
-    .dataset-bar strong { font-size: clamp(0.72rem, 4.6vw, 1.3rem); letter-spacing: -0.035em; }
+    .dataset-bar strong { font-size: var(--type-ui-size); letter-spacing: -0.02em; }
     .dataset-bar span { font-size: 0; margin-top: 0.45rem; }
     .dataset-bar .train span::after,
     .dataset-bar .validation span::after,
-    .dataset-bar .test span::after { font-size: 0.58rem; letter-spacing: 0; }
+    .dataset-bar .test span::after { font-size: var(--type-micro-size); letter-spacing: 0; }
     .dataset-bar .train span::after { content: "70%"; }
     .dataset-bar .validation span::after { content: "20%"; }
     .dataset-bar .test span::after { content: "10%"; }
     .performance-card { padding: 1.2rem; }
     .comparison-row-heading { align-items: flex-start; }
-    .comparison-delta { font-size: 0.56rem; white-space: nowrap; }
+    .comparison-delta { white-space: nowrap; }
     .metric-bar-row { gap: 0.5rem; grid-template-columns: 3.4rem minmax(0, 1fr) 3.65rem; }
-    .metric-bar-label { font-size: 0.56rem; }
-    .metric-bar-row strong { font-size: 0.64rem; }
     .research-figure { border-radius: 0.9rem; margin-top: 2rem; }
     .figure-zoom-trigger > span { opacity: 1; }
     .figure-lightbox { padding: 0.8rem; }
@@ -2226,8 +2220,25 @@ END OF REPORT
     .report-viewer-close { right: 0.45rem; top: 0.45rem; }
     .interactive-model-frame { aspect-ratio: 4 / 5; border-radius: 1rem; }
     .interactive-model-controls { display: flex; width: auto; }
-    .interactive-model-controls button { font-size: .68rem; }
     .interactive-model-meta { flex-direction: column; }
+  }
+
+  /* Narrative text uses the About introduction as its single typographic
+     reference in every case study and at every viewport width. */
+  .case-study :where(p:not(.case-eyebrow, .source-note, .concept-note, .prediction-chart-kicker, .telecom-map-label)) {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-size);
+    font-weight: var(--type-body-weight);
+    letter-spacing: var(--type-body-letter-spacing);
+    line-height: var(--type-body-line-height);
+  }
+
+  .case-study .metric-grid article > span {
+    font-family: var(--font-sans);
+    font-size: var(--type-body-size);
+    font-weight: var(--type-body-weight);
+    letter-spacing: var(--type-body-letter-spacing);
+    line-height: var(--type-body-line-height);
   }
 
   @media (prefers-reduced-motion: reduce) {

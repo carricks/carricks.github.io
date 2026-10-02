@@ -5,6 +5,7 @@ import PortfolioSection from "../components/sections/PortfolioSection.astro";
 import ContactSection from "../components/sections/ContactSection.astro";
 import AboutDestinationIcon from "../components/common/AboutDestinationIcon.astro";
 import ArrowIcon from "../components/common/ArrowIcon.astro";
+import ProjectIcon from "../components/common/ProjectIcon.astro";
 import { projects } from "../data/projects";
 ---
 
@@ -17,13 +18,14 @@ import { projects } from "../data/projects";
     title="Systems designed for operational confidence."
     description="Selected work across power systems, industrial integration and resilient control environments."
   >
-    <div class="mt-12 flex max-w-xl flex-col gap-3 text-sm text-violet-100">
+    <div class="mt-12 flex max-w-xl flex-col gap-3 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-100">
       {projects.map((project) => (
         <a
           href={`/projects/${project.slug}`}
           aria-label={`Open project, ${project.title}`}
           class="interactive-control neon-box-control premium-neon-control project-link"
         >
+          <span class="neon-box-symbol"><ProjectIcon icon={project.slug} /></span>
           <span class="neon-box-label">{project.shortLabel}</span>
           <ArrowIcon />
         </a>
@@ -37,7 +39,7 @@ import { projects } from "../data/projects";
     title="Technical milestones and recognition."
     description="Selected academic work, international technology competitions and personal milestones that complement my professional engineering practice."
   >
-    <div class="mt-12 flex max-w-xl flex-col gap-3 text-sm text-violet-100" aria-label="Milestone entries">
+    <div class="mt-12 flex max-w-xl flex-col gap-3 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-100" aria-label="Milestone entries">
       <a
         href="/milestones/hardwarethon/"
         aria-label="Explore Hardwarethon Costa Rica 2019"
