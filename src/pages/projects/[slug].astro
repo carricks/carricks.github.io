@@ -362,13 +362,13 @@ END OF REPORT
             />
 
             <svg class="prediction-orbital-leaders" viewBox="0 0 1000 580" preserveAspectRatio="none" aria-hidden="true">
-              <path class="is-pituitary" d="M382 230H250L205 158H76" />
+              <path class="is-pituitary" d="M382 230H250L205 160H150" />
               <circle class="is-pituitary" cx="382" cy="230" r="3" />
-              <path class="is-glioma" d="M620 190H716L774 160H926" />
+              <path class="is-glioma" d="M620 190H716L774 160H850" />
               <circle class="is-glioma" cx="620" cy="190" r="3" />
-              <path class="is-meningioma" d="M682 254H754L808 326H942" />
+              <path class="is-meningioma" d="M682 254H754L808 326H842" />
               <circle class="is-meningioma" cx="682" cy="254" r="4" />
-              <path class="is-no-tumour" d="M670 287H724L790 476H916" />
+              <path class="is-no-tumour" d="M670 287H724L790 476H852" />
               <circle class="is-no-tumour" cx="670" cy="287" r="4" />
             </svg>
 
@@ -1910,14 +1910,15 @@ END OF REPORT
   .prediction-orbital-leaders .is-glioma { color: rgb(248 250 252); }
   .prediction-orbital-leaders .is-meningioma { color: rgb(207 116 225); }
   .prediction-orbital-leaders .is-no-tumour { color: rgb(103 188 218); }
-  .prediction-orbital-tag { align-items: baseline; border-left: 1px solid var(--tag-colour); display: flex; gap: .8rem; justify-content: space-between; min-width: 10.5rem; padding: .25rem 0 .25rem .75rem; position: absolute; }
-  .prediction-orbital-tag span { color: var(--tag-colour); font-size: var(--type-ui-size); font-weight: 650; letter-spacing: .015em; line-height: var(--type-ui-line-height); }
-  .prediction-orbital-tag strong { color: rgb(241 245 249); font-size: var(--type-caption-size); font-variant-numeric: tabular-nums; font-weight: 700; }
-  .prediction-orbital-tag.is-pituitary { --tag-colour: rgb(196 181 253); left: 1%; top: 23%; }
+  .prediction-orbital-tag { align-items: baseline; border-left: 1px solid var(--tag-colour); display: flex; gap: .8rem; justify-content: space-between; min-width: 10.5rem; padding: .2rem .15rem .55rem .75rem; position: absolute; transform: translateY(-100%); }
+  .prediction-orbital-tag::after { background: var(--tag-colour); bottom: 0; content: ""; height: 1px; left: 0; opacity: .44; position: absolute; right: 0; }
+  .prediction-orbital-tag span { color: var(--tag-colour); font-size: var(--type-ui-size); font-weight: 650; letter-spacing: .015em; line-height: var(--type-ui-line-height); position: relative; z-index: 1; }
+  .prediction-orbital-tag strong { color: rgb(241 245 249); font-size: var(--type-caption-size); font-variant-numeric: tabular-nums; font-weight: 700; position: relative; z-index: 1; }
+  .prediction-orbital-tag.is-pituitary { --tag-colour: rgb(196 181 253); left: 1%; top: 27.6%; }
   .prediction-orbital-tag.is-pituitary strong { color: rgb(196 181 253); }
-  .prediction-orbital-tag.is-glioma { --tag-colour: rgb(248 250 252); right: 0; top: 23%; }
-  .prediction-orbital-tag.is-meningioma { --tag-colour: rgb(207 116 225); right: -1%; top: 51.5%; }
-  .prediction-orbital-tag.is-no-tumour { --tag-colour: rgb(103 188 218); right: 1%; top: 78%; }
+  .prediction-orbital-tag.is-glioma { --tag-colour: rgb(248 250 252); right: 0; top: 27.6%; }
+  .prediction-orbital-tag.is-meningioma { --tag-colour: rgb(207 116 225); right: -1%; top: 56.2%; }
+  .prediction-orbital-tag.is-no-tumour { --tag-colour: rgb(103 188 218); right: 1%; top: 82.1%; }
 
   .application-section { padding-bottom: clamp(2rem, 3vw, 3rem); }
 
@@ -2182,7 +2183,7 @@ END OF REPORT
     .prediction-orbital-stage { display: grid; gap: .75rem 1rem; grid-template-columns: repeat(2,minmax(0,1fr)); height: auto; padding-top: 1rem; }
     .prediction-orbital-wireframe { grid-column: 1 / -1; left: auto; margin: 0 auto 1rem; max-width: 19rem; position: relative; top: auto; transform: none; width: 82%; }
     .prediction-orbital-leaders { display: none; }
-    .prediction-orbital-tag { min-width: 0; position: static; width: 100%; }
+    .prediction-orbital-tag { min-width: 0; position: static; transform: none; width: 100%; }
     .plant-flow { gap: 4rem; }
     .plant-flow li { gap: 1.15rem; grid-template-columns: 3.75rem minmax(0, 1fr); }
     .plant-flow-symbol { height: 3.75rem; width: 3.75rem; }

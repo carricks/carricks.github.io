@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 2 October 2026
+Last updated: 4 October 2026
 
 ## Direction
 
@@ -33,7 +33,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ## Action iconography
 
 - About, Projects and Milestones actions share one square lilac symbol container, one lightweight label and one terminal arrow.
-- Project symbols are purpose-built outline SVGs for CNN research, transmission infrastructure, photovoltaic control and telecommunications coverage.
+- Project symbols are purpose-built outline SVGs for brain imaging, AC electrical generation, photovoltaic control and telecommunications coverage.
 - Icons use transparent fills, rounded joins and restrained strokes so they remain legible without becoming visually heavier than their labels.
 
 - Section labels are uppercase with wide tracking.
@@ -89,7 +89,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
 - The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
 - The telecommunications coverage SVG follows the engineering-diagram rules and uses reserved negative space for equipment labels. Its donor, protection, repeater, splitter, backbone and indoor antenna fields remain spatially independent from RF paths and active distribution points. The figure uses the shared lightbox at full vector resolution.
-- The MRI prediction chart uses paired solid dark/light rasters at controlled translucency, without wireframe grid lines. Labels and percentages remain outside the chart; fine SVG leaders connect to slice centers on desktop and are removed on mobile in favor of a compact label grid.
+- The MRI prediction chart uses paired solid dark/light rasters at controlled translucency, without wireframe grid lines. Labels and percentages remain outside the chart and sit above their own horizontal guide rails; fine SVG leaders stop where each rail begins instead of crossing beneath text. Mobile removes the leaders and uses a compact label grid.
 - Prediction colors remain subordinate to the page while distinguishing every class: soft lilac for pituitary, soft white for glioma, muted magenta for meningioma and muted cyan for no tumour.
 
 ### Interactive 3D models

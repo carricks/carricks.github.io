@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 2 October 2026
+Last updated: 4 October 2026
 
 ## Current product status
 
@@ -61,6 +61,9 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Unified homepage destination controls with lightweight labels and dedicated outline icons for all four Projects, matching the established About and Milestones pattern.
 - Theme-specific solid MRI prediction assets with controlled translucency, grid-free surfaces and corrected label connectors; the superseded wireframe raster has been removed.
 - Sprint 07 repository closeout on 2 October covering public-asset references, source-module imports, documentation, generated-output boundaries, duplicate hashes and temporary artifacts.
+- Refined Project iconography using a clear brain symbol for MRI and an AC generator symbol for grid stability, preserving the shared thin-stroke action language.
+- Reworked MRI prediction tags so all four labels and percentages sit above independent guide rails, with SVG connectors ending before the text area and mobile retaining its connector-free grid.
+- Remediated the high-severity `http-cache-semantics` advisory by updating the transitive package to 4.3.0 and revalidating the production dependency tree at zero vulnerabilities.
 
 ## In progress
 

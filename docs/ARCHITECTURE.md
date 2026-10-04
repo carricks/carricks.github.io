@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 2 October 2026
+Last updated: 4 October 2026
 
 ## Status
 
@@ -90,9 +90,9 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. The route also uses an open icon-led delivery sequence and a final three-layer technology map; all related styles remain scoped to `.telecom-case-study`.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
-- The MRI prediction distribution uses paired dark/light solid raster charts with four external HTML labels and an SVG connector overlay. Both theme variants use the same controlled translucency; desktop leaders terminate inside their corresponding slices, while mobile removes the leaders and presents the labels in a compact two-column arrangement. The image alternative text preserves the complete values.
+- The MRI prediction distribution uses paired dark/light solid raster charts with four external HTML labels and an SVG connector overlay. Both theme variants use the same controlled translucency; desktop leaders terminate at dedicated tag guide rails so no connector passes beneath label text, while mobile removes the leaders and presents the labels in a compact two-column arrangement. The image alternative text preserves the complete values.
 - Global typography is defined through semantic tokens in `src/styles/global.css` for display, section, body, card, UI, caption, microcopy and metric roles. Light and dark themes share this scale, and responsive layouts change composition without introducing unrelated font systems.
-- Homepage Projects actions use `ProjectIcon.astro` to provide a dedicated CNN, transmission tower, photovoltaic and telecommunications symbol inside the same shared control structure used by About and Milestones.
+- Homepage Projects actions use `ProjectIcon.astro` to provide dedicated brain, AC generator, photovoltaic and telecommunications symbols inside the same shared control structure used by About and Milestones.
 - `FloatingBackControl.astro` provides one shared Back interaction for every About and Project detail route.
 - The control remains visible at the initial position, appears during pointer, touch, keyboard or scroll activity and fades after two seconds of inactivity. Hover and keyboard focus pause the hide timer.
 - `prefers-reduced-motion` disables nonessential animation.
@@ -145,3 +145,5 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - Theme-specific figure treatments, lightbox presentation, responsive renewable diagrams, telecommunications artwork and Experience logo rendering are documented as current behavior.
 - The 2 October closeout rechecked every retained public asset, dynamic image-library path, source-module import, public report reference, browser-convention favicon, duplicate hash, empty directory and temporary artifact boundary.
 - The superseded `prediction-orbital-wireframe.png` has no remaining reference and is replaced by the registered dark/light solid variants. No other retained public asset or source module qualifies for deletion.
+- The 4 October closeout rechecked the complete public library, source-module import graph, duplicate hashes, generated-output boundaries and temporary artifacts after the project-icon and prediction-label refinements; no additional file qualified for safe deletion.
+- The same closeout updated the transitive `http-cache-semantics` dependency from 4.2.0 to 4.3.0 to resolve `GHSA-ch52-4w7c-c8xp`; the production dependency audit then returned zero vulnerabilities.

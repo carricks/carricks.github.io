@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 2 October 2026
+Last updated: 4 October 2026
 
 ## Vision
 
@@ -76,7 +76,7 @@ Homepage introduction
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
 - The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture, an open delivery sequence and a layered technology map.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
-- Probability visualization remains dependency-free and combines an optimized raster chart, accessible alternative text, external HTML labels and a decorative SVG leader overlay.
+- Probability visualization remains dependency-free and combines optimized theme-specific raster charts, accessible alternative text, external HTML labels, dedicated tag guide rails and a decorative SVG leader overlay.
 - Public PDF controls may be visually reduced, but browser delivery cannot prevent retrieval of the source document.
 - The portfolio remains readable if an external 3D model is unavailable.
 
