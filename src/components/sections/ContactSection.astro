@@ -3,18 +3,26 @@ import { siteProfile } from "../../config/site";
 import Container from "../common/Container.astro";
 import Section from "../common/Section.astro";
 import ArrowIcon from "../common/ArrowIcon.astro";
+import { getHomeContent, type Locale } from "../../i18n/home";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const content = getHomeContent(locale).contact;
 ---
 
 <Section id="contact" class="relative isolate scroll-mt-20 overflow-hidden bg-black pb-24 lg:pb-24">
   <Container>
     <div class="max-w-2xl">
-      <p class="section-eyebrow text-violet-300">CONTACT</p>
-      <h2 class="interactive-heading section-title mt-6 text-slate-400">Let’s build resilient systems.</h2>
-      <p class="body-copy-reference mt-6 max-w-xl text-slate-300">For technical conversations, collaborations and engineering opportunities.</p>
+      <p class="section-eyebrow text-violet-300">{content.eyebrow}</p>
+      <h2 class="interactive-heading section-title mt-6 text-slate-400">{content.title}</h2>
+      <p class="body-copy-reference mt-6 max-w-xl text-slate-300">{content.description}</p>
 
-      <form data-contact-form novalidate class="mt-8 grid gap-4" aria-describedby="contact-form-status">
+      <form data-contact-form data-invalid-message={content.invalid} data-opening-message={content.opening} data-subject-prefix={content.subject} data-body-name={content.bodyName} data-body-email={content.bodyEmail} data-body-message={content.bodyMessage} novalidate class="mt-8 grid gap-4" aria-describedby="contact-form-status">
         <div class="contact-field">
-          <label class="sr-only" for="contact-name">Name</label>
+          <label class="sr-only" for="contact-name">{content.name}</label>
           <span class="contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <circle cx="12" cy="8" r="3.25" />
@@ -24,7 +32,7 @@ import ArrowIcon from "../common/ArrowIcon.astro";
           <input id="contact-name" name="name" type="text" autocomplete="name" required />
         </div>
         <div class="contact-field">
-          <label class="sr-only" for="contact-email">Email</label>
+          <label class="sr-only" for="contact-email">{content.email}</label>
           <span class="contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
@@ -34,7 +42,7 @@ import ArrowIcon from "../common/ArrowIcon.astro";
           <input id="contact-email" name="email" type="email" autocomplete="email" required />
         </div>
         <div class="contact-field">
-          <label class="sr-only" for="contact-message">Message</label>
+          <label class="sr-only" for="contact-message">{content.message}</label>
           <span class="contact-icon contact-message-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <path d="M5 5.5h14A1.5 1.5 0 0 1 20.5 7v9A1.5 1.5 0 0 1 19 17.5H10l-4.5 3v-3H5A1.5 1.5 0 0 1 3.5 16V7A1.5 1.5 0 0 1 5 5.5Z" />
@@ -45,7 +53,7 @@ import ArrowIcon from "../common/ArrowIcon.astro";
 
         <p id="contact-form-status" data-contact-status class="min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)]" aria-live="polite"></p>
         <button type="submit" class="interactive-control neon-box-control premium-neon-control contact-submit">
-          <span class="neon-box-label">Submit</span>
+          <span class="neon-box-label">{content.submit}</span>
           <ArrowIcon />
         </button>
       </form>
@@ -53,27 +61,27 @@ import ArrowIcon from "../common/ArrowIcon.astro";
     </div>
   </Container>
 
-  <footer class="contact-footer" aria-label="Portfolio credits and professional profiles">
+  <footer class="contact-footer" aria-label={content.footerLabel}>
     <Container>
       <div class="contact-footer-content">
-        <div class="footer-profiles" aria-label="Professional profiles">
-          <a class="interactive-control social-link" href={siteProfile.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Open GitHub in a new tab">
+        <div class="footer-profiles" aria-label={content.profilesLabel}>
+          <a class="interactive-control social-link" href={siteProfile.githubUrl} target="_blank" rel="noopener noreferrer" aria-label={content.githubLabel}>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.2-3.37-1.2-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .08 1.54 1.06 1.54 1.06.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.04-2.75-.1-.26-.45-1.31.1-2.73 0 0 .85-.28 2.75 1.05A9.36 9.36 0 0 1 12 6.94c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.65.72 1.04 1.63 1.04 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" />
             </svg>
           </a>
-          <a class="interactive-control social-link" href={siteProfile.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn in a new tab">
+          <a class="interactive-control social-link" href={siteProfile.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={content.linkedinLabel}>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
               <path d="M5.37 3.75A1.87 1.87 0 1 1 1.63 3.75a1.87 1.87 0 0 1 3.74 0ZM2 8h3.45v11H2V8Zm5.61 0h3.31v1.5h.05c.46-.87 1.58-1.79 3.25-1.79 3.48 0 4.12 2.29 4.12 5.27V19h-3.45v-5.02c0-1.2-.02-2.74-1.67-2.74-1.67 0-1.93 1.3-1.93 2.65V19H7.84V8Z" />
             </svg>
           </a>
         </div>
         <div class="footer-credits">
-          <a class="footer-copyright" href="https://www.government.nl/themes/economy/intellectual-property/protection-of-intellectual-property" target="_blank" rel="noopener noreferrer" aria-label="Open official Dutch government copyright information in a new tab">
+          <a class="footer-copyright" href="https://www.government.nl/themes/economy/intellectual-property/protection-of-intellectual-property" target="_blank" rel="noopener noreferrer" aria-label={content.copyrightLabel}>
             <span aria-hidden="true">&copy;</span>
-            <span>2026 DCS, all rights reserved</span>
+            <span>{content.copyright}</span>
           </a>
-          <a class="interactive-control codex-link" href="https://developers.openai.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Codex information in a new tab">
+          <a class="interactive-control codex-link" href="https://developers.openai.com/" target="_blank" rel="noopener noreferrer" aria-label={content.codexLabel}>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <path d="m9 6-6 6 6 6M15 6l6 6-6 6M14 4l-4 16" />
             </svg>
@@ -246,6 +254,12 @@ import ArrowIcon from "../common/ArrowIcon.astro";
   if (form) {
     const status = form.querySelector<HTMLElement>("[data-contact-status]");
     const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea"));
+    const invalidMessage = form.dataset.invalidMessage ?? "Please complete the highlighted fields before submitting.";
+    const openingMessage = form.dataset.openingMessage ?? "Your email client is opening with your message prepared.";
+    const subjectPrefix = form.dataset.subjectPrefix ?? "Portfolio enquiry from";
+    const bodyNameLabel = form.dataset.bodyName ?? "Name";
+    const bodyEmailLabel = form.dataset.bodyEmail ?? "Email";
+    const bodyMessageLabel = form.dataset.bodyMessage ?? "Message";
 
     const clearInvalidState = (field: HTMLInputElement | HTMLTextAreaElement) => {
       if (field.validity.valid && field.value.trim()) field.closest(".contact-field")?.classList.remove("is-invalid");
@@ -268,7 +282,7 @@ import ArrowIcon from "../common/ArrowIcon.astro";
 
       if (invalidFields.length > 0) {
         if (status) {
-          status.textContent = "Please complete the highlighted fields before submitting.";
+          status.textContent = invalidMessage;
           status.className = "min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-red-300";
         }
         invalidFields[0].focus();
@@ -279,12 +293,12 @@ import ArrowIcon from "../common/ArrowIcon.astro";
       const name = String(formData.get("name") ?? "").trim();
       const email = String(formData.get("email") ?? "").trim();
       const message = String(formData.get("message") ?? "").trim();
-      const subject = `Portfolio enquiry from ${name}`;
-      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+      const subject = `${subjectPrefix} ${name}`;
+      const body = `${bodyNameLabel}: ${name}\n${bodyEmailLabel}: ${email}\n\n${bodyMessageLabel}:\n${message}`;
       window.location.href = `mailto:diegocarrillo.sa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
       if (status) {
-        status.textContent = "Your email client is opening with your message prepared.";
+        status.textContent = openingMessage;
         status.className = "min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-200";
       }
     });

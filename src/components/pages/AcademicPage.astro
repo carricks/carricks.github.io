@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FloatingBackControl from "../common/FloatingBackControl.astro";
+import type { Locale } from "../../i18n/home";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const isDutch = locale === "nl";
+const isGerman = locale === "de";
+const homePath = locale === "en" ? "/" : `/${locale}/`;
+const germanCopy = {
+  title: "Ausbildung | Diego Carrillo",
+  description: "Hochschulausbildung in Robotik, Automatisierung und Electronic Engineering, ergänzt durch berufliche Weiterbildung in Netzwerken, Cybersicherheit, Softwareentwicklung und künstlicher Intelligenz.",
+  back: "Zurück zu Über mich", eyebrow: "AUSBILDUNG", heading: "Fundiert in Elektronik, Robotik und Regelungstechnik.", background: "AKADEMISCHER HINTERGRUND",
+  intro: "Mein akademischer Hintergrund verbindet Electronic Engineering, einen MSc in Robotics and Automation und Netzwerkstudien. Gemeinsam bilden diese Disziplinen eine Grundlage in intelligenten Systemen, Regelungstechnik und vernetzter Infrastruktur. Das Studium in internationalen Umgebungen stärkte zudem meine Fähigkeit, dieses Wissen in akademischen, technischen und praktischen Kontexten anzuwenden.",
+  programmes: [
+    ["MSc in Robotics and Automation", "Aufbaustudium an der Universidad Carlos III de Madrid mit Schwerpunkt auf Entwurf und Entwicklung robotischer und automatisierter Systeme. Das Programm verbindet Regelungstechnik, intelligente Systeme, Softwareintegration und experimentelle Validierung und umfasst den offiziellen europäischen Diplomzusatz (SET)."],
+    ["Electronic Engineering", "Ingenieurstudium mit analogen und digitalen Schaltungen, Regelungstechnik, industrieller Automatisierung, elektrischen Maschinen, Kommunikation und Datennetzen. Der Praxisanteil vermittelte Fähigkeiten zur Analyse technischer Größen, Entwicklung von Lösungen und Integration von Hardware und Software."],
+    ["Cisco Systems CCNA", "Netzwerkausbildung mit Fokus auf Netzwerkgrundlagen, Switching, Routing, IP-Konnektivität und -Dienste, Zugriffskontrolle, Sicherheit, Automatisierung und Programmierbarkeit. Die praxisorientierten Inhalte schufen eine Grundlage für Konfiguration, Fehlerbehebung und Schutz moderner vernetzter Infrastrukturen."],
+  ], additional: "WEITERE STUDIEN", additionalIntro: "Diese Studien ergänzen meinen Hintergrund in AI, Cybersicherheit und Softwareentwicklung.",
+  studies: [
+    ["Neural Networks and Deep Learning", "Grundlagenstudium neuronaler Netze, Deep-Learning-Architekturen und ihrer Anwendung auf datengestütztes Engineering und intelligente Systeme."],
+    ["Managing Network Security", "Studium von Netzwerkbedrohungen, Sicherheitsmaßnahmen und risikobasierten Verfahren zum Schutz vernetzter Systeme und Informationsflüsse."],
+    ["Software Processes and Agile Practices", "Studium iterativer Auslieferung, kollaborativer Entwicklung, Planung und kontinuierlicher Verbesserung für zuverlässige Softwareprodukte."],
+  ],
+};
+const copy = isGerman ? germanCopy : isDutch ? {
+  title: "Opleiding | Diego Carrillo",
+  description: "Universitaire opleiding in robotica, automatisering en Electronic Engineering, aangevuld met professionele studies in netwerken, cybersecurity, softwareontwikkeling en kunstmatige intelligentie.",
+  back: "Terug naar Over mij", eyebrow: "OPLEIDING", heading: "Gebouwd op elektronica, robotica en besturing.", background: "ACADEMISCHE ACHTERGROND",
+  intro: "Mijn academische achtergrond combineert Electronic Engineering, een MSc in Robotics and Automation en netwerkstudies. Samen vormen deze disciplines een basis in intelligente systemen, besturing en verbonden infrastructuur. Studeren in internationale omgevingen heeft bovendien mijn vermogen versterkt om deze kennis toe te passen in academische, technische en praktische contexten.",
+  programmes: [
+    ["MSc in Robotics and Automation", "Postdoctorale opleiding aan Universidad Carlos III de Madrid, gericht op het ontwerp en de ontwikkeling van robot- en automatiseringssystemen. De opleiding combineert besturing, intelligente systemen, software-integratie en experimentele validatie en omvat het officiële European Diploma Supplement (SET)."],
+    ["Electronic Engineering", "Engineeringopleiding in analoge en digitale elektronica, besturing, industriële automatisering, elektrische machines, communicatie en datanetwerken. De praktische component ontwikkelde vaardigheden in het analyseren van technische variabelen, het ontwerpen van oplossingen en het integreren van hardware en software."],
+    ["Cisco Systems CCNA", "Netwerkopleiding gericht op netwerkfundamenten, switching, routing, IP-connectiviteit en -diensten, toegangsbeheer, beveiliging, automatisering en programmeerbaarheid. De praktijkgerichte inhoud legde een basis voor het configureren, oplossen van storingen en beveiligen van moderne netwerkinfrastructuur."],
+  ], additional: "AANVULLENDE STUDIES", additionalIntro: "Deze studies vullen mijn achtergrond aan op het gebied van AI, cybersecurity en softwareontwikkeling.",
+  studies: [
+    ["Neural Networks and Deep Learning", "Fundamentele studie van neurale netwerken, deep-learningarchitecturen en hun toepassing op datagedreven engineering en intelligente systemen."],
+    ["Managing Network Security", "Studie van netwerkdreigingen, beveiligingsmaatregelen en risicogestuurde werkwijzen voor de bescherming van verbonden systemen en informatiestromen."],
+    ["Software Processes and Agile Practices", "Studie van iteratieve oplevering, gezamenlijke ontwikkeling, planning en continue verbetering voor betrouwbare softwareproducten."],
+  ],
+} : {
+  title: "Academic | Diego Carrillo", description: "University education in robotics, automation and electronic engineering, complemented by professional studies in networking, cybersecurity, software practices and artificial intelligence.",
+  back: "Back to about", eyebrow: "ACADEMIC", heading: "Built on electronics, robotics and control.", background: "ACADEMIC BACKGROUND",
+  intro: "My academic background combines Electronic Engineering, postgraduate specialisation in Robotics and Automation, and networking studies. Together, these disciplines established a foundation in intelligent systems, control and connected infrastructure. Studying in international environments also strengthened my ability to apply this knowledge across academic, technical and practical settings.",
+  programmes: [
+    ["Master's Degree in Robotics and Automation", "Postgraduate programme at Universidad Carlos III de Madrid focused on the design and development of robotic and automated systems, combining control, intelligent systems, software integration and experimental validation. The qualification includes the official European Diploma Supplement (SET)."],
+    ["Electronic Engineering", "Engineering programme covering analogue and digital electronics, control, industrial automation, electrical machines, communications and data networks. Its practical component developed skills in analysing technical variables, designing solutions and integrating hardware with software."],
+    ["Cisco Systems CCNA", "Networking programme focused on network fundamentals, switching, routing, IP connectivity and services, access control, security, automation and programmability. Its practical scope established a foundation for configuring, troubleshooting and protecting modern networked infrastructure."],
+  ], additional: "ADDITIONAL STUDIES", additionalIntro: "These studies complement my background in AI, cybersecurity and software delivery.",
+  studies: [
+    ["Neural Networks and Deep Learning", "Foundational study of neural networks, deep learning architectures and their application to data informed engineering and intelligent systems."],
+    ["Managing Network Security", "Study of network threats, security controls and practices informed by risk for protecting connected systems and information flows."],
+    ["Software Processes and Agile Practices", "Study of iterative delivery, collaborative development, planning and continuous improvement for reliable software products."],
+  ],
+};
+---
+
+<BaseLayout
+  locale={locale}
+  title={copy.title}
+  description={copy.description}
+>
+  <section class="bg-black px-6 py-8 sm:px-10 lg:px-16">
+    <FloatingBackControl href={`${homePath}#about`} label={copy.back} />
+
+    <article class="mx-auto mt-12 max-w-5xl pb-12 sm:mt-14 sm:pb-14">
+      <p class="section-eyebrow text-violet-300">{copy.eyebrow}</p>
+      <h1 class="interactive-heading page-title mt-5 max-w-4xl text-slate-300">
+        {copy.heading}
+      </h1>
+
+      <section class="academic-section mt-16" aria-labelledby="university-education">
+        <p class="section-label" id="university-education">{copy.background}</p>
+        <p class="body-copy-reference mt-6 max-w-3xl text-slate-400">
+          {copy.intro}
+        </p>
+
+        <div class="learning-list academic-program-list mt-10">
+          {copy.programmes.map(([title, description]) => <article class="learning-item neon-box-panel"><h2>{title}</h2><p>{description}</p></article>)}
+        </div>
+      </section>
+
+      <section class="academic-section mt-20" aria-labelledby="professional-studies">
+        <p class="section-label" id="professional-studies">{copy.additional}</p>
+        <p class="body-copy-reference mt-6 max-w-3xl text-slate-400">
+          {copy.additionalIntro}
+        </p>
+
+        <div class="learning-list mt-10">
+          {copy.studies.map(([title, description]) => <article class="learning-item neon-box-panel"><h2>{title}</h2><p>{description}</p></article>)}
+        </div>
+      </section>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .academic-section {
+    border-top: 1px solid rgba(196, 181, 253, 0.16);
+    padding-top: 2.5rem;
+  }
+
+  .section-label {
+    color: rgb(196 181 253);
+    font-size: var(--type-caption-size);
+    font-weight: 600;
+    letter-spacing: var(--type-label-letter-spacing);
+  }
+
+  .learning-item p:last-child {
+    color: rgb(148 163 184);
+    font-family: var(--font-sans);
+    font-size: var(--type-body-size);
+    font-weight: var(--type-body-weight);
+    letter-spacing: var(--type-body-letter-spacing);
+    line-height: var(--type-body-line-height);
+  }
+
+  .learning-list {
+    display: grid;
+    gap: 1rem;
+    max-width: 52rem;
+  }
+
+  .learning-item {
+    padding: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  .learning-item h2 {
+    color: rgb(196 181 253);
+    font-size: var(--type-card-title-size);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: var(--type-card-title-line-height);
+  }
+
+  .learning-item p:last-child { margin-top: 0.75rem; }
+
+  @media (min-width: 48.001rem) {
+    .learning-item p:last-child {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .academic-program-list .learning-item p:last-child {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+    }
+
+    .academic-program-list .learning-item {
+      min-height: 11.5rem;
+    }
+  }
+
+</style>

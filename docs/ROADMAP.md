@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 4 October 2026
+Last updated: 16 October 2026
 
 ## Current product status
 
@@ -9,10 +9,13 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 ## Completed
 
 - Static Astro architecture and GitHub Pages configuration.
-- Responsive dark and light visual foundations with persistent visitor preference.
+- Automated GitHub Pages build and deployment through the official Astro GitHub Action.
+- Complete Dutch localization for the homepage, About, Milestones and all four project case studies, including route-aware EN/NL controls, localized metadata and accessible interface copy.
+- Complete German localization for the homepage, About, Milestones and all four project case studies, including route-aware EN/NL/DE controls, localized metadata and accessible interface copy.
+- Responsive dark and light visual foundations with dark as the initial mode and session-scoped visitor preference while navigating.
 - Sticky translucent navigation with scroll blur and restrained motion.
 - Reusable premium neon controls and informational surfaces with unified hover, focus, press and touch feedback.
-- Homepage sections for About, Projects, Milestones and Contact.
+- Homepage sections for About, Projects, Milestones, FAQ and Contact.
 - About navigation simplified to Experience and Academic; the International route and action were retired.
 - Dedicated Academic page with formal and additional studies.
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
@@ -30,7 +33,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Unified grid architecture and Netherlands context diagrams on a black, grey, soft-white and lilac technical palette without white frames.
 - Repository asset audit confirming that all retained project images, company marks, the favicon and the public academic report are referenced directly, dynamically or by browser convention. Superseded local 3D prototypes, generated model data and development scripts have been removed.
 - Verified Spanish photovoltaic context sourced from public plant information and Red Eléctrica.
-- Homepage About introduction identifying Diego Carrillo S. and connecting his academic and professional background in one concise narrative.
+- Two-paragraph homepage About introduction connecting Diego Carrillo's academic foundation with industrial automation, energy, software, international infrastructure environments and multidisciplinary delivery.
 - Responsive vertical research timelines with restrained scroll-driven neon feedback.
 - Accessible image lightbox across the principal MRI, grid stability and photovoltaic control project figures.
 - Concise telecommunications coverage deployment project with verified CV framing, a rebuilt non-overlapping distributed antenna architecture, an open icon-led delivery flow, a layered technology map and lossless SVG lightbox enlargement.
@@ -44,7 +47,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Integrated viewer for the complete master's research report, presented without leaving the case study.
 - Research integrity reference to the ALLEA European Code of Conduct with a dedicated lilac wordmark.
 - Shared floating Back control across every About and Project detail route, visible initially and during scroll, pointer, touch or keyboard activity, with a two-second inactivity delay on desktop and mobile.
-- Responsive header with horizontal navigation only on wide desktop layouts, a circular dropdown for phones and iPads, an enlarged tablet menu panel and an EN/DE/NL/FR language-selector prototype ready for future translated routes.
+- Responsive header with horizontal navigation only on wide desktop layouts, a circular dropdown for phones and iPads, an enlarged tablet menu panel and an EN/DE/NL/FR selector. EN, NL and DE preserve equivalent routes across the complete site; FR remains reserved for future translation.
+- Accessible single-open FAQ covering academic background, professional experience, project boundaries and validation practice, with contextual links to deeper portfolio sections in both desktop and mobile navigation.
 - Thin vector header controls with consistent optical strokes, restrained borders and matched desktop/mobile interaction states.
 - Published Hardwarethon 2019 milestone page and homepage action.
 - Responsive hybrid-control architecture with three defined wind turbines, a direct solar Field I/O connection, clear transformer labels and non-overlapping electrical and control paths.
@@ -84,7 +88,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 7. Run accessibility checks for keyboard use, contrast, labels, motion and screen readers.
 8. Run performance checks and optimize raster logo assets where useful.
 9. Complete cross-browser and physical-device testing.
-10. Review the production branch and deployment workflow before public launch.
+10. Monitor the GitHub Pages deployment workflow and production route health after each release.
 
 ## Later opportunities
 

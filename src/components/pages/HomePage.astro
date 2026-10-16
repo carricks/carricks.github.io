@@ -1,0 +1,64 @@
+---
+import AboutSection from "../sections/AboutSection.astro";
+import PortfolioSection from "../sections/PortfolioSection.astro";
+import FaqSection from "../sections/FaqSection.astro";
+import ContactSection from "../sections/ContactSection.astro";
+import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
+import ArrowIcon from "../common/ArrowIcon.astro";
+import ProjectIcon from "../common/ProjectIcon.astro";
+import { projects } from "../../data/projects";
+import { getHomeContent, type Locale } from "../../i18n/home";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const content = getHomeContent(locale);
+const localePrefix = locale === "en" ? "" : `/${locale}`;
+---
+
+<AboutSection locale={locale} />
+
+<PortfolioSection
+  id="projects"
+  eyebrow={content.projects.eyebrow}
+  title={content.projects.title}
+  description={content.projects.description}
+>
+  <div class="mt-12 flex max-w-xl flex-col gap-3 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-100">
+    {projects.map((project) => (
+      <a
+        href={`${localePrefix}/projects/${project.slug}/`}
+        aria-label={`${content.projects.openLabel}: ${content.projects.labels[project.slug]}`}
+        class="interactive-control neon-box-control premium-neon-control project-link"
+      >
+        <span class="neon-box-symbol"><ProjectIcon icon={project.slug} /></span>
+        <span class="neon-box-label">{content.projects.labels[project.slug]}</span>
+        <ArrowIcon />
+      </a>
+    ))}
+  </div>
+</PortfolioSection>
+
+<PortfolioSection
+  id="milestones"
+  eyebrow={content.milestones.eyebrow}
+  title={content.milestones.title}
+  description={content.milestones.description}
+>
+  <div class="mt-12 flex max-w-xl flex-col gap-3 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-100" aria-label={content.milestones.entriesLabel}>
+    <a
+      href={`${localePrefix}/milestones/hardwarethon/`}
+      aria-label={content.milestones.openHardwarethon}
+      class="interactive-control neon-box-control premium-neon-control project-link"
+    >
+      <span class="neon-box-symbol"><AboutDestinationIcon icon="trophy" /></span>
+      <span class="neon-box-label">Hardwarethon 2019</span>
+      <ArrowIcon />
+    </a>
+  </div>
+</PortfolioSection>
+
+<FaqSection locale={locale} />
+<ContactSection locale={locale} />

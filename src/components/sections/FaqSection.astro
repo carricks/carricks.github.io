@@ -1,0 +1,162 @@
+---
+import Container from "../common/Container.astro";
+import Section from "../common/Section.astro";
+import { getHomeContent, type Locale } from "../../i18n/home";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const content = getHomeContent(locale).faq;
+---
+
+<Section id="faq" class="faq-section relative isolate scroll-mt-20 overflow-hidden bg-black">
+  <Container>
+    <div class="faq-heading max-w-3xl">
+      <p class="section-eyebrow text-violet-300">{content.eyebrow}</p>
+      <h2 class="interactive-heading section-title mt-6 text-slate-400">{content.title}</h2>
+    </div>
+
+    <div class="faq-list" data-faq-list>
+      {content.items.map((faq) => (
+        <details class="faq-item" data-faq-item>
+          <summary>
+            <span class="faq-question">{faq.question}</span>
+            <span class="faq-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-answer body-copy-reference">
+            <p>{faq.answer.map((part) => part.href ? <a href={part.href}>{part.text}</a> : part.text)}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-faq-list]").forEach((list) => {
+    const items = list.querySelectorAll<HTMLDetailsElement>("[data-faq-item]");
+    items.forEach((item) => item.addEventListener("toggle", () => {
+      if (!item.open) return;
+      items.forEach((otherItem) => {
+        if (otherItem !== item) otherItem.removeAttribute("open");
+      });
+    }));
+  });
+</script>
+
+<style>
+  .faq-list {
+    border-top: 1px solid rgba(196, 181, 253, 0.2);
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    max-width: 64rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(196, 181, 253, 0.16);
+  }
+
+  .faq-item summary {
+    align-items: center;
+    color: rgb(226 232 240);
+    cursor: pointer;
+    display: grid;
+    gap: clamp(0.85rem, 2vw, 1.4rem);
+    grid-template-columns: minmax(0, 1fr) 1.5rem;
+    list-style: none;
+    min-height: 5.25rem;
+    padding: 1.15rem 0;
+    font-weight: var(--type-body-weight);
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-item summary:focus-visible {
+    outline: 1px solid rgb(196 181 253);
+    outline-offset: 0.45rem;
+  }
+
+  .faq-question {
+    font-size: var(--type-body-size);
+    font-weight: var(--type-body-weight);
+    line-height: var(--type-body-line-height);
+  }
+
+  .faq-toggle {
+    height: 1rem;
+    position: relative;
+    width: 1rem;
+  }
+
+  .faq-toggle::before,
+  .faq-toggle::after {
+    background: rgb(167 139 250);
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transition: opacity 180ms ease, transform 220ms ease;
+    width: 100%;
+  }
+
+  .faq-toggle::after { transform: rotate(90deg); }
+  .faq-item[open] .faq-toggle::after { opacity: 0; transform: rotate(0); }
+
+  .faq-answer {
+    color: rgb(148 163 184);
+    max-width: 54rem;
+    padding: 0 3.5rem 1.75rem 0;
+  }
+
+  .faq-answer :global(p) { margin: 0; }
+
+  .faq-answer :global(a) {
+    color: rgb(196 181 253);
+    font-weight: var(--type-body-weight);
+    text-decoration-color: rgba(196, 181, 253, 0.42);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+  }
+
+  .faq-answer :global(a:hover),
+  .faq-answer :global(a:focus-visible) {
+    color: rgb(237 233 254);
+    text-decoration-color: currentColor;
+  }
+
+  :global(html[data-theme="light"]) .faq-list {
+    border-top-color: rgba(91, 33, 182, 0.28);
+  }
+
+  :global(html[data-theme="light"]) .faq-item {
+    border-bottom-color: rgba(91, 33, 182, 0.2);
+  }
+
+  :global(html[data-theme="light"]) .faq-item summary { color: #27272a; }
+  :global(html[data-theme="light"]) .faq-toggle::before,
+  :global(html[data-theme="light"]) .faq-toggle::after { background: #6d28d9; }
+  :global(html[data-theme="light"]) .faq-answer { color: #3f3f46; }
+  :global(html[data-theme="light"]) .faq-answer :global(a) { color: #5b21b6; }
+  :global(html[data-theme="light"]) .faq-answer :global(a:hover),
+  :global(html[data-theme="light"]) .faq-answer :global(a:focus-visible) { color: #3b0764; }
+
+  @media (max-width: 640px) {
+    .faq-item summary {
+      gap: 0.75rem;
+      grid-template-columns: minmax(0, 1fr) 1.1rem;
+      min-height: 4.75rem;
+      padding: 1rem 0;
+    }
+
+    .faq-answer { padding: 0 1.1rem 1.5rem 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-toggle::before,
+    .faq-toggle::after,
+    .faq-answer :global(a) { transition: none; }
+  }
+</style>

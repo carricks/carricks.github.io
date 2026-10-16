@@ -1,21 +1,32 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/layout/Navbar.astro";
+import type { Locale } from "../i18n/home";
 
 export interface Props {
   title?: string;
   description?: string;
+  locale?: Locale;
 }
 
 const {
   title = "Diego Carrillo | Multidisciplinary Systems Engineer",
   description =
     "Portfolio of Diego Carrillo: Multidisciplinary Systems Engineer specialized in Industrial Automation, SCADA, Renewable Energy and Resilient Power Systems.",
+  locale = Astro.url.pathname === "/nl" || Astro.url.pathname.startsWith("/nl/") ? "nl" : Astro.url.pathname === "/de" || Astro.url.pathname.startsWith("/de/") ? "de" : "en",
 } = Astro.props;
+
+const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de)(?=\/|$)/, "") || "/";
+const englishPath = locale === "en" ? Astro.url.pathname : unprefixedPath;
+const dutchPath = locale === "nl" ? Astro.url.pathname : `/nl${unprefixedPath}`;
+const germanPath = locale === "de" ? Astro.url.pathname : `/de${unprefixedPath}`;
+const englishUrl = new URL(englishPath, Astro.site ?? Astro.url.origin);
+const dutchUrl = new URL(dutchPath, Astro.site ?? Astro.url.origin);
+const germanUrl = new URL(germanPath, Astro.site ?? Astro.url.origin);
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={locale}>
 
 <head>
   <meta charset="UTF-8" />
@@ -23,7 +34,7 @@ const {
   <script is:inline>
     (() => {
       try {
-        const savedTheme = localStorage.getItem("portfolio-theme");
+        const savedTheme = sessionStorage.getItem("portfolio-theme");
         document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
       } catch {
         document.documentElement.dataset.theme = "dark";
@@ -44,11 +55,15 @@ const {
   <meta name="color-scheme" content="dark light" />
 
   <title>{title}</title>
+  <link rel="alternate" hreflang="en" href={englishUrl} />
+  <link rel="alternate" hreflang="nl" href={dutchUrl} />
+  <link rel="alternate" hreflang="de" href={germanUrl} />
+  <link rel="alternate" hreflang="x-default" href={englishUrl} />
 </head>
 
 <body>
 
-  <Navbar />
+  <Navbar locale={locale} />
 
   <main>
     <slot />

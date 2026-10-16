@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HomePage from "../../components/pages/HomePage.astro";
+import { getHomeContent } from "../../i18n/home";
+
+const content = getHomeContent("nl");
+---
+
+<BaseLayout locale="nl" title={content.meta.title} description={content.meta.description}>
+  <HomePage locale="nl" />
+</BaseLayout>

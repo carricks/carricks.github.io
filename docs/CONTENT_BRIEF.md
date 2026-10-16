@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 4 October 2026
+Last updated: 16 October 2026
 
 ## Editorial objective
 
@@ -22,13 +22,15 @@ Company names and approved logos may appear in the Experience page. Project case
 
 ## Current homepage
 
+The complete site is available in English on the unprefixed routes, in professionally localized Dutch below `/nl/` and in German below `/de/`. Dutch and German copy prioritize natural technical usage over literal translation. Established technical names and qualifications remain in their recognized professional form where appropriate. Within the grid-stability case study, the first localized reference uses the full `DSA (Dynamic Security Assessment)` form and subsequent references use `DSA` or the official product name.
+
 ### About
 
 **Heading**
 
-`Engineering systems that perform when complexity matters.`
+`Who I am.`
 
-The supporting statement identifies Diego Carrillo S. and connects his academic background in Electronic Engineering and Robotics and Automation with professional work across industrial control, renewable power, applied software and systems integration.
+The two-paragraph supporting statement introduces Diego Carrillo and connects his background in Electronic Engineering and Robotics and Automation with hands-on work across industrial automation, energy systems, software and connected infrastructure. It then broadens the context through regulated manufacturing, telecommunications, renewable plants, offshore operations and the Dutch transmission grid, emphasizing multidisciplinary collaboration and reliable, traceable delivery.
 
 The About actions are ordered:
 
@@ -48,6 +50,10 @@ Every Project action now follows the same visual grammar as the About actions: a
 ### Milestones
 
 The section now links to a concise Hardwarethon 2019 entry describing third-place recognition for a multidisciplinary coffee-production monitoring concept developed during a 48-hour challenge in Costa Rica. Additional milestones still require verified evidence before publication.
+
+### FAQ
+
+The homepage FAQ answers eight focused first-person questions about academic preparation, the relationship between robotics and current engineering work, software and hardware integration, international professional environments, multidisciplinary responsibilities, project provenance and validation practice. Answers use the same first-person voice, remain concise and link contextually to the relevant Academic, Experience and Project pages rather than duplicating their full content. The section complements Milestones; it does not replace it.
 
 ### Contact
 

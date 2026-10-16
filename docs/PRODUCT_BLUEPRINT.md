@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 4 October 2026
+Last updated: 16 October 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. The design and interaction foundation is mature, with a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
+The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. English, Dutch and German share the same route structure, layouts and interactions. The design foundation uses a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -39,6 +39,7 @@ Homepage
     Telecommunications Coverage Deployment
   Milestones
     Hardwarethon 2019
+  FAQ
   Contact
 ```
 
@@ -60,6 +61,7 @@ Homepage introduction
 - One clear action per row; no numbered controls that resemble a CV.
 - Every homepage destination action combines a thin semantic icon, a lightweight uppercase label and a consistent terminal arrow.
 - Sticky navigation remains available throughout the experience. Tablets and iPads use the same dropdown model as phones, with a larger panel suited to their available space; only wide desktop layouts retain horizontal navigation.
+- FAQ appears in both navigation modes and uses an accessible single-open accordion with contextual links into deeper Academic, Experience and Project content.
 - Desktop interactions use hover and press feedback.
 - Touch interactions use press and scroll-aware feedback.
 - The shared floating Back control responds to scroll, pointer, touch and keyboard activity and remains available for two seconds after activity ends.

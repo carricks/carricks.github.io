@@ -52,10 +52,10 @@ export const imageLibrary = {
     renewableControl: {
       solarPlant: shared(`${projectsRoot}/renewable-control/extremadura-solar-control-plant.png`),
       hybridArchitecture: themed(
-        `${projectsRoot}/renewable-control/hybrid-control-architecture-v4.svg?v=8`,
-        `${projectsRoot}/renewable-control/hybrid-control-architecture-v4.svg?v=8`,
-        `${projectsRoot}/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=8`,
-        `${projectsRoot}/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=8`,
+        `${projectsRoot}/renewable-control/hybrid-control-architecture-v4.svg?v=9`,
+        `${projectsRoot}/renewable-control/hybrid-control-architecture-v4.svg?v=9`,
+        `${projectsRoot}/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=9`,
+        `${projectsRoot}/renewable-control/hybrid-control-architecture-mobile-v4.svg?v=9`,
       ),
     },
     telecommunications: {

@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 4 October 2026
+Last updated: 16 October 2026
 
 ## Status
 
@@ -22,25 +22,46 @@ src/
   components/
     common/                     Container, Section and shared icons
     layout/                     Persistent navigation
-    sections/                   Homepage About, Projects and Contact sections
+    pages/                      Shared localized page compositions
+    sections/                   Homepage About, Projects, FAQ and Contact sections
   config/                       Site-wide profile configuration
   data/                         About destinations and project records
   layouts/                      Shared HTML shell and metadata defaults
+  i18n/                         Typed English, Dutch and German content
   pages/
     index.astro                 Homepage
+    de/                         German homepage, About and Milestone routes
+    nl/                         Dutch homepage, About and Milestone routes
     about/academic.astro        Academic background
     about/experience.astro      Professional experience
     milestones/hardwarethon.astro Published recognition detail
-    projects/[slug].astro       Static project case studies
+    [...path].astro             Shared EN/NL/DE static project case studies
   styles/                       Tailwind entry point and global interactions
   types/                        Shared TypeScript contracts
 docs/                           Product, content, design and delivery guidance
+.github/workflows/deploy.yml    Astro build and GitHub Pages deployment
 ```
 
 ## Active routes
 
 ```text
 /
+/de/
+/de/about/academic/
+/de/about/experience/
+/de/milestones/hardwarethon/
+/de/projects/brain-tumour-mri-classification/
+/de/projects/grid-contingency-analysis/
+/de/projects/telecommunications-coverage-deployment/
+/de/projects/renewable-plant-control/
+/nl/
+/nl/about/academic/
+/nl/about/experience/
+/nl/milestones/hardwarethon/
+/nl/projects/brain-tumour-mri-classification/
+/nl/projects/grid-contingency-analysis/
+/nl/projects/telecommunications-coverage-deployment/
+/nl/projects/renewable-plant-control/
 /about/academic/
 /about/experience/
 /milestones/hardwarethon/
@@ -77,9 +98,12 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 
 - Tailwind utilities handle most layout and typography.
 - Local `<style>` blocks own route-specific presentation.
-- `src/styles/global.css` owns shared controls, neon traces, navigation states, the persisted dark/light theme and motion preferences.
+- `src/styles/global.css` owns shared controls, neon traces, navigation states, the dark-first session theme and motion preferences.
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
-- The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment. A separate EN/DE/NL/FR selector currently updates presentation state only and does not yet switch routes or translated content.
+- The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment.
+- English remains the unprefixed default route, Dutch is published below `/nl/` and German below `/de/`. Homepage, About and project compositions are shared so all three languages retain identical layout and behaviour. Typed copy lives in `src/i18n/`; EN, NL and DE selector options preserve the equivalent internal route while FR remains a visible placeholder. Document language, metadata, navigation labels, form feedback, accessible labels and alternate-language links follow the active locale.
+- Production deployment runs from `feature/portfolio26` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at `https://carricks.github.io`.
+- `FaqSection.astro` uses native `details` and `summary` elements, keeps only one answer expanded at a time and includes contextual links to the relevant About and Project routes. FAQ is available in both desktop and dropdown navigation.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
 - Engineering diagrams use theme-aware semantic variants: dark pages use black canvases, while light pages match the surrounding soft off-white canvas. Continuous grey paths identify electrical or physical flows, dashed lilac paths identify control and feedback, and labels occupy clear space without overlapping routes or equipment.
@@ -87,7 +111,7 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
 - The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. The CT viewer derives a deterministic reference camera through ordered Z, X and Y rotations, applies it when ready and restores the same position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Creator credits beneath both embeds are static text rather than navigation links.
 - The grid-stability CRoF gallery pairs a simplified portfolio-safe SCADA single-line diagram with a black-background isometric substation. Both use high-resolution raster assets and the shared lightbox.
-- The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. The route also uses an open icon-led delivery sequence and a final three-layer technology map; all related styles remain scoped to `.telecom-case-study`.
+- The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. Its delivery workflow and technical foundation reuse the MRI case study's shared vertical pipeline and technical-tag patterns for visual consistency across desktop and mobile.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
 - The master's report trigger is a single black outlined capsule in the MRI hero. The same `data-report-open` hook opens the existing dialog; duplicate report triggers are not allowed.
 - The MRI prediction distribution uses paired dark/light solid raster charts with four external HTML labels and an SVG connector overlay. Both theme variants use the same controlled translucency; desktop leaders terminate at dedicated tag guide rails so no connector passes beneath label text, while mobile removes the leaders and presents the labels in a compact two-column arrangement. The image alternative text preserves the complete values.

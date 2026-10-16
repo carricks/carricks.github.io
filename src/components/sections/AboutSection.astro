@@ -4,6 +4,15 @@ import Section from "../common/Section.astro";
 import { aboutDestinations } from "../../data/about-destinations.ts";
 import AboutDestinationIcon from "../common/AboutDestinationIcon.astro";
 import ArrowIcon from "../common/ArrowIcon.astro";
+import { getHomeContent, type Locale } from "../../i18n/home";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const content = getHomeContent(locale).about;
+const localePrefix = locale === "en" ? "" : `/${locale}`;
 ---
 
 <Section
@@ -13,26 +22,30 @@ import ArrowIcon from "../common/ArrowIcon.astro";
   <Container>
     <div class="max-w-3xl">
       <p class="section-eyebrow text-violet-300">
-        ABOUT
+        {content.eyebrow}
       </p>
 
       <h2 class="interactive-heading section-title mt-6 text-slate-400">
-        Engineering systems that perform when complexity matters.
+        {content.title}
       </h2>
 
       <p class="body-copy-reference mt-8 max-w-2xl text-slate-400">
-        I am Diego Carrillo, a multidisciplinary systems engineer with an academic background in Electronic Engineering and an MSc in Robotics and Automation. My professional experience spans industrial control, renewable power, applied software and systems integration across Spain, the Netherlands, Portugal and Latin America, connecting automation, data and engineering to improve the reliability of complex infrastructure.
+        {content.paragraphs[0]}
       </p>
 
-      <div class="mt-10 flex w-full max-w-xl flex-col gap-3" aria-label="About sections">
+      <p class="body-copy-reference mt-5 max-w-2xl text-slate-400">
+        {content.paragraphs[1]}
+      </p>
+
+      <div class="mt-10 flex w-full max-w-xl flex-col gap-3" aria-label={content.destinationsLabel}>
         {aboutDestinations.map((destination) => (
           <a
-            href={`/about/${destination.slug}/`}
+            href={`${localePrefix}/about/${destination.slug}/`}
             class="interactive-control neon-box-control premium-neon-control about-destination-control"
-            aria-label={destination.label}
+            aria-label={content.destinations[destination.slug]}
           >
             <span class="neon-box-symbol"><AboutDestinationIcon icon={destination.icon} /></span>
-            <span class="neon-box-label">{destination.label}</span>
+            <span class="neon-box-label">{content.destinations[destination.slug]}</span>
             <ArrowIcon />
           </a>
         ))}

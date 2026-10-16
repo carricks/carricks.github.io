@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FloatingBackControl from "../common/FloatingBackControl.astro";
+import { imageLibrary } from "../../data/image-library";
+import type { Locale } from "../../i18n/home";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const isDutch = locale === "nl";
+const isGerman = locale === "de";
+const homePath = locale === "en" ? "/" : `/${locale}/`;
+
+const experiencesEn = [
+  {
+    company: "Capgemini",
+    country: "The Netherlands",
+    logo: imageLibrary.logos.capgemini.dark.desktop,
+    logoId: "capgemini",
+    logoViewBox: "0 0 2081 462",
+    logoClass: "experience-company-logo--capgemini",
+    description: "I contribute to critical software for the Dutch transmission grid by developing and validating applications that transform operational data into large scale simulations and structured evidence for power system stability analysis. The work combines software engineering, complex data flows and power system analysis in an environment where reliability, traceability and close technical collaboration are essential.",
+  },
+  {
+    company: "AspenTech",
+    country: "Spain",
+    logo: imageLibrary.logos.aspentech.dark.desktop,
+    logoId: "aspentech",
+    logoViewBox: "0 0 1800 362",
+    logoClass: "experience-company-logo--aspentech",
+    description: "I worked across SCADA solution design, Linux and Windows deployment, and secure industrial integration for offshore energy operations, connecting segregated environments while protecting critical control network boundaries. This experience strengthened my ability to translate operational requirements into robust architectures and support their configuration, testing and delivery across multidisciplinary teams.",
+  },
+  {
+    company: "Isemaren",
+    country: "Spain",
+    logo: imageLibrary.logos.isemaren.dark.desktop,
+    logoId: "isemaren",
+    logoViewBox: "0 0 2171 246",
+    logoClass: "experience-company-logo--isemaren",
+    description: "I supported the deployment and commissioning of Power Plant Controllers implemented on PLC technology for large solar plants. The work integrated HMI, SCADA and communications while validating grid code behaviour across installations of up to 380 MW. It connected control logic with real plant conditions through structured testing, technical troubleshooting and coordination throughout commissioning.",
+  },
+  {
+    company: "Universidad Carlos III de Madrid",
+    country: "Spain",
+    logo: imageLibrary.logos.uc3m.dark.desktop,
+    logoId: "uc3m",
+    logoViewBox: "0 0 598 182",
+    description: "Within the Social Robotics Group, I helped evolve an assistive robotics research platform through web services, user and licensing systems, databases, and the Linux server infrastructure supporting connected interaction between people and robots. The role brought together research and practical software development, turning experimental requirements into maintainable services for a growing robotics ecosystem.",
+  },
+  {
+    company: "Boston Scientific",
+    country: "International",
+    logo: imageLibrary.logos.bostonScientific.dark.desktop,
+    logoId: "boston-scientific",
+    logoViewBox: "0 0 126 62",
+    logoClass: "experience-company-logo--boston",
+    description: "I supported regulated medical device manufacturing by maintaining the accuracy and compliance of measurement equipment while contributing to automated testing and calibration solutions based on PLC technology. This work developed my understanding of engineering governed by quality, where technical documentation, measurement reliability and controlled processes are fundamental to production continuity.",
+  },
+  {
+    company: "Xacom Communications",
+    country: "Spain",
+    logo: imageLibrary.logos.xacom.dark.desktop,
+    logoId: "xacom",
+    logoViewBox: "0 0 100 112",
+    logoClass: "experience-company-logo--xacom",
+    description: "I designed and delivered mobile coverage solutions for technically demanding industrial, underground and remote environments, combining radio frequency systems, network infrastructure and field validation across multiple generations of mobile technology. Each project required adapting the design to demanding physical conditions and verifying performance through measurements, commissioning and problem solving in the field.",
+  },
+] as const;
+
+const descriptionsNl = [
+  "Ik draag bij aan kritieke software voor het Nederlandse transmissienet door applicaties te ontwikkelen en valideren die operationele data omzetten in grootschalige simulaties en gestructureerd bewijs voor de analyse van de stabiliteit van energiesystemen. Het werk combineert software engineering, complexe datastromen en analyse van energiesystemen in een omgeving waarin betrouwbaarheid, traceerbaarheid en nauwe technische samenwerking essentieel zijn. Hierbij wordt DSA (Dynamic Security Assessment) gebruikt om de dynamische veiligheid van het net onder gecontroleerde omstandigheden te beoordelen.",
+  "Ik werkte aan het ontwerp van SCADA-oplossingen, implementaties op Linux en Windows en veilige industriële integratie voor offshore-energieactiviteiten. Daarbij werden gescheiden omgevingen verbonden terwijl de grenzen van kritieke besturingsnetwerken beschermd bleven. Deze ervaring versterkte mijn vermogen om operationele eisen te vertalen naar robuuste architecturen en de configuratie, het testen en de oplevering ervan binnen multidisciplinaire teams te ondersteunen.",
+  "Ik ondersteunde de uitrol en commissioning van Power Plant Controllers op PLC-technologie voor grote zonneparken. Het werk integreerde HMI, SCADA en communicatie en valideerde het gedrag volgens de Grid Code voor installaties tot 380 MW. Het verbond besturingslogica met reële installatieomstandigheden door gestructureerde tests, technische probleemoplossing en coördinatie tijdens commissioning.",
+  "Binnen de Social Robotics Group hielp ik een onderzoeksplatform voor ondersteunende robotica verder te ontwikkelen met webservices, gebruikers- en licentiesystemen, databases en Linux-serverinfrastructuur voor verbonden interactie tussen mensen en robots. De rol bracht onderzoek en praktische softwareontwikkeling samen en vertaalde experimentele eisen naar onderhoudbare diensten voor een groeiend robotica-ecosysteem.",
+  "Ik ondersteunde de gereguleerde productie van medische hulpmiddelen door de nauwkeurigheid en compliance van meetapparatuur te waarborgen en bij te dragen aan geautomatiseerde test- en kalibratieoplossingen op basis van PLC-technologie. Dit werk verdiepte mijn begrip van kwaliteitsgestuurde engineering, waarin technische documentatie, betrouwbare metingen en beheerste processen essentieel zijn voor de continuïteit van de productie.",
+  "Ik ontwierp en realiseerde oplossingen voor mobiele dekking in technisch veeleisende industriële, ondergrondse en afgelegen omgevingen. Daarbij combineerde ik radiofrequentiesystemen, netwerkinfrastructuur en veldvalidatie voor meerdere generaties mobiele technologie. Elk project vereiste aanpassing aan veeleisende fysieke omstandigheden en verificatie van de prestaties door metingen, commissioning en probleemoplossing op locatie.",
+] as const;
+
+const descriptionsDe = [
+  "Ich arbeite an kritischer Software für das niederländische Übertragungsnetz und entwickle und validiere Anwendungen, die Betriebsdaten in groß angelegte Simulationen und strukturierte Nachweise für die Stabilitätsanalyse von Energiesystemen überführen. Die Arbeit verbindet Software Engineering, komplexe Datenflüsse und Energiesystemanalyse in einer Umgebung, in der Zuverlässigkeit, Nachvollziehbarkeit und enge technische Zusammenarbeit entscheidend sind. Dabei dient DSA (Dynamic Security Assessment) der Bewertung der dynamischen Netzsicherheit unter kontrollierten Bedingungen.",
+  "Ich arbeitete an SCADA-Lösungsdesign, Linux- und Windows-Implementierungen sowie sicherer industrieller Integration für Offshore-Energieprojekte. Dabei wurden getrennte Umgebungen verbunden und zugleich die Grenzen kritischer Steuerungsnetze geschützt. Diese Erfahrung stärkte meine Fähigkeit, betriebliche Anforderungen in robuste Architekturen zu überführen und deren Konfiguration, Test und Auslieferung in multidisziplinären Teams zu unterstützen.",
+  "Ich unterstützte den Ausbau und die Inbetriebnahme von Power Plant Controllern auf PLC-Basis für große Solaranlagen. Die Arbeit integrierte HMI, SCADA und Kommunikation und validierte das Verhalten gemäß Grid Code für Anlagen bis 380 MW. Strukturierte Tests, technische Fehlerbehebung und Koordination während der Inbetriebnahme verbanden die Regelungslogik mit realen Anlagenbedingungen.",
+  "In der Social Robotics Group entwickelte ich eine Forschungsplattform für assistive Robotik mit Webservices, Benutzer- und Lizenzsystemen, Datenbanken und Linux-Serverinfrastruktur weiter. Die Rolle verband Forschung mit praktischer Softwareentwicklung und überführte experimentelle Anforderungen in wartbare Dienste für ein wachsendes Robotik-Ökosystem.",
+  "Ich unterstützte die regulierte Herstellung medizinischer Geräte, indem ich Genauigkeit und Compliance von Messmitteln sicherstellte und zu automatisierten Test- und Kalibrierlösungen auf PLC-Basis beitrug. Diese Arbeit vertiefte mein Verständnis qualitätsgesteuerten Engineerings, in dem technische Dokumentation, zuverlässige Messungen und kontrollierte Prozesse für die Produktionskontinuität grundlegend sind.",
+  "Ich entwarf und realisierte Lösungen für Mobilfunkabdeckung in technisch anspruchsvollen industriellen, unterirdischen und abgelegenen Umgebungen. Dabei verband ich Hochfrequenzsysteme, Netzwerkinfrastruktur und Feldvalidierung über mehrere Mobilfunkgenerationen. Jedes Projekt erforderte die Anpassung an anspruchsvolle physische Bedingungen und die Überprüfung der Leistung durch Messungen, Inbetriebnahme und Fehlerbehebung vor Ort.",
+] as const;
+
+const experiences = experiencesEn.map((experience, index) => ({
+  ...experience,
+  country: isGerman ? ({ "The Netherlands": "Niederlande", Spain: "Spanien", International: "International" }[experience.country] ?? experience.country) : isDutch ? ({ "The Netherlands": "Nederland", Spain: "Spanje", International: "Internationaal" }[experience.country] ?? experience.country) : experience.country,
+  description: isGerman ? descriptionsDe[index] : isDutch ? descriptionsNl[index] : experience.description,
+}));
+
+const copy = isGerman ? {
+  title: "Berufserfahrung | Diego Carrillo",
+  description: "Ausgewählte Ingenieurerfahrung in resilienten Energiesystemen, sicherer industrieller Integration und der Regelung erneuerbarer Anlagen.",
+  back: "Zurück zu Über mich", eyebrow: "BERUFSERFAHRUNG", heading: "Engineering für kritische Systeme.",
+  intro: "Meine Laufbahn wurde durch multidisziplinäre Engineering-Rollen in verschiedenen Branchen und technischen Umgebungen geprägt. Von Nordwesteuropa aus erweitere ich diese Perspektive und baue auf Erfahrungen aus Südeuropa und Lateinamerika auf.",
+} : isDutch ? {
+  title: "Ervaring | Diego Carrillo",
+  description: "Geselecteerde engineeringervaring in robuuste energiesystemen, veilige industriële integratie en de besturing van hernieuwbare installaties.",
+  back: "Terug naar Over mij", eyebrow: "ERVARING", heading: "Engineering voor kritieke systemen.",
+  intro: "Mijn loopbaan is gevormd door multidisciplinaire engineeringrollen in uiteenlopende sectoren en technische omgevingen. Vanuit Noordwest-Europa verbreed ik dit perspectief verder, voortbouwend op ervaring in Zuid-Europa en Latijns-Amerika.",
+} : {
+  title: "Experience | Diego Carrillo", description: "Selected engineering experience across resilient power systems, secure industrial integration and renewable plant control.",
+  back: "Back to about", eyebrow: "EXPERIENCE", heading: "Engineering in critical systems.",
+  intro: "My work has developed through multidisciplinary engineering roles across several industries and technical environments. Now working in Northwestern Europe, I continue to broaden that perspective while building on experience gained across Mediterranean Europe and Latin America.",
+};
+---
+
+<BaseLayout locale={locale} title={copy.title} description={copy.description}>
+  <section class="relative isolate overflow-hidden px-6 py-8 sm:px-10 lg:px-16">
+    <FloatingBackControl href={`${homePath}#about`} label={copy.back} />
+
+    <article class="mx-auto mt-12 max-w-5xl pb-12 sm:mt-14 sm:pb-14">
+      <p class="section-eyebrow text-violet-300">{copy.eyebrow}</p>
+      <h1 class="interactive-heading page-title mt-5 max-w-3xl text-slate-400">{copy.heading}</h1>
+      <p class="body-copy-reference mt-7 max-w-3xl text-slate-300">{copy.intro}</p>
+
+      <div class="experience-modules mt-16 grid gap-5">
+        {experiences.map((experience) => (
+          <section class="experience-module neon-box-panel">
+            <div class="experience-heading">
+              <div class="experience-company">
+                {"logo" in experience ? (
+                  <svg
+                    class:list={["experience-company-logo", "logoClass" in experience && experience.logoClass]}
+                    viewBox={experience.logoViewBox}
+                    role="img"
+                    aria-label={experience.company}
+                    preserveAspectRatio="xMinYMid meet"
+                  >
+                    <defs>
+                      <filter id={`experience-logo-${experience.logoId}`} x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+                        <feFlood class="experience-company-logo-colour" flood-color="rgb(196 181 253)" result="logo-colour" />
+                        <feComposite in="logo-colour" in2="SourceAlpha" operator="in" />
+                      </filter>
+                    </defs>
+                    <image
+                      href={experience.logo}
+                      x="0"
+                      y="0"
+                      width="100%"
+                      height="100%"
+                      preserveAspectRatio="xMinYMid meet"
+                      filter={`url(#experience-logo-${experience.logoId})`}
+                    />
+                  </svg>
+                ) : (
+                  <h2>{experience.company}</h2>
+                )}
+              </div>
+              {"country" in experience && <p>{experience.country}</p>}
+            </div>
+            <p class="experience-description">{experience.description}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .experience-modules { max-width: 52rem; }
+  .experience-module { background: rgba(3,3,5,.57); padding: clamp(1.35rem, 3vw, 2rem); }
+  .experience-heading { align-items: center; display: flex; gap: 1rem; justify-content: space-between; }
+  .experience-company { align-items: center; display: flex; gap: .8rem; min-height: 2.25rem; min-width: 0; }
+  .experience-heading h2 { color: rgb(196 181 253); font-size: var(--type-card-title-size); font-weight: 600; letter-spacing: -.01em; line-height: var(--type-card-title-line-height); }
+  .experience-company-logo { color: rgb(196 181 253); display: block; height: 1.15rem; width: 3.78rem; }
+  .experience-company-logo-colour { flood-color: rgb(196 181 253); }
+  .experience-company-logo--capgemini { height: 1.5rem; width: 6.76rem; }
+  .experience-company-logo--aspentech { height: 1.5rem; width: 7.46rem; }
+  .experience-company-logo--isemaren { height: .8rem; width: 7rem; }
+  .experience-company-logo--boston { height: 1.97rem; width: 4rem; }
+  .experience-company-logo--xacom { height: 1.96rem; width: 1.75rem; }
+  .experience-heading p { color: rgb(196 181 253); flex: 0 0 auto; font-size: var(--type-caption-size); font-weight: 600; letter-spacing: var(--type-label-letter-spacing); line-height: var(--type-caption-line-height); text-transform: uppercase; }
+  .experience-description { color: rgb(148 163 184); font-family: var(--font-sans); font-size: var(--type-body-size); font-weight: var(--type-body-weight); letter-spacing: var(--type-body-letter-spacing); line-height: var(--type-body-line-height); margin-top: .85rem; }
+
+  @media (max-width: 48rem) {
+    .experience-module { padding: 1.35rem; }
+    .experience-heading { align-items: center; flex-direction: row; gap: 1rem; }
+    .experience-company { gap: .65rem; min-height: 2rem; }
+    .experience-company-logo { height: 1.05rem; width: 3.45rem; }
+    .experience-company-logo--capgemini { height: 1.35rem; width: 6.08rem; }
+    .experience-company-logo--aspentech { height: 1.35rem; width: 6.71rem; }
+    .experience-company-logo--isemaren { height: .71rem; width: 6.25rem; }
+    .experience-company-logo--boston { height: 1.85rem; width: 3.75rem; }
+    .experience-company-logo--xacom { height: 1.79rem; width: 1.6rem; }
+  }
+</style>

@@ -1,10 +1,10 @@
 # Design system
 
-Last updated: 4 October 2026
+Last updated: 16 October 2026
 
 ## Direction
 
-The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Dark mode uses black, slate and lilac; light mode uses a softened off-white canvas, dark lilac headings and controlled translucent lilac surfaces. Additional colors are reserved for validation, accessibility or approved data encoding.
+The interface combines engineering precision with restrained neon detail. It should feel modern and technical without becoming visually noisy. Every new browsing session starts in dark mode; a visitor can switch themes and retain that choice while navigating during the same session. Dark mode uses black, slate and lilac; light mode uses a softened off-white canvas, dark lilac headings and controlled translucent lilac surfaces. Additional colors are reserved for validation, accessibility or approved data encoding.
 
 ## Color roles
 
@@ -26,7 +26,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 - The canonical family is the shared system sans stack declared by `--font-sans`; technical output alone may use `--font-mono`.
 - Semantic roles replace page-local arbitrary sizes: display, section, card title, body, UI, caption, microcopy and metric.
-- Editorial body copy follows the About introduction at `1.125rem` with a `2rem` line height and regular weight on desktop and mobile.
+- Editorial body copy follows the About introduction at `1.0625rem` with a `1.875rem` line height and regular weight on desktop and mobile.
 - Action labels use the compact pre-existing `0.78rem` size, regular `400` weight and measured uppercase tracking. They must not appear bold.
 - Responsive layouts preserve the same typographic roles across light and dark themes; only display and metric roles use fluid sizing.
 
@@ -56,8 +56,9 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Thin animated neon line only at the top resting position.
 - Stronger blur while scrolling; subtle directional tilt.
 - Desktop navigation remains horizontal above 1366 pixels. Phones, tablets, coarse-pointer devices and detected iPads use a Home-sized circular trigger with a right-aligned dropdown. Tablet panels use wider spacing and larger touch targets than the compact phone variant.
-- The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. Until translated routes exist, selection changes visual state only.
+- The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. EN, DE and NL navigate to equivalent localized routes; FR remains a reserved visual placeholder until its translation is implemented.
 - Home, theme, language and mobile-menu controls use vector icons, a 0.75-pixel optical outline and no outer glow; icon strokes remain geometrically precise at desktop and mobile sizes.
+- FAQ rows use thin dividers, canonical regular-weight body typography for both questions and answers, and a restrained plus/minus indicator without numbered prefixes. Contextual destination links remain underlined without becoming heavier than the surrounding text.
 
 ### Neon controls and panels
 

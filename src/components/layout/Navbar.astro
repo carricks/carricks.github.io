@@ -1,51 +1,76 @@
 ---
 import Container from "../common/Container.astro";
 import HomeIcon from "../common/HomeIcon.astro";
+import type { Locale } from "../../i18n/home";
 
-const isHome = Astro.url.pathname === "/";
-const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}`);
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const isDutch = locale === "nl";
+const isGerman = locale === "de";
+const homePath = locale === "en" ? "/" : `/${locale}/`;
+const isHome = Astro.url.pathname === homePath || (locale !== "en" && Astro.url.pathname === `/${locale}`);
+const sectionHref = (section: string) => (isHome ? `#${section}` : `${homePath}#${section}`);
+const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de)(?=\/|$)/, "") || "/";
+const englishPath = locale === "en" ? Astro.url.pathname : unprefixedPath;
+const dutchPath = isDutch ? Astro.url.pathname : `/nl${unprefixedPath}`;
+const germanPath = isGerman ? Astro.url.pathname : `/de${unprefixedPath}`;
+const labels = isGerman
+  ? { about: "Über mich", projects: "Projekte", milestones: "Meilensteine", faq: "FAQ", contact: "Kontakt" }
+  : isDutch
+  ? { about: "Over mij", projects: "Projecten", milestones: "Mijlpalen", faq: "FAQ", contact: "Contact" }
+  : { about: "About", projects: "Projects", milestones: "Milestones", faq: "FAQ", contact: "Contact" };
+const ui = isGerman
+  ? { home: "Zur Einführung", chooseLanguage: "Anzeigesprache auswählen", languages: "Verfügbare Sprachen", openMenu: "Navigationsmenü öffnen", mainNavigation: "Hauptnavigation", light: "Zum hellen Modus wechseln", dark: "Zum dunklen Modus wechseln", lightTitle: "Heller Modus", darkTitle: "Dunkler Modus" }
+  : isDutch
+  ? { home: "Ga naar de introductie", chooseLanguage: "Taal selecteren", languages: "Beschikbare talen", openMenu: "Navigatiemenu openen", mainNavigation: "Hoofdnavigatie", light: "Overschakelen naar lichte modus", dark: "Overschakelen naar donkere modus", lightTitle: "Lichte modus", darkTitle: "Donkere modus" }
+  : { home: "Go to the main introduction", chooseLanguage: "Choose display language", languages: "Available languages", openMenu: "Open navigation menu", mainNavigation: "Main navigation", light: "Switch to light mode", dark: "Switch to dark mode", lightTitle: "Light mode", darkTitle: "Dark mode" };
 ---
 
 <header class="site-header sticky top-0 z-50">
   <Container>
     <nav class="flex h-20 items-center gap-3 sm:gap-5">
       <div class="header-actions shrink-0">
-        <a href={sectionHref("about")} class="interactive-control home-control" aria-label="Go to the main introduction" title="About"><HomeIcon /></a>
+        <a href={sectionHref("about")} class="interactive-control home-control" aria-label={ui.home} title={labels.about}><HomeIcon /></a>
 
-        <button class="interactive-control theme-control" type="button" data-theme-toggle aria-label="Switch to light mode" title="Light mode">
+        <button class="interactive-control theme-control" type="button" data-theme-toggle data-light-label={ui.light} data-dark-label={ui.dark} data-light-title={ui.lightTitle} data-dark-title={ui.darkTitle} aria-label={ui.light} title={ui.lightTitle}>
           <svg class="theme-icon theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision"><path d="M20.4 15.2A8.7 8.7 0 0 1 8.8 3.6 8.8 8.8 0 1 0 20.4 15.2Z"></path></svg>
           <svg class="theme-icon theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision"><circle cx="12" cy="12" r="3.6"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
         </button>
 
         <details class="language-selector" data-language-selector>
-          <summary class="interactive-control language-trigger" aria-label="Choose display language">
+          <summary class="interactive-control language-trigger" aria-label={ui.chooseLanguage}>
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision"><circle cx="12" cy="12" r="9"></circle><path d="M3.5 9h17M3.5 15h17M12 3c2.1 2.35 3.2 5.35 3.2 9S14.1 18.65 12 21M12 3C9.9 5.35 8.8 8.35 8.8 12S9.9 18.65 12 21"></path></svg>
-            <span data-language-code>EN</span>
+            <span data-language-code>{locale.toUpperCase()}</span>
             <svg class="language-chevron" aria-hidden="true" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1.5 5 5 5-5"></path></svg>
           </summary>
-          <div class="language-menu" role="menu" aria-label="Available languages">
-            <button type="button" role="menuitemradio" aria-label="English" aria-checked="true" data-language-option data-code="EN"><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>EN</span></button>
-            <button type="button" role="menuitemradio" aria-label="German" aria-checked="false" data-language-option data-code="DE"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>DE</span></button>
-            <button type="button" role="menuitemradio" aria-label="Dutch" aria-checked="false" data-language-option data-code="NL"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>NL</span></button>
-            <button type="button" role="menuitemradio" aria-label="French" aria-checked="false" data-language-option data-code="FR"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#0055a4" d="M0 0h5v9H0z"/><path fill="#fff" d="M5 0h5v9H5z"/><path fill="#ef4135" d="M10 0h5v9h-5z"/></svg><span>FR</span></button>
+          <div class="language-menu" role="menu" aria-label={ui.languages}>
+            <button type="button" role="menuitemradio" aria-label={isGerman ? "Englisch" : isDutch ? "Engels" : "English"} aria-checked={String(locale === "en")} data-language-option data-code="EN" data-href={englishPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>EN</span></button>
+            <button type="button" role="menuitemradio" aria-label={isGerman ? "Deutsch" : isDutch ? "Duits" : "German"} aria-checked={String(locale === "de")} data-language-option data-code="DE" data-href={germanPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>DE</span></button>
+            <button type="button" role="menuitemradio" aria-label={isGerman ? "Niederländisch" : isDutch ? "Nederlands" : "Dutch"} aria-checked={String(locale === "nl")} data-language-option data-code="NL" data-href={dutchPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>NL</span></button>
+            <button type="button" role="menuitemradio" aria-label={isGerman ? "Französisch" : isDutch ? "Frans" : "French"} aria-checked="false" data-language-option data-code="FR"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#0055a4" d="M0 0h5v9H0z"/><path fill="#fff" d="M5 0h5v9H5z"/><path fill="#ef4135" d="M10 0h5v9h-5z"/></svg><span>FR</span></button>
           </div>
         </details>
       </div>
 
       <ul class="desktop-navigation min-w-0 flex-1 justify-end gap-2 overflow-x-auto whitespace-nowrap px-3 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-3">
-        <li><a class="interactive-control nav-control" href={sectionHref("about")} data-nav-link="about">About</a></li>
-        <li><a class="interactive-control nav-control" href={sectionHref("projects")} data-nav-link="projects">Projects</a></li>
-        <li><a class="interactive-control nav-control" href={sectionHref("milestones")} data-nav-link="milestones">Milestones</a></li>
-        <li><a class="interactive-control nav-control" href={sectionHref("contact")} data-nav-link="contact">Contact</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("about")} data-nav-link="about">{labels.about}</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("projects")} data-nav-link="projects">{labels.projects}</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("milestones")} data-nav-link="milestones">{labels.milestones}</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("faq")} data-nav-link="faq">{labels.faq}</a></li>
+        <li><a class="interactive-control nav-control" href={sectionHref("contact")} data-nav-link="contact">{labels.contact}</a></li>
       </ul>
 
       <details class="mobile-navigation" data-mobile-navigation>
-        <summary class="interactive-control mobile-menu-trigger" aria-label="Open navigation menu"><span></span><span></span><span></span></summary>
-        <div class="mobile-menu" role="menu" aria-label="Main navigation">
-          <a role="menuitem" href={sectionHref("about")} data-nav-link="about">About</a>
-          <a role="menuitem" href={sectionHref("projects")} data-nav-link="projects">Projects</a>
-          <a role="menuitem" href={sectionHref("milestones")} data-nav-link="milestones">Milestones</a>
-          <a role="menuitem" href={sectionHref("contact")} data-nav-link="contact">Contact</a>
+        <summary class="interactive-control mobile-menu-trigger" aria-label={ui.openMenu}><span></span><span></span><span></span></summary>
+        <div class="mobile-menu" role="menu" aria-label={ui.mainNavigation}>
+          <a role="menuitem" href={sectionHref("about")} data-nav-link="about">{labels.about}</a>
+          <a role="menuitem" href={sectionHref("projects")} data-nav-link="projects">{labels.projects}</a>
+          <a role="menuitem" href={sectionHref("milestones")} data-nav-link="milestones">{labels.milestones}</a>
+          <a role="menuitem" href={sectionHref("faq")} data-nav-link="faq">{labels.faq}</a>
+          <a role="menuitem" href={sectionHref("contact")} data-nav-link="contact">{labels.contact}</a>
         </div>
       </details>
     </nav>
@@ -61,15 +86,15 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
   const syncThemeControls = () => {
     const isLight = document.documentElement.dataset.theme === "light";
     themeToggles.forEach((toggle) => {
-      toggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
-      toggle.title = isLight ? "Dark mode" : "Light mode";
+      toggle.setAttribute("aria-label", isLight ? (toggle.dataset.darkLabel ?? "Switch to dark mode") : (toggle.dataset.lightLabel ?? "Switch to light mode"));
+      toggle.title = isLight ? (toggle.dataset.darkTitle ?? "Dark mode") : (toggle.dataset.lightTitle ?? "Light mode");
     });
   };
 
   themeToggles.forEach((toggle) => toggle.addEventListener("click", () => {
     const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
     document.documentElement.dataset.theme = nextTheme;
-    try { localStorage.setItem("portfolio-theme", nextTheme); } catch {}
+    try { sessionStorage.setItem("portfolio-theme", nextTheme); } catch {}
     syncThemeControls();
   }));
   syncThemeControls();
@@ -84,6 +109,12 @@ const sectionHref = (section: string) => (isHome ? `#${section}` : `/#${section}
     const code = selector.querySelector<HTMLElement>("[data-language-code]");
     const options = selector.querySelectorAll<HTMLButtonElement>("[data-language-option]");
     options.forEach((option) => option.addEventListener("click", () => {
+      const target = option.dataset.href;
+      if (target) {
+        const hash = window.location.hash;
+        window.location.href = `${target}${hash}`;
+        return;
+      }
       if (code) code.textContent = option.dataset.code ?? "EN";
       options.forEach((item) => item.setAttribute("aria-checked", String(item === option)));
       selector.removeAttribute("open");

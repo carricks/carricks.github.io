@@ -20,8 +20,8 @@
   --type-section-line-height: 1.06;
   --type-card-title-size: 1.125rem;
   --type-card-title-line-height: 1.4;
-  --type-body-size: 1.125rem;
-  --type-body-line-height: 2rem;
+  --type-body-size: 1.0625rem;
+  --type-body-line-height: 1.875rem;
   --type-body-weight: 400;
   --type-body-letter-spacing: 0;
   --type-ui-size: 0.875rem;
@@ -638,6 +638,19 @@ html[data-theme="light"] .case-study .metric-grid strong,
 html[data-theme="light"] .case-study .network-context-metrics strong,
 html[data-theme="light"] .case-study .contingency-grid strong {
   color: #5b21b6 !important;
+}
+
+html[data-theme="light"] .case-study .prediction-report {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+html[data-theme="light"] .case-study .prediction-report pre {
+  background: #f1eef5 !important;
+  border-color: rgba(109, 40, 217, 0.42) !important;
+  box-shadow: 0 12px 30px rgba(63, 45, 92, 0.08);
+  color: #3b0764 !important;
+  text-shadow: none;
 }
 
 html[data-theme="light"] .case-study .metric-grid span,
