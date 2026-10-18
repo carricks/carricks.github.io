@@ -53,6 +53,6 @@ English is unprefixed. `[locale]` is `nl` or `de` for translated routes.
 
 ## Deployment
 
-Pushes to `feature/portfolio26` trigger `.github/workflows/deploy.yml`. The workflow uses the official Astro action to build the static site and publishes the generated artifact through GitHub Pages.
+Pushes to `main` trigger `.github/workflows/deploy.yml`. The workflow uses the official Astro action to build the static site and publishes the generated artifact through GitHub Pages.
 
 The project builds as a static site for GitHub Pages. Public documents and images live under `public/` and must not contain confidential material.

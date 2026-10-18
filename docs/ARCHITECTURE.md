@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 16 October 2026
+Last updated: 18 October 2026
 
 ## Status
 
@@ -102,7 +102,7 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment.
 - English remains the unprefixed default route, Dutch is published below `/nl/` and German below `/de/`. Homepage, About and project compositions are shared so all three languages retain identical layout and behaviour. Typed copy lives in `src/i18n/`; EN, NL and DE selector options preserve the equivalent internal route while FR remains a visible placeholder. Document language, metadata, navigation labels, form feedback, accessible labels and alternate-language links follow the active locale.
-- Production deployment runs from `feature/portfolio26` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at `https://carricks.github.io`.
+- Production deployment runs from `main` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at `https://carricks.github.io`.
 - `FaqSection.astro` uses native `details` and `summary` elements, keeps only one answer expanded at a time and includes contextual links to the relevant About and Project routes. FAQ is available in both desktop and dropdown navigation.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
