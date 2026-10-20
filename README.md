@@ -2,9 +2,9 @@
 
 Static professional portfolio built with Astro and Tailwind CSS. The site presents multidisciplinary engineering experience, academic background and project case studies through a responsive black and lilac interface.
 
-Current production: [https://carricks.github.io](https://carricks.github.io)
+Current production: [https://dc-x1.github.io](https://dc-x1.github.io)
 
-Selected future identity: `dl-cs`; account/repository renaming is deferred.
+GitHub account: [dc-x1](https://github.com/dc-x1). Repository: [dc-x1.github.io](https://github.com/dc-x1/dc-x1.github.io).
 
 ## Local development
 
@@ -61,15 +61,11 @@ Pushes to `main` trigger `.github/workflows/deploy.yml`. The workflow uses the o
 
 The project builds as a static site for GitHub Pages. Public documents and images live under `public/` and must not contain confidential material.
 
-## Identity migration to dl-cs
+## GitHub Pages identity
 
-1. Change the account username to `dl-cs` in GitHub settings.
-2. Rename the existing repository to `dl-cs.github.io`.
-3. Update the local remote: `git remote set-url origin https://github.com/dl-cs/dl-cs.github.io.git`.
-4. Run the Pages workflow on `main`; the build receives `PUBLIC_GITHUB_USERNAME` from the repository owner and updates site metadata and the GitHub profile link.
-5. Check the new origin and all localized routes, then update any external profile links.
+The confirmed username is `dc-x1`; the repository is `dc-x1/dc-x1.github.io`. The local remote points to `https://github.com/dc-x1/dc-x1.github.io.git`.
 
-For a local migration preview in PowerShell, set `$env:PUBLIC_GITHUB_USERNAME='dl-cs'` before building. With no override, local builds retain the current `carricks` origin. GitHub user-site hosting requires the repository name to match its owner's username.
+Both local builds and production use `https://dc-x1.github.io`. CI supplies `PUBLIC_GITHUB_USERNAME` from the repository owner. Local builds default to `dc-x1`, with the same variable available for explicit previews. Pushes to `main` trigger deployment.
 
 ## Maintenance tools
 

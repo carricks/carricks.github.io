@@ -114,6 +114,8 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Restored large heading weights and limited the regular-weight exception to pipeline steps.
 - Removed the unused image helper and introduced build-output asset, source import, duplicate-hash and internal-link checks.
 - Remediated the current Vite advisory through compatible dependency updates.
-- Updated every document in `docs/` and prepared owner-derived deployment identity for the selected `dl-cs` username.
+- Updated every document in `docs/` and prepared owner-derived deployment identity for the selected `dc-x1` username.
 
-Still required: the owner changes the GitHub username, the repository is renamed, the remote is updated and production routes are checked at the new origin. Live WebGL rendering, cross-browser review and physical mobile checks remain pending and are not represented as completed by automated validation.
+The owner confirmed `dc-x1`; account/repository renaming and the local remote update are complete. Production must be checked at `https://dc-x1.github.io` after deployment. Live WebGL rendering, cross-browser review and physical mobile checks remain pending and are not represented as completed by automated validation.
+
+Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.

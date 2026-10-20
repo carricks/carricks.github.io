@@ -163,3 +163,5 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Light grid artwork uses #f1eef5, dark lilac linework and softer lilac secondary detail. The Netherlands flag is drawn outside the recolouring filter with red, white and blue stripes.
 - All three anatomy viewers share responsive frames, fixed-width controls and touch feedback. Their scene backgrounds switch between black and #f1eef5 through the Viewer API.
 - Automated controller and built-output checks do not replace a live Sketchfab/WebGL or physical-device visual audit. Windows browser automation was unavailable during the earlier visual review; those checks remain explicitly pending.
+
+Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.

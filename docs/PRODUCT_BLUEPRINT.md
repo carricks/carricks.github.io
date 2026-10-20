@@ -93,6 +93,8 @@ Homepage introduction
 
 This release consolidates the three independently controlled anatomy viewers, single-image theme selection for the grid map and architecture, corrected light artwork and regular-weight pipeline steps. It includes repository reference checks, dependency remediation and a documentation refresh.
 
-The selected future username is `dl-cs`. The owner has deferred the account change. Deployment derives public identity from the repository owner, so the current site remains operational and a later rename can adopt `https://dl-cs.github.io` without another content rewrite. The repository must also be renamed to `dl-cs.github.io` and the Git remote updated.
+The confirmed username is `dc-x1`. The repository is `dc-x1/dc-x1.github.io` and the local Git remote matches it. Deployment derives public identity from the repository owner; local builds also default to `dc-x1`, keeping profile links and generated metadata consistent.
 
 Release validation covers the static build, local routes, asset/module references, controller state and dependency audit. Complete live 3D, cross-browser and physical-device visual QA remains separate from these automated results.
+
+Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.

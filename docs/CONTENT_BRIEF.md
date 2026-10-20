@@ -190,4 +190,6 @@ The MRI case study now presents three anatomy viewers, including jamiecronin's C
 
 The Dutch grid context retains one map figure per route. Dark and light variants contain the same information; the light artwork uses the page canvas and lilac technical palette while preserving the red, white and blue flag. Pipeline step titles remain regular weight, while large headings retain their established emphasis.
 
-The proposed GitHub identity is `dl-cs`. No professional name, qualification or employer claim changes. The active profile and production origin remain tied to the current account until its owner completes the rename.
+The confirmed GitHub identity is `dc-x1`, with profile `https://github.com/dc-x1` and site `https://dc-x1.github.io`. No professional name, qualification or employer claim changes.
+
+Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
