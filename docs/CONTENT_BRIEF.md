@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 16 October 2026
+Last updated: 21 October 2026
 
 ## Editorial objective
 
@@ -102,7 +102,7 @@ The first and most developed case study presents the master's research prototype
 
 Published evidence includes thesis authored figures, four representative MRI classes, the 5,320 image experimental distribution, a paired line-and-node comparison, a terminal style prediction report and an exact four-class probability visualization. The probability chart uses paired dark/light solid renders with controlled translucency, smooth grid-free surfaces, distinct class colors and external labels. Fine desktop leaders connect each slice to a dedicated horizontal tag rail, keeping every label and percentage above the line without overlap; mobile retains the chart and moves the labels into a clean grid without connectors. The final VGG16 architecture uses the portfolio's black, soft-white, grey and lilac palette without green accents. Every principal research figure can be expanded through an accessible lightbox. The page explicitly frames the system as academic decision support research rather than a validated diagnostic device. Current global context is sourced from IARC GLOBOCAN 2022.
 
-The opening area also includes two interactive Sketchfab models. Both use a black background, a lilac brain and a red tumour. The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. The CT reference view uses an approved composed-axis orientation and reset restores that complete camera state. Creator attribution remains visible as plain text without opening another page.
+The opening area also includes three interactive Sketchfab models. All three use a lilac brain, a red tumour and backgrounds that follow the active theme (black in dark mode, #f1eef5 in light mode). The CT model uses a softer lilac exterior layer. Each model provides independent camera reset and tumour controls, while tag visibility appears only on the annotated CT model. The CT reference view uses an approved composed-axis orientation and reset restores that complete camera state. Creator attribution remains visible as plain text without opening another page.
 
 The complete master's report is available through a black outlined capsule directly beneath the hero description and opens in an integrated viewer. The footer references The European Code of Conduct for Research Integrity published by ALLEA.
 
@@ -183,3 +183,11 @@ All portfolio-created engineering diagrams use a near-black canvas, soft white a
 - Technology tags, pipeline labels, form values and Experience identifiers use stronger dark-lilac contrast on light surfaces.
 - Narrative paragraphs use the About introduction as the shared body-copy reference across desktop and mobile. Display, section, card, UI and caption roles remain distinct but draw from one sans-serif scale in both themes.
 - Project and About action labels remain lightweight rather than bold, preserving the restrained engineering character of the interface.
+
+## Sprint 08 content review
+
+The MRI case study now presents three anatomy viewers, including jamiecronin's Cronin CT brain model. Each viewer has independent reset and tumour visibility controls; annotation controls remain exclusive to the annotated AlorE model. Creator credits remain plain text.
+
+The Dutch grid context retains one map figure per route. Dark and light variants contain the same information; the light artwork uses the page canvas and lilac technical palette while preserving the red, white and blue flag. Pipeline step titles remain regular weight, while large headings retain their established emphasis.
+
+The proposed GitHub identity is `dl-cs`. No professional name, qualification or employer claim changes. The active profile and production origin remain tied to the current account until its owner completes the rename.

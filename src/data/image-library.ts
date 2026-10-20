@@ -45,9 +45,9 @@ export const imageLibrary = {
     },
     gridStability: {
       controlRoom: shared(`${projectsRoot}/grid-stability/control-room-future.png`),
-      dutchGrid: shared(`${projectsRoot}/grid-stability/dutch-grid-context.png`),
+      dutchGrid: themed(`${projectsRoot}/grid-stability/dutch-grid-context.png`, `${projectsRoot}/grid-stability/dutch-grid-context-light.svg`),
       facility: shared(`${projectsRoot}/grid-stability/grid-management-facility.png`),
-      systemArchitecture: shared(`${projectsRoot}/grid-stability/system-architecture.png`),
+      systemArchitecture: themed(`${projectsRoot}/grid-stability/system-architecture.png`, `${projectsRoot}/grid-stability/system-architecture-light.svg`),
     },
     renewableControl: {
       solarPlant: shared(`${projectsRoot}/renewable-control/extremadura-solar-control-plant.png`),
@@ -63,5 +63,3 @@ export const imageLibrary = {
     },
   },
 } as const;
-
-export const desktopAsset = (asset: ResponsiveThemeAsset, theme: "dark" | "light") => asset[theme].desktop;

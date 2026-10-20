@@ -1,5 +1,5 @@
 {
-  "name": "carricks.github.io",
+  "name": "dl-cs.github.io",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,11 +9,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:models": "node scripts/check-model-controls.mjs",
+    "assets:grid": "node scripts/create-grid-light-assets.mjs",
+    "audit:repo": "node scripts/audit-repository.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.1.6",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1",
+    "sharp": "0.35.5"
   }
 }

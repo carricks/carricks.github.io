@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 18 October 2026
+Last updated: 21 October 2026
 
 ## Status
 
@@ -102,14 +102,14 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment.
 - English remains the unprefixed default route, Dutch is published below `/nl/` and German below `/de/`. Homepage, About and project compositions are shared so all three languages retain identical layout and behaviour. Typed copy lives in `src/i18n/`; EN, NL and DE selector options preserve the equivalent internal route while FR remains a visible placeholder. Document language, metadata, navigation labels, form feedback, accessible labels and alternate-language links follow the active locale.
-- Production deployment runs from `main` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at `https://carricks.github.io`.
+- Production deployment runs from `main` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at the owner-derived Pages origin (currently `https://carricks.github.io`; target `https://dl-cs.github.io`).
 - `FaqSection.astro` uses native `details` and `summary` elements, keeps only one answer expanded at a time and includes contextual links to the relevant About and Project routes. FAQ is available in both desktop and dropdown navigation.
 - Intersection observers provide progressive section and touch feedback.
 - Project case studies use one reusable native `dialog` lightbox per rendered route for all expandable figures. It restores focus to the originating image control when closed.
 - Engineering diagrams use theme-aware semantic variants: dark pages use black canvases, while light pages match the surrounding soft off-white canvas. Continuous grey paths identify electrical or physical flows, dashed lilac paths identify control and feedback, and labels occupy clear space without overlapping routes or equipment.
 - The renewable-control architecture uses separate desktop and mobile SVG assets. Its integrated topology includes a three-turbine wind farm, solar generation, local PPCs, hybrid coordination, operator supervision, an MV bus, transformers and the grid POI.
 - The MRI VGG16 figure uses the cache-versioned approved black, soft-white, grey and lilac raster asset with no green accent colors. The four MRI class examples share one square black image stage, consistent padding, radius and contain-fit treatment.
-- The MRI case study embeds two Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. The CT viewer derives a deterministic reference camera through ordered Z, X and Y rotations, applies it when ready and restores the same position, target and field of view through `setCameraLookAt`. Runtime material mapping gives both models a black background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Creator credits beneath both embeds are static text rather than navigation links.
+- The MRI case study embeds three Sketchfab models through Viewer API 1.12.1. Each viewer has independent camera and tumour controls; annotation controls appear only on the CT model that contains tags. The CT viewer derives a deterministic reference camera through ordered Z, X and Y rotations, applies it when ready and restores the same position, target and field of view through `setCameraLookAt`. Runtime material mapping gives all three models a theme-aware background, a lilac brain and a red tumour; the CT model uses a lighter lilac for its exterior head layer. Creator credits beneath all three embeds are static text rather than navigation links.
 - The grid-stability CRoF gallery pairs a simplified portfolio-safe SCADA single-line diagram with a black-background isometric substation. Both use high-resolution raster assets and the shared lightbox.
 - The telecommunications project uses one external SVG for the distributed coverage architecture. Its rebuilt engineering layout reserves independent fields for the donor antenna, protection, repeater, splitter, coaxial backbone and indoor branches. Its delivery workflow and technical foundation reuse the MRI case study's shared vertical pipeline and technical-tag patterns for visual consistency across desktop and mobile.
 - The master's report uses a separate native `dialog` viewer. Its browser controls are visually reduced, although any public document delivered to a browser remains technically retrievable.
@@ -171,3 +171,17 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 - The superseded `prediction-orbital-wireframe.png` has no remaining reference and is replaced by the registered dark/light solid variants. No other retained public asset or source module qualifies for deletion.
 - The 4 October closeout rechecked the complete public library, source-module import graph, duplicate hashes, generated-output boundaries and temporary artifacts after the project-icon and prediction-label refinements; no additional file qualified for safe deletion.
 - The same closeout updated the transitive `http-cache-semantics` dependency from 4.2.0 to 4.3.0 to resolve `GHSA-ch52-4w7c-c8xp`; the production dependency audit then returned zero vulnerabilities.
+
+
+## Sprint 08 audit and identity migration
+
+- The third anatomy viewer embeds jamiecronin's Cronin CT model (`3ca52ce84c94458ba0357fa7bfeb5cd8`). It shares the unannotated viewer controller, maps tumour material `mtl41186` explicitly, retains independent camera/FOV and tumour state, and uses the same responsive frame and touch feedback. All three backgrounds update on theme changes. `node scripts/check-model-controls.mjs` checks controller behavior with a simulated Viewer API; live WebGL rendering requires browser verification.
+
+- Release commit: `Sprint08_081026`; release branch: `main`. The retired remote feature branch is not used for deployment.
+- The requested identity is `dl-cs`. Account and repository renaming remain deferred by the owner. GitHub Actions supplies `PUBLIC_GITHUB_USERNAME` from `github.repository_owner`; Astro site metadata and the GitHub profile link use that value. Local builds default to the currently active `carricks` account.
+- After changing the account, rename the repository to `dl-cs.github.io`, update the Git remote to `https://github.com/dl-cs/dl-cs.github.io.git`, and rerun deployment. Neither the local workspace folder nor past commit authors need renaming.
+- Map and architecture figures each use one image element with dark/light source attributes. Initial selection and theme changes update the source; enlargement uses the selected source. Light SVGs are self-contained and generated by `npm.cmd run assets:grid`, with a #f1eef5 canvas, dark lilac linework and an unfiltered Netherlands tricolour. Original dark assets remain referenced.
+- Removed the unreferenced `desktopAsset` helper. `npm.cmd run audit:repo` checks the built public-asset references, source import graph, duplicate hashes and local links; its report stays under ignored `tmp/`.
+- Build output, generated Astro metadata, local previews and dependencies are excluded from Git. Browser conventions retain `favicon.ico`.
+
+Validation on 21 October 2026: the static build generated 24 routes; all 24 routes and 29 public assets returned HTTP 200 locally. The reference/import audit found no unreferenced assets or source modules, duplicate hashes or broken local links. Simulated 3D controls passed in both themes; the production dependency audit reported zero vulnerabilities. The future dl-cs origin/profile override was also built and checked before restoring the active identity for release. Live WebGL and physical-device visual QA remain pending.

@@ -3,9 +3,12 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+// GitHub Actions supplies the owner so a username rename also updates metadata.
+const githubUsername = process.env.PUBLIC_GITHUB_USERNAME || 'carricks';
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://carricks.github.io",
+  site: `https://${githubUsername}.github.io`,
   output: "static",
   i18n: {
     locales: ["en", "nl", "de"],

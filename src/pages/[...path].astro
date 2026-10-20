@@ -94,6 +94,21 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
               <span>{isDutch ? "CT Skull and Brain, with Tumor van AlorE op Sketchfab." : isGerman ? "CT Skull and Brain, with Tumor von AlorE auf Sketchfab." : "CT Skull and Brain, with Tumor by AlorE on Sketchfab."}</span>
             </div>
           </div>
+          <div class="interactive-model-variant" data-additional-model="3ca52ce84c94458ba0357fa7bfeb5cd8">
+            <div class="interactive-model-heading">
+              <div class="interactive-model-controls" aria-label={isDutch ? "Bediening van het derde interactieve model" : isGerman ? "Steuerung des dritten interaktiven Modells" : "Third interactive model controls"}>
+                <button type="button" data-additional-model-reset disabled>{tr("Reset View")}</button>
+                <button type="button" data-additional-tumour-toggle aria-pressed="true" disabled>{tr("Hide Tumor")}</button>
+              </div>
+            </div>
+            <div class="interactive-model-frame">
+              <iframe data-additional-sketchfab-viewer title="1D: 3D Model of a CT Brain with Tumor, Cronin" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+            </div>
+            <div class="interactive-model-meta">
+              <span>{tr("Drag to rotate · scroll or pinch to zoom")}</span>
+              <span>1D: 3D Model of a CT Brain with Tumor, Cronin — jamiecronin, Sketchfab.</span>
+            </div>
+          </div>
         </section>
         <script is:inline src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.1.js"></script>
       </section>
@@ -484,7 +499,7 @@ END OF REPORT
 
           <figure class="grid-hero-visual">
             <button type="button" class="figure-zoom-trigger grid-architecture-trigger" data-lightbox-trigger aria-label={tr("Enlarge conceptual transmission stability system architecture")}>
-              <img src={imageLibrary.projects.gridStability.systemArchitecture.dark.desktop} alt={tr("Conceptual architecture linking the power system, PMU devices, a VAMS server, database, stability assessment model, visualisation and operators")} />
+              <img class="grid-theme-image" data-grid-theme-image data-src-dark={imageLibrary.projects.gridStability.systemArchitecture.dark.desktop} data-src-light={imageLibrary.projects.gridStability.systemArchitecture.light.desktop} src={imageLibrary.projects.gridStability.systemArchitecture.dark.desktop} alt={tr("Conceptual architecture linking the power system, PMU devices, a VAMS server, database, stability assessment model, visualisation and operators")} />
               <span aria-hidden="true">{tr("Expand")}</span>
             </button>
             <figcaption>{tr("Conceptual system architecture reconstructed for this portfolio from the public engineering workflow.")}</figcaption>
@@ -506,7 +521,7 @@ END OF REPORT
         <div class="network-context-layout">
           <figure class="network-context-map">
             <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label={tr("Enlarge conceptual map of the Dutch transmission grid and North Sea connections")}>
-              <img src={imageLibrary.projects.gridStability.dutchGrid.dark.desktop} alt={tr("Conceptual map highlighting the Netherlands, its transmission network, North Sea wind areas, energy hubs and regional corridors")} />
+              <img class="grid-theme-image" data-grid-theme-image data-src-dark={imageLibrary.projects.gridStability.dutchGrid.dark.desktop} data-src-light={imageLibrary.projects.gridStability.dutchGrid.light.desktop} src={imageLibrary.projects.gridStability.dutchGrid.dark.desktop} alt={tr("Conceptual map highlighting the Netherlands, its transmission network, North Sea wind areas, energy hubs and regional corridors")} />
               <span aria-hidden="true">{tr("Expand")}</span>
             </button>
             <figcaption>{tr("Conceptual reconstruction of the regional grid vision, centred on the Netherlands.")}</figcaption>
@@ -520,6 +535,23 @@ END OF REPORT
           </div>
         </div>
       </section>
+
+      <script is:inline>
+        (() => {
+          const images = document.querySelectorAll('[data-grid-theme-image]');
+          const syncImages = () => {
+            const light = document.documentElement.dataset.theme === 'light';
+            images.forEach((image) => {
+              const source = light ? image.dataset.srcLight : image.dataset.srcDark;
+              if (source && image.getAttribute('src') !== source) image.setAttribute('src', source);
+            });
+          };
+          syncImages();
+          new MutationObserver(syncImages).observe(document.documentElement, {
+            attributes: true, attributeFilter: ['data-theme'],
+          });
+        })();
+      </script>
 
       <section class="case-section" aria-labelledby="contingency-title">
         <div class="section-heading compact-heading">
@@ -1025,6 +1057,20 @@ END OF REPORT
   const tagsToggle = document.querySelector<HTMLButtonElement>("[data-tags-toggle]");
   const SketchfabViewer = (window as typeof window & { Sketchfab?: new (version: string, frame: HTMLIFrameElement) => any }).Sketchfab;
 
+  const modelApis: any[] = [];
+  const syncModelBackgrounds = () => {
+    const color = document.documentElement.dataset.theme === "light"
+      ? [241 / 255, 238 / 255, 245 / 255] : [0, 0, 0];
+    modelApis.forEach((api) => api.setBackground({ color }));
+  };
+  const registerModelBackground = (api: any) => {
+    modelApis.push(api);
+    syncModelBackgrounds();
+  };
+  new MutationObserver(syncModelBackgrounds).observe(document.documentElement, {
+    attributes: true, attributeFilter: ["data-theme"],
+  });
+
   if (sketchfabFrame && SketchfabViewer) {
     const client = new SketchfabViewer("1.12.1", sketchfabFrame);
     client.init("df80f6027970411d8446af01fcb76b1a", {
@@ -1043,7 +1089,7 @@ END OF REPORT
           let initialCamera: { position: number[]; target: number[]; fov?: number } | null = null;
 
           tagsToggle?.removeAttribute("disabled");
-          api.setBackground({ color: [0, 0, 0] });
+          registerModelBackground(api);
 
           api.getCameraLookAt((cameraError: unknown, camera: { position: number[]; target: number[] }) => {
             if (cameraError || !camera) return;
@@ -1165,9 +1211,19 @@ END OF REPORT
   const secondModelReset = document.querySelector<HTMLButtonElement>("[data-second-model-reset]");
   const secondTumourToggle = document.querySelector<HTMLButtonElement>("[data-second-tumour-toggle]");
 
-  if (secondSketchfabFrame && SketchfabViewer) {
-    const secondClient = new SketchfabViewer("1.12.1", secondSketchfabFrame);
-    secondClient.init("a2e063b2d65a4a5190e1de85b7e16dcd", {
+  const additionalModel = document.querySelector<HTMLElement>("[data-additional-model]");
+  const independentModels = [
+    { frame: secondSketchfabFrame, reset: secondModelReset, toggle: secondTumourToggle,
+      uid: "a2e063b2d65a4a5190e1de85b7e16dcd", tumourName: null },
+    { frame: additionalModel?.querySelector<HTMLIFrameElement>("[data-additional-sketchfab-viewer]"),
+      reset: additionalModel?.querySelector<HTMLButtonElement>("[data-additional-model-reset]"),
+      toggle: additionalModel?.querySelector<HTMLButtonElement>("[data-additional-tumour-toggle]"),
+      uid: additionalModel?.dataset.additionalModel, tumourName: "mtl41186" },
+  ];
+  independentModels.forEach(({ frame, reset: secondModelReset, toggle: secondTumourToggle, uid, tumourName }) => {
+    if (!frame || !uid || !SketchfabViewer) return;
+    const secondClient = new SketchfabViewer("1.12.1", frame);
+    secondClient.init(uid, {
       autostart: 1,
       camera: 0,
       annotations_visible: 0,
@@ -1181,7 +1237,7 @@ END OF REPORT
           let visibleTumourMaterial: any = null;
           let secondInitialCamera: { position: number[]; target: number[]; fov?: number } | null = null;
 
-          api.setBackground({ color: [0, 0, 0] });
+          registerModelBackground(api);
 
           api.getCameraLookAt((cameraError: unknown, camera: { position: number[]; target: number[] }) => {
             if (cameraError || !camera) return;
@@ -1217,12 +1273,15 @@ END OF REPORT
 
             const brainMaterial = materials.find((material) => /brain/i.test(material.name ?? "") && !/tumou?r/i.test(material.name ?? ""))
               ?? [...materials].sort((a, b) => colourScore(b, 0) - colourScore(a, 0))[0];
-            tumourMaterial = materials.find((material) => /tumou?r/i.test(material.name ?? ""))
+            tumourMaterial = materials.find((material) => tumourName ? material.name === tumourName : /tumou?r/i.test(material.name ?? ""))
               ?? [...materials]
                 .filter((material) => material.stateSetID !== brainMaterial?.stateSetID)
                 .sort((a, b) => colourScore(b, 1) - colourScore(a, 1))[0];
 
-            if (brainMaterial) setColour(brainMaterial, [0.58, 0.42, 0.86]);
+            if (tumourName) {
+              materials.filter((material) => material.stateSetID !== tumourMaterial?.stateSetID)
+                .forEach((material) => setColour(material, material.name === "mtl1" ? [0.58, 0.42, 0.86] : [0.78, 0.7, 0.92]));
+            } else if (brainMaterial) setColour(brainMaterial, [0.58, 0.42, 0.86]);
             if (tumourMaterial) {
               setColour(tumourMaterial, [0.88, 0.04, 0.07]);
               visibleTumourMaterial = JSON.parse(JSON.stringify(tumourMaterial));
@@ -1254,9 +1313,9 @@ END OF REPORT
           });
         });
       },
-      error: () => console.error("The second interactive model could not be loaded."),
+      error: () => console.error(`The interactive model ${uid} could not be loaded.`),
     });
-  }
+  });
 
   document.querySelectorAll<HTMLButtonElement>(".interactive-model-controls button").forEach((button) => {
     button.addEventListener("pointerdown", () => {

@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 16 October 2026
+Last updated: 21 October 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. English, Dutch and German share the same route structure, layouts and interactions. The design foundation uses a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and two independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
+The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. English, Dutch and German share the same route structure, layouts and interactions. The design foundation uses a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and three independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -74,7 +74,7 @@ Homepage introduction
 - Contact form validates locally and opens a prepared `mailto:` message.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
-- Static research figures use a browser native dialog lightbox. The two interactive anatomy models depend on the public Sketchfab Viewer API, retain plain-text creator attribution and restore their complete initial camera state through the API.
+- Static research figures use a browser native dialog lightbox. The three interactive anatomy models depend on the public Sketchfab Viewer API, retain plain-text creator attribution and restore their complete initial camera state through the API.
 - Complex diagrams use responsive SVG or high-resolution PNG assets and preserve their meaning at mobile widths.
 - The telecommunications project delivers a concise coverage-deployment narrative with an expandable vector architecture, an open delivery sequence and a layered technology map.
 - The master's report is delivered from GitHub Pages through an integrated dialog viewer.
@@ -88,3 +88,11 @@ Homepage introduction
 - Academic and professional narratives are understandable without dates or job-title lists.
 - Project pages demonstrate contribution and outcome without confidential disclosure.
 - Navigation and controls work consistently on keyboard, pointer and touch devices.
+
+## Sprint 08 release scope
+
+This release consolidates the three independently controlled anatomy viewers, single-image theme selection for the grid map and architecture, corrected light artwork and regular-weight pipeline steps. It includes repository reference checks, dependency remediation and a documentation refresh.
+
+The selected future username is `dl-cs`. The owner has deferred the account change. Deployment derives public identity from the repository owner, so the current site remains operational and a later rename can adopt `https://dl-cs.github.io` without another content rewrite. The repository must also be renamed to `dl-cs.github.io` and the Git remote updated.
+
+Release validation covers the static build, local routes, asset/module references, controller state and dependency audit. Complete live 3D, cross-browser and physical-device visual QA remains separate from these automated results.

@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 16 October 2026
+Last updated: 21 October 2026
 
 ## Direction
 
@@ -26,6 +26,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 - The canonical family is the shared system sans stack declared by `--font-sans`; technical output alone may use `--font-mono`.
 - Semantic roles replace page-local arbitrary sizes: display, section, card title, body, UI, caption, microcopy and metric.
+- Large page and section headings retain their established weight. Only pipeline step titles and labels use regular `400` weight across all languages, viewports and themes.
 - Editorial body copy follows the About introduction at `1.0625rem` with a `1.875rem` line height and regular weight on desktop and mobile.
 - Action labels use the compact pre-existing `0.78rem` size, regular `400` weight and measured uppercase tracking. They must not appear bold.
 - Responsive layouts preserve the same typographic roles across light and dark themes; only display and metric roles use fluid sizing.
@@ -97,7 +98,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 
 - Interactive anatomy appears inside proportional black frames with a 16:9 desktop ratio and a taller mobile ratio.
 - Viewer controls sit above each model and align to the right on every viewport.
-- Both models use the same semantic palette: lilac for brain tissue, red for tumour tissue and black for the background.
+- All three models use the same semantic palette: lilac for brain tissue, red for tumour tissue and a background matching the active theme (black or #f1eef5).
 - The CT model uses a softer lilac for the exterior head layer so that it remains distinct from the brain without introducing another hue.
 - Camera reset restores the initial position, target and field of view through a short transition. Tumour visibility remains independent for each model, and annotation visibility is offered only by the CT viewer.
 - Control buttons use a fixed width so `Hide` and `Show` label changes never shift adjacent controls. Pointer and touch activation produce a brief lilac background, dark text, subtle compression and glow.
@@ -154,3 +155,11 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Keyboard-only route review.
 - Browser zoom and 320 px viewport checks.
 - Final logo permission and rendering review.
+
+## Sprint 08 presentation contract
+
+- Large page/section headings retain their existing weight. Pipeline step titles and labels alone use regular 400 weight in all locales, viewports and themes.
+- Grid context and architecture figures render one image each, switching source with the theme rather than stacking duplicate dark/light elements.
+- Light grid artwork uses #f1eef5, dark lilac linework and softer lilac secondary detail. The Netherlands flag is drawn outside the recolouring filter with red, white and blue stripes.
+- All three anatomy viewers share responsive frames, fixed-width controls and touch feedback. Their scene backgrounds switch between black and #f1eef5 through the Viewer API.
+- Automated controller and built-output checks do not replace a live Sketchfab/WebGL or physical-device visual audit. Windows browser automation was unavailable during the earlier visual review; those checks remain explicitly pending.

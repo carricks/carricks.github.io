@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 16 October 2026
+Last updated: 21 October 2026
 
 ## Current product status
 
@@ -21,7 +21,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Dedicated Experience page with six narrative company entries and normalized monochrome logos.
 - Four routed project case-study pages, with MRI tumour classification presented first.
 - Complete MRI tumour classification case study with research context, open data provenance, class examples, model evolution, experimental comparison and responsible use framing.
-- Two interactive MRI related anatomy models with complete camera-state reset, independent tumour controls, annotation control only where tags exist, static creator attribution and a shared black, lilac and red palette. The CT model now restores the approved composed-axis reference view.
+- Three interactive MRI related anatomy models with complete camera-state reset, independent tumour controls, annotation control only where tags exist, static creator attribution and a shared theme-aware background, lilac tissue and red tumour palette. The CT model now restores the approved composed-axis reference view.
 - Consolidated responsible research and technical foundation content with a distinct report action and compact technology tags.
 - Confidentiality aware transmission grid stability case study covering controlled contingencies, collaborative application engineering, integration and validation without identifying the client.
 - Original expandable system architecture diagram and verified related research reference for the grid stability case study.
@@ -105,3 +105,15 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Keyboard, mobile, reduced-motion and major-browser journeys pass QA.
 - Build and dependency audit pass with no known high-severity issues.
 - Metadata and social sharing previews are complete.
+
+## Sprint 08 closeout ? 21 October 2026
+
+- Added a third CT brain anatomy viewer with independent tumour and camera controls and shared responsive styling.
+- Unified viewer backgrounds with the active theme.
+- Replaced duplicated grid figures with one theme-switched image per figure and added reproducible light SVG generation with the correct flag palette.
+- Restored large heading weights and limited the regular-weight exception to pipeline steps.
+- Removed the unused image helper and introduced build-output asset, source import, duplicate-hash and internal-link checks.
+- Remediated the current Vite advisory through compatible dependency updates.
+- Updated every document in `docs/` and prepared owner-derived deployment identity for the selected `dl-cs` username.
+
+Still required: the owner changes the GitHub username, the repository is renamed, the remote is updated and production routes are checked at the new origin. Live WebGL rendering, cross-browser review and physical mobile checks remain pending and are not represented as completed by automated validation.
