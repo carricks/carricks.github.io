@@ -12,7 +12,9 @@
     "astro": "astro",
     "check:models": "node scripts/check-model-controls.mjs",
     "assets:grid": "node scripts/create-grid-light-assets.mjs",
-    "audit:repo": "node scripts/audit-repository.mjs"
+    "audit:repo": "node scripts/audit-repository.mjs",
+    "check:french": "node scripts/check-french.mjs",
+    "check:translations": "node scripts/check-translations.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

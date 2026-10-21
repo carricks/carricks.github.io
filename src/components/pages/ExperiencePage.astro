@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import FloatingBackControl from "../common/FloatingBackControl.astro";
 import { imageLibrary } from "../../data/image-library";
+import { descriptionsFr, experienceFr } from "../../i18n/pages.fr";
 import type { Locale } from "../../i18n/home";
 
 interface Props { locale: Locale }
@@ -18,7 +19,7 @@ const experiencesEn = [
     logoId: "capgemini",
     logoViewBox: "0 0 2081 462",
     logoClass: "experience-company-logo--capgemini",
-    description: "I contribute to critical software for the Dutch transmission grid by developing and validating applications that transform operational data into large scale simulations and structured evidence for power system stability analysis. The work combines software engineering, complex data flows and power system analysis in an environment where reliability, traceability and close technical collaboration are essential.",
+    description: "I develop and validate applications for the Dutch transmission grid. They turn operational data into large-scale simulations and structured results for power system stability analysis. The work combines software engineering, data processing and close collaboration with domain specialists.",
   },
   {
     company: "AspenTech",
@@ -27,7 +28,7 @@ const experiencesEn = [
     logoId: "aspentech",
     logoViewBox: "0 0 1800 362",
     logoClass: "experience-company-logo--aspentech",
-    description: "I worked across SCADA solution design, Linux and Windows deployment, and secure industrial integration for offshore energy operations, connecting segregated environments while protecting critical control network boundaries. This experience strengthened my ability to translate operational requirements into robust architectures and support their configuration, testing and delivery across multidisciplinary teams.",
+    description: "I worked on SCADA design, deployment on Linux and Windows, and secure integration for offshore energy operations. I helped connect segregated environments while protecting critical control networks, supporting architecture, configuration, testing and delivery.",
   },
   {
     company: "Isemaren",
@@ -36,7 +37,7 @@ const experiencesEn = [
     logoId: "isemaren",
     logoViewBox: "0 0 2171 246",
     logoClass: "experience-company-logo--isemaren",
-    description: "I supported the deployment and commissioning of Power Plant Controllers implemented on PLC technology for large solar plants. The work integrated HMI, SCADA and communications while validating grid code behaviour across installations of up to 380 MW. It connected control logic with real plant conditions through structured testing, technical troubleshooting and coordination throughout commissioning.",
+    description: "I supported the deployment and commissioning of PLC-based Power Plant Controllers for solar plants up to 380 MW. The work integrated HMI, SCADA and communications, using structured tests and troubleshooting to check compliance with grid requirements.",
   },
   {
     company: "Universidad Carlos III de Madrid",
@@ -44,7 +45,7 @@ const experiencesEn = [
     logo: imageLibrary.logos.uc3m.dark.desktop,
     logoId: "uc3m",
     logoViewBox: "0 0 598 182",
-    description: "Within the Social Robotics Group, I helped evolve an assistive robotics research platform through web services, user and licensing systems, databases, and the Linux server infrastructure supporting connected interaction between people and robots. The role brought together research and practical software development, turning experimental requirements into maintainable services for a growing robotics ecosystem.",
+    description: "Within the Social Robotics Group, I helped develop web services, user and licensing systems, databases and Linux server infrastructure for an assistive robotics platform. I helped turn research requirements into maintainable services connecting people and robots.",
   },
   {
     company: "Boston Scientific",
@@ -53,7 +54,7 @@ const experiencesEn = [
     logoId: "boston-scientific",
     logoViewBox: "0 0 126 62",
     logoClass: "experience-company-logo--boston",
-    description: "I supported regulated medical device manufacturing by maintaining the accuracy and compliance of measurement equipment while contributing to automated testing and calibration solutions based on PLC technology. This work developed my understanding of engineering governed by quality, where technical documentation, measurement reliability and controlled processes are fundamental to production continuity.",
+    description: "I supported regulated medical device manufacturing by maintaining measurement accuracy and compliance and contributing to PLC-based test and calibration systems. The work required reliable measurements, controlled processes and clear technical documentation to support production continuity.",
   },
   {
     company: "Xacom Communications",
@@ -62,48 +63,48 @@ const experiencesEn = [
     logoId: "xacom",
     logoViewBox: "0 0 100 112",
     logoClass: "experience-company-logo--xacom",
-    description: "I designed and delivered mobile coverage solutions for technically demanding industrial, underground and remote environments, combining radio frequency systems, network infrastructure and field validation across multiple generations of mobile technology. Each project required adapting the design to demanding physical conditions and verifying performance through measurements, commissioning and problem solving in the field.",
+    description: "I designed and deployed mobile coverage for industrial, underground and remote sites. The work combined RF systems, network infrastructure, measurements, commissioning and field troubleshooting across several generations of mobile technology.",
   },
 ] as const;
 
 const descriptionsNl = [
-  "Ik draag bij aan kritieke software voor het Nederlandse transmissienet door applicaties te ontwikkelen en valideren die operationele data omzetten in grootschalige simulaties en gestructureerd bewijs voor de analyse van de stabiliteit van energiesystemen. Het werk combineert software engineering, complexe datastromen en analyse van energiesystemen in een omgeving waarin betrouwbaarheid, traceerbaarheid en nauwe technische samenwerking essentieel zijn. Hierbij wordt DSA (Dynamic Security Assessment) gebruikt om de dynamische veiligheid van het net onder gecontroleerde omstandigheden te beoordelen.",
-  "Ik werkte aan het ontwerp van SCADA-oplossingen, implementaties op Linux en Windows en veilige industriële integratie voor offshore-energieactiviteiten. Daarbij werden gescheiden omgevingen verbonden terwijl de grenzen van kritieke besturingsnetwerken beschermd bleven. Deze ervaring versterkte mijn vermogen om operationele eisen te vertalen naar robuuste architecturen en de configuratie, het testen en de oplevering ervan binnen multidisciplinaire teams te ondersteunen.",
-  "Ik ondersteunde de uitrol en commissioning van Power Plant Controllers op PLC-technologie voor grote zonneparken. Het werk integreerde HMI, SCADA en communicatie en valideerde het gedrag volgens de Grid Code voor installaties tot 380 MW. Het verbond besturingslogica met reële installatieomstandigheden door gestructureerde tests, technische probleemoplossing en coördinatie tijdens commissioning.",
-  "Binnen de Social Robotics Group hielp ik een onderzoeksplatform voor ondersteunende robotica verder te ontwikkelen met webservices, gebruikers- en licentiesystemen, databases en Linux-serverinfrastructuur voor verbonden interactie tussen mensen en robots. De rol bracht onderzoek en praktische softwareontwikkeling samen en vertaalde experimentele eisen naar onderhoudbare diensten voor een groeiend robotica-ecosysteem.",
-  "Ik ondersteunde de gereguleerde productie van medische hulpmiddelen door de nauwkeurigheid en compliance van meetapparatuur te waarborgen en bij te dragen aan geautomatiseerde test- en kalibratieoplossingen op basis van PLC-technologie. Dit werk verdiepte mijn begrip van kwaliteitsgestuurde engineering, waarin technische documentatie, betrouwbare metingen en beheerste processen essentieel zijn voor de continuïteit van de productie.",
-  "Ik ontwierp en realiseerde oplossingen voor mobiele dekking in technisch veeleisende industriële, ondergrondse en afgelegen omgevingen. Daarbij combineerde ik radiofrequentiesystemen, netwerkinfrastructuur en veldvalidatie voor meerdere generaties mobiele technologie. Elk project vereiste aanpassing aan veeleisende fysieke omstandigheden en verificatie van de prestaties door metingen, commissioning en probleemoplossing op locatie.",
+  "Ik ontwikkel en valideer applicaties voor het Nederlandse transmissienet. Ze zetten operationele data om in grootschalige simulaties en gestructureerde resultaten voor netstabiliteitsanalyse. Het werk combineert softwareontwikkeling, dataverwerking en nauwe samenwerking met vakspecialisten. DSA ondersteunt daarbij de beoordeling van de dynamische netveiligheid.",
+  "Ik werkte aan SCADA-ontwerp, implementaties op Linux en Windows en veilige integratie voor offshore-energieactiviteiten. Ik hielp gescheiden omgevingen te verbinden met behoud van kritieke besturingsnetwerken, van architectuur en configuratie tot testen en oplevering.",
+  "Ik ondersteunde de uitrol en inbedrijfstelling van Power Plant Controllers op PLC-basis voor zonnecentrales tot 380 MW. HMI, SCADA en communicatie werden geïntegreerd. Gestructureerde tests en probleemoplossing toetsten het gedrag aan de netvereisten.",
+  "Binnen de Social Robotics Group ontwikkelde ik webservices, gebruikers- en licentiesystemen, databases en Linux-serverinfrastructuur voor een platform voor ondersteunende robotica. Ik hielp onderzoekseisen om te zetten in onderhoudbare diensten voor interactie tussen mensen en robots.",
+  "Ik ondersteunde de gereguleerde productie van medische hulpmiddelen door meetnauwkeurigheid en naleving van voorschriften te bewaken en bij te dragen aan PLC-gebaseerde test- en kalibratiesystemen. Betrouwbare metingen, beheerste processen en duidelijke documentatie ondersteunden de productiecontinuïteit.",
+  "Ik ontwierp en realiseerde mobiele dekking voor industriële, ondergrondse en afgelegen locaties. Het werk combineerde RF-systemen, netwerkinfrastructuur, metingen, inbedrijfstelling en probleemoplossing op locatie voor meerdere generaties mobiele technologie."
 ] as const;
 
 const descriptionsDe = [
-  "Ich arbeite an kritischer Software für das niederländische Übertragungsnetz und entwickle und validiere Anwendungen, die Betriebsdaten in groß angelegte Simulationen und strukturierte Nachweise für die Stabilitätsanalyse von Energiesystemen überführen. Die Arbeit verbindet Software Engineering, komplexe Datenflüsse und Energiesystemanalyse in einer Umgebung, in der Zuverlässigkeit, Nachvollziehbarkeit und enge technische Zusammenarbeit entscheidend sind. Dabei dient DSA (Dynamic Security Assessment) der Bewertung der dynamischen Netzsicherheit unter kontrollierten Bedingungen.",
-  "Ich arbeitete an SCADA-Lösungsdesign, Linux- und Windows-Implementierungen sowie sicherer industrieller Integration für Offshore-Energieprojekte. Dabei wurden getrennte Umgebungen verbunden und zugleich die Grenzen kritischer Steuerungsnetze geschützt. Diese Erfahrung stärkte meine Fähigkeit, betriebliche Anforderungen in robuste Architekturen zu überführen und deren Konfiguration, Test und Auslieferung in multidisziplinären Teams zu unterstützen.",
-  "Ich unterstützte den Ausbau und die Inbetriebnahme von Power Plant Controllern auf PLC-Basis für große Solaranlagen. Die Arbeit integrierte HMI, SCADA und Kommunikation und validierte das Verhalten gemäß Grid Code für Anlagen bis 380 MW. Strukturierte Tests, technische Fehlerbehebung und Koordination während der Inbetriebnahme verbanden die Regelungslogik mit realen Anlagenbedingungen.",
-  "In der Social Robotics Group entwickelte ich eine Forschungsplattform für assistive Robotik mit Webservices, Benutzer- und Lizenzsystemen, Datenbanken und Linux-Serverinfrastruktur weiter. Die Rolle verband Forschung mit praktischer Softwareentwicklung und überführte experimentelle Anforderungen in wartbare Dienste für ein wachsendes Robotik-Ökosystem.",
-  "Ich unterstützte die regulierte Herstellung medizinischer Geräte, indem ich Genauigkeit und Compliance von Messmitteln sicherstellte und zu automatisierten Test- und Kalibrierlösungen auf PLC-Basis beitrug. Diese Arbeit vertiefte mein Verständnis qualitätsgesteuerten Engineerings, in dem technische Dokumentation, zuverlässige Messungen und kontrollierte Prozesse für die Produktionskontinuität grundlegend sind.",
-  "Ich entwarf und realisierte Lösungen für Mobilfunkabdeckung in technisch anspruchsvollen industriellen, unterirdischen und abgelegenen Umgebungen. Dabei verband ich Hochfrequenzsysteme, Netzwerkinfrastruktur und Feldvalidierung über mehrere Mobilfunkgenerationen. Jedes Projekt erforderte die Anpassung an anspruchsvolle physische Bedingungen und die Überprüfung der Leistung durch Messungen, Inbetriebnahme und Fehlerbehebung vor Ort.",
+  "Ich entwickle und validiere Anwendungen für das niederländische Übertragungsnetz. Sie wandeln Betriebsdaten in groß angelegte Simulationen und strukturierte Ergebnisse zur Netzstabilität um. Die Arbeit verbindet Softwareentwicklung, Datenverarbeitung und enge Zusammenarbeit mit Fachkräften. DSA unterstützt dabei die Bewertung der dynamischen Netzsicherheit.",
+  "Ich arbeitete an SCADA-Entwurf, Bereitstellung unter Linux und Windows sowie sicherer Integration für Offshore-Energieanlagen. Ich half, getrennte Umgebungen unter Schutz kritischer Steuerungsnetze zu verbinden, von Architektur und Konfiguration bis zu Tests und Umsetzung.",
+  "Ich unterstützte die Bereitstellung und Inbetriebnahme von Power Plant Controllern auf SPS-Basis für Solaranlagen bis 380 MW. Die Arbeit integrierte HMI, SCADA und Kommunikation. Strukturierte Tests und Fehlerbehebung prüften das Verhalten anhand der Netzanforderungen.",
+  "In der Social Robotics Group entwickelte ich Webdienste, Benutzer- und Lizenzsysteme, Datenbanken und Linux-Serverinfrastruktur für eine Plattform der Assistenzrobotik. Ich half, Forschungsanforderungen in wartbare Dienste für die Interaktion zwischen Menschen und Robotern zu überführen.",
+  "Ich unterstützte die regulierte Fertigung von Medizinprodukten durch genaue und vorschriftskonforme Messmittel sowie Beiträge zu SPS-basierten Test- und Kalibriersystemen. Zuverlässige Messungen, kontrollierte Prozesse und klare Dokumentation unterstützten den laufenden Produktionsbetrieb.",
+  "Ich plante und realisierte Mobilfunkabdeckung für industrielle, unterirdische und abgelegene Standorte. Die Arbeit verband Hochfrequenzsysteme, Netzwerktechnik, Messungen, Inbetriebnahme und Fehlerbehebung vor Ort für mehrere Mobilfunkgenerationen."
 ] as const;
 
 const experiences = experiencesEn.map((experience, index) => ({
   ...experience,
-  country: isGerman ? ({ "The Netherlands": "Niederlande", Spain: "Spanien", International: "International" }[experience.country] ?? experience.country) : isDutch ? ({ "The Netherlands": "Nederland", Spain: "Spanje", International: "Internationaal" }[experience.country] ?? experience.country) : experience.country,
-  description: isGerman ? descriptionsDe[index] : isDutch ? descriptionsNl[index] : experience.description,
+  country: locale === "fr" ? ({ "The Netherlands": "Pays-Bas", Spain: "Espagne", International: "International" }[experience.country] ?? experience.country) : isGerman ? ({ "The Netherlands": "Niederlande", Spain: "Spanien", International: "International" }[experience.country] ?? experience.country) : isDutch ? ({ "The Netherlands": "Nederland", Spain: "Spanje", International: "Internationaal" }[experience.country] ?? experience.country) : experience.country,
+  description: locale === "fr" ? descriptionsFr[index] : isGerman ? descriptionsDe[index] : isDutch ? descriptionsNl[index] : experience.description,
 }));
 
-const copy = isGerman ? {
+const copy = locale === "fr" ? experienceFr : isGerman ? {
   title: "Berufserfahrung | Diego Carrillo",
   description: "Ausgewählte Ingenieurerfahrung in resilienten Energiesystemen, sicherer industrieller Integration und der Regelung erneuerbarer Anlagen.",
   back: "Zurück zu Über mich", eyebrow: "BERUFSERFAHRUNG", heading: "Engineering für kritische Systeme.",
-  intro: "Meine Laufbahn wurde durch multidisziplinäre Engineering-Rollen in verschiedenen Branchen und technischen Umgebungen geprägt. Von Nordwesteuropa aus erweitere ich diese Perspektive und baue auf Erfahrungen aus Südeuropa und Lateinamerika auf.",
+  intro: "Mein Berufsweg umfasst verschiedene Branchen und technische Umgebungen. Heute arbeite ich in Nordwesteuropa und baue auf Erfahrungen aus Südeuropa und Lateinamerika auf.",
 } : isDutch ? {
   title: "Ervaring | Diego Carrillo",
   description: "Geselecteerde engineeringervaring in robuuste energiesystemen, veilige industriële integratie en de besturing van hernieuwbare installaties.",
   back: "Terug naar Over mij", eyebrow: "ERVARING", heading: "Engineering voor kritieke systemen.",
-  intro: "Mijn loopbaan is gevormd door multidisciplinaire engineeringrollen in uiteenlopende sectoren en technische omgevingen. Vanuit Noordwest-Europa verbreed ik dit perspectief verder, voortbouwend op ervaring in Zuid-Europa en Latijns-Amerika.",
+  intro: "Mijn loopbaan omvat verschillende sectoren en technische omgevingen. Vanuit Noordwest-Europa bouw ik verder op ervaring uit Zuid-Europa en Latijns-Amerika.",
 } : {
   title: "Experience | Diego Carrillo", description: "Selected engineering experience across resilient power systems, secure industrial integration and renewable plant control.",
   back: "Back to about", eyebrow: "EXPERIENCE", heading: "Engineering in critical systems.",
-  intro: "My work has developed through multidisciplinary engineering roles across several industries and technical environments. Now working in Northwestern Europe, I continue to broaden that perspective while building on experience gained across Mediterranean Europe and Latin America.",
+  intro: "My career spans several industries and technical environments. I now work in Northwestern Europe, building on experience gained in Mediterranean Europe and Latin America.",
 };
 ---
 

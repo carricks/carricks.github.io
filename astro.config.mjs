@@ -11,7 +11,7 @@ export default defineConfig({
   site: `https://${githubUsername}.github.io`,
   output: "static",
   i18n: {
-    locales: ["en", "nl", "de"],
+    locales: ["en", "nl", "de", "fr"],
     defaultLocale: "en",
     routing: { prefixDefaultLocale: false },
   },

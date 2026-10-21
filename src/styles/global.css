@@ -1635,3 +1635,21 @@ html[data-theme="dark"] .site-header .mobile-menu-trigger:focus-visible {
 .case-study .telecom-delivery-grid li div > span {
   font-weight: 400 !important;
 }
+
+/* Localized control labels keep a stable width when visibility changes. */
+html:is([lang="fr"], [lang="de"], [lang="nl"]) .interactive-model-controls button {
+  inline-size: 10rem;
+}
+
+/* Medical class names may wrap without displacing the probability. */
+.case-study .prediction-orbital-tag span {
+  max-width: 10rem;
+}
+
+@media (max-width: 900px) {
+  .case-study .prediction-orbital-tag {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .25rem;
+  }
+}

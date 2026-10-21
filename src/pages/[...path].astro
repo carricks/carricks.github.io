@@ -11,10 +11,12 @@ export function getStaticPaths() {
     { params: { path: `projects/${project.slug}` }, props: { project, locale: "en" } },
     { params: { path: `nl/projects/${project.slug}` }, props: { project, locale: "nl" } },
     { params: { path: `de/projects/${project.slug}` }, props: { project, locale: "de" } },
+    { params: { path: `fr/projects/${project.slug}` }, props: { project, locale: "fr" } },
   ]);
 }
 
 const { project, locale = "en" } = Astro.props;
+const isFrench = locale === "fr";
 const isDutch = locale === "nl";
 const isGerman = locale === "de";
 const tr = (text: string) => translateProjectText(text, locale);
@@ -36,7 +38,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           <div class="case-hero-copy">
             <p class="case-eyebrow">{tr("MASTER'S RESEARCH · COMPUTER VISION")}</p>
             <h1>{tr("Classifying brain tumours from MRI.")}</h1>
-            <p class="case-lead">{tr("A complete research prototype that transforms heterogeneous medical images into predictions across four classes through a convolutional model and a usable web interface.")}</p>
+            <p class="case-lead">{tr("A research prototype that classifies varied medical images into four categories using a convolutional model and a web interface.")}</p>
             <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="report-access-control" data-report-open>
               <span>{tr("Explore report")}</span>
               <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13 13 5M7 5h6v6" /></svg>
@@ -76,7 +78,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           </div>
           <div class="interactive-model-meta">
             <span>{tr("Drag to rotate · scroll or pinch to zoom")}</span>
-            <span>3D Brain Tumor Model by Rafael G. Malanga on Sketchfab.</span>
+            <span>{isFrench ? "3D Brain Tumor Model, par Rafael G. Malanga sur Sketchfab." : "3D Brain Tumor Model by Rafael G. Malanga on Sketchfab."}</span>
           </div>
           <div class="interactive-model-variant">
             <div class="interactive-model-heading">
@@ -91,12 +93,12 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             </div>
             <div class="interactive-model-meta">
               <span>{tr("Drag to rotate · scroll or pinch to zoom")}</span>
-              <span>{isDutch ? "CT Skull and Brain, with Tumor van AlorE op Sketchfab." : isGerman ? "CT Skull and Brain, with Tumor von AlorE auf Sketchfab." : "CT Skull and Brain, with Tumor by AlorE on Sketchfab."}</span>
+              <span>{isFrench ? "CT Skull and Brain, with Tumor, par AlorE sur Sketchfab." : isDutch ? "CT Skull and Brain, with Tumor van AlorE op Sketchfab." : isGerman ? "CT Skull and Brain, with Tumor von AlorE auf Sketchfab." : "CT Skull and Brain, with Tumor by AlorE on Sketchfab."}</span>
             </div>
           </div>
           <div class="interactive-model-variant" data-additional-model="3ca52ce84c94458ba0357fa7bfeb5cd8">
             <div class="interactive-model-heading">
-              <div class="interactive-model-controls" aria-label={isDutch ? "Bediening van het derde interactieve model" : isGerman ? "Steuerung des dritten interaktiven Modells" : "Third interactive model controls"}>
+              <div class="interactive-model-controls" aria-label={isFrench ? "Commandes du troisième modèle interactif" : isDutch ? "Bediening van het derde interactieve model" : isGerman ? "Steuerung des dritten interaktiven Modells" : "Third interactive model controls"}>
                 <button type="button" data-additional-model-reset disabled>{tr("Reset View")}</button>
                 <button type="button" data-additional-tumour-toggle aria-pressed="true" disabled>{tr("Hide Tumor")}</button>
               </div>
@@ -117,14 +119,14 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         <div class="section-heading">
           <p class="case-eyebrow">{tr("WHY IT MATTERS")}</p>
           <h2 id="impact-title">{tr("A difficult visual problem with real clinical consequences.")}</h2>
-          <p>{tr("Brain and central nervous system tumours are uncommon compared with many cancers, yet their location and heterogeneity make assessment especially demanding. The project explored how computer vision could support image review without replacing specialist judgement.")}</p>
+          <p>{tr("Brain and central nervous system tumours are less common than many cancers, but their location and varied appearance make assessment difficult. This project explored how computer vision could support image review without replacing clinical judgement.")}</p>
         </div>
         <div class="metric-grid">
           <article><strong>321,731</strong><span>{tr("New brain and CNS cancer cases worldwide in 2022")}</span></article>
           <article><strong>248,500</strong><span>{tr("Estimated deaths worldwide in 2022")}</span></article>
           <article><strong>{tr("4 Classes")}</strong><span>{tr("Meningioma, glioma, pituitary and no tumour")}</span></article>
         </div>
-        <p class="source-note">{isDutch ? "Wereldwijde context" : isGerman ? "Globaler Kontext" : "Global context"}: <a href="https://gco.iarc.who.int/media/globocan/factsheets/cancers/31-brain-central-nervous-system-fact-sheet.pdf" target="_blank" rel="noreferrer">IARC Global Cancer Observatory, GLOBOCAN 2022</a>. {tr("The prototype is research work and is not a validated medical diagnostic device.")}</p>
+        <p class="source-note">{isFrench ? "Contexte mondial" : isDutch ? "Wereldwijde context" : isGerman ? "Globaler Kontext" : "Global context"}: <a href="https://gco.iarc.who.int/media/globocan/factsheets/cancers/31-brain-central-nervous-system-fact-sheet.pdf" target="_blank" rel="noreferrer">IARC Global Cancer Observatory, GLOBOCAN 2022</a>. {tr("The prototype is research work and is not a validated medical diagnostic device.")}</p>
       </section>
 
       <section class="case-section" aria-labelledby="challenge-title">
@@ -134,20 +136,20 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <h2 id="challenge-title">{tr("Teaching a model to distinguish visually similar patterns.")}</h2>
           </div>
           <div>
-            <p>{tr("MRI datasets combine different resolutions, anatomical views and acquisition conditions. Tumours may also share location, shape and texture, making the boundary between classes difficult to learn.")}</p>
-            <p>{tr("The work therefore focused as much on data quality and experimental discipline as on model architecture: combining public datasets, removing samples with insufficient quality, balancing classes and keeping test images outside augmentation.")}</p>
+            <p>{tr("MRI datasets vary in resolution, anatomical view and acquisition conditions. Tumours can also look similar in location, shape and texture, making the classes difficult to separate.")}</p>
+            <p>{tr("Data quality and a sound experimental method mattered as much as model architecture. Public datasets were combined and balanced, low-quality images removed, and augmentation kept separate from the test set.")}</p>
           </div>
         </div>
         <div class="class-grid" aria-label={tr("Classification targets")}>
           {[
-            { title: "MENINGIOMA", copy: tr("Tumour arising from the meninges surrounding the brain."), image: imageLibrary.projects.brainTumourMri.classMeningioma.dark.desktop },
-            { title: "GLIOMA", copy: tr("Tumour originating in glial cells, with highly variable appearance."), image: imageLibrary.projects.brainTumourMri.classGlioma.dark.desktop },
-            { title: "PITUITARY", copy: tr("Tumour located around the pituitary gland at the base of the brain."), image: imageLibrary.projects.brainTumourMri.classPituitary.dark.desktop },
-            { title: isDutch ? "GEEN TUMOR" : isGerman ? "KEIN TUMOR" : "NO TUMOUR", copy: tr("MRI samples without evidence of the three target tumour classes."), image: imageLibrary.projects.brainTumourMri.classNoTumour.dark.desktop },
+            { title: tr("Meningioma").toLocaleUpperCase(locale), copy: tr("Tumour arising from the meninges surrounding the brain."), image: imageLibrary.projects.brainTumourMri.classMeningioma.dark.desktop },
+            { title: tr("Glioma").toLocaleUpperCase(locale), copy: tr("Tumour originating in glial cells, with highly variable appearance."), image: imageLibrary.projects.brainTumourMri.classGlioma.dark.desktop },
+            { title: tr("Pituitary tumour").toLocaleUpperCase(locale), copy: tr("Tumour located around the pituitary gland at the base of the brain."), image: imageLibrary.projects.brainTumourMri.classPituitary.dark.desktop },
+            { title: isFrench ? "ABSENCE DE TUMEUR" : isDutch ? "GEEN TUMOR" : isGerman ? "KEIN TUMOR" : "NO TUMOUR", copy: tr("MRI samples without evidence of the three target tumour classes."), image: imageLibrary.projects.brainTumourMri.classNoTumour.dark.desktop },
           ].map(({ title, copy, image }) => (
             <article>
-              <button type="button" class="figure-zoom-trigger class-image-trigger" data-lightbox-trigger aria-label={isDutch ? `MRI-voorbeeld vergroten, geclassificeerd als ${title.toLowerCase()}` : isGerman ? `Als ${title.toLowerCase()} klassifiziertes MRT-Beispiel vergrößern` : `Enlarge MRI example classified as ${title.toLowerCase()}`}>
-                <img src={image} alt={isDutch ? `MRI-voorbeeld geclassificeerd als ${title.toLowerCase()}` : isGerman ? `Als ${title.toLowerCase()} klassifiziertes MRT-Beispiel` : `MRI example classified as ${title.toLowerCase()}`} />
+              <button type="button" class="figure-zoom-trigger class-image-trigger" data-lightbox-trigger aria-label={isFrench ? `Agrandir l’IRM de la classe ${title.toLowerCase()}` : isDutch ? `MRI-voorbeeld vergroten, geclassificeerd als ${title.toLowerCase()}` : isGerman ? `Als ${title.toLowerCase()} klassifiziertes MRT-Beispiel vergrößern` : `Enlarge MRI example classified as ${title.toLowerCase()}`}>
+                <img src={image} alt={isFrench ? `Exemple d’IRM de la classe ${title.toLowerCase()}` : isDutch ? `MRI-voorbeeld geclassificeerd als ${title.toLowerCase()}` : isGerman ? `Als ${title.toLowerCase()} klassifiziertes MRT-Beispiel` : `MRI example classified as ${title.toLowerCase()}`} />
                 <span aria-hidden="true">{tr("Expand")}</span>
               </button>
               <div><h3>{title}</h3><p>{copy}</p></div>
@@ -190,8 +192,8 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <h2 id="model-title">{tr("The first model revealed the problem. VGG16 made it scalable.")}</h2>
           </div>
           <div>
-            <p>{tr("An initial CNN covering two classes established the preprocessing and evaluation workflow, but its small dataset produced unstable validation behaviour. Increasing and cleaning the data improved the experiment before expanding it to four classes.")}</p>
-            <p>{tr("Transfer learning reused VGG16's pretrained visual features. Freezing most of the network and adapting the output reduced the trainable portion to roughly 16,000 parameters for the target classification task.")}</p>
+            <p>{tr("An initial two-class CNN established the preprocessing and evaluation steps. Validation was unstable with the small dataset. More data and better cleaning improved the experiment before it expanded to four classes.")}</p>
+            <p>{tr("Transfer learning reused VGG16’s pretrained visual features. Most layers were frozen and the output adapted, leaving roughly 16,000 trainable parameters for the classification task.")}</p>
           </div>
         </div>
         <figure class="research-figure wide-figure vgg16-figure">
@@ -213,13 +215,13 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="12" rx="2"/><path d="m8 7 2-3h10v12l-4 3M7 12h6M10 9v6"/></svg>
             </span>
-            <div><span>{tr("IMPROVING DATASET")}</span><strong>{tr("Expand and strengthen the training input")}</strong><p>{tr("Multiple public sources were cleaned, reorganised and balanced into a dataset of 5,320 images. Controlled rotations, shifts, zoom and flips then increased variation during training.")}</p></div>
+            <div><span>{tr("IMPROVING DATASET")}</span><strong>{tr("Expand and strengthen the training input")}</strong><p>{tr("Public sources were cleaned, reorganised and balanced into 5,320 images. Controlled rotations, shifts, zooms and flips added variety during training.")}</p></div>
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M17 7h3M4 12h3M10 12h10M4 17h8M15 17h5"/><circle cx="15.5" cy="7" r="1.5"/><circle cx="8.5" cy="12" r="1.5"/><circle cx="13.5" cy="17" r="1.5"/></svg>
             </span>
-            <div><span>{tr("FINE TUNING")}</span><strong>{tr("Adapt VGG16 to the four MRI classes")}</strong><p>{tr("Images were standardised to 224 × 224 × 3. Pretrained visual features were retained while the classification output was adapted to the target classes with roughly 16,000 trainable parameters.")}</p></div>
+            <div><span>{tr("FINE TUNING")}</span><strong>{tr("Adapt VGG16 to the four MRI classes")}</strong><p>{tr("Images were standardised to 224 × 224 × 3. VGG16’s pretrained features were retained, while roughly 16,000 trainable parameters adapted the output to four classes.")}</p></div>
           </li>
           <li>
             <span class="plant-flow-symbol" aria-hidden="true">
@@ -234,9 +236,9 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         <div class="split-copy">
           <div>
             <p class="case-eyebrow">{tr("DATA STRATEGY")}</p>
-            <h2 id="data-title">{tr("More data helped. Better controlled data mattered more.")}</h2>
+            <h2 id="data-title">{tr("Better data made the difference.")}</h2>
           </div>
-          <div><p>{tr("The final experiment used 5,320 MRI images with balanced class counts. A 70/20/10 strategy separated learning, model selection and final evaluation, while augmentation introduced controlled rotations, shifts, zoom and flips exclusively during training.")}</p></div>
+          <div><p>{tr("The final dataset contained 5,320 MRI images with balanced classes. A 70/20/10 split separated training, validation and testing. Controlled rotations, shifts, zooms and flips were applied only during training.")}</p></div>
         </div>
         <div class="dataset-bar" aria-label={tr("Dataset distribution")}>
           <div class="train"><strong>3,720</strong><span>{tr("Training · 70%")}</span></div>
@@ -254,7 +256,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           <div>
             <p class="case-eyebrow">{tr("OPEN ACADEMIC DATA")}</p>
             <h3 id="sources-title">{tr("Where the MRI images came from.")}</h3>
-            <p>{tr("The research combined publicly accessible MRI collections used for academic experimentation. Images from the different sources were reviewed, reorganised and filtered before entering the common training workflow.")}</p>
+            <p>{tr("The study combined public MRI collections for academic research. Images were reviewed, reorganised and filtered before entering a shared training process.")}</p>
           </div>
           <div class="source-links">
             <a class="interactive-control neon-box-control premium-neon-control dataset-source-card" href="https://figshare.com/articles/dataset/brain_tumor_dataset/1512427" target="_blank" rel="noreferrer">
@@ -277,7 +279,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("EXPERIMENTAL RESULTS")}</p>
           <h2 id="results-title">{tr("Strong results across classes, with visible room for improvement.")}</h2>
-          <p>{tr("The four class model reached 88.17% training accuracy. Evaluation by class showed that glioma remained the most difficult category, reinforcing the importance of visual similarity and dataset quality.")}</p>
+          <p>{tr("The four-class model achieved 88.17% training accuracy. Glioma remained the hardest class to identify, highlighting the effects of visual similarity and data quality.")}</p>
         </div>
         <figure class="benchmark-figure">
           <div class="benchmark-chart" role="group" aria-label={tr("Comparison between target class reference results and the predicted label performance of the applied model")}>
@@ -291,10 +293,10 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
                 {[
                   { label: tr("Meningioma"), target: 74.0, predicted: 95.38 },
                   { label: tr("Glioma"), target: 85.7, predicted: 81.54 },
-                  { label: tr("Pituitary"), target: 88.4, predicted: 87.66 },
+                  { label: tr("Pituitary tumour"), target: 88.4, predicted: 87.66 },
                   { label: tr("No tumour"), target: null, predicted: 93.08 },
                 ].map(({ label, target, predicted }) => (
-                  <div class:list={["comparison-group", target === null && "has-no-target"]} aria-label={isDutch ? `${label}: ${target === null ? "geen referentiebenchmark beschikbaar" : `referentie ${target.toFixed(2)} procent`}; voorspeld ${predicted.toFixed(2)} procent` : isGerman ? `${label}: ${target === null ? "keine Referenzbenchmark verfügbar" : `Referenz ${target.toFixed(2)} Prozent`}; prognostiziert ${predicted.toFixed(2)} Prozent` : `${label}: ${target === null ? "target benchmark not available" : `target ${target.toFixed(2)} percent`}; predicted ${predicted.toFixed(2)} percent`}>
+                  <div class:list={["comparison-group", target === null && "has-no-target"]} aria-label={isFrench ? `${label} : ${target === null ? "référence indisponible" : `référence ${target.toFixed(2).replace(".", ",")} %`} ; prédiction ${predicted.toFixed(2).replace(".", ",")} %` : isDutch ? `${label}: ${target === null ? "geen referentiebenchmark beschikbaar" : `referentie ${target.toFixed(2)} procent`}; voorspeld ${predicted.toFixed(2)} procent` : isGerman ? `${label}: ${target === null ? "keine Referenzbenchmark verfügbar" : `Referenz ${target.toFixed(2)} Prozent`}; prognostiziert ${predicted.toFixed(2)} Prozent` : `${label}: ${target === null ? "target benchmark not available" : `target ${target.toFixed(2)} percent`}; predicted ${predicted.toFixed(2)} percent`}>
                     <div class="comparison-row-heading">
                       <strong class="comparison-class">{label}</strong>
                       {target !== null
@@ -310,7 +312,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
                         <strong>{target !== null ? `${target.toFixed(2)}%` : "N/A"}</strong>
                       </div>
                       <div class="metric-bar-row">
-                        <span class="metric-bar-label">Model</span>
+                        <span class="metric-bar-label">{isFrench ? "Modèle" : isGerman ? "Modell" : "Model"}</span>
                         <span class="metric-bar-track" aria-hidden="true"><span class="metric-bar-fill model-bar" style={`width:${predicted}%`}></span></span>
                         <strong class="model-value">{predicted.toFixed(2)}%</strong>
                       </div>
@@ -322,7 +324,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
           </div>
           <figcaption>
             <strong>{tr("Impact of the applied techniques.")}</strong>
-            <span>{tr("The model exceeded the reference result for meningioma, remained close for pituitary images and showed a measurable gap for glioma. The no-tumour class reached 93.08%, although no equivalent benchmark was available for a direct comparison.")}</span>
+            <span>{tr("The model exceeded the meningioma reference, came close for pituitary tumours and fell short for glioma. The no-tumour class reached 93.08%, with no equivalent reference for a direct comparison.")}</span>
           </figcaption>
         </figure>
       </section>
@@ -334,8 +336,8 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <h2 id="application-title">{tr("From trained model to functional application.")}</h2>
           </div>
           <div>
-            <p>{tr("As part of the study, I developed a web application that connected the trained Keras model to a Python and Flask backend. Users could submit an MRI image and receive probabilities across four classes, presented numerically and through D3.js visualisations. This demonstrated how the research model could support a practical review workflow.")}</p>
-            <p class="prediction-study-copy">{tr("To demonstrate the complete inference workflow, a pituitary MRI sample was submitted to the application. The report records the selected image, the probability assigned to each class and the final classification returned by the model.")}</p>
+            <p>{tr("I built a web application linking the trained Keras model to a Python and Flask backend. Users could submit an MRI image and view four class probabilities as numbers and D3.js charts, demonstrating a practical research workflow.")}</p>
+            <p class="prediction-study-copy">{tr("A pituitary tumour MRI demonstrates the complete inference process. The report shows the input image, each class probability and the model’s final classification.")}</p>
           </div>
         </div>
         <figure class="prediction-report">
@@ -343,7 +345,28 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <img src={imageLibrary.projects.brainTumourMri.classPituitary.dark.desktop} alt={tr("Pituitary tumour MRI selected as input for prediction across four classes")} />
             <span aria-hidden="true">{tr("Expand")}</span>
           </button>
-          <pre aria-label={tr("Prediction report covering four classes")}>{isDutch ? `========================================
+          <pre aria-label={tr("Prediction report covering four classes")}>{isFrench ? `========================================
+RAPPORT DE CLASSIFICATION D’IRM
+========================================
+
+DONNÉES D’ENTRÉE
+FICHIER.......... pituitary (654).png
+TYPE D’ENTRÉE.... IMAGE D’IRM
+SORTIE DU MODÈLE. QUATRE CLASSES
+
+PROBABILITÉS PRÉDITES
+MÉNINGIOME....... 0,007176
+ABSENCE DE TUMEUR 0,000283
+GLIOME........... 0,051178
+TUMEUR HYPOPHYSAIRE 0,941363
+
+CLASSIFICATION PRINCIPALE
+CLASSE........... TUMEUR HYPOPHYSAIRE
+PROBABILITÉ...... 94,1363 %
+
+ÉTAT DU RAPPORT.. TERMINÉ
+FIN DU RAPPORT
+========================================` : isDutch ? `========================================
 MRI-CLASSIFICATIERAPPORT
 ========================================
 
@@ -353,14 +376,14 @@ INVOERTYPE....... MRI-BEELD
 MODELUITVOER..... VIER KLASSEN
 
 VOORSPELLINGSSCORES
-MENINGIOMA....... 0.007176
-GEEN TUMOR....... 0.000283
-GLIOMA........... 0.051178
-PITUITARY........ 0.941363
+MENINGEOOM....... 0,007176
+GEEN TUMOR....... 0,000283
+GLIOOM........... 0,051178
+HYPOFYSETUMOR........ 0,941363
 
 PRIMAIRE CLASSIFICATIE
-LABEL............ PITUITARY
-ZEKERHEID........ 94.1363%
+LABEL............ HYPOFYSETUMOR
+KANS........ 94,1363%
 
 RAPPORTSTATUS.... VOLTOOID
 EINDE RAPPORT
@@ -374,14 +397,14 @@ EINGABETYP........ MRT-BILD
 MODELLAUSGABE..... VIER KLASSEN
 
 PROGNOSEWERTE
-MENINGIOM......... 0.007176
-KEIN TUMOR........ 0.000283
-GLIOM............. 0.051178
-HYPOPHYSENTUMOR... 0.941363
+MENINGIOM......... 0,007176
+KEIN TUMOR........ 0,000283
+GLIOM............. 0,051178
+HYPOPHYSENTUMOR... 0,941363
 
 PRIMÄRE KLASSIFIKATION
 KLASSE............ HYPOPHYSENTUMOR
-SICHERHEIT........ 94.1363%
+WAHRSCHEINLICHKEIT 94,1363 %
 
 BERICHTSSTATUS.... ABGESCHLOSSEN
 ENDE DES BERICHTS
@@ -402,7 +425,7 @@ PITUITARY........ 0.941363
 
 PRIMARY CLASSIFICATION
 LABEL............ PITUITARY
-CONFIDENCE....... 94.1363%
+PROBABILITY...... 94.1363%
 
 REPORT STATUS.... COMPLETE
 END OF REPORT
@@ -436,9 +459,9 @@ END OF REPORT
               <circle class="is-no-tumour" cx="670" cy="287" r="4" />
             </svg>
 
-            <div class="prediction-orbital-tag is-pituitary"><span>Pituitary</span><strong>94.1363%</strong></div>
-            <div class="prediction-orbital-tag is-glioma"><span>Glioma</span><strong>5.1178%</strong></div>
-            <div class="prediction-orbital-tag is-meningioma"><span>Meningioma</span><strong>0.7176%</strong></div>
+            <div class="prediction-orbital-tag is-pituitary"><span>{tr("Pituitary tumour")}</span><strong>94.1363%</strong></div>
+            <div class="prediction-orbital-tag is-glioma"><span>{tr("Glioma")}</span><strong>5.1178%</strong></div>
+            <div class="prediction-orbital-tag is-meningioma"><span>{tr("Meningioma")}</span><strong>0.7176%</strong></div>
             <div class="prediction-orbital-tag is-no-tumour"><span>{tr("No tumour")}</span><strong>0.0283%</strong></div>
           </div>
         </figure>
@@ -447,8 +470,8 @@ END OF REPORT
       <section class="case-section responsible-use-section" aria-labelledby="research-foundation-title">
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("RESPONSIBLE RESEARCH · TECHNICAL FOUNDATION")}</p>
-          <h2 id="research-foundation-title">{tr("A complete workflow with a clear clinical boundary.")}</h2>
-          <p>{tr("The stack connected model development, accelerated experimentation, backend inference and browser visualisation within one complete workflow. It remains a research prototype designed to support experimentation and cannot replace diagnosis by qualified medical professionals.")}</p>
+          <h2 id="research-foundation-title">{tr("A research workflow with clear clinical limits.")}</h2>
+          <p>{tr("The system linked model development, accelerated experiments, backend inference and browser charts. It is a research prototype and cannot replace diagnosis by qualified medical professionals.")}</p>
         </div>
         <div class="merged-research-tools">
           <div class="case-tags" aria-label={tr("Core technologies")}>
@@ -494,7 +517,7 @@ END OF REPORT
           <div class="case-hero-copy">
             <p class="case-eyebrow">{tr("PROFESSIONAL CONTRIBUTION · POWER SYSTEMS")}</p>
             <h1>{tr("Transmission grid stability decision support.")}</h1>
-            <p class="case-lead">{tr("Collaborative software engineering for applications that evaluate controlled network contingencies and help specialists understand transmission system behaviour.")}</p>
+            <p class="case-lead">{tr("Collaborative software development for simulated network contingencies and specialist analysis of transmission system behaviour.")}</p>
           </div>
 
           <figure class="grid-hero-visual">
@@ -515,7 +538,7 @@ END OF REPORT
           </div>
           <div>
             <p>{tr("The project supports one of Europe’s leading electricity transmission operators, responsible for the Dutch high voltage grid and a substantial part of the German network.")}</p>
-            <p>{tr("As renewable generation, interconnection and operational complexity increase, engineering teams need dependable applications that convert network conditions into structured simulations and reviewable technical results.")}</p>
+            <p>{tr("Growing renewable generation, interconnection and operational complexity require reliable software. Engineering teams use it to turn network conditions into structured simulations and verifiable results.")}</p>
           </div>
         </div>
         <div class="network-context-layout">
@@ -529,9 +552,9 @@ END OF REPORT
           <div class="network-context-metrics" aria-label={tr("Future electricity system planning context")}>
             <article><span>{tr("PLANNING HORIZON")}</span><strong>2045</strong><p>{tr("A long term grid vision that connects offshore generation, energy hubs and reinforced continental infrastructure.")}</p></article>
             <article><span>{tr("ELECTRICITY DEMAND")}</span><strong>{tr("More than 2x")}</strong><p>{tr("Projected consumption could more than double across the Dutch and German energy systems.")}</p></article>
-            <article><span>{tr("GENERATION CAPACITY")}</span><strong>5x to 10x</strong><p>{tr("Future scenarios anticipate a major expansion of generation capacity as electrification accelerates.")}</p></article>
+            <article><span>{tr("GENERATION CAPACITY")}</span><strong>{isFrench ? "× 5 à × 10" : isGerman ? "5- bis 10-fach" : isDutch ? "5 tot 10 keer" : "5x to 10x"}</strong><p>{tr("Future scenarios anticipate a major expansion of generation capacity as electrification accelerates.")}</p></article>
             <article><span>{tr("OFFSHORE WIND")}</span><strong>{tr("About 70 GW")}</strong><p>{tr("The planning context considers approximately 70 GW of offshore wind for each country.")}</p></article>
-            <p class="source-note">{isDutch ? "Toekomstige planningscontext" : isGerman ? "Kontext der zukünftigen Netzplanung" : "Future planning context"}: <a href="https://www.offshorewind.biz/2023/04/13/tennet-unveils-electricity-grid-plans-for-2045/" target="_blank" rel="noopener noreferrer">{tr("Electricity grid plans for 2045")}</a>. {tr("The map is a conceptual portfolio reconstruction, not an operational network diagram.")}</p>
+            <p class="source-note">{isFrench ? "Contexte de planification ? long terme" : isDutch ? "Toekomstige planningscontext" : isGerman ? "Kontext der zukünftigen Netzplanung" : "Future planning context"}: <a href="https://www.offshorewind.biz/2023/04/13/tennet-unveils-electricity-grid-plans-for-2045/" target="_blank" rel="noopener noreferrer">{tr("Electricity grid plans for 2045")}</a>. {tr("The map is a conceptual portfolio reconstruction, not an operational network diagram.")}</p>
           </div>
         </div>
       </section>
@@ -557,7 +580,7 @@ END OF REPORT
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("CONTINGENCY DRIVEN ANALYSIS")}</p>
           <h2 id="contingency-title">{tr("Controlled disturbances reveal how the system responds.")}</h2>
-          <p>{tr("A contingency represents a defined change introduced into a network simulation. Rather than predicting an incident in isolation, the application evaluates the resulting system response under selected operating conditions.")}</p>
+          <p>{tr("A contingency is a defined change in a network simulation. The application assesses the resulting system response under selected operating conditions; it does not predict an isolated incident.")}</p>
         </div>
         <div class="contingency-grid">
           <article><span>{tr("LINE EVENT")}</span><strong>{tr("Transmission path unavailable")}</strong><p>{tr("A conceptual line outage tests how power flows redistribute through the remaining network.")}</p></article>
@@ -598,11 +621,11 @@ END OF REPORT
         <div class="split-copy">
           <div>
             <p class="case-eyebrow">{tr("ENGINEERING CONTRIBUTION")}</p>
-            <h2 id="contribution-title">{tr("Software built within a multidisciplinary delivery environment.")}</h2>
+            <h2 id="contribution-title">{tr("Software developed by multidisciplinary teams.")}</h2>
           </div>
           <div>
-            <p>{tr("My contribution covers the design, development, testing and deployment of application components across offline and online environments. The work connects software engineering with power system analysis, data preparation and operational requirements.")}</p>
-            <p>{tr("I also support integration with existing infrastructure and specialist simulation tools, validating datasets, inputs and outputs so that results remain accurate, reproducible and suitable for technical review.")}</p>
+            <p>{tr("I design, develop, test and deploy application components in offline and online environments. The work combines software engineering, power system analysis, data preparation and operational requirements.")}</p>
+            <p>{tr("I also support integration with existing infrastructure and specialist simulation tools. Validating datasets, inputs and outputs keeps results accurate, reproducible and ready for technical review.")}</p>
           </div>
         </div>
       </section>
@@ -611,7 +634,7 @@ END OF REPORT
         <div class="section-heading compact-heading crof-heading">
           <p class="case-eyebrow">{tr("CONTROL ROOM OF THE FUTURE")}</p>
           <h2 id="crof-title">{tr("A more integrated environment for operational decision support.")}</h2>
-          <p>{tr("CRoF brings grid data, network models, security assessment and decision support into a coordinated environment. Its purpose is to combine automation with human supervision as system complexity grows.")}</p>
+          <p>{tr("CRoF brings network data, models, security assessment and decision support into one environment. It combines automation with human supervision as system complexity grows.")}</p>
         </div>
         <div class="crof-gallery">
           <figure>
@@ -638,7 +661,7 @@ END OF REPORT
             <h2 id="literature-title">{tr("Online assessment connects system behaviour with visual decision support.")}</h2>
           </div>
           <div>
-            <p>{tr("Published research also explores data driven online assessment combined with spatial and temporal visualisation. This reinforces a central principle of the project: simulation output creates greater value when specialists can interpret system behaviour through structured and accessible evidence.")}</p>
+            <p>{tr("Published research also combines data-driven online assessment with spatial and temporal visualisation. It supports the same principle: simulation results are more useful when specialists can interpret them through clear, structured evidence.")}</p>
             <a class="interactive-control neon-box-control premium-neon-control literature-link" href="https://doi.org/10.1016/j.ijepes.2020.106316" target="_blank" rel="noopener noreferrer">
               <span class="neon-box-label">{tr("Explore related paper")}</span>
             </a>
@@ -649,7 +672,7 @@ END OF REPORT
       <section class="case-section" aria-labelledby="reflection-title">
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("PROFESSIONAL REFLECTION")}</p>
-          <h2 id="reflection-title">{tr("Engineering value emerges through collaboration and disciplined integration.")}</h2>
+          <h2 id="reflection-title">{tr("Reliable systems need collaboration and careful integration.")}</h2>
         </div>
         <ol class="plant-flow grid-reflection" aria-label="Professional contribution and learning">
           <li>
@@ -677,7 +700,7 @@ END OF REPORT
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("TECHNICAL FOUNDATION")}</p>
           <h2 id="grid-technology-title">{tr("Tools supporting the engineering workflow.")}</h2>
-          <p>{tr("The technical environment combines Python application development with PowerTech DSA Tools, containerised services, infrastructure integration, simulation data and deployment across multiple operating systems.")}</p>
+          <p>{tr("The environment combines Python development, PowerTech DSA Tools, containerised services, infrastructure integration and simulation data, with deployment across multiple operating systems.")}</p>
         </div>
         <div class="case-tags" aria-label={tr("Core technologies")}>
           {project.technicalScope.map((item) => <span>{tr(item)}</span>)}
@@ -700,7 +723,7 @@ END OF REPORT
           <div class="case-hero-copy">
             <p class="case-eyebrow">{tr("PROFESSIONAL CONTRIBUTION · RENEWABLE CONTROL")}</p>
             <h1>{tr("Coordinating power across a utility scale photovoltaic plant.")}</h1>
-            <p class="case-lead">{tr("Control and systems integration for a 380 MW photovoltaic plant in Extremadura, Spain, connecting PPC, PLC, SCADA and HMI layers with the operational behaviour expected at the grid connection point.")}</p>
+            <p class="case-lead">{tr("Control and systems integration for a 380 MW photovoltaic plant in Extremadura, Spain. PPC, PLC, SCADA and HMI systems work together to meet requirements at the grid connection point.")}</p>
           </div>
 
           <figure class="renewable-hero-visual">
@@ -720,8 +743,8 @@ END OF REPORT
             <h2 id="solar-context-title">{tr("A large plant within Spain's photovoltaic transformation.")}</h2>
           </div>
           <div>
-            <p>{tr("Extremadura has become one of Spain's most important solar regions. The plant context used for this portfolio covers 380 MW of capacity, more than 930,000 panels on fixed support structures and 226 inverters distributed across a vast generation site.")}</p>
-            <p>{tr("That scale changes the control problem. Thousands of field devices must respond as one coordinated power plant, with reliable supervision and a predictable response at the grid connection point.")}</p>
+            <p>{tr("Extremadura is one of Spain’s leading solar regions. The plant presented here has 380 MW of capacity, more than 930,000 panels on fixed structures and 226 inverters across a large site.")}</p>
+            <p>{tr("At this scale, thousands of field devices must respond as one coordinated plant. That requires reliable supervision and predictable behaviour at the grid connection point.")}</p>
           </div>
         </div>
       </section>
@@ -761,8 +784,8 @@ END OF REPORT
             <h2 id="engineering-work-title">{tr("Making the control layers work together on site.")}</h2>
           </div>
           <div>
-            <p>{tr("My work supported the deployment and commissioning of a Power Plant Controller implemented on PLC technology, including its integration with the HMI, SCADA environment and plant communications.")}</p>
-            <p>{tr("The role connected control logic with real installation conditions through structured testing, technical troubleshooting and coordination during commissioning, while validating the plant response against defined grid requirements.")}</p>
+            <p>{tr("I supported the deployment and commissioning of a PLC-based Power Plant Controller, including integration with the HMI, SCADA system and plant communications.")}</p>
+            <p>{tr("Structured tests, troubleshooting and commissioning coordination linked the control logic to real site conditions. The plant’s response was checked against defined grid requirements.")}</p>
           </div>
         </div>
         <ol class="plant-flow" aria-label={tr("Engineering contribution workflow")}>
@@ -794,15 +817,15 @@ END OF REPORT
             <h2 id="control-system-title">{tr("Software decisions connected to physical equipment.")}</h2>
           </div>
           <div>
-            <p>{tr("PLC hardware executes dependable control close to the process. The PPC coordinates active and reactive behaviour at plant level, while SCADA and HMI systems expose status, alarms and trends to engineering and operations teams.")}</p>
-            <p>{tr("Industrial communications and redundant services keep those layers connected, making signal quality, time consistency and failover behaviour as important as the application logic itself.")}</p>
+            <p>{tr("PLCs provide reliable control close to the process. The PPC coordinates active and reactive power, while SCADA and HMI systems show status, alarms and trends to engineering and operations teams.")}</p>
+            <p>{tr("Industrial communications and redundant services connect these layers. Signal quality, timing and failover are as important as the application logic.")}</p>
           </div>
         </div>
         <figure class="renewable-control-visual">
           <button type="button" class="figure-zoom-trigger" data-lightbox-trigger aria-label={tr("Enlarge conceptual hybrid renewable plant control architecture")}>
             <picture>
               <source media="(max-width: 640px)" srcset={imageLibrary.projects.renewableControl.hybridArchitecture.dark.mobile} />
-              <img src={imageLibrary.projects.renewableControl.hybridArchitecture.dark.desktop} alt={tr("Integrated hybrid renewable architecture connecting a three-turbine wind farm and solar generation through local PPCs, hybrid plant coordination, operator supervision and the electrical grid point of interconnection")} />
+              <img src={imageLibrary.projects.renewableControl.hybridArchitecture.dark.desktop} alt={tr("Hybrid architecture linking three wind turbines and solar generation through local PPCs, plant coordination, operator supervision and the grid connection point")} />
             </picture>
             <span aria-hidden="true">{tr("Expand")}</span>
           </button>
@@ -817,8 +840,8 @@ END OF REPORT
             <h2 id="solar-transition-title">{tr("Photovoltaic growth increases the value of dependable control.")}</h2>
           </div>
           <div>
-            <p>{tr("Spain's photovoltaic fleet expanded rapidly during the last decade. By early 2025, solar PV had become the country's largest generation technology by installed capacity, reaching 32,043 MW and almost one quarter of the national generation fleet.")}</p>
-            <p>{tr("As more solar capacity connects to the system, plant controllers become essential infrastructure: they help large installations translate variable generation into a measurable, supervised and coordinated grid response.")}</p>
+            <p>{tr("Spain’s photovoltaic capacity grew rapidly over the past decade. By early 2025 it reached 32,043 MW, making solar PV the country’s largest generation technology by installed capacity, at almost a quarter of the total.")}</p>
+            <p>{tr("As more solar capacity connects to the grid, plant controllers become essential. They turn variable generation into a measurable, supervised and coordinated response.")}</p>
             <a class="interactive-control neon-box-control premium-neon-control literature-link" href="https://www.ree.es/en/press-office/press-release/news/press-release/2025/02/solar-pv-takes-lead-spains-installed-power-capacity" target="_blank" rel="noopener noreferrer">
               <span class="neon-box-label">{tr("Explore national context")}</span>
             </a>
@@ -829,8 +852,8 @@ END OF REPORT
       <section class="case-section responsible-use-section technology-section" aria-labelledby="renewable-foundation-title">
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("PORTFOLIO BOUNDARY · TECHNICAL FOUNDATION")}</p>
-          <h2 id="renewable-foundation-title">{tr("Plant control experience, presented with professional discretion.")}</h2>
-          <p>{tr("The work combined coordinated plant regulation, deterministic automation, operator supervision, industrial communications, redundancy and structured commissioning. This portfolio presents that contribution at a systems level while protecting plant setpoints, internal topology, source code, operational procedures and confidential interfaces.")}</p>
+          <h2 id="renewable-foundation-title">{tr("Plant control experience within clear publication limits.")}</h2>
+          <p>{tr("The work combined plant regulation, deterministic automation, operator supervision, industrial communications, redundancy and commissioning. This portfolio describes the system-level contribution without disclosing setpoints, internal topology, source code, operating procedures or confidential interfaces.")}</p>
         </div>
         <div class="case-tags" aria-label={tr("Core technologies")}>
           {project.technicalScope.map((item) => <span>{tr(item)}</span>)}
@@ -858,7 +881,7 @@ END OF REPORT
             <p class="case-eyebrow">{tr("TELECOMMUNICATIONS · FIELD DEPLOYMENT")}</p>
             <h1>{localizedProject.title}</h1>
             <p class="case-lead">{localizedProject.summary}</p>
-            <p class="telecom-support">{tr("At Xacom Communications, I connected RF engineering with practical field delivery: site surveys, system design, installation, testing, troubleshooting and final certification across multiple generations of mobile technology.")}</p>
+            <p class="telecom-support">{tr("At Xacom Communications, I combined RF engineering with site delivery: surveys, design, installation, testing, troubleshooting and final certification across several generations of mobile technology.")}</p>
           </div>
 
           <figure class="telecom-coverage-figure">
@@ -909,7 +932,7 @@ END OF REPORT
           <h2 id="telecom-reference-title">Aigües de Barcelona</h2>
         </div>
         <div>
-          <p>{tr("I supported integrated communication systems designed to extend mobile network availability across operational facilities and technically challenging areas. The work covered underground facilities, underwater tunnels, industrial sites and remote locations where conventional mobile connectivity was limited or unavailable.")}</p>
+          <p>{tr("I supported integrated systems that extended mobile coverage in difficult environments. Projects included underground facilities, underwater tunnels, industrial sites and remote locations with limited or no conventional connectivity.")}</p>
           <p>{tr("Reliable coverage supported everyday coordination and dependable communications for operational personnel, including emergency response scenarios.")}</p>
           <div class="telecom-environments" aria-label={tr("Deployment environments")}>
             <span>{tr("Industrial")}</span>
@@ -923,7 +946,7 @@ END OF REPORT
         <div class="section-heading compact-heading">
           <p class="case-eyebrow">{tr("TECHNICAL FOUNDATION")}</p>
           <h2 id="telecom-foundation-title">{tr("A connected spectrum of field technologies.")}</h2>
-          <p>{tr("The technical foundation connected mobile network standards, distributed antenna coverage and remote integration within one coherent field architecture, from signal acquisition to operational verification.")}</p>
+          <p>{tr("The architecture combined mobile network standards, distributed antennas and remote integration, from signal reception to operational testing.")}</p>
         </div>
         <div class="merged-research-tools">
           <div class="case-tags" aria-label={tr("Core telecommunications technologies")}>
@@ -972,6 +995,7 @@ END OF REPORT
 </BaseLayout>
 
 <script>
+  const isFrenchDocument = document.documentElement.lang === "fr";
   const isDutchDocument = document.documentElement.lang === "nl";
   const isGermanDocument = document.documentElement.lang === "de";
   const zoomTriggers = document.querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]");
@@ -993,7 +1017,7 @@ END OF REPORT
       const sourceStyles = getComputedStyle(sourceImage);
       activeTrigger = trigger;
       lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
-      lightboxImage.alt = isDutchDocument ? `Vergroot: ${sourceImage.alt}` : isGermanDocument ? `Vergrößert: ${sourceImage.alt}` : `Expanded ${sourceImage.alt}`;
+      lightboxImage.alt = isFrenchDocument ? `Vue agrandie : ${sourceImage.alt}` : isDutchDocument ? `Vergroot: ${sourceImage.alt}` : isGermanDocument ? `Vergrößert: ${sourceImage.alt}` : `Expanded ${sourceImage.alt}`;
       lightboxImage.style.filter = sourceStyles.filter;
       lightboxImage.style.mixBlendMode = sourceStyles.mixBlendMode;
       lightboxImage.style.opacity = sourceStyles.opacity;
@@ -1120,13 +1144,13 @@ END OF REPORT
           });
 
           api.updateAnnotation(0, {
-            title: "Pituitary Tumor",
-            content: "Asymmetrically embedded within normal gland tissue.",
+            title: isFrenchDocument ? "Tumeur hypophysaire" : isDutchDocument ? "Hypofysetumor" : isGermanDocument ? "Hypophysentumor" : "Pituitary tumour",
+            content: isFrenchDocument ? "Présente de manière asymétrique dans le tissu glandulaire normal." : isDutchDocument ? "Asymmetrisch ingebed in normaal klierweefsel." : isGermanDocument ? "Asymmetrisch in normales Drüsengewebe eingebettet." : "Asymmetrically embedded in normal gland tissue.",
           });
           api.removeAnnotation(1, () => {
             api.updateAnnotation(1, {
-              title: "Brain",
-              content: "Segmentation of CT Brain in lilac.",
+              title: isFrenchDocument ? "Cerveau" : isDutchDocument ? "Hersenen" : isGermanDocument ? "Gehirn" : "Brain",
+              content: isFrenchDocument ? "Segmentation du cerveau au scanner, représentée en lilas." : isDutchDocument ? "Segmentatie van de hersenen op CT, weergegeven in lila." : isGermanDocument ? "Segmentierung des Gehirns im CT, in Lila dargestellt." : "CT brain segmentation shown in lilac.",
             });
           });
 
@@ -1192,14 +1216,14 @@ END OF REPORT
             }
             api.setMaterial(tumourMaterial);
             tumourToggle.setAttribute("aria-pressed", String(tumourVisible));
-            tumourToggle.textContent = tumourVisible ? (isDutchDocument ? "Tumor verbergen" : isGermanDocument ? "Tumor ausblenden" : "Hide Tumor") : (isDutchDocument ? "Tumor tonen" : isGermanDocument ? "Tumor anzeigen" : "Show Tumor");
+            tumourToggle.textContent = tumourVisible ? (isFrenchDocument ? "Masquer la tumeur" : isDutchDocument ? "Tumor verbergen" : isGermanDocument ? "Tumor ausblenden" : "Hide Tumor") : (isFrenchDocument ? "Afficher la tumeur" : isDutchDocument ? "Tumor tonen" : isGermanDocument ? "Tumor anzeigen" : "Show Tumor");
           });
           tagsToggle?.addEventListener("click", () => {
             tagsVisible = !tagsVisible;
             [0, 1].forEach((index) => tagsVisible ? api.showAnnotation(index) : api.hideAnnotation(index));
             tagsVisible ? api.showAnnotationTooltips() : api.hideAnnotationTooltips();
             tagsToggle.setAttribute("aria-pressed", String(tagsVisible));
-            tagsToggle.textContent = tagsVisible ? (isDutchDocument ? "Labels verbergen" : isGermanDocument ? "Markierungen ausblenden" : "Hide Tags") : (isDutchDocument ? "Labels tonen" : isGermanDocument ? "Markierungen anzeigen" : "Show Tags");
+            tagsToggle.textContent = tagsVisible ? (isFrenchDocument ? "Masquer les repères" : isDutchDocument ? "Labels verbergen" : isGermanDocument ? "Labels ausblenden" : "Hide Tags") : (isFrenchDocument ? "Afficher les repères" : isDutchDocument ? "Labels tonen" : isGermanDocument ? "Markierungen anzeigen" : "Show Tags");
           });
         });
       },
@@ -1309,7 +1333,7 @@ END OF REPORT
             }
             api.setMaterial(tumourMaterial);
             secondTumourToggle.setAttribute("aria-pressed", String(tumourVisible));
-            secondTumourToggle.textContent = tumourVisible ? (isDutchDocument ? "Tumor verbergen" : isGermanDocument ? "Tumor ausblenden" : "Hide Tumor") : (isDutchDocument ? "Tumor tonen" : isGermanDocument ? "Tumor anzeigen" : "Show Tumor");
+            secondTumourToggle.textContent = tumourVisible ? (isFrenchDocument ? "Masquer la tumeur" : isDutchDocument ? "Tumor verbergen" : isGermanDocument ? "Tumor ausblenden" : "Hide Tumor") : (isFrenchDocument ? "Afficher la tumeur" : isDutchDocument ? "Tumor tonen" : isGermanDocument ? "Tumor anzeigen" : "Show Tumor");
           });
         });
       },

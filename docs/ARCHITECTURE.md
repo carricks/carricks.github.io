@@ -1,6 +1,6 @@
 # Architecture
 
-Last updated: 21 October 2026
+Last updated: 22 October 2026
 
 ## Status
 
@@ -27,15 +27,16 @@ src/
   config/                       Site-wide profile configuration
   data/                         About destinations and project records
   layouts/                      Shared HTML shell and metadata defaults
-  i18n/                         Typed English, Dutch and German content
+  i18n/                         Typed English, Dutch, German and French content
   pages/
     index.astro                 Homepage
     de/                         German homepage, About and Milestone routes
     nl/                         Dutch homepage, About and Milestone routes
+    fr/                         French homepage, About and Milestone routes
     about/academic.astro        Academic background
     about/experience.astro      Professional experience
     milestones/hardwarethon.astro Published recognition detail
-    [...path].astro             Shared EN/NL/DE static project case studies
+    [...path].astro             Shared EN/NL/DE/FR static project case studies
   styles/                       Tailwind entry point and global interactions
   types/                        Shared TypeScript contracts
 docs/                           Product, content, design and delivery guidance
@@ -62,6 +63,14 @@ docs/                           Product, content, design and delivery guidance
 /nl/projects/grid-contingency-analysis/
 /nl/projects/telecommunications-coverage-deployment/
 /nl/projects/renewable-plant-control/
+/fr/
+/fr/about/academic/
+/fr/about/experience/
+/fr/milestones/hardwarethon/
+/fr/projects/brain-tumour-mri-classification/
+/fr/projects/grid-contingency-analysis/
+/fr/projects/telecommunications-coverage-deployment/
+/fr/projects/renewable-plant-control/
 /about/academic/
 /about/experience/
 /milestones/hardwarethon/
@@ -101,7 +110,7 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 - `src/styles/global.css` owns shared controls, neon traces, navigation states, the dark-first session theme and motion preferences.
 - The premium neon variant is centralized through `premium-neon-control` and `premium-neon-surface`; route components must not duplicate its gradient or timing.
 - The global header uses passive scroll listeners and `requestAnimationFrame`. Viewports up to 1366 pixels, coarse pointer devices and detected iPads use the accessible circular dropdown; wider desktop layouts retain horizontal section links. The tablet dropdown increases spacing and target size without changing the compact phone treatment.
-- English remains the unprefixed default route, Dutch is published below `/nl/` and German below `/de/`. Homepage, About and project compositions are shared so all three languages retain identical layout and behaviour. Typed copy lives in `src/i18n/`; EN, NL and DE selector options preserve the equivalent internal route while FR remains a visible placeholder. Document language, metadata, navigation labels, form feedback, accessible labels and alternate-language links follow the active locale.
+- English remains the unprefixed default route; Dutch, German and French use `/nl/`, `/de/` and `/fr/`. All four locales share layouts and interactions. Typed copy lives in `src/i18n/`; each language selector preserves the equivalent route and hash. Document language, metadata, navigation, form feedback, accessible labels and alternate-language links follow the active locale.
 - Production deployment runs from `main` through the official Astro GitHub Action. The workflow builds the static output, uploads the Pages artifact and deploys it to the `github-pages` environment at the owner-derived Pages origin `https://dc-x1.github.io`.
 - `FaqSection.astro` uses native `details` and `summary` elements, keeps only one answer expanded at a time and includes contextual links to the relevant About and Project routes. FAQ is available in both desktop and dropdown navigation.
 - Intersection observers provide progressive section and touch feedback.
@@ -187,3 +196,11 @@ Also verify changed routes manually at desktop and mobile viewport sizes.
 Validation on 21 October 2026: the static build generated 24 routes; all 24 routes and 29 public assets returned HTTP 200 locally. The reference/import audit found no unreferenced assets or source modules, duplicate hashes or broken local links. Simulated 3D controls passed in both themes; the production dependency audit reported zero vulnerabilities. The future dc-x1 origin/profile override was also built and checked before restoring the active identity for release. Live WebGL and physical-device visual QA remain pending.
 
 Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
+
+## French localization - 21 October 2026
+
+French is a full locale under /fr/, with homepage, Academic, Experience, Hardwarethon and four project routes. The language selector preserves the equivalent route and hash; alternate-language metadata includes fr. French editorial dictionaries live in home.fr.ts, pages.fr.ts and projects.fr.ts. Runtime model controls and enlarged-image labels also use French. The build now generates 32 routes.
+
+## Sprint 09 closeout - 22 October 2026
+
+Project translation dictionaries are separated into projects.nl.ts, projects.de.ts and projects.fr.ts. The shared English case-study copy remains the lookup source. The static build exposes 32 routes. The reference audit checks all 29 public assets and the page-rooted source import graph; browser-convention favicon use is retained.

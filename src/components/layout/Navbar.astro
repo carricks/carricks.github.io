@@ -8,21 +8,27 @@ interface Props {
 }
 
 const { locale = "en" } = Astro.props;
+const isFrench = locale === "fr";
 const isDutch = locale === "nl";
 const isGerman = locale === "de";
 const homePath = locale === "en" ? "/" : `/${locale}/`;
 const isHome = Astro.url.pathname === homePath || (locale !== "en" && Astro.url.pathname === `/${locale}`);
 const sectionHref = (section: string) => (isHome ? `#${section}` : `${homePath}#${section}`);
-const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de)(?=\/|$)/, "") || "/";
+const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de|fr)(?=\/|$)/, "") || "/";
 const englishPath = locale === "en" ? Astro.url.pathname : unprefixedPath;
 const dutchPath = isDutch ? Astro.url.pathname : `/nl${unprefixedPath}`;
 const germanPath = isGerman ? Astro.url.pathname : `/de${unprefixedPath}`;
-const labels = isGerman
+const frenchPath = isFrench ? Astro.url.pathname : `/fr${unprefixedPath}`;
+const labels = isFrench
+  ? { about: "À propos", projects: "Projets", milestones: "Temps forts", faq: "FAQ", contact: "Contact" }
+  : isGerman
   ? { about: "Über mich", projects: "Projekte", milestones: "Meilensteine", faq: "FAQ", contact: "Kontakt" }
   : isDutch
   ? { about: "Over mij", projects: "Projecten", milestones: "Mijlpalen", faq: "FAQ", contact: "Contact" }
   : { about: "About", projects: "Projects", milestones: "Milestones", faq: "FAQ", contact: "Contact" };
-const ui = isGerman
+const ui = isFrench
+  ? { home: "Revenir à la présentation", chooseLanguage: "Choisir la langue", languages: "Langues disponibles", openMenu: "Ouvrir le menu de navigation", mainNavigation: "Navigation principale", light: "Passer au thème clair", dark: "Passer au thème sombre", lightTitle: "Thème clair", darkTitle: "Thème sombre" }
+  : isGerman
   ? { home: "Zur Einführung", chooseLanguage: "Anzeigesprache auswählen", languages: "Verfügbare Sprachen", openMenu: "Navigationsmenü öffnen", mainNavigation: "Hauptnavigation", light: "Zum hellen Modus wechseln", dark: "Zum dunklen Modus wechseln", lightTitle: "Heller Modus", darkTitle: "Dunkler Modus" }
   : isDutch
   ? { home: "Ga naar de introductie", chooseLanguage: "Taal selecteren", languages: "Beschikbare talen", openMenu: "Navigatiemenu openen", mainNavigation: "Hoofdnavigatie", light: "Overschakelen naar lichte modus", dark: "Overschakelen naar donkere modus", lightTitle: "Lichte modus", darkTitle: "Donkere modus" }
@@ -47,10 +53,10 @@ const ui = isGerman
             <svg class="language-chevron" aria-hidden="true" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1.5 5 5 5-5"></path></svg>
           </summary>
           <div class="language-menu" role="menu" aria-label={ui.languages}>
-            <button type="button" role="menuitemradio" aria-label={isGerman ? "Englisch" : isDutch ? "Engels" : "English"} aria-checked={String(locale === "en")} data-language-option data-code="EN" data-href={englishPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>EN</span></button>
-            <button type="button" role="menuitemradio" aria-label={isGerman ? "Deutsch" : isDutch ? "Duits" : "German"} aria-checked={String(locale === "de")} data-language-option data-code="DE" data-href={germanPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>DE</span></button>
-            <button type="button" role="menuitemradio" aria-label={isGerman ? "Niederländisch" : isDutch ? "Nederlands" : "Dutch"} aria-checked={String(locale === "nl")} data-language-option data-code="NL" data-href={dutchPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>NL</span></button>
-            <button type="button" role="menuitemradio" aria-label={isGerman ? "Französisch" : isDutch ? "Frans" : "French"} aria-checked="false" data-language-option data-code="FR"><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#0055a4" d="M0 0h5v9H0z"/><path fill="#fff" d="M5 0h5v9H5z"/><path fill="#ef4135" d="M10 0h5v9h-5z"/></svg><span>FR</span></button>
+            <button type="button" role="menuitemradio" aria-label={isFrench ? "Anglais" : isGerman ? "Englisch" : isDutch ? "Engels" : "English"} aria-checked={String(locale === "en")} data-language-option data-code="EN" data-href={englishPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 26 16"><rect width="26" height="16" fill="#fff"/><path fill="#b22234" d="M0 0h26v2H0zm0 4h26v2H0zm0 4h26v2H0zm0 4h26v2H0z"/><rect width="11" height="8" fill="#3c3b6e"/><g fill="#fff"><circle cx="2" cy="2" r=".55"/><circle cx="5.5" cy="2" r=".55"/><circle cx="9" cy="2" r=".55"/><circle cx="3.75" cy="4" r=".55"/><circle cx="7.25" cy="4" r=".55"/><circle cx="2" cy="6" r=".55"/><circle cx="5.5" cy="6" r=".55"/><circle cx="9" cy="6" r=".55"/></g></svg><span>EN</span></button>
+            <button type="button" role="menuitemradio" aria-label={isFrench ? "Allemand" : isGerman ? "Deutsch" : isDutch ? "Duits" : "German"} aria-checked={String(locale === "de")} data-language-option data-code="DE" data-href={germanPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#000" d="M0 0h15v3H0z"/><path fill="#dd0000" d="M0 3h15v3H0z"/><path fill="#ffce00" d="M0 6h15v3H0z"/></svg><span>DE</span></button>
+            <button type="button" role="menuitemradio" aria-label={isFrench ? "Néerlandais" : isGerman ? "Niederländisch" : isDutch ? "Nederlands" : "Dutch"} aria-checked={String(locale === "nl")} data-language-option data-code="NL" data-href={dutchPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#ae1c28" d="M0 0h15v3H0z"/><path fill="#fff" d="M0 3h15v3H0z"/><path fill="#21468b" d="M0 6h15v3H0z"/></svg><span>NL</span></button>
+            <button type="button" role="menuitemradio" aria-label={isFrench ? "Français" : isGerman ? "Französisch" : isDutch ? "Frans" : "French"} aria-checked={String(locale === "fr")} data-language-option data-code="FR" data-href={frenchPath}><svg class="language-flag" aria-hidden="true" viewBox="0 0 15 9"><path fill="#0055a4" d="M0 0h5v9H0z"/><path fill="#fff" d="M5 0h5v9H5z"/><path fill="#ef4135" d="M10 0h5v9h-5z"/></svg><span>FR</span></button>
           </div>
         </details>
       </div>

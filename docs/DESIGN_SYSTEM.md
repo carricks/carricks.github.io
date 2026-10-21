@@ -1,6 +1,6 @@
 # Design system
 
-Last updated: 21 October 2026
+Last updated: 22 October 2026
 
 ## Direction
 
@@ -57,7 +57,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Thin animated neon line only at the top resting position.
 - Stronger blur while scrolling; subtle directional tilt.
 - Desktop navigation remains horizontal above 1366 pixels. Phones, tablets, coarse-pointer devices and detected iPads use a Home-sized circular trigger with a right-aligned dropdown. Tablet panels use wider spacing and larger touch targets than the compact phone variant.
-- The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. EN, DE and NL navigate to equivalent localized routes; FR remains a reserved visual placeholder until its translation is implemented.
+- The compact language selector presents constructed rectangular US, German, Dutch and French flags with EN, DE, NL and FR codes only. EN, DE, NL and FR navigate to equivalent localized routes.
 - Home, theme, language and mobile-menu controls use vector icons, a 0.75-pixel optical outline and no outer glow; icon strokes remain geometrically precise at desktop and mobile sizes.
 - FAQ rows use thin dividers, canonical regular-weight body typography for both questions and answers, and a restrained plus/minus indicator without numbered prefixes. Contextual destination links remain underlined without becoming heavier than the surrounding text.
 
@@ -165,3 +165,11 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Automated controller and built-output checks do not replace a live Sketchfab/WebGL or physical-device visual audit. Windows browser automation was unavailable during the earlier visual review; those checks remain explicitly pending.
 
 Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
+
+## French localization - 21 October 2026
+
+All four locales use the shared dark/light typography and responsive layouts. Dutch, German and French model controls have a fixed 10rem width for translated labels. On small screens probability labels stack above their values in every locale so class names can wrap without colliding. Pipeline titles remain regular weight and major headings retain their established weight.
+
+## Sprint 09 closeout - 22 October 2026
+
+Translated controls and medical class labels follow the same shared layout in both themes. Model controls reserve space for longer Dutch, German and French labels; probability labels stack on narrow screens in every language. This sprint preserves the existing heading weights and regular pipeline titles. Physical-device and live WebGL visual checks remain pending.

@@ -13,13 +13,15 @@ const {
   title = "Diego Carrillo | Multidisciplinary Systems Engineer",
   description =
     "Portfolio of Diego Carrillo: Multidisciplinary Systems Engineer specialized in Industrial Automation, SCADA, Renewable Energy and Resilient Power Systems.",
-  locale = Astro.url.pathname === "/nl" || Astro.url.pathname.startsWith("/nl/") ? "nl" : Astro.url.pathname === "/de" || Astro.url.pathname.startsWith("/de/") ? "de" : "en",
+  locale = Astro.url.pathname === "/nl" || Astro.url.pathname.startsWith("/nl/") ? "nl" : Astro.url.pathname === "/de" || Astro.url.pathname.startsWith("/de/") ? "de" : Astro.url.pathname === "/fr" || Astro.url.pathname.startsWith("/fr/") ? "fr" : "en",
 } = Astro.props;
 
-const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de)(?=\/|$)/, "") || "/";
+const unprefixedPath = Astro.url.pathname.replace(/^\/(nl|de|fr)(?=\/|$)/, "") || "/";
 const englishPath = locale === "en" ? Astro.url.pathname : unprefixedPath;
 const dutchPath = locale === "nl" ? Astro.url.pathname : `/nl${unprefixedPath}`;
 const germanPath = locale === "de" ? Astro.url.pathname : `/de${unprefixedPath}`;
+const frenchPath = locale === "fr" ? Astro.url.pathname : `/fr${unprefixedPath}`;
+const frenchUrl = new URL(frenchPath, Astro.site ?? Astro.url.origin);
 const englishUrl = new URL(englishPath, Astro.site ?? Astro.url.origin);
 const dutchUrl = new URL(dutchPath, Astro.site ?? Astro.url.origin);
 const germanUrl = new URL(germanPath, Astro.site ?? Astro.url.origin);
@@ -58,6 +60,7 @@ const germanUrl = new URL(germanPath, Astro.site ?? Astro.url.origin);
   <link rel="alternate" hreflang="en" href={englishUrl} />
   <link rel="alternate" hreflang="nl" href={dutchUrl} />
   <link rel="alternate" hreflang="de" href={germanUrl} />
+  <link rel="alternate" hreflang="fr" href={frenchUrl} />
   <link rel="alternate" hreflang="x-default" href={englishUrl} />
 </head>
 

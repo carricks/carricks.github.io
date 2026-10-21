@@ -1,6 +1,6 @@
 # Product blueprint
 
-Last updated: 21 October 2026
+Last updated: 22 October 2026
 
 ## Vision
 
@@ -8,7 +8,7 @@ Create a focused engineering portfolio that presents Diego Carrillo as a multidi
 
 ## Current product state
 
-The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. English, Dutch and German share the same route structure, layouts and interactions. The design foundation uses a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and three independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
+The website is functional and navigable on desktop, tablet and mobile in persistent dark and light themes. English, Dutch, German and French share the same route structure, layouts and interactions. The design foundation uses a shared semantic typography scale and one icon-led action pattern across About, Projects and Milestones. The MRI research, grid stability, photovoltaic plant control and telecommunications projects provide complete visual case-study patterns. The MRI case study combines static research evidence, an externally labelled theme-aware orbital probability chart and three independently controlled 3D models with deterministic reset behavior. Grid, renewable and telecommunications diagrams share theme-aware semantic variants with explicit system relationships and strict non-overlap rules. A first verified Hardwarethon milestone is published; the remaining sections still need deeper evidence and publication review.
 
 ## Audience
 
@@ -98,3 +98,11 @@ The confirmed username is `dc-x1`. The repository is `dc-x1/dc-x1.github.io` and
 Release validation covers the static build, local routes, asset/module references, controller state and dependency audit. Complete live 3D, cross-browser and physical-device visual QA remains separate from these automated results.
 
 Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
+
+## French localization - 21 October 2026
+
+French is implemented across the eight equivalent page types, including technical case studies and interactive labels. Scope is localization; the planned Contact and Hardwarethon redesigns remain future work. Automated checks cover dictionary completeness, Unicode, route language, alternate links and language switching. Browser rendering on physical mobile devices remains separate QA.
+
+## Sprint 09 closeout - 22 October 2026
+
+French localization and the four-language editorial review complete this sprint. Delivery uses sprint/09-translations, with commit Sprint09_082126; merging into main is a separate release step. The feature-branch push does not deploy Pages. Contact-box improvements and a professional Hardwarethon section design remain the next product scope.

@@ -12,6 +12,7 @@ const button = () => ({ disabled: true, listeners: {}, attrs: {},
   addEventListener(event, callback) { this.listeners[event] = callback; },
   setAttribute(name, value) { this.attrs[name] = value; },
 });
+for (const language of ['en', 'nl', 'de', 'fr']) {
 for (const theme of ['light', 'dark']) {
   const elements = new Map();
   for (const key of ['sketchfab-viewer', 'model-reset', 'tumour-toggle', 'tags-toggle',
@@ -23,7 +24,7 @@ for (const theme of ['light', 'dark']) {
   elements.set('[data-additional-model]', { dataset: { additionalModel: uid }, querySelector: (key) => elements.get(key) });
   const apis = [];
   let themeChanged;
-  const document = { documentElement: { dataset: { theme } }, querySelector: (key) => elements.get(key) };
+  const document = { documentElement: { lang: language, dataset: { theme } }, querySelector: (key) => elements.get(key) };
   const material = (name, stateSetID, color) => ({ name, stateSetID, channels: { AlbedoPBR: { color } } });
   class Sketchfab {
     init(id, options) {
@@ -44,7 +45,7 @@ for (const theme of ['light', 'dark']) {
     }
   }
   vm.runInNewContext(code, { document, window: { Sketchfab }, console,
-    isDutchDocument: false, isGermanDocument: false,
+    isDutchDocument: language === 'nl', isGermanDocument: language === 'de', isFrenchDocument: language === 'fr',
     MutationObserver: class { constructor(callback) { themeChanged = callback; } observe() {} },
   });
   assert.equal(apis.length, 3);
@@ -56,7 +57,12 @@ for (const theme of ['light', 'dark']) {
   assert.equal(added.materials.at(-1).name, 'mtl41186');
   assert.equal(added.materials.at(-1).channels.Opacity.factor, 0);
   assert.equal(toggle.attrs['aria-pressed'], 'false');
+  if (language === 'fr') assert.equal(toggle.textContent, 'Afficher la tumeur');
   toggle.listeners.click();
+  if (language === 'fr') assert.equal(toggle.textContent, 'Masquer la tumeur');
+  const tags = elements.get('[data-tags-toggle]');
+  tags.listeners.click();
+  if (language === 'fr') assert.equal(tags.textContent, 'Afficher les repères');
   assert.equal(added.materials.at(-1).channels.Opacity, undefined);
   assert.deepEqual(apis.filter((api) => api !== added).map((api) => api.materials.length), otherCounts);
   elements.get('[data-additional-model-reset]').listeners.click();
@@ -65,5 +71,6 @@ for (const theme of ['light', 'dark']) {
   document.documentElement.dataset.theme = theme === 'light' ? 'dark' : 'light';
   themeChanged();
   for (const api of apis) assert.equal(api.backgrounds.at(-1)[0], theme === 'light' ? 0 : 241 / 255);
-  console.log(`${theme}: three independent viewers, tumour hide/show, camera/FOV reset and live theme changes passed`);
+  console.log(`${language}/${theme}: independent viewers, tumour/tag labels, camera/FOV reset and live theme changes passed`);
+}
 }

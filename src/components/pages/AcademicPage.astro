@@ -5,55 +5,166 @@ import type { Locale } from "../../i18n/home";
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
-const isDutch = locale === "nl";
-const isGerman = locale === "de";
 const homePath = locale === "en" ? "/" : `/${locale}/`;
-const germanCopy = {
-  title: "Ausbildung | Diego Carrillo",
-  description: "Hochschulausbildung in Robotik, Automatisierung und Electronic Engineering, ergänzt durch berufliche Weiterbildung in Netzwerken, Cybersicherheit, Softwareentwicklung und künstlicher Intelligenz.",
-  back: "Zurück zu Über mich", eyebrow: "AUSBILDUNG", heading: "Fundiert in Elektronik, Robotik und Regelungstechnik.", background: "AKADEMISCHER HINTERGRUND",
-  intro: "Mein akademischer Hintergrund verbindet Electronic Engineering, einen MSc in Robotics and Automation und Netzwerkstudien. Gemeinsam bilden diese Disziplinen eine Grundlage in intelligenten Systemen, Regelungstechnik und vernetzter Infrastruktur. Das Studium in internationalen Umgebungen stärkte zudem meine Fähigkeit, dieses Wissen in akademischen, technischen und praktischen Kontexten anzuwenden.",
-  programmes: [
-    ["MSc in Robotics and Automation", "Aufbaustudium an der Universidad Carlos III de Madrid mit Schwerpunkt auf Entwurf und Entwicklung robotischer und automatisierter Systeme. Das Programm verbindet Regelungstechnik, intelligente Systeme, Softwareintegration und experimentelle Validierung und umfasst den offiziellen europäischen Diplomzusatz (SET)."],
-    ["Electronic Engineering", "Ingenieurstudium mit analogen und digitalen Schaltungen, Regelungstechnik, industrieller Automatisierung, elektrischen Maschinen, Kommunikation und Datennetzen. Der Praxisanteil vermittelte Fähigkeiten zur Analyse technischer Größen, Entwicklung von Lösungen und Integration von Hardware und Software."],
-    ["Cisco Systems CCNA", "Netzwerkausbildung mit Fokus auf Netzwerkgrundlagen, Switching, Routing, IP-Konnektivität und -Dienste, Zugriffskontrolle, Sicherheit, Automatisierung und Programmierbarkeit. Die praxisorientierten Inhalte schufen eine Grundlage für Konfiguration, Fehlerbehebung und Schutz moderner vernetzter Infrastrukturen."],
-  ], additional: "WEITERE STUDIEN", additionalIntro: "Diese Studien ergänzen meinen Hintergrund in AI, Cybersicherheit und Softwareentwicklung.",
-  studies: [
-    ["Neural Networks and Deep Learning", "Grundlagenstudium neuronaler Netze, Deep-Learning-Architekturen und ihrer Anwendung auf datengestütztes Engineering und intelligente Systeme."],
-    ["Managing Network Security", "Studium von Netzwerkbedrohungen, Sicherheitsmaßnahmen und risikobasierten Verfahren zum Schutz vernetzter Systeme und Informationsflüsse."],
-    ["Software Processes and Agile Practices", "Studium iterativer Auslieferung, kollaborativer Entwicklung, Planung und kontinuierlicher Verbesserung für zuverlässige Softwareprodukte."],
-  ],
+const academicContent = {
+  "en": {
+    "title": "Academic | Diego Carrillo",
+    "description": "University education in robotics, automation and electronic engineering, complemented by professional studies in networking, cybersecurity, software practices and artificial intelligence.",
+    "back": "Back to about",
+    "eyebrow": "ACADEMIC",
+    "heading": "Built on electronics, robotics and control.",
+    "background": "ACADEMIC BACKGROUND",
+    "intro": "My studies combine Electronic Engineering, an MSc in Robotics and Automation, and networking. They provide a foundation in control, intelligent systems and connected infrastructure. Studying internationally also strengthened my ability to apply this knowledge in different technical settings.",
+    "programmes": [
+      [
+        "Master’s Degree in Robotics and Automation",
+        "Master’s programme at Universidad Carlos III de Madrid covering robotic and automated systems, control, intelligent systems, software integration and experimental validation. The qualification includes the official European Diploma Supplement (SET)."
+      ],
+      [
+        "Electronic Engineering",
+        "Engineering programme in analogue and digital electronics, control, industrial automation, electrical machines, communications and data networks. Practical work focused on technical analysis, solution design and hardware/software integration."
+      ],
+      [
+        "Cisco Systems CCNA",
+        "Networking studies covering switching, routing, IP services, access control, security, automation and programmability. Practical work focused on configuration, troubleshooting and protection of networked infrastructure."
+      ]
+    ],
+    "additional": "ADDITIONAL STUDIES",
+    "additionalIntro": "Further studies in artificial intelligence, network security and software development.",
+    "studies": [
+      [
+        "Neural Networks and Deep Learning",
+        "Foundations of neural networks and deep learning, with applications to intelligent systems and data-driven engineering."
+      ],
+      [
+        "Managing Network Security",
+        "Network threats, security controls and risk-based practices for protecting connected systems and information flows."
+      ],
+      [
+        "Software Processes and Agile Practices",
+        "Iterative delivery, collaborative development, planning and continuous improvement for reliable software."
+      ]
+    ]
+  },
+  "nl": {
+    "title": "Opleiding | Diego Carrillo",
+    "description": "Universitaire opleiding in robotica, automatisering en Electronic Engineering, aangevuld met professionele studies in netwerken, cybersecurity, softwareontwikkeling en kunstmatige intelligentie.",
+    "back": "Terug naar Over mij",
+    "eyebrow": "OPLEIDING",
+    "heading": "Gebouwd op elektronica, robotica en besturing.",
+    "background": "ACADEMISCHE ACHTERGROND",
+    "intro": "Mijn opleiding combineert elektronica, een MSc in robotica en automatisering, en netwerkstudies. Dat vormt een basis in besturing, intelligente systemen en verbonden infrastructuur. Internationaal studeren leerde me deze kennis in verschillende technische omgevingen toe te passen.",
+    "programmes": [
+      [
+        "MSc in Robotics and Automation",
+        "Masteropleiding aan Universidad Carlos III de Madrid in robotica en geautomatiseerde systemen, besturing, intelligente systemen, software-integratie en experimentele validatie. Het diploma omvat het officiële Europese diplomasupplement (SET)."
+      ],
+      [
+        "Electronic Engineering",
+        "Engineeringopleiding in analoge en digitale elektronica, besturing, industriële automatisering, elektrische machines, communicatie en datanetwerken. Het praktijkwerk richtte zich op technische analyse, oplossingsontwerp en integratie van hardware en software."
+      ],
+      [
+        "Cisco Systems CCNA",
+        "Netwerkstudies in switching, routing, IP-diensten, toegangsbeheer, beveiliging, automatisering en programmeerbaarheid. De praktijkopdrachten richtten zich op configuratie, probleemoplossing en beveiliging van netwerkinfrastructuur."
+      ]
+    ],
+    "additional": "AANVULLENDE STUDIES",
+    "additionalIntro": "Aanvullende studies in kunstmatige intelligentie, netwerkbeveiliging en softwareontwikkeling.",
+    "studies": [
+      [
+        "Neurale netwerken en deep learning",
+        "Grondslagen van neurale netwerken en deep learning, toegepast op intelligente systemen en datagedreven techniek."
+      ],
+      [
+        "Netwerkbeveiliging beheren",
+        "Netwerkdreigingen, beveiligingsmaatregelen en risicogestuurde bescherming van verbonden systemen en informatiestromen."
+      ],
+      [
+        "Softwareprocessen en agile werken",
+        "Iteratieve oplevering, gezamenlijke ontwikkeling, planning en continue verbetering voor betrouwbare software."
+      ]
+    ]
+  },
+  "de": {
+    "title": "Ausbildung | Diego Carrillo",
+    "description": "Hochschulausbildung in Robotik, Automatisierung und Electronic Engineering, ergänzt durch berufliche Weiterbildung in Netzwerken, Cybersicherheit, Softwareentwicklung und künstlicher Intelligenz.",
+    "back": "Zurück zu Über mich",
+    "eyebrow": "AUSBILDUNG",
+    "heading": "Fundiert in Elektronik, Robotik und Regelungstechnik.",
+    "background": "AKADEMISCHER HINTERGRUND",
+    "intro": "Mein Studium verbindet Elektronik, einen MSc in Robotik und Automatisierung sowie Netzwerktechnik. Es bildet die Grundlage für Regelung, intelligente Systeme und vernetzte Infrastruktur. Internationale Studienerfahrungen halfen mir, dieses Wissen in unterschiedlichen technischen Umgebungen anzuwenden.",
+    "programmes": [
+      [
+        "MSc in Robotics and Automation",
+        "Masterstudium an der Universidad Carlos III de Madrid in Robotik, Automatisierung, Regelung, intelligenten Systemen, Softwareintegration und experimenteller Validierung. Der Abschluss umfasst den offiziellen europäischen Diplomzusatz (SET)."
+      ],
+      [
+        "Electronic Engineering",
+        "Ingenieurstudium in analoger und digitaler Elektronik, Regelung, industrieller Automatisierung, elektrischen Maschinen, Kommunikation und Datennetzen. Praktische Arbeiten vertieften technische Analyse, Lösungsentwurf und die Integration von Hardware und Software."
+      ],
+      [
+        "Cisco Systems CCNA",
+        "Netzwerkstudien zu Switching, Routing, IP-Diensten, Zugriffskontrolle, Sicherheit, Automatisierung und Programmierbarkeit. Praktische Aufgaben behandelten Konfiguration, Fehlerbehebung und Schutz vernetzter Infrastruktur."
+      ]
+    ],
+    "additional": "WEITERE STUDIEN",
+    "additionalIntro": "Ergänzende Studien in künstlicher Intelligenz, Netzwerksicherheit und Softwareentwicklung.",
+    "studies": [
+      [
+        "Neuronale Netze und Deep Learning",
+        "Grundlagen neuronaler Netze und des Deep Learning mit Anwendungen in intelligenten Systemen und datengestützter Technik."
+      ],
+      [
+        "Netzwerksicherheit verwalten",
+        "Netzwerkbedrohungen, Sicherheitsmaßnahmen und risikobasierter Schutz vernetzter Systeme und Informationsflüsse."
+      ],
+      [
+        "Softwareprozesse und agile Methoden",
+        "Iterative Umsetzung, gemeinsame Entwicklung, Planung und kontinuierliche Verbesserung für zuverlässige Software."
+      ]
+    ]
+  },
+  "fr": {
+    "title": "Formation | Diego Carrillo",
+    "description": "Formation universitaire en robotique, automatisation et génie électronique, complétée par des études en réseaux, cybersécurité, développement logiciel et intelligence artificielle.",
+    "back": "Retour à la présentation",
+    "eyebrow": "FORMATION",
+    "heading": "Un socle en électronique, robotique et automatique.",
+    "background": "PARCOURS UNIVERSITAIRE",
+    "intro": "Mon parcours associe génie électronique, master en robotique et automatisation et études en réseaux. Il constitue un socle en commande, systèmes intelligents et infrastructures connectées. Étudier à l’international m’a aussi appris à appliquer ces connaissances dans différents environnements techniques.",
+    "programmes": [
+      [
+        "Master en robotique et automatisation",
+        "Master à l’Universidad Carlos III de Madrid en robotique, automatisation, commande, systèmes intelligents, intégration logicielle et validation expérimentale. Le diplôme comprend le supplément européen officiel au diplôme (SET)."
+      ],
+      [
+        "Génie électronique",
+        "Formation d’ingénieur en électronique analogique et numérique, automatique, automatisation industrielle, machines électriques, communications et réseaux de données. Les travaux pratiques portaient sur l’analyse technique, la conception et l’intégration du matériel et du logiciel."
+      ],
+      [
+        "Cisco Systems CCNA",
+        "Études en commutation, routage, services IP, contrôle d’accès, sécurité, automatisation et programmabilité. Les travaux pratiques portaient sur la configuration, le dépannage et la protection des infrastructures réseau."
+      ]
+    ],
+    "additional": "FORMATIONS COMPLÉMENTAIRES",
+    "additionalIntro": "Études complémentaires en intelligence artificielle, sécurité des réseaux et développement logiciel.",
+    "studies": [
+      [
+        "Réseaux de neurones et apprentissage profond",
+        "Fondements des réseaux de neurones et de l’apprentissage profond, appliqués aux systèmes intelligents et à l’ingénierie fondée sur les données."
+      ],
+      [
+        "Gestion de la sécurité des réseaux",
+        "Menaces réseau, mesures de sécurité et protection des systèmes connectés et des flux d’information selon les risques."
+      ],
+      [
+        "Processus logiciels et méthodes agiles",
+        "Livraison itérative, développement collaboratif, planification et amélioration continue pour des logiciels fiables."
+      ]
+    ]
+  }
 };
-const copy = isGerman ? germanCopy : isDutch ? {
-  title: "Opleiding | Diego Carrillo",
-  description: "Universitaire opleiding in robotica, automatisering en Electronic Engineering, aangevuld met professionele studies in netwerken, cybersecurity, softwareontwikkeling en kunstmatige intelligentie.",
-  back: "Terug naar Over mij", eyebrow: "OPLEIDING", heading: "Gebouwd op elektronica, robotica en besturing.", background: "ACADEMISCHE ACHTERGROND",
-  intro: "Mijn academische achtergrond combineert Electronic Engineering, een MSc in Robotics and Automation en netwerkstudies. Samen vormen deze disciplines een basis in intelligente systemen, besturing en verbonden infrastructuur. Studeren in internationale omgevingen heeft bovendien mijn vermogen versterkt om deze kennis toe te passen in academische, technische en praktische contexten.",
-  programmes: [
-    ["MSc in Robotics and Automation", "Postdoctorale opleiding aan Universidad Carlos III de Madrid, gericht op het ontwerp en de ontwikkeling van robot- en automatiseringssystemen. De opleiding combineert besturing, intelligente systemen, software-integratie en experimentele validatie en omvat het officiële European Diploma Supplement (SET)."],
-    ["Electronic Engineering", "Engineeringopleiding in analoge en digitale elektronica, besturing, industriële automatisering, elektrische machines, communicatie en datanetwerken. De praktische component ontwikkelde vaardigheden in het analyseren van technische variabelen, het ontwerpen van oplossingen en het integreren van hardware en software."],
-    ["Cisco Systems CCNA", "Netwerkopleiding gericht op netwerkfundamenten, switching, routing, IP-connectiviteit en -diensten, toegangsbeheer, beveiliging, automatisering en programmeerbaarheid. De praktijkgerichte inhoud legde een basis voor het configureren, oplossen van storingen en beveiligen van moderne netwerkinfrastructuur."],
-  ], additional: "AANVULLENDE STUDIES", additionalIntro: "Deze studies vullen mijn achtergrond aan op het gebied van AI, cybersecurity en softwareontwikkeling.",
-  studies: [
-    ["Neural Networks and Deep Learning", "Fundamentele studie van neurale netwerken, deep-learningarchitecturen en hun toepassing op datagedreven engineering en intelligente systemen."],
-    ["Managing Network Security", "Studie van netwerkdreigingen, beveiligingsmaatregelen en risicogestuurde werkwijzen voor de bescherming van verbonden systemen en informatiestromen."],
-    ["Software Processes and Agile Practices", "Studie van iteratieve oplevering, gezamenlijke ontwikkeling, planning en continue verbetering voor betrouwbare softwareproducten."],
-  ],
-} : {
-  title: "Academic | Diego Carrillo", description: "University education in robotics, automation and electronic engineering, complemented by professional studies in networking, cybersecurity, software practices and artificial intelligence.",
-  back: "Back to about", eyebrow: "ACADEMIC", heading: "Built on electronics, robotics and control.", background: "ACADEMIC BACKGROUND",
-  intro: "My academic background combines Electronic Engineering, postgraduate specialisation in Robotics and Automation, and networking studies. Together, these disciplines established a foundation in intelligent systems, control and connected infrastructure. Studying in international environments also strengthened my ability to apply this knowledge across academic, technical and practical settings.",
-  programmes: [
-    ["Master's Degree in Robotics and Automation", "Postgraduate programme at Universidad Carlos III de Madrid focused on the design and development of robotic and automated systems, combining control, intelligent systems, software integration and experimental validation. The qualification includes the official European Diploma Supplement (SET)."],
-    ["Electronic Engineering", "Engineering programme covering analogue and digital electronics, control, industrial automation, electrical machines, communications and data networks. Its practical component developed skills in analysing technical variables, designing solutions and integrating hardware with software."],
-    ["Cisco Systems CCNA", "Networking programme focused on network fundamentals, switching, routing, IP connectivity and services, access control, security, automation and programmability. Its practical scope established a foundation for configuring, troubleshooting and protecting modern networked infrastructure."],
-  ], additional: "ADDITIONAL STUDIES", additionalIntro: "These studies complement my background in AI, cybersecurity and software delivery.",
-  studies: [
-    ["Neural Networks and Deep Learning", "Foundational study of neural networks, deep learning architectures and their application to data informed engineering and intelligent systems."],
-    ["Managing Network Security", "Study of network threats, security controls and practices informed by risk for protecting connected systems and information flows."],
-    ["Software Processes and Agile Practices", "Study of iterative delivery, collaborative development, planning and continuous improvement for reliable software products."],
-  ],
-};
+const copy = academicContent[locale];
 ---
 
 <BaseLayout

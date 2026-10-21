@@ -1,6 +1,6 @@
 # Content brief
 
-Last updated: 21 October 2026
+Last updated: 22 October 2026
 
 ## Editorial objective
 
@@ -193,3 +193,15 @@ The Dutch grid context retains one map figure per route. Dark and light variants
 The confirmed GitHub identity is `dc-x1`, with profile `https://github.com/dc-x1` and site `https://dc-x1.github.io`. No professional name, qualification or employer claim changes.
 
 Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
+
+## French localization - 21 October 2026
+
+French editorial copy preserves professional qualifications, numerical results and publication boundaries. Technical usage distinguishes commande, automatisation, supervision, mise en service and stability analysis. Pituitary tumour is translated as tumeur hypophysaire. Product names, original model/dataset titles and source artwork remain unchanged; interface text, captions, alternative text, FAQ links and contact messages are localized.
+
+## Multilingual editorial review
+
+The 21 October review shortens dense paragraphs in EN, NL, DE and FR, fills German translation gaps and preserves qualifications, numerical results and publication boundaries. The Dutch master is explicitly described as a master programme, not postdoctoral study. See [TRANSLATION_REVIEW.md](TRANSLATION_REVIEW.md) for findings and validation scope.
+
+## Sprint 09 closeout - 22 October 2026
+
+The EN, NL, DE and FR editorial review reduces dense paragraphs, completes missing translations and preserves qualifications, contribution boundaries and numerical results. Official source titles and embedded source artwork retain their original language. See TRANSLATION_REVIEW.md for the detailed findings.

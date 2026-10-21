@@ -1,6 +1,6 @@
 # Roadmap
 
-Last updated: 21 October 2026
+Last updated: 22 October 2026
 
 ## Current product status
 
@@ -11,7 +11,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Static Astro architecture and GitHub Pages configuration.
 - Automated GitHub Pages build and deployment through the official Astro GitHub Action.
 - Complete Dutch localization for the homepage, About, Milestones and all four project case studies, including route-aware EN/NL controls, localized metadata and accessible interface copy.
-- Complete German localization for the homepage, About, Milestones and all four project case studies, including route-aware EN/NL/DE controls, localized metadata and accessible interface copy.
+- Complete German localization for the homepage, About, Milestones and all four project case studies, including route-aware EN/NL/DE/FR controls, localized metadata and accessible interface copy.
 - Responsive dark and light visual foundations with dark as the initial mode and session-scoped visitor preference while navigating.
 - Sticky translucent navigation with scroll blur and restrained motion.
 - Reusable premium neon controls and informational surfaces with unified hover, focus, press and touch feedback.
@@ -106,7 +106,7 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 - Build and dependency audit pass with no known high-severity issues.
 - Metadata and social sharing previews are complete.
 
-## Sprint 08 closeout ? 21 October 2026
+## Sprint 08 closeout - 21 October 2026
 
 - Added a third CT brain anatomy viewer with independent tumour and camera controls and shared responsive styling.
 - Unified viewer backgrounds with the active theme.
@@ -119,3 +119,11 @@ The portfolio is functional as a static Astro website on desktop and mobile. Its
 The owner confirmed `dc-x1`; account/repository renaming and the local remote update are complete. Production must be checked at `https://dc-x1.github.io` after deployment. Live WebGL rendering, cross-browser review and physical mobile checks remain pending and are not represented as completed by automated validation.
 
 Identity migration confirmed on 21 October 2026: `dc-x1` is the final username; the Pages repository and local remote are `dc-x1/dc-x1.github.io`. Both CI and local metadata/profile links use this identity.
+
+## French localization - 21 October 2026
+
+Completed the pending French locale: eight new routes, contextual technical copy, localized navigation and metadata, French contact/FAQ content and translated runtime 3D controls. Validate locally with npm.cmd run check:french after building. The route set grows from 24 to 32. Contact and Hardwarethon design improvements remain the next design scope.
+
+## Sprint 09 closeout - 22 October 2026
+
+Completed: French across eight equivalent routes, concise EN/NL/DE/FR copy, translation coverage checks and dictionary cleanup. Deliver on sprint/09-translations with commit Sprint09_082126; integrate into main separately to publish. Next design priorities are the contact box and Hardwarethon section. Live WebGL, physical-device and cross-browser visual QA remain open.

@@ -40,6 +40,8 @@ $env:ASTRO_TELEMETRY_DISABLED='1'
 npm.cmd run build
 npm.cmd audit --omit=dev
 npm.cmd run check:models
+npm.cmd run check:french
+npm.cmd run check:translations
 npm.cmd run audit:repo
 git diff --check
 ```
@@ -49,11 +51,12 @@ git diff --check
 - English: `/`
 - Dutch: `/nl/`
 - German: `/de/`
+- French: `/fr/`
 - Localized About routes: `/[locale]/about/experience/` and `/[locale]/about/academic/`
 - Localized milestone route: `/[locale]/milestones/hardwarethon/`
 - Localized project routes: `/[locale]/projects/[slug]/`
 
-English is unprefixed. `[locale]` is `nl` or `de` for translated routes.
+English is unprefixed. `[locale]` is `nl`, `de` or `fr` for translated routes.
 
 ## Deployment
 
@@ -74,3 +77,11 @@ Both local builds and production use `https://dc-x1.github.io`. CI supplies `PUB
 - `npm.cmd run audit:repo`: after a build, inspect public asset references, source imports, duplicate hashes and internal links. Reports are saved under ignored `tmp/`.
 
 These checks do not constitute live browser, Sketchfab rendering or physical-device visual validation.
+
+French localization includes eight equivalent routes, contextual copy and runtime 3D labels. After building, `npm.cmd run check:french` checks coverage, alternate links, language switches and French Unicode.
+
+The multilingual editorial review is documented in [docs/TRANSLATION_REVIEW.md](docs/TRANSLATION_REVIEW.md).
+
+## Sprint 09 delivery
+
+Sprint09_082126 is delivered on `sprint/09-translations`. It adds French and reviews all four languages across 32 routes. Merge into `main` separately to publish through Pages. Contact and Hardwarethon design improvements remain next.
