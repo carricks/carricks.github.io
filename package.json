@@ -12,6 +12,7 @@
     "astro": "astro",
     "check:models": "node scripts/check-model-controls.mjs",
     "check:contact": "node scripts/check-contact.mjs",
+    "check:report": "node scripts/check-report-navigation.mjs",
     "assets:grid": "node scripts/create-grid-light-assets.mjs",
     "audit:repo": "node scripts/audit-repository.mjs",
     "check:french": "node scripts/check-french.mjs",

@@ -89,7 +89,7 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 - Diagram labels require dedicated clear space: they must never overlap lines, symbols, cards, nodes or other labels.
 - Scientific diagrams use black, lilac, soft-white and cool-grey tones. Green, mint, olive and teal accents are excluded unless they encode an explicitly approved state.
 - Dense engineering diagrams require a dedicated mobile composition when simple responsive scaling compromises legibility.
-- The academic report opens in a dedicated modal viewer and returns focus to its trigger when closed.
+- The academic report opens in a dedicated modal viewer on desktop and returns focus to its trigger when closed. Mobile and touch devices open the full PDF in a separate tab to avoid first-page-only embedded previews. The trigger retains the same styling in every locale and theme.
 - The telecommunications coverage SVG follows the engineering-diagram rules and uses reserved negative space for equipment labels. Its donor, protection, repeater, splitter, backbone and indoor antenna fields remain spatially independent from RF paths and active distribution points. The figure uses the shared lightbox at full vector resolution.
 - The MRI prediction chart uses paired solid dark/light rasters at controlled translucency, without wireframe grid lines. Labels and percentages remain outside the chart and sit above their own horizontal guide rails; fine SVG leaders stop where each rail begins instead of crossing beneath text. Mobile removes the leaders and uses a compact label grid.
 - Prediction colors remain subordinate to the page while distinguishing every class: soft lilac for pituitary, soft white for glioma, muted magenta for meningioma and muted cyan for no tumour.

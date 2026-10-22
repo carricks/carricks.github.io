@@ -39,7 +39,7 @@ const isTelecomCoverageCaseStudy = project.slug === "telecommunications-coverage
             <p class="case-eyebrow">{tr("MASTER'S RESEARCH · COMPUTER VISION")}</p>
             <h1>{tr("Classifying brain tumours from MRI.")}</h1>
             <p class="case-lead">{tr("A research prototype that classifies varied medical images into four categories using a convolutional model and a web interface.")}</p>
-            <a href="/documents/master-thesis-brain-tumour-mri.pdf" class="report-access-control" data-report-open>
+            <a href="/documents/master-thesis-brain-tumour-mri.pdf" target="_blank" rel="noopener noreferrer" class="report-access-control" data-report-open>
               <span>{tr("Explore report")}</span>
               <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13 13 5M7 5h6v6" /></svg>
             </a>
@@ -1050,6 +1050,11 @@ END OF REPORT
   };
 
   reportTrigger?.addEventListener("click", (event) => {
+    // Mobile PDF plugins may expose only page one inside an iframe.
+    // Use the complete document in a top-level tab on phones and touch tablets.
+    // Keep normal browser behaviour for modified clicks on desktop as well.
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey
+      || window.matchMedia("(max-width: 900px), (any-pointer: coarse)").matches) return;
     if (!reportViewer || !reportFrame) return;
     event.preventDefault();
     reportFrame.src = reportFrame.dataset.source ?? reportTrigger.href;
