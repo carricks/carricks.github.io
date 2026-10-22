@@ -44,3 +44,7 @@ These checks do not substitute for live WebGL rendering, a physical-device layou
 Release candidate: Sprint09_082126 on sprint/09-translations. The build and repository checks are rerun at closeout; temporary editorial extracts are removed and excluded from Git. Production remains unchanged until integration into main. Automated checks do not certify native-language review or physical-device rendering.
 
 Closeout results on 22 October 2026: 32 pages built; 29 public assets and 46 source files checked; no unused assets/modules, duplicate public files or broken internal links. All 61 local route/asset HTTP checks passed. Translation and simulated model controls passed in four locales and both themes. `git diff --check` passed; `npm.cmd audit --omit=dev` reported zero vulnerabilities. Removed 16 temporary editorial files; no retained public asset required deletion.
+
+## Sprint 10 closeout - 22 October 2026
+
+The contact additions are localized in EN/NL/DE/FR: visible field labels, field-level errors, request states and JavaScript/unavailability notices. Removed obsolete mail-client strings and LinkedIn messaging suggestions. The visitor may write in any language; page locale does not restrict the submitted text. No automatic detection or translation of visitor messages is performed.

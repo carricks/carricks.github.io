@@ -127,3 +127,7 @@ Completed the pending French locale: eight new routes, contextual technical copy
 ## Sprint 09 closeout - 22 October 2026
 
 Completed: French across eight equivalent routes, concise EN/NL/DE/FR copy, translation coverage checks and dictionary cleanup. Deliver on sprint/09-translations with commit Sprint09_082126; integrate into main separately to publish. Next design priorities are the contact box and Hardwarethon section. Live WebGL, physical-device and cross-browser visual QA remain open.
+
+## Sprint 10 closeout - 22 October 2026
+
+Completed: fine lilac contact panel, visible regular-weight labels, responsive name/email row, persistent field errors, localized request states and direct Web3Forms submission. A real local test was accepted by Web3Forms; mailbox receipt remains unconfirmed. Release Sprint10_082226 moves from sprint/10-contact to main. Next design priority: Hardwarethon. Automatic message-language detection and physical-device/cross-browser QA remain future work.

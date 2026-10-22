@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:models": "node scripts/check-model-controls.mjs",
+    "check:contact": "node scripts/check-contact.mjs",
     "assets:grid": "node scripts/create-grid-light-assets.mjs",
     "audit:repo": "node scripts/audit-repository.mjs",
     "check:french": "node scripts/check-french.mjs",

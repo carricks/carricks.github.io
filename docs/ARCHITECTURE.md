@@ -4,7 +4,7 @@ Last updated: 22 October 2026
 
 ## Status
 
-This is a static Astro portfolio deployed through GitHub Pages. Astro renders the public routes at build time. Browser JavaScript supports navigation, viewport aware effects, the contact form, accessible media dialogs and the Sketchfab Viewer API used by the MRI case study.
+This is a static Astro portfolio deployed through GitHub Pages. Astro renders the public routes at build time. Browser JavaScript supports navigation, viewport aware effects, the contact form, accessible media dialogs and the Sketchfab Viewer API used by the MRI case study. The Sprint 10 contact form posts to Web3Forms when configured; see [CONTACT_FORM.md](CONTACT_FORM.md) for activation and delivery validation.
 
 ## Current structure
 
@@ -132,11 +132,11 @@ Project detail routes are generated from `src/data/projects.ts`. Homepage About 
 
 ## Contact behavior
 
-The contact form has no backend. It validates fields in the browser and opens a prepared email through `mailto:`. Fields share one pointer/touch state model: an 80-percent-transparent lilac resting surface changes to equally transparent white during interaction, while text, caret and icons retain a stable lilac. If reliable in-page delivery becomes a requirement, a dedicated form service and privacy review are needed.
+The contact form validates fields in the browser and posts to Web3Forms. It has no application-owned backend. Persistent per-field errors, localized request states and draft preservation replace the former mail-client handoff. See [CONTACT_FORM.md](CONTACT_FORM.md).
 
 ## Security and privacy
 
-- No secrets or API credentials belong in the repository. The public Sketchfab viewers require no repository credential.
+- No private secrets, SMTP passwords or privileged API credentials belong in the repository. The Web3Forms identifier is explicitly public and embedded in the static page. The public Sketchfab viewers require no repository credential.
 - Environment files are ignored.
 - Local build output, dependencies, generated Astro types and workspace temporary files are ignored.
 - External links use `target="_blank"` with `rel="noopener noreferrer"`.
@@ -204,3 +204,7 @@ French is a full locale under /fr/, with homepage, Academic, Experience, Hardwar
 ## Sprint 09 closeout - 22 October 2026
 
 Project translation dictionaries are separated into projects.nl.ts, projects.de.ts and projects.fr.ts. The shared English case-study copy remains the lookup source. The static build exposes 32 routes. The reference audit checks all 29 public assets and the page-rooted source import graph; browser-convention favicon use is retained.
+
+## Sprint 10 closeout - 22 October 2026
+
+The shared contact component imports localized copy from src/i18n/contact.ts and browser submission logic from src/scripts/contact.ts. It posts to Web3Forms without an application backend. src/config/contact.ts contains the public email-scoped form identifier; PUBLIC_WEB3FORMS_ACCESS_KEY optionally overrides it for local or Actions builds. The site remains 32 static routes. See CONTACT_FORM.md for activation, states and validation.

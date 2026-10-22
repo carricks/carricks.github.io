@@ -1,16 +1,18 @@
 ---
 import { siteProfile } from "../../config/site";
+import { contactAccessKey } from "../../config/contact";
 import Container from "../common/Container.astro";
 import Section from "../common/Section.astro";
 import ArrowIcon from "../common/ArrowIcon.astro";
-import { getHomeContent, type Locale } from "../../i18n/home";
+import type { Locale } from "../../i18n/home";
+import { getContactContent } from "../../i18n/contact";
 
 interface Props {
   locale?: Locale;
 }
 
 const { locale = "en" } = Astro.props;
-const content = getHomeContent(locale).contact;
+const content = getContactContent(locale);
 ---
 
 <Section id="contact" class="relative isolate scroll-mt-20 overflow-hidden bg-black pb-24 lg:pb-24">
@@ -20,35 +22,56 @@ const content = getHomeContent(locale).contact;
       <h2 class="interactive-heading section-title mt-6 text-slate-400">{content.title}</h2>
       <p class="body-copy-reference mt-6 max-w-xl text-slate-300">{content.description}</p>
 
-      <form data-contact-form data-invalid-message={content.invalid} data-opening-message={content.opening} data-subject-prefix={content.subject} data-body-name={content.bodyName} data-body-email={content.bodyEmail} data-body-message={content.bodyMessage} novalidate class="mt-8 grid gap-4" aria-describedby="contact-form-status">
+      <form data-contact-form data-invalid-message={content.invalid} data-subject-prefix={content.subject}
+        data-sending-message={content.sending} data-success-message={content.success} data-failure-message={content.failure}
+        data-timeout-message={content.timeout} data-unavailable-message={content.unavailable} data-submit-message={content.submit}
+        novalidate class="contact-panel mt-8" aria-describedby="contact-form-status">
+        <input type="hidden" name="access_key" value={contactAccessKey} />
+        <input type="hidden" name="from_name" value="Diego Carrillo · Portfolio" />
+        <input type="hidden" name="page_language" value={locale} />
+        <input type="checkbox" name="botcheck" class="contact-botcheck" tabindex="-1" aria-hidden="true" />
+        <div class="contact-fields">
         <div class="contact-field">
-          <label class="sr-only" for="contact-name">{content.name}</label>
+          <label for="contact-name">{content.name}</label>
+          <div class="contact-input-wrap">
           <span class="contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <circle cx="12" cy="8" r="3.25" />
               <path d="M4.5 20c.9-3.65 3.3-5.5 7.5-5.5s6.6 1.85 7.5 5.5" />
             </svg>
           </span>
-          <input id="contact-name" name="name" type="text" autocomplete="name" required />
+          <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="120" data-contact-input
+            data-required-message={content.nameRequired} data-length-message={content.tooLong} aria-describedby="contact-name-error" />
+          </div>
+          <p id="contact-name-error" class="contact-error" aria-live="polite"></p>
         </div>
         <div class="contact-field">
-          <label class="sr-only" for="contact-email">{content.email}</label>
+          <label for="contact-email">{content.email}</label>
+          <div class="contact-input-wrap">
           <span class="contact-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
               <path d="m4.5 7 7.5 5.5L19.5 7" />
             </svg>
           </span>
-          <input id="contact-email" name="email" type="email" autocomplete="email" required />
+          <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="254" data-contact-input
+            data-required-message={content.emailRequired} data-invalid-message={content.emailInvalid} data-length-message={content.tooLong} aria-describedby="contact-email-error" />
+          </div>
+          <p id="contact-email-error" class="contact-error" aria-live="polite"></p>
         </div>
-        <div class="contact-field">
-          <label class="sr-only" for="contact-message">{content.message}</label>
+        <div class="contact-field contact-field-message">
+          <label for="contact-message">{content.message}</label>
+          <div class="contact-input-wrap">
           <span class="contact-icon contact-message-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
               <path d="M5 5.5h14A1.5 1.5 0 0 1 20.5 7v9A1.5 1.5 0 0 1 19 17.5H10l-4.5 3v-3H5A1.5 1.5 0 0 1 3.5 16V7A1.5 1.5 0 0 1 5 5.5Z" />
             </svg>
           </span>
-          <textarea id="contact-message" name="message" rows="5" required></textarea>
+          <textarea id="contact-message" name="message" rows="5" required maxlength="5000" data-contact-input
+            data-required-message={content.messageRequired} data-length-message={content.tooLong} aria-describedby="contact-message-error"></textarea>
+          </div>
+          <p id="contact-message-error" class="contact-error" aria-live="polite"></p>
+        </div>
         </div>
 
         <p id="contact-form-status" data-contact-status class="min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)]" aria-live="polite"></p>
@@ -56,6 +79,7 @@ const content = getHomeContent(locale).contact;
           <span class="neon-box-label">{content.submit}</span>
           <ArrowIcon />
         </button>
+        <noscript><p class="contact-error">{content.noScript}</p></noscript>
       </form>
 
     </div>
@@ -94,7 +118,29 @@ const content = getHomeContent(locale).contact;
 </Section>
 
 <style>
-  .contact-field { position: relative; }
+  .contact-panel {
+    border: 1px solid rgba(167, 139, 250, 0.28);
+    border-radius: 1rem;
+    background: rgba(167, 139, 250, 0.025);
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+  .contact-fields { display: grid; gap: 1rem 1.25rem; grid-template-columns: minmax(0, 1fr); }
+  .contact-field { min-width: 0; }
+  .contact-input-wrap { position: relative; }
+  .contact-field label {
+    color: rgb(196 181 253); display: block; margin-bottom: 0.5rem;
+    font-size: inherit; font-weight: 400; line-height: inherit;
+  }
+  .contact-error { color: #fca5a5; font-size: var(--type-caption-size); line-height: 1.6; margin-top: 0.4rem; }
+  .contact-error:empty { display: none; }
+  [data-contact-status] { margin: 1rem 0 0.75rem; color: rgb(196 181 253); }
+  [data-contact-status][data-state="error"] { color: #fca5a5; }
+  .contact-botcheck { display: none; }
+  .contact-submit:disabled { opacity: 0.65; cursor: wait; }
+  @media (min-width: 48rem) {
+    .contact-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .contact-field-message { grid-column: 1 / -1; }
+  }
   .contact-icon {
     color: rgb(167 139 250);
     left: 1rem;
@@ -108,22 +154,22 @@ const content = getHomeContent(locale).contact;
   .contact-message-icon { top: 1.25rem; transform: none; }
   .contact-field input, .contact-field textarea {
     width: 100%; border: 1px solid rgba(167, 139, 250, 0.48); border-radius: 0.65rem;
-    background: rgba(76, 29, 149, 0.15); caret-color: rgb(167 139 250); color: rgb(167 139 250); font: inherit; outline: none; padding: 0.9rem 1rem 0.9rem 3rem;
+    background: rgba(76, 29, 149, 0.08); caret-color: rgb(167 139 250); color: rgb(167 139 250); font: inherit; outline: none; padding: 0.9rem 1rem 0.9rem 3rem;
     transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
   }
   .contact-field input::placeholder, .contact-field textarea::placeholder { color: rgba(167, 139, 250, 0.56); }
   .contact-field textarea { min-height: 8rem; resize: vertical; }
   .contact-field:hover input, .contact-field:hover textarea,
   .contact-field input:focus, .contact-field textarea:focus {
-    background: rgba(76, 29, 149, 0.2);
+    background: rgba(76, 29, 149, 0.12);
     border-color: rgba(196, 181, 253, 0.8);
     box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.14);
     caret-color: rgb(167 139 250);
     color: rgb(167 139 250);
   }
-  .contact-field.is-invalid input, .contact-field.is-invalid textarea { border-color: rgb(248 113 113); background: rgba(69, 10, 10, 0.34); animation: invalid-field 850ms ease-in-out 2; }
+  .contact-field.is-invalid input, .contact-field.is-invalid textarea { border-color: rgb(248 113 113);  }
   .contact-submit {
-    width: min(100%, 20rem); background: transparent; border-color: rgba(167, 139, 250, 0.48); color: rgb(221 214 254); cursor: pointer; font: inherit; font-weight: 600;
+    width: min(100%, 20rem); background: transparent; border-color: rgba(167, 139, 250, 0.48); color: rgb(221 214 254); cursor: pointer; font: inherit; font-weight: 400;
   }
   .contact-submit:hover {
     color: rgb(196 181 253);
@@ -237,70 +283,11 @@ const content = getHomeContent(locale).contact;
     .contact-footer-content { align-items: center; flex-direction: column; }
     .footer-credits { justify-content: center; text-align: center; }
   }
-  @keyframes invalid-field {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    25% { border-color: rgb(254 202 202); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.34); }
-    50% { border-color: rgb(220 38 38); box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.12); }
-    75% { border-color: rgb(254 202 202); box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.34); }
-  }
   @media (prefers-reduced-motion: reduce) {
     .contact-field.is-invalid input, .contact-field.is-invalid textarea, .contact-submit, .contact-footer, .footer-copyright:hover, .interactive-control.codex-link:hover { animation: none; transition: none; }
   }
 </style>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-
-  if (form) {
-    const status = form.querySelector<HTMLElement>("[data-contact-status]");
-    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("input, textarea"));
-    const invalidMessage = form.dataset.invalidMessage ?? "Please complete the highlighted fields before submitting.";
-    const openingMessage = form.dataset.openingMessage ?? "Your email client is opening with your message prepared.";
-    const subjectPrefix = form.dataset.subjectPrefix ?? "Portfolio enquiry from";
-    const bodyNameLabel = form.dataset.bodyName ?? "Name";
-    const bodyEmailLabel = form.dataset.bodyEmail ?? "Email";
-    const bodyMessageLabel = form.dataset.bodyMessage ?? "Message";
-
-    const clearInvalidState = (field: HTMLInputElement | HTMLTextAreaElement) => {
-      if (field.validity.valid && field.value.trim()) field.closest(".contact-field")?.classList.remove("is-invalid");
-    };
-
-    fields.forEach((field) => {
-      field.addEventListener("input", () => clearInvalidState(field));
-      field.addEventListener("blur", () => clearInvalidState(field));
-    });
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const invalidFields = fields.filter((field) => !field.value.trim() || !field.validity.valid);
-      invalidFields.forEach((field) => {
-        const fieldContainer = field.closest(".contact-field");
-        fieldContainer?.classList.remove("is-invalid");
-        window.requestAnimationFrame(() => fieldContainer?.classList.add("is-invalid"));
-        window.setTimeout(() => fieldContainer?.classList.remove("is-invalid"), 1000);
-      });
-
-      if (invalidFields.length > 0) {
-        if (status) {
-          status.textContent = invalidMessage;
-          status.className = "min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-red-300";
-        }
-        invalidFields[0].focus();
-        return;
-      }
-
-      const formData = new FormData(form);
-      const name = String(formData.get("name") ?? "").trim();
-      const email = String(formData.get("email") ?? "").trim();
-      const message = String(formData.get("message") ?? "").trim();
-      const subject = `${subjectPrefix} ${name}`;
-      const body = `${bodyNameLabel}: ${name}\n${bodyEmailLabel}: ${email}\n\n${bodyMessageLabel}:\n${message}`;
-      window.location.href = `mailto:diegocarrillo.sa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      if (status) {
-        status.textContent = openingMessage;
-        status.className = "min-h-6 text-[length:var(--type-ui-size)] leading-[var(--type-ui-line-height)] text-violet-200";
-      }
-    });
-  }
+  import "../../scripts/contact";
 </script>

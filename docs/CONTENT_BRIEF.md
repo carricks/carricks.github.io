@@ -205,3 +205,7 @@ The 21 October review shortens dense paragraphs in EN, NL, DE and FR, fills Germ
 ## Sprint 09 closeout - 22 October 2026
 
 The EN, NL, DE and FR editorial review reduces dense paragraphs, completes missing translations and preserves qualifications, contribution boundaries and numerical results. Official source titles and embedded source artwork retain their original language. See TRANSLATION_REVIEW.md for the detailed findings.
+
+## Sprint 10 closeout - 22 October 2026
+
+The contact form uses concise EN/NL/DE/FR labels, field-specific required/email errors and separate sending, success, failure and timeout states. Success means Web3Forms accepted the submission, not proof of mailbox delivery. Messages retain their original language and content apart from outer whitespace. LinkedIn is not offered as a messaging alternative inside the form; professional footer profiles remain separate.

@@ -71,7 +71,7 @@ Homepage introduction
 ## Functional boundaries
 
 - Static site with no application backend.
-- Contact form validates locally and opens a prepared `mailto:` message.
+- Contact form validates locally and submits through Web3Forms when its public form key is configured; see [CONTACT_FORM.md](CONTACT_FORM.md). Mailbox receipt still requires a real delivery check.
 - External profiles open with `noopener noreferrer`.
 - Project and About detail pages are statically generated.
 - Static research figures use a browser native dialog lightbox. The three interactive anatomy models depend on the public Sketchfab Viewer API, retain plain-text creator attribution and restore their complete initial camera state through the API.
@@ -106,3 +106,7 @@ French is implemented across the eight equivalent page types, including technica
 ## Sprint 09 closeout - 22 October 2026
 
 French localization and the four-language editorial review complete this sprint. Delivery uses sprint/09-translations, with commit Sprint09_082126; merging into main is a separate release step. The feature-branch push does not deploy Pages. Contact-box improvements and a professional Hardwarethon section design remain the next product scope.
+
+## Sprint 10 closeout - 22 October 2026
+
+Sprint10_082226 completes the contact-panel redesign and direct Web3Forms submission. The public form identifier is configured in source with an optional environment override, so Pages does not depend on a local .env. The form preserves drafts on failure, prevents concurrent requests and does not offer LinkedIn messaging. Hardwarethon design remains the next product scope. Automatic message-language detection is not implemented.

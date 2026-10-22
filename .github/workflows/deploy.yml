@@ -24,6 +24,7 @@ jobs:
         uses: withastro/action@v6
         env:
           PUBLIC_GITHUB_USERNAME: ${{ github.repository_owner }}
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.PUBLIC_WEB3FORMS_ACCESS_KEY }}
         with:
           node-version: 24
 

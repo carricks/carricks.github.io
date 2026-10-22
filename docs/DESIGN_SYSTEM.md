@@ -123,9 +123,9 @@ Company marks in Experience are normalized to the same lilac to protect visual c
 ### Forms
 
 - Visible focus state and semantic labels.
-- Contact fields rest on an 80-percent-transparent lilac surface and change only their background to equally transparent white on hover, touch focus or keyboard focus.
+- Contact fields use subtle lilac surfaces in both themes; focus adds a restrained ring without a solid-white background.
 - Text, caret and icons retain one stable lilac through resting and active states; the light-mode value color remains legible after focus leaves the field.
-- Invalid fields use red border and short feedback animation.
+- Invalid fields use a stable error border and a persistent, field-specific text message.
 - Status updates use an `aria-live` region.
 
 ## Motion
@@ -173,3 +173,7 @@ All four locales use the shared dark/light typography and responsive layouts. Du
 ## Sprint 09 closeout - 22 October 2026
 
 Translated controls and medical class labels follow the same shared layout in both themes. Model controls reserve space for longer Dutch, German and French labels; probability labels stack on narrow screens in every language. This sprint preserves the existing heading weights and regular pipeline titles. Physical-device and live WebGL visual checks remain pending.
+
+## Sprint 10 closeout - 22 October 2026
+
+The contact panel has a fine lilac border, a restrained dark surface and the page-matched #f1eef5 light canvas. Labels retain the existing 17px regular typography. Name and email share a row from 48rem; the message spans both columns, with a single column below that breakpoint. Field errors persist until corrected, without flashing. Theme contrast was checked in the browser, including mobile viewport layout; physical-device QA remains separate.

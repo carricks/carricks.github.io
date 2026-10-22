@@ -40,6 +40,7 @@ $env:ASTRO_TELEMETRY_DISABLED='1'
 npm.cmd run build
 npm.cmd audit --omit=dev
 npm.cmd run check:models
+npm.cmd run check:contact
 npm.cmd run check:french
 npm.cmd run check:translations
 npm.cmd run audit:repo
@@ -85,3 +86,7 @@ The multilingual editorial review is documented in [docs/TRANSLATION_REVIEW.md](
 ## Sprint 09 delivery
 
 Sprint09_082126 is delivered on `sprint/09-translations`. It adds French and reviews all four languages across 32 routes. Merge into `main` separately to publish through Pages. Contact and Hardwarethon design improvements remain next.
+
+## Sprint 10 delivery
+
+Sprint10_082226 delivers the contact redesign and Web3Forms submission from `sprint/10-contact` into `main`. The public form key has a production default; the optional Actions variable overrides it. See [docs/CONTACT_FORM.md](docs/CONTACT_FORM.md). Hardwarethon design is next.
